@@ -5,6 +5,7 @@
 #include "ADT/mesinkar/mesinkar.h"
 #include "ADT/point/point.h"
 #include "ADT/player/player.h"
+#include "ADT/matriks/matriks.h"
 
 
 #define MAXCHAR 100
@@ -65,12 +66,12 @@ void NewGame(player *p1){
     printf("Enter your name: ");
     scanf("%s", &name);
 
-    CreatePlayer(&p1, p, name);
+    CreatePlayer(p1, p, name);
 
     printf("====================================================================\n");
-    loadPeta();
+    loadPeta(&Peta1, &Peta2, &Peta3, &Peta4);
 
-    TulisPETA(Peta1, p1);
+    TulisPETA(Peta1, *p1);
 
     TulisPlayer(*p1);
     printf("====================================================================\n");
@@ -89,7 +90,11 @@ int main(){
         NewGame(&p1);
 
         while (charInput != '0'){
-            MenuJalan(&p1, charInput);
+            if (charInput == 'w' || charInput == 'a' || charInput == 's' || charInput == 'd')
+            {
+                MenuJalan(&p1, charInput);
+            }
+            
             scanf(" %c", &charInput);
         }
 
@@ -98,4 +103,4 @@ int main(){
     return 0;
 }
 
-// gcc main.c ADT/player/player.c ADT/peta/peta.c ADT/point/point.c -o test
+// gcc main.c ADT/player/player.c ADT/matriks/matriks.c ADT/point/point.c -o test

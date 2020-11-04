@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include "matriks.h"
+#include <string.h>
 
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */              
 /* *** Konstruktor membentuk MATRIKS *** */
@@ -221,41 +222,6 @@ void PKaliKons (MATRIKS * M, ElType K)
     }
 }
 /* ********** KELOMPOK OPERASI RELASIONAL TERHADAP MATRIKS ********** */
-boolean EQ (MATRIKS M1, MATRIKS M2)
-/* Mengirimkan true jika M1 = M2, yaitu NBElmt(M1) = NBElmt(M2) dan */
-/* untuk setiap i,j yang merupakan indeks baris dan kolom M1(i,j) = M2(i,j) */
-/* Juga merupakan strong EQ karena GetFirstIdxBrs(M1) = GetFirstIdxBrs(M2) 
-   dan GetLastIdxKol(M1) = GetLastIdxKol(M2) */
-{
-    // KAMUS
-    boolean ans;
-    int i,j;
-
-    // ALGORITMA
-    if(!EQSize(M1, M2)) return false;
-
-    ans = true;
-    i = GetFirstIdxBrs(M1);
-
-    while(ans && i<=GetLastIdxBrs(M1)){
-        j = GetFirstIdxKol(M1);
-        while (ans && j<=GetLastIdxKol(M1))
-        {
-            if(Elmt(M1, i, j) != Elmt(M2, i, j)) ans = false;
-            j++;
-        }
-        i++;
-    }
-
-    return ans;
-}
-
-boolean NEQ (MATRIKS M1, MATRIKS M2)
-/* Mengirimkan true jika M1 tidak sama dengan M2 */
-{
-    // ALGORITMA
-    return !EQ(M1, M2);
-}
 boolean EQSize (MATRIKS M1, MATRIKS M2)
 /* Mengirimkan true jika ukuran efektif matriks M1 sama dengan ukuran efektif M2 */
 /* yaitu GetBrsEff(M1) = GetNBrsEff (M2) dan GetNKolEff (M1) = GetNKolEff (M2) */
@@ -603,4 +569,35 @@ void d(player *P, MATRIKS CPeta){
     int Y = Y(*P);
 
     if(Elmt(CPeta, Y, X+1) == '-' || Elmt(CPeta, Y, X+1) == 'O') X(*P)++;
+}
+
+int loadPeta(MATRIKS *Peta1, MATRIKS *Peta2, MATRIKS *Peta3, MATRIKS *Peta4){
+    FILE *cFile;
+    char* filename;
+    char str[MAXCHAR];
+    int i;
+
+    // start of peta 1
+    
+    MakePETA("Peta/Peta_1.txt", Peta1);
+
+    // end of peta 1
+
+    // start of peta 2
+
+    MakePETA("Peta/Peta_2.txt", Peta2);
+
+    // end of peta 2
+
+    // start of peta 3
+
+    MakePETA("Peta/Peta_3.txt", Peta3);
+
+    // end of peta 3
+
+    // start of peta 4
+
+    MakePETA("Peta/Peta_4.txt", Peta4);
+
+    // end of peta 4
 }

@@ -1,8 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "../matriks/matriks.h"
 #include "../point/point.h"
+#include "../jam/jam.h"
 
 #define MaxLength 20
 
@@ -10,6 +10,8 @@ typedef struct {
     char name[MaxLength];
     POINT position;
     int MapNum;
+    JAM CJam;
+    int money;
 } player;
 
 #define X(P) Absis((P).position)

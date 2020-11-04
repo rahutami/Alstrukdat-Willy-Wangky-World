@@ -49,15 +49,6 @@ void TulisPOINT (POINT P){
 /* F.S. P tertulis di layar dengan format "(X,Y)" */
 
 /* *** Kelompok operasi relasional terhadap POINT *** */
-boolean EQ (POINT P1, POINT P2){
-    return (Absis(P1) == Absis(P2)) && (Ordinat(P1) == Ordinat(P2));
-}
-/* Mengirimkan true jika P1 = P2 : absis dan ordinatnya sama */
-
-boolean NEQ (POINT P1, POINT P2){
-    return (Absis(P1) != Absis(P2)) || (Ordinat(P1) != Ordinat(P2));
-}
-/* Mengirimkan true jika P1 tidak sama dengan P2 */
 
 /* *** Kelompok menentukan di mana P berada *** */
 boolean IsOrigin (POINT P){

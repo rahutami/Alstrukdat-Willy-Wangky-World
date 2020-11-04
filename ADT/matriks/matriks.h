@@ -4,13 +4,14 @@
 #define MATRIKS_H
 
 #include "../boolean/boolean.h"
-#include "ADT/player/player.h"
+#include "../player/player.h"
 
 /* Ukuran minimum dan maksimum baris dan kolom */
 #define BrsMin 0
 #define BrsMax 99
 #define KolMin 0
 #define KolMax 99
+#define MAXCHAR 100
 
 typedef int indeks; /* indeks baris, kolom */
 typedef char ElType; 
@@ -96,13 +97,7 @@ void PKaliKons (MATRIKS * M, ElType K);
 /* F.S. Mengalikan setiap elemen M dengan K */
 
 /* ********** KELOMPOK OPERASI RELASIONAL TERHADAP MATRIKS ********** */
-boolean EQ (MATRIKS M1, MATRIKS M2);
-/* Mengirimkan true jika M1 = M2, yaitu NBElmt(M1) = NBElmt(M2) dan */
-/* untuk setiap i,j yang merupakan indeks baris dan kolom M1(i,j) = M2(i,j) */
-/* Juga merupakan strong EQ karena GetFirstIdxBrs(M1) = GetFirstIdxBrs(M2) 
-   dan GetLastIdxKol(M1) = GetLastIdxKol(M2) */
-boolean NEQ (MATRIKS M1, MATRIKS M2);
-/* Mengirimkan true jika M1 tidak sama dengan M2 */
+
 boolean EQSize (MATRIKS M1, MATRIKS M2);
 /* Mengirimkan true jika ukuran efektif matriks M1 sama dengan ukuran efektif M2 */
 /* yaitu GetBrsEff(M1) = GetNBrsEff (M2) dan GetNKolEff (M1) = GetNKolEff (M2) */
@@ -181,4 +176,6 @@ void a(player *P, MATRIKS CPeta);
 void s(player *P, MATRIKS CPeta);
 
 void d(player *P, MATRIKS CPeta);
+
+int loadPeta();
 #endif
