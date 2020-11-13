@@ -534,11 +534,17 @@ void TulisPETA (MATRIKS Pt, player Pl)
     
     // ALGORITMA
 
-    for (i = 0; i <= NBrsEff(Pt); i++){
+    for (i = 0; i < NBrsEff(Pt); i++){
         for (j = 0; j <= NKolEff(Pt); j++){
-            if (j == X(Pl) && i == Y(Pl)) printf("P");
-            else printf("%c", Elmt(Pt, i, j));
-            if(j != NKolEff(Pt)) printf(" ");
+            if (j == X(Pl) && i == Y(Pl)) printf("P"); //Posisi player
+            else if(Elmt(Pt, i, j) >= '1' && Elmt(Pt, i, j) <= '4'){
+                if(i == 0) printf("^");
+                else if(j == 0) printf("<");
+                else if(i == NBrsEff(Pt)-1) printf("V");
+                else if(j == NKolEff(Pt)-1) printf(">");
+            }
+            else printf("%c", Elmt(Pt, i, j)); //Print yang ada di peta
+            if(j != NKolEff(Pt)-1) printf(" ");
         }
         if(i != NBrsEff(Pt)) printf("\n");
     }
