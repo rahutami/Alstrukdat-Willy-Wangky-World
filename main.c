@@ -44,8 +44,15 @@ void Preparation(player *p1){
         printf("^, >, v, < = Gerbang\n");
         printf("===================================\n");
         TulisPlayer(*p1);
+        // Current Time:
+        // Opening Time:
+        // Time Remaining:
+        // Total aksi yang akan dilakukan:
+        // Total waktu yang dibutuhkan:
+        // Total uang yang dibutuhkan:
         printf("===================================\n");
-        
+        printf("Masukkan perintah:\n");
+
         STARTKATA();
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
            MenuJalan(p1);
@@ -56,8 +63,35 @@ void Preparation(player *p1){
 
 }
 
-void MainPhase(){
-
+void MainPhase(player * p1){
+    do{
+        printf("===================================\n");
+        printf("            Main Phase\n");
+        printf("              Day X\n");
+        printf("===================================\n");
+        TulisPETA(Peta1, *p1);
+        printf("===================================\n");
+        printf("Legend:\n");
+        printf("A = Antrian\n");
+        printf("P = Player\n");
+        printf("W = Wahana\n");
+        printf("O = Office\n");
+        printf("^, >, v, < = Gerbang\n");
+        printf("===================================\n");
+        TulisPlayer(*p1); //print nama dan uang
+        // Current Time:
+        // Opening Time:
+        // Time Remaining:
+        // Antrian
+        printf("===================================\n");
+        printf("Masukkan perintah:\n");
+        
+        STARTKATA();
+        if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
+           MenuJalan(p1);
+        }  
+        // nanti tambahin elif aja buat command yang lain
+    } while(!(IsKataSama("prepare") || IsKataSama("exit")));
 }
 
 void MainMenu(){
@@ -98,8 +132,17 @@ int main(){
         NewGame(&p1);
         
         Preparation(&p1);
+        while(!IsKataSama("exit")){
+            if(IsKataSama("prepare")) Preparation(&p1);
+            else if (IsKataSama("main")) MainPhase(&p1);
+        }
+        
 
     }
+
+    printf("===================================\n\n");
+    printf("          See you soon!\n\n");
+    printf("===================================\n");
     return 0;
 }
 
