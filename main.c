@@ -50,6 +50,7 @@ void Preparation(player *p1){
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
            MenuJalan(p1);
         }  
+        // nanti tambahin elif aja buat command yang lain
         
     } while (!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute")));
 
