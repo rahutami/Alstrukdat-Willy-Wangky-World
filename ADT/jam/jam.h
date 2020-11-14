@@ -14,10 +14,14 @@ typedef struct {
 	int SS; /* integer [0..59] */
 } JAM;
 
+extern JAM JamBuka;
+extern JAM JamTutup;
+
 /* *** Notasi Akses: selektor JAM *** */
 #define Hour(J) (J).HH
 #define Minute(J) (J).MM
 #define Second(J) (J).SS
+
 
 /* ***************************************************************** */
 /* DEFINISI PRIMITIF                                                 */
@@ -97,5 +101,7 @@ JAM PrevNDetik (JAM J, int N);
 long Durasi (JAM JAw, JAM JAkh);
 /* Mengirim JAkh-JAw dlm Detik, dengan kalkulasi */
 /* Jika JAw > JAkh, maka JAkh adalah 1 hari setelah JAw */
+void CreateJamBukaTutup();
 
+void TulisTimeRemaining(int durasi);
 #endif

@@ -4,6 +4,8 @@
 
 boolean EndKata;
 Kata CKata;
+JAM JamBuka;
+JAM JamTutup;
 
 void CreatePlayer(player *P){
     CopyKata(CKata, &(P->Name));
@@ -12,15 +14,16 @@ void CreatePlayer(player *P){
     (*P).position.Y = 1;
     MapNum(*P) = 1;
     Money(*P) = 1000;
+    CJam(*P) = MakeJAM(21,0,0);
+    Day(*P) = 1;
 }
 
 void TulisPlayer(player P){
-    printf("Nama player: ");
+    printf("Player Name: ");
     for (int i = 0; i < (P.Name).Length; i++){
         printf("%c", P.Name.TabKata[i]);
     }
     printf("\n");
-    printf("Posisi Player: (%.0f,%.0f)\n", X(P), Y(P));
     printf("Money: %d\n", Money(P));
 }
 

@@ -24,6 +24,11 @@ typedef struct {
 /* Indeks matriks yang digunakan: [BrsMin..BrsMax][KolMin..KolMax] */
 /* Memori matriks yang dipakai selalu di "ujung kiri atas" */
 
+extern MATRIKS Peta1;
+extern MATRIKS Peta2;
+extern MATRIKS Peta3;
+extern MATRIKS Peta4;
+
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */              
 /* *** Konstruktor membentuk MATRIKS *** */
 void MakeMATRIKS (int NB, int NK, MATRIKS * M); 
@@ -155,27 +160,5 @@ void MakePETA (char* filename, MATRIKS * P);
 /* F.S. PETA M sesuai dengan definisi di atas terbentuk */
 
 /* ********** Assignment  PETA ********** */
-void CopyPETA (MATRIKS MIn, MATRIKS * MHsl);
-/* Melakukan assignment MHsl  MIn */
 
-void TulisPETA (MATRIKS Pt, player Pl);
-/* I.S. M terdefinisi */
-/* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris 
-   dipisahkan sebuah spasi */
-/* Proses: Menulis nilai setiap elemen M ke layar dengan traversal per baris dan per kolom */
-/* Contoh: menulis PETA 3x3 (ingat di akhir tiap baris, tidak ada spasi)
-1 2 3
-4 5 6
-8 9 10
-*/
-
-void w(player *P, MATRIKS CPeta);
-
-void a(player *P, MATRIKS CPeta);
-
-void s(player *P, MATRIKS CPeta);
-
-void d(player *P, MATRIKS CPeta);
-
-int loadPeta();
 #endif

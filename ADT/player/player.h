@@ -14,12 +14,18 @@ typedef struct {
     int MapNum;
     JAM CJam;
     int money;
+    int Day;
 } player;
 
 #define X(P) Absis((P).position)
 #define Y(P) Ordinat((P).position)
 #define MapNum(P) (P).MapNum
 #define Money(P) (P).money
+#define CJam(P) (P).CJam
+#define Day(P) (P).Day
+
+JAM JamBuka;
+JAM JamTutup;
 
 void CreatePlayer(player *P);
 

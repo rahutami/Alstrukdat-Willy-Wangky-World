@@ -5,6 +5,8 @@
 #include<stdio.h>
 #include "jam.h"
 
+JAM JamBuka;
+JAM JamTutup;
 /* ***************************************************************** */
 /* DEFINISI PRIMITIF                                                 */
 /* ***************************************************************** */
@@ -23,6 +25,7 @@ JAM MakeJAM (int HH, int MM, int SS){
     Hour(J) = HH;
     Minute(J) = MM;
     Second(J) = SS;
+    return J;
 }
 
 /* ***************************************************************** */
@@ -62,7 +65,11 @@ void TulisJAM (JAM J){
     /* Proses : menulis nilai setiap komponen J ke layar dalam format HH:MM:SS
     tanpa karakter apa pun di depan atau belakangnya, termasuk spasi, enter, dll.
     Jika jam / menit / detik hanya satu digit, tuliskan satu digit tanpa 0 di depannya. */
-    printf("%d:%d:%d", Hour(J), Minute(J), Second(J));
+    if(Hour(J) < 10) printf("0%d.", Hour(J));
+    else printf("%d.", Hour(J));
+
+    if(Minute(J) < 10) printf("0%d", Minute(J));
+    else printf("%d", Minute(J));
 }
 /* ***************************************************************** */
 /* KELOMPOK KONVERSI TERHADAP TYPE                                   */
@@ -154,3 +161,19 @@ long Durasi (JAM JAw, JAM JAkh){
 }
 /* Mengirim JAkh-JAw dlm Detik, dengan kalkulasi */
 /* Jika JAw > JAkh, maka JAkh adalah 1 hari setelah JAw */
+
+void CreateJamBukaTutup(){
+    JamBuka = MakeJAM(9, 0, 0);
+    JamTutup = MakeJAM(21, 0, 0);
+}
+
+void TulisTimeRemaining(int durasi){
+    JAM J = DetikToJAM(durasi);
+    if(Hour(J) == 1) printf("%d Hour", Hour(J));
+    else if(Hour(J) != 0) printf("%d Hours", Hour(J));
+
+    if(Minute(J) == 1) printf("%d Minute", Minute(J));
+    else if(Minute(J) != 0) printf("%d Minutes", Minute(J));
+
+
+}

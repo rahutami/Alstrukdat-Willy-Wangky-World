@@ -7,115 +7,24 @@
 #include "ADT/point/point.h"
 #include "ADT/player/player.h"
 #include "ADT/matriks/matriks.h"
-
+#include "ADT/jam/jam.h"
+#include "ADT/menu/menu.h"
+#include "ADT/peta/peta.h"
 
 #define MAXCHAR 100
 char CC;
 Kata CKata;
 boolean EOP;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
-
-void MenuJalan(player *p1){
-    if (IsKataSama("w")){
-        w(p1, Peta1);
-    }else if (IsKataSama("a")){
-        a(p1, Peta1);
-    }else if (IsKataSama("s")){
-        s(p1, Peta1);
-    }else if (IsKataSama("d")){
-        d(p1, Peta1);
-    }
-    
-}
-
-void Preparation(player *p1){
-    do{
-        printf("===================================\n");
-        printf("        Preparation Phase\n");
-        printf("             Day X\n");
-        printf("===================================\n");
-        TulisPETA(Peta1, *p1);
-        printf("===================================\n");
-        printf("Legend:\n");
-        printf("A = Antrian\n");
-        printf("P = Player\n");
-        printf("W = Wahana\n");
-        printf("O = Office\n");
-        printf("^, >, v, < = Gerbang\n");
-        printf("===================================\n");
-        TulisPlayer(*p1);
-        // Current Time:
-        // Opening Time:
-        // Time Remaining:
-        // Total aksi yang akan dilakukan:
-        // Total waktu yang dibutuhkan:
-        // Total uang yang dibutuhkan:
-        printf("===================================\n");
-        printf("Masukkan perintah:\n");
-
-        STARTKATA();
-        if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
-           MenuJalan(p1);
-        }  
-        // nanti tambahin elif aja buat command yang lain
-        
-    } while (!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute")));
-
-}
-
-void MainPhase(player * p1){
-    do{
-        printf("===================================\n");
-        printf("            Main Phase\n");
-        printf("              Day X\n");
-        printf("===================================\n");
-        TulisPETA(Peta1, *p1);
-        printf("===================================\n");
-        printf("Legend:\n");
-        printf("A = Antrian\n");
-        printf("P = Player\n");
-        printf("W = Wahana\n");
-        printf("O = Office\n");
-        printf("^, >, v, < = Gerbang\n");
-        printf("===================================\n");
-        TulisPlayer(*p1); //print nama dan uang
-        // Current Time:
-        // Opening Time:
-        // Time Remaining:
-        // Antrian
-        printf("===================================\n");
-        printf("Masukkan perintah:\n");
-        
-        STARTKATA();
-        if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
-           MenuJalan(p1);
-        }  
-        // nanti tambahin elif aja buat command yang lain
-    } while(!(IsKataSama("prepare") || IsKataSama("exit")));
-}
-
-void MainMenu(){
-    int menu;
-    printf("====================================================================\n\n");
-    printf("                Welcome to Willy Wangky's World!\n");
-    printf("Here, you can make your own amusement park and do so many fun stuff!\n\n");
-    printf("====================================================================\n");
-    printf("Choose menu: \n1. New Game (new)\n2. Load Game (load)\n3. Exit (exit)\n");
-    printf("===================================\n");
-    STARTKATA();
-
-    printf("===================================\n");
-}
+JAM JamBuka;
+JAM JamTutup;
 
 void NewGame(player *p1){
-    POINT p;
-
-    p.X = 1;
-    p.Y = 1;
-
     printf("Enter your name: \n");
     STARTKATA();
     
+    
+    CreateJamBukaTutup();
     CreatePlayer(p1);
 
     loadPeta(&Peta1, &Peta2, &Peta3, &Peta4);
@@ -123,7 +32,7 @@ void NewGame(player *p1){
 
 int main(){
     int menu;
-    
+
     MainMenu();
 
     if (IsKataSama("new")){
@@ -133,11 +42,12 @@ int main(){
         
         Preparation(&p1);
         while(!IsKataSama("exit")){
-            if(IsKataSama("prepare")) Preparation(&p1);
+            if(IsKataSama("prepare")){
+                Day(p1)++;
+                Preparation(&p1);
+            }
             else if (IsKataSama("main")) MainPhase(&p1);
         }
-        
-
     }
 
     printf("===================================\n\n");
@@ -146,4 +56,4 @@ int main(){
     return 0;
 }
 
-// gcc main.c ADT/player/player.c ADT/matriks/matriks.c ADT/point/point.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c -o test
+// gcc main.c ADT/peta/peta.c ADT/menu/menu.c ADT/jam/jam.c ADT/player/player.c ADT/matriks/matriks.c ADT/point/point.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c -o main
