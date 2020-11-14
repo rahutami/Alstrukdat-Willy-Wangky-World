@@ -5,6 +5,8 @@
 #include "../matriks/matriks.h"
 #include "../jam/jam.h"
 #include "../peta/peta.h"
+#include "../prioqueue/prioqueue.h"
+#include "../../serve.c"
 
 MATRIKS Peta1, Peta2, Peta3, Peta4;
 
@@ -42,6 +44,7 @@ void ListCommand(){
     printf("Berjalan ke kanan: \"d\"\n");
     printf("Pergi ke Main Phase tanpa execute (stack): \"main\"\n");
     printf("Pergi ke Main Phase dengan execute (stack): \"execute\"\n");
+    printf("Melayani pelanggan saat main phase: \"main\"\n");
     printf("Keluar Game: \"exit\"\n");
     printf("==========================================================\n");
 }
@@ -94,7 +97,7 @@ void Preparation(player *p1){
 
 }
 
-void MainPhase(player * p1){
+void MainPhase(player * p1, PrioQueue * Q){
     do{
         if (!IsKataSama("command")){
             printf("===================================\n");
@@ -126,14 +129,24 @@ void MainPhase(player * p1){
            MenuJalan(p1);
         } else if (IsKataSama("command")){
             ListCommand();
-        } // nanti tambahin elif aja buat command yang lain 
-        else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
+        } else if (IsKataSama("serve")) {
+            ADVKATA();
+            Serve(CKata, Q);
+        }// nanti tambahin elif aja buat command yang lain 
+        // else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
+        //     printf("==========================================================\n");
+        //     printf("Command tidak tersedia\n");
+        //     printf("==========================================================\n");
+        //     printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
+        //     printf("==========================================================\n");
+        // } 
+        else {
             printf("==========================================================\n");
             printf("Command tidak tersedia\n");
             printf("==========================================================\n");
             printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
             printf("==========================================================\n");
-        }
+        } 
         
     } while(!(IsKataSama("prepare") || IsKataSama("exit")));
 }

@@ -6,6 +6,7 @@
 #include "ADT/mesinkata/mesinkata.h"
 #include "ADT/point/point.h"
 #include "ADT/player/player.h"
+#include "ADT/prioqueue/prioqueue.h"
 #include "ADT/matriks/matriks.h"
 #include "ADT/jam/jam.h"
 #include "ADT/menu/menu.h"
@@ -48,8 +49,10 @@ int main(){
                 Preparation(&p1);
             }
             else if (IsKataSama("main") || IsKataSama("execute")){
+                PrioQueue Q;
                 CJam(p1) = MakeJAM(9,0,0);
-                MainPhase(&p1);
+                CreateEmptyQueue(&Q, 10);
+                MainPhase(&p1,&Q);
             }
         }
     }
