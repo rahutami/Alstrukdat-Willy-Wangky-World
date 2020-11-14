@@ -1,10 +1,3 @@
-/*  NIM     : 13519104
-   Nama    : Nabelanita Utami
-   Tanggal : 4 November 2020
-   Topik praktikum : List linier
-   Deskripsi       : Realisasi listlinier.h
-*/
- 
 #include <stdio.h>
 #include <stdlib.h>
 #include "listlinier.h"
