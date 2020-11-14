@@ -75,6 +75,9 @@ void SalinKata()
 }
 
 boolean IsKataSama (const char *command){
+    /* Membandingkan CKata dengan string
+
+    */
     boolean ans = true;
     int i = 0;
 
@@ -84,6 +87,25 @@ boolean IsKataSama (const char *command){
     }
 
     if(i != CKata.Length) ans = false;
+
+    return ans;
+}
+
+boolean IsKataSamaKata (Kata K1, Kata K2){
+    /* Membandingkan kata dengan kata
+
+    */
+    boolean ans = true;
+    int i = 0;
+
+    if(K1.Length == K2.Length){
+        while(ans && i < K1.Length){
+            if(K1.TabKata[i] != K2.TabKata[i]) ans = false;
+            i++;
+        }
+    } else {
+        ans = false;
+    }
 
     return ans;
 }

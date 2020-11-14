@@ -11,8 +11,6 @@
 
 #define NilList NULL
 
-extern Kata CKata;
-
 typedef struct {
 	int id;
 	Kata wahana;

@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "listlinier.h"
-#include "../mesinkata/mesinkata.h"
- 
- Kata CKata;
 
 /****************** TEST LIST KOSONG ******************/
 boolean IsEmptyList (List L){
@@ -52,7 +49,7 @@ addressList Search (List L, Kata X){
    boolean found = false;
    /* ALGORITMA */
    while(!found && (P != NilList)) {
-       if (IsKataSama(InfoList(P).wahana.TabKata)) {
+       if (IsKataSamaKata((InfoList(P).wahana.TabKata), X)) {
            found = true;
         } else {
            P = Next(P);
