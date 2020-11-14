@@ -2,7 +2,8 @@
 /* Tanggal: 2 September 2020 */
 /* Realisasi ADT JAM */
 
-#include<stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "jam.h"
 
 JAM JamBuka;
@@ -156,8 +157,7 @@ JAM PrevNDetik (JAM J, int N){
 
 /* *** Kelompok Operator Aritmetika *** */
 long Durasi (JAM JAw, JAM JAkh){
-    if(JAMToDetik(JAkh) > JAMToDetik(JAw)) return JAMToDetik(JAkh) - JAMToDetik(JAw);
-    else return JAMToDetik(JAkh) + 86400 - JAMToDetik(JAw);
+    return abs((JAMToDetik(JAkh) - JAMToDetik(JAw)) % 86400);
 }
 /* Mengirim JAkh-JAw dlm Detik, dengan kalkulasi */
 /* Jika JAw > JAkh, maka JAkh adalah 1 hari setelah JAw */

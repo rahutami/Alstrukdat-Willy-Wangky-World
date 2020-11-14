@@ -44,9 +44,13 @@ int main(){
         while(!IsKataSama("exit")){
             if(IsKataSama("prepare")){
                 Day(p1)++;
+                CJam(p1) = MakeJAM(21,0,0);
                 Preparation(&p1);
             }
-            else if (IsKataSama("main")) MainPhase(&p1);
+            else if (IsKataSama("main") || IsKataSama("execute")){
+                CJam(p1) = MakeJAM(9,0,0);
+                MainPhase(&p1);
+            }
         }
     }
 
