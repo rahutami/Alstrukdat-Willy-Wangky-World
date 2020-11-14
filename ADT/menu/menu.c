@@ -13,7 +13,7 @@ void MainMenu(){
     printf("                Welcome to Willy Wangky's World!\n");
     printf("Here, you can make your own amusement park and do so many fun stuff!\n\n");
     printf("====================================================================\n");
-    printf("Choose menu: \n1. New Game (new)\n2. Load Game (load)\n3. Exit (exit)\n");
+    printf("Choose menu: \nNew Game (new)\nLoad Game (load)\nExit (exit)\n");
     printf("===================================\n");
     STARTKATA();
 
@@ -33,17 +33,30 @@ void MenuJalan(player *p1){
 }
 
 void ListCommand(){
-    printf("==========================================================\n");
+    printf("================================================================\n");
     printf("New Game: \"new\"\n");
     printf("Load Game: \"load\"\n");
     printf("Berjalan ke atas: \"w\"\n");
     printf("Berjalan ke kiri: \"a\"\n");
     printf("Berjalan ke bawah: \"s\"\n");
     printf("Berjalan ke kanan: \"d\"\n");
+    printf("Bangun wahana: \"build\"\n");
+    printf("Upgrade wahana: \"upgrade\"\n");
+    printf("Beli item: \"buy\"\n");
+    printf("Undo: \"undo\"\n");
     printf("Pergi ke Main Phase tanpa execute (stack): \"main\"\n");
     printf("Pergi ke Main Phase dengan execute (stack): \"execute\"\n");
+    printf("Melayani pengunjung: \"serve <nama wahana>\"\n");
+    printf("   Hanya bisa digunakan ketika pemain berada di sebelah antrian\n");
+    printf("Memperbaiki wahana: \"repair\"\n");
+    printf("   Hanya bisa digunakan ketika pemain berada di sebelah wahana\n");
+    printf("Melihat detail wahana: \"detail\"\n");
+    printf("   Hanya bisa digunakan ketika pemain berada di sebelah wahana\n");
+    printf("Masuk office: \"office\"\n");
+    printf("   Hanya bisa digunakan ketika pemain berada di atas office\n");
+    printf("Pergi ke Preparation Phase: \"prepare\"\n");
     printf("Keluar Game: \"exit\"\n");
-    printf("==========================================================\n");
+    printf("================================================================\n");
 }
 
 void Preparation(player *p1){
