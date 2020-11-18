@@ -27,6 +27,3 @@ void TulisPlayer(player P){
     printf("Money: %d\n", Money(P));
 }
 
-void movePeta(player *P){
-
-}

@@ -158,7 +158,7 @@ void MakePETA (char* filename, MATRIKS * P);
 /* Membentuk sebuah PETA "kosong" yang siap diisi berukuran NB x NK di "ujung kiri" memori */
 /* I.S. NB dan NK adalah valid untuk memori PETA yang dibuat */
 /* F.S. PETA M sesuai dengan definisi di atas terbentuk */
-
+void SearchMatriks(MATRIKS M, int * i, int * j, ElType X);
 /* ********** Assignment  PETA ********** */
 
 #endif

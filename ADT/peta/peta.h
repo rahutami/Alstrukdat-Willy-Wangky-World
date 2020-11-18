@@ -3,11 +3,12 @@
 
 #include "../player/player.h" 
 #include "../matriks/matriks.h" 
+#include "../graph/graph.h" 
 
 void CopyPETA (MATRIKS MIn, MATRIKS * MHsl);
 /* Melakukan assignment MHsl  MIn */
 
-void TulisPETA (MATRIKS Pt, player Pl);
+void TulisPETA (player Pl, Graph G);
 /* I.S. M terdefinisi */
 /* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris 
    dipisahkan sebuah spasi */
@@ -18,13 +19,15 @@ void TulisPETA (MATRIKS Pt, player Pl);
 8 9 10
 */
 
-void w(player *P, MATRIKS CPeta);
+void MovePeta(player *P, Graph G, int NewMapID);
 
-void a(player *P, MATRIKS CPeta);
+void w(player *P, Graph G);
 
-void s(player *P, MATRIKS CPeta);
+void a(player *P, Graph G);
 
-void d(player *P, MATRIKS CPeta);
+void s(player *P, Graph G);
+
+void d(player *P, Graph G);
 
 int loadPeta();
 

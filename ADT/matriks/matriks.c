@@ -495,3 +495,26 @@ int CountXKol (MATRIKS M, indeks j, ElType X)
 
     return countX;
 }
+
+void SearchMatriks(MATRIKS M, int * i, int * j, ElType X){
+    *i = 0;
+    *j = 0;
+
+    while(*i <= GetLastIdxBrs(M) && Elmt(M, *i, *j) != X){
+        *j = 0;
+        while(*j <= GetLastIdxKol(M) && Elmt(M, *i, *j) != X){
+            printf("%c", Elmt(M,*i,*j));
+            (*j)++;
+        }
+        printf("\n");
+        if(Elmt(M, *i, *j) != X) (*i)++;
+    }
+
+    printf("%d %d\n", *i, *j);
+
+    if(*i > GetLastIdxBrs(M) || *j > GetLastIdxKol(M)){
+        *i = -1;
+        *j = -1;
+    }
+
+}

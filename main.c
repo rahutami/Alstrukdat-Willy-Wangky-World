@@ -22,7 +22,7 @@ boolean EOP;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
 JAM JamBuka;
 JAM JamTutup;
-Graph GraphPeta;
+extern Graph GraphPeta;
 
 void NewGame(player *p1){
     
@@ -33,8 +33,6 @@ void NewGame(player *p1){
     CreateJamBukaTutup();
     CreatePlayer(p1);
 
-    loadPeta(&Peta1, &Peta2, &Peta3, &Peta4);
-    MATRIKS Peta1, Peta2, Peta3, Peta4;
     loadPeta(&Peta1, &Peta2, &Peta3, &Peta4);
     CreateGraphPeta(Peta1, Peta2, Peta3, Peta4, &GraphPeta);
 }

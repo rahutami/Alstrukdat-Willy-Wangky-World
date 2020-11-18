@@ -7,7 +7,9 @@
 #include "../peta/peta.h"
 #include "../prioqueue/prioqueue.h"
 #include "../../serve.c"
+#include "../graph/graph.h"
 
+Graph GraphPeta;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
 
 void MainMenu(){
@@ -22,15 +24,15 @@ void MainMenu(){
     printf("===================================\n");
 }
 
-void MenuJalan(player *p1){
+void MenuJalan(player *p1, Graph G){
     if (IsKataSama("w")){
-        w(p1, Peta1);
+        w(p1, G);
     }else if (IsKataSama("a")){
-        a(p1, Peta1);
+        a(p1, G);
     }else if (IsKataSama("s")){
-        s(p1, Peta1);
+        s(p1, G);
     }else if (IsKataSama("d")){
-        d(p1, Peta1);
+        d(p1, G);
     }
 }
 
@@ -69,7 +71,7 @@ void Preparation(player *p1){
             printf("        Preparation Phase\n");
             printf("             Day %d\n", Day(*p1));
             printf("===================================\n");
-            TulisPETA(Peta1, *p1);
+            TulisPETA(*p1, GraphPeta);
             printf("===================================\n");
             printf("Legend:\n");
             printf("A = Antrian\n");
@@ -94,7 +96,7 @@ void Preparation(player *p1){
 
         STARTKATA();
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
-           MenuJalan(p1);
+           MenuJalan(p1, GraphPeta);
         } else if (IsKataSama("command")){
             ListCommand();
         } // nanti tambahin elif aja buat command yang lain
@@ -117,7 +119,7 @@ void MainPhase(player * p1, PrioQueue * Q){
             printf("            Main Phase\n");
             printf("             Day %d\n", Day(*p1));
             printf("===================================\n");
-            TulisPETA(Peta1, *p1);
+            TulisPETA(*p1, GraphPeta);
             printf("===================================\n");
             printf("Legend:\n");
             printf("A = Antrian\n");
@@ -139,7 +141,7 @@ void MainPhase(player * p1, PrioQueue * Q){
         
         STARTKATA();
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
-           MenuJalan(p1);
+           MenuJalan(p1, GraphPeta);
         } else if (IsKataSama("command")){
             ListCommand();
         } else if (IsKataSama("serve")) {

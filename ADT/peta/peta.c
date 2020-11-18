@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "peta.h"
+#include "../graph/graph.h"
+
 void MakePETA (char* filename, MATRIKS * P)
 /* Membentuk sebuah PETA "kosong" yang siap diisi berukuran NB x NK di "ujung kiri" memori */
 /* I.S. NB dan NK adalah valid untuk memori PETA yang dibuat */
@@ -23,7 +25,7 @@ void MakePETA (char* filename, MATRIKS * P)
 }
 
 
-void TulisPETA (MATRIKS Pt, player Pl)
+void TulisPETA (player Pl, Graph G)
 /* I.S. M terdefinisi */
 /* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris 
    dipisahkan sebuah spasi */
@@ -37,50 +39,115 @@ void TulisPETA (MATRIKS Pt, player Pl)
 {
     // KAMUS
     int i, j;
-    
-    // ALGORITMA
+    addressGraph CPeta = FirstGraph(G);
 
-    for (i = 0; i < NBrsEff(Pt); i++){
-        for (j = 0; j <= NKolEff(Pt); j++){
+    // ALGORITMA
+    while(ID(CPeta) != MapNum(Pl)) CPeta = NextGraph(CPeta);
+
+    for (i = 0; i < NBrsEff(Peta(CPeta)); i++){
+        for (j = 0; j <= NKolEff(Peta(CPeta)); j++){
             if (j == X(Pl) && i == Y(Pl)) printf("P"); //Posisi player
-            else if(Elmt(Pt, i, j) >= '1' && Elmt(Pt, i, j) <= '4'){
+            else if(Elmt(Peta(CPeta), i, j) >= '1' && Elmt(Peta(CPeta), i, j) <= '4'){
                 if(i == 0) printf("^");
                 else if(j == 0) printf("<");
-                else if(i == NBrsEff(Pt)-1) printf("V");
-                else if(j == NKolEff(Pt)-1) printf(">");
+                else if(i == NBrsEff(Peta(CPeta))-1) printf("V");
+                else if(j == NKolEff(Peta(CPeta))-1) printf(">");
             }
-            else printf("%c", Elmt(Pt, i, j)); //Print yang ada di peta
-            if(j != NKolEff(Pt)-1) printf(" ");
+            else printf("%c", Elmt(Peta(CPeta), i, j)); //Print yang ada di peta
+            if(j != NKolEff(Peta(CPeta))-1) printf(" ");
         }
-        if(i != NBrsEff(Pt)) printf("\n");
+        if(i != NBrsEff(Peta(CPeta))) printf("\n");
     }
 }
 
-void w(player *P, MATRIKS CPeta){
-    int X = X(*P);
-    int Y = Y(*P);
-
-    if(Elmt(CPeta, Y-1, X) == '-' || Elmt(CPeta, Y-1, X) == 'O' ) Y(*P)--;
+int CharToInt (char X){
+    if (X == '1') return 1;
+    else if (X == '2') return 2;
+    else if (X == '3') return 3;
+    else if (X == '4') return 4;
 }
 
-void a(player *P, MATRIKS CPeta){
-    int X = X(*P);
-    int Y = Y(*P);
-
-    if(Elmt(CPeta, Y, X-1) == '-' || Elmt(CPeta, Y, X-1) == 'O') X(*P)--;
+char IntToChar (int X){
+    if (X == 1) return '1';
+    else if (X == 2) return '2';
+    else if (X == 3) return '3';
+    else if (X == 4) return '4';
 }
 
-void s(player *P, MATRIKS CPeta){
-    int X = X(*P);
-    int Y = Y(*P);
-    if(Elmt(CPeta, Y+1, X) == '-' || Elmt(CPeta, Y+1, X) == 'O') Y(*P)++;
+void MovePeta(player *P, Graph G, int NewMapID){
+    addressGraph NewPeta = FirstGraph(G);
+
+    while(ID(NewPeta) != NewMapID) NewPeta = NextGraph(NewPeta);
+    SearchMatriks(Peta(NewPeta), &Y(*P), &X(*P), IntToChar(MapNum(*P)));
+    if(X(*P) == 0) X(*P)++;
+    else if (Y(*P) == 0) Y(*P)++;
+    else if(X(*P) == NKolEff(Peta(NewPeta))-1) X(*P)--;
+    else if(Y(*P) == NBrsEff(Peta(NewPeta))-1) Y(*P)--;
+
+    MapNum(*P) = NewMapID;
 }
 
-void d(player *P, MATRIKS CPeta){
+void w(player *P, Graph G){
+    int X = X(*P);
+    int Y = Y(*P);
+    addressGraph CPeta = FirstGraph(G);
+
+    // ALGORITMA
+    while(ID(CPeta) != MapNum(*P)) CPeta = NextGraph(CPeta);
+
+    if(Elmt(Peta(CPeta), Y-1, X) == '-' || Elmt(Peta(CPeta), Y-1, X) == 'O' ) Y(*P)--;
+    else if(Elmt(Peta(CPeta), Y-1, X) == '1') MovePeta(P, G, 1);
+    else if(Elmt(Peta(CPeta), Y-1, X) == '2') MovePeta(P, G, 2);
+    else if(Elmt(Peta(CPeta), Y-1, X) == '3') MovePeta(P, G, 3);
+    else if(Elmt(Peta(CPeta), Y-1, X) == '4') MovePeta(P, G, 4);
+}
+
+void a(player *P, Graph G){
     int X = X(*P);
     int Y = Y(*P);
 
-    if(Elmt(CPeta, Y, X+1) == '-' || Elmt(CPeta, Y, X+1) == 'O') X(*P)++;
+    addressGraph CPeta = FirstGraph(G);
+
+    // ALGORITMA
+    while(ID(CPeta) != MapNum(*P)) CPeta = NextGraph(CPeta);
+
+    if(Elmt(Peta(CPeta), Y, X-1) == '-' || Elmt(Peta(CPeta), Y, X-1) == 'O') X(*P)--;
+    else if(Elmt(Peta(CPeta), Y, X-1) == '1') MovePeta(P, G, 1);
+    else if(Elmt(Peta(CPeta), Y, X-1) == '2') MovePeta(P, G, 2);
+    else if(Elmt(Peta(CPeta), Y, X-1) == '3') MovePeta(P, G, 3);
+    else if(Elmt(Peta(CPeta), Y, X-1) == '4') MovePeta(P, G, 4);
+}
+
+void s(player *P, Graph G){
+    int X = X(*P);
+    int Y = Y(*P);
+
+    addressGraph CPeta = FirstGraph(G);
+
+    // ALGORITMA
+    while(ID(CPeta) != MapNum(*P)) CPeta = NextGraph(CPeta);
+
+    if(Elmt(Peta(CPeta), Y+1, X) == '-' || Elmt(Peta(CPeta), Y+1, X) == 'O') Y(*P)++;
+    else if(Elmt(Peta(CPeta), Y+1, X) == '1') MovePeta(P, G, 1);
+    else if(Elmt(Peta(CPeta), Y+1, X) == '2') MovePeta(P, G, 2);
+    else if(Elmt(Peta(CPeta), Y+1, X) == '3') MovePeta(P, G, 3);
+    else if(Elmt(Peta(CPeta), Y+1, X) == '4') MovePeta(P, G, 4);
+}
+
+void d(player *P, Graph G){
+    int X = X(*P);
+    int Y = Y(*P);
+
+    addressGraph CPeta = FirstGraph(G);
+
+    // ALGORITMA
+    while(ID(CPeta) != MapNum(*P)) CPeta = NextGraph(CPeta);
+
+    if(Elmt(Peta(CPeta), Y, X+1) == '-' || Elmt(Peta(CPeta), Y, X+1) == 'O') X(*P)++;
+    else if(Elmt(Peta(CPeta), Y, X+1) == '1') MovePeta(P, G, 1);
+    else if(Elmt(Peta(CPeta), Y, X+1) == '2') MovePeta(P, G, 2);
+    else if(Elmt(Peta(CPeta), Y, X+1) == '3') MovePeta(P, G, 3);
+    else if(Elmt(Peta(CPeta), Y, X+1) == '4') MovePeta(P, G, 4);
 }
 
 int loadPeta(MATRIKS *Peta1, MATRIKS *Peta2, MATRIKS *Peta3, MATRIKS *Peta4){

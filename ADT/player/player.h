@@ -31,6 +31,4 @@ void CreatePlayer(player *P);
 
 void TulisPlayer(player P);
 
-void movePeta(player *P);
-
 #endif

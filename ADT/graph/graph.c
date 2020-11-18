@@ -175,7 +175,6 @@ void MakeLink(addressGraph * P){
             else if(Elmt(Peta(*P), j, i) == '3') InsVLastLink(&(Link(*P)), 3);
             else if(Elmt(Peta(*P), j, i) == '4') InsVLastLink(&(Link(*P)), 4);
         }
-        printf("\n");
     }
 }
 
