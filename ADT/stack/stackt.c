@@ -27,7 +27,7 @@
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty (Stack *S)
+void CreateEmptyStack (Stack *S)
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
 /* jadi indeksnya antara 0.. MaxEl */
@@ -36,12 +36,12 @@ void CreateEmpty (Stack *S)
     Top(*S)=Nil;
 }
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
-boolean IsEmpty (Stack S)
+boolean IsEmptyStack (Stack S)
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
 {
     return(Top(S)==Nil);
 }
-boolean IsFull (Stack S)
+boolean IsFullStack (Stack S)
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 {
     return(Top(S)==(MaxEl-1));
@@ -73,13 +73,13 @@ void CopyStack (Stack Sin, Stack *Sout)
 {
     Stack Stemp;
     infotype X;
-    CreateEmpty(&Stemp);
-    CreateEmpty(&Sout);
-    while (!IsEmpty(Sin)) {
+    CreateEmptyStack(&Stemp);
+    CreateEmptyStack(Sout);
+    while (!IsEmptyStack(Sin)) {
         Pop(&Sin,&X);
         Push(&Stemp,X);
     }
-    while (!IsEmpty(Stemp)) {
+    while (!IsEmptyStack(Stemp)) {
         Pop(&Stemp,&X);
         Push(Sout,X);
     }
@@ -89,17 +89,17 @@ void InverseStack (Stack S) {
     Stack Stemp1;
     Stack Stemp2;
     infotype X;
-    CreateEmpty(&Stemp1);
-    CreateEmpty(&Stemp2);
-    while (!IsEmpty(S)) {
+    CreateEmptyStack(&Stemp1);
+    CreateEmptyStack(&Stemp2);
+    while (!IsEmptyStack(S)) {
         Pop(&S,&X);
         Push(&Stemp1,X);
     }
-    while (!IsEmpty(Stemp1)) {
+    while (!IsEmptyStack(Stemp1)) {
         Pop(&Stemp1,&X);
         Push(&Stemp2,X);
     }
-    while (!IsEmpty(Stemp2)) {
+    while (!IsEmptyStack(Stemp2)) {
         Pop(&Stemp2,&X);
         Push(&S,X);
     }

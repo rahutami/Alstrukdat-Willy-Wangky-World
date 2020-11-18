@@ -50,5 +50,6 @@ boolean IsKataSama (const char *command);
 
 void CopyKata(Kata K1, Kata * K2);
 
+boolean IsKataSamaKata (Kata K1, Kata K2);
 #endif
 

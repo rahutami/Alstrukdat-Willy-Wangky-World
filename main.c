@@ -11,6 +11,9 @@
 #include "ADT/jam/jam.h"
 #include "ADT/menu/menu.h"
 #include "ADT/peta/peta.h"
+#include "ADT/graph/graph.h"
+#include "ADT/linkgraph/linkgraph.h"
+#include "ADT/listlinier/listlinier.h"
 
 #define MAXCHAR 100
 char CC;
@@ -19,8 +22,10 @@ boolean EOP;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
 JAM JamBuka;
 JAM JamTutup;
+Graph GraphPeta;
 
 void NewGame(player *p1){
+    
     printf("Enter your name: \n");
     STARTKATA();
     
@@ -29,6 +34,9 @@ void NewGame(player *p1){
     CreatePlayer(p1);
 
     loadPeta(&Peta1, &Peta2, &Peta3, &Peta4);
+    MATRIKS Peta1, Peta2, Peta3, Peta4;
+    loadPeta(&Peta1, &Peta2, &Peta3, &Peta4);
+    CreateGraphPeta(Peta1, Peta2, Peta3, Peta4, &GraphPeta);
 }
 
 int main(){
@@ -63,4 +71,4 @@ int main(){
     return 0;
 }
 
-// gcc main.c ADT/peta/peta.c ADT/menu/menu.c ADT/jam/jam.c ADT/player/player.c ADT/matriks/matriks.c ADT/point/point.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c -o main
+// gcc main.c ADT/listlinier/listlinier.c ADT/graph/graph.c ADT/jam/jam.c ADT/linkgraph/linkgraph.c ADT/matriks/matriks.c ADT/menu/menu.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c ADT/peta/peta.c ADT/player/player.c ADT/point/point.c ADT/prioqueue/prioqueue.c ADT/stack/stackt.c -o main

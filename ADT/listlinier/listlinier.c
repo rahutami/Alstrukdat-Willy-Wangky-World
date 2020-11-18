@@ -49,7 +49,7 @@ addressList Search (List L, Kata X){
    boolean found = false;
    /* ALGORITMA */
    while(!found && (P != NilList)) {
-       if (IsKataSamaKata((InfoList(P).wahana.TabKata), X)) {
+       if (IsKataSamaKata((InfoList(P).wahana), X)) {
            found = true;
         } else {
            P = Next(P);

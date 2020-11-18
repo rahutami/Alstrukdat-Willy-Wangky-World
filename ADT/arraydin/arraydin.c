@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
 #include "arraydin.h"
 
 /* ********** SELEKTOR ********** */
@@ -11,7 +10,7 @@
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create tabel kosong  */
-void MakeEmpty(TabInt *T, int maxel)
+void MakeEmptyDin(TabInt *T, int maxel)
 /* I.S. T sembarang, maxel > 0 */
 /* F.S. Terbentuk tabel T kosong dengan kapasitas maxel */
 {
@@ -35,7 +34,7 @@ void Dealokasi(TabInt *T)
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
-int NbElmt(TabInt T)
+int NbElmtDin(TabInt T)
 /* Mengirimkan banyaknya elemen efektif tabel */
 /* Mengirimkan nol jika tabel kosong */
 /* *** Daya tampung container *** */
@@ -49,14 +48,14 @@ int MaxElement(TabInt T)
     return MaxEl(T);
 }
 /* *** Selektor INDEKS *** */
-IdxType GetFirstIdx(TabInt T)
+IdxType GetFirstIdxDin(TabInt T)
 /* Prekondisi : Tabel T tidak kosong */
 /* Mengirimkan indeks elemen T pertama */
 {
     return IdxMin;
 }
 
-IdxType GetLastIdx(TabInt T)
+IdxType GetLastIdxDin(TabInt T)
 /* Prekondisi : Tabel T tidak kosong */
 /* Mengirimkan indeks elemen T terakhir */
 {
@@ -64,30 +63,30 @@ IdxType GetLastIdx(TabInt T)
 }
 
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxValid(TabInt T, IdxType i)
+boolean IsIdxValidDin(TabInt T, IdxType i)
 /* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
 /* yaitu antara indeks yang terdefinisi utk container*/
 {
     return i >= 0 && i < MaxEl(T);
 }
 
-boolean IsIdxEff(TabInt T, IdxType i)
+boolean IsIdxEffDin(TabInt T, IdxType i)
 /* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
 /* yaitu antara FirstIdx(T)..LastIdx(T) */
 {
-    return i >= GetFirstIdx(T) && i <= GetLastIdx(T);
+    return i >= GetFirstIdxDin(T) && i <= GetLastIdxDin(T);
 }
 
 /* ********** TEST KOSONG/PENUH ********** */
 /* *** Test tabel kosong *** */
-boolean IsEmpty(TabInt T)
+boolean IsEmptyDin(TabInt T)
 /* Mengirimkan true jika tabel T kosong, mengirimkan false jika tidak */
 {
     return Neff(T) == 0;
 }
 
 /* *** Test tabel penuh *** */
-boolean IsFull(TabInt T)
+boolean IsFullDin(TabInt T)
 /* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
 {
     return Neff(T) == MaxEl(T);
@@ -136,10 +135,10 @@ void TulisIsiTab(TabInt T)
     int i;
     // Algoritma
     printf("[");
-    if(!IsEmpty(T)){
-        for (i=GetFirstIdx(T); i<=GetLastIdx(T); i++){
+    if(!IsEmptyDin(T)){
+        for (i=GetFirstIdxDin(T); i<=GetLastIdxDin(T); i++){
             printf("%d",Elmt(T,i));
-            if(i!=GetLastIdx(T)) printf(",");
+            if(i!=GetLastIdxDin(T)) printf(",");
         }
     }
 
@@ -158,29 +157,29 @@ TabInt PlusMinusTab(TabInt T1, TabInt T2, boolean plus)
     int i;
 
     // Algoritma
-    MakeEmpty(&TSum, MaxEl(T1));
+    MakeEmptyDin(&TSum, MaxEl(T1));
     Neff(TSum) = Neff(T1);
 
     if(plus){
-        if (NbElmt(T1)>NbElmt(T2)){
-            for (i=GetFirstIdx(T1); i<=GetLastIdx(T1); i++){
+        if (NbElmtDin(T1)>NbElmtDin(T2)){
+            for (i=GetFirstIdxDin(T1); i<=GetLastIdxDin(T1); i++){
                 if(i<Neff(T2)) Elmt(TSum, i) = Elmt(T1, i) + Elmt(T2, i);
                 else Elmt(TSum,i) = Elmt(T1,i);
             }
         } else {
-            for (i=GetFirstIdx(T2); i<=GetLastIdx(T2); i++){
+            for (i=GetFirstIdxDin(T2); i<=GetLastIdxDin(T2); i++){
                 if(i<Neff(T1)) Elmt(TSum, i) = Elmt(T1, i) + Elmt(T2, i);
                 else Elmt(TSum,i) = Elmt(T2,i);
             }
         }
     } else {
-        if (NbElmt(T1)>NbElmt(T2)){
-            for (i=GetFirstIdx(T1); i<=GetLastIdx(T1); i++){
+        if (NbElmtDin(T1)>NbElmtDin(T2)){
+            for (i=GetFirstIdxDin(T1); i<=GetLastIdxDin(T1); i++){
                 if(i<Neff(T2)) Elmt(TSum, i) = Elmt(T1, i) - Elmt(T2, i);
                 else Elmt(TSum,i) = Elmt(T1,i);
             }
         } else {
-            for (i=GetFirstIdx(T2); i<=GetLastIdx(T2); i++){
+            for (i=GetFirstIdxDin(T2); i<=GetLastIdxDin(T2); i++){
                 if(i<Neff(T1)) Elmt(TSum, i) = Elmt(T1, i) - Elmt(T2, i);
                 else Elmt(TSum,i) = Elmt(T2,i);
             }
@@ -199,13 +198,13 @@ boolean IsEQ(TabInt T1, TabInt T2)
     int i;
 
     // Algoritma
-    if (NbElmt(T1) != NbElmt(T2)) return false;
+    if (NbElmtDin(T1) != NbElmtDin(T2)) return false;
     
     // else
     ans = true;
-    i = GetFirstIdx(T1);
+    i = GetFirstIdxDin(T1);
 
-    while (i<=GetLastIdx(T1) && ans){
+    while (i<=GetLastIdxDin(T1) && ans){
         if(Elmt(T1,i) != Elmt(T2,i)) ans=false;
         i++;
     }
@@ -227,18 +226,18 @@ IdxType Search1(TabInt T, ElType X)
     int i;
 
     // Algoritma
-    if(NbElmt(T) == 0) return IdxUndef;
+    if(NbElmtDin(T) == 0) return IdxUndef;
 
     // else
     ans = IdxUndef;
-    i = GetFirstIdx(T)-1;
+    i = GetFirstIdxDin(T)-1;
 
     do{
         i++;
         if(Elmt(T,i) == X){
             ans = i;
         }
-    } while (i<=GetLastIdx(T) && Elmt(T,i) != X);
+    } while (i<=GetLastIdxDin(T) && Elmt(T,i) != X);
     
     return ans;
 }
@@ -254,14 +253,14 @@ boolean SearchB(TabInt T, ElType X)
 
     // Algoritma
     ans=false;
-    i=GetFirstIdx(T)-1;
+    i=GetFirstIdxDin(T)-1;
 
     do{
         i++;
         if(Elmt(T,i) == X){
             ans = true;
         }
-    } while (i<=GetLastIdx(T) && Elmt(T,i) != X);
+    } while (i<=GetLastIdxDin(T) && Elmt(T,i) != X);
 
     return ans;
 }
@@ -273,13 +272,13 @@ void MaxMin(TabInt T, ElType *Max, ElType *Min)
         Min berisi nilai minimum T */
 {
     // Kamus Lokal
-    int i = GetFirstIdx(T);
+    int i = GetFirstIdxDin(T);
 
     // Algoritma
     *Max = Elmt(T,i);
     *Min = Elmt(T,i);
 
-    for (i = GetFirstIdx(T); i<=GetLastIdx(T); i++){
+    for (i = GetFirstIdxDin(T); i<=GetLastIdxDin(T); i++){
         if(Elmt(T,i) > *Max) *Max = Elmt(T,i);
         if(Elmt(T,i) < *Min) *Min = Elmt(T,i);
     }
@@ -296,7 +295,7 @@ void CopyTab(TabInt Tin, TabInt *Tout)
     int i;
 
     // Algoritma
-    MakeEmpty(Tout, MaxEl(Tin));
+    MakeEmptyDin(Tout, MaxEl(Tin));
     for (i=0; i< Neff(Tin); i++){
         Elmt(*Tout, i) = Elmt(Tin, i);
         Neff(*Tout)++;
@@ -312,8 +311,8 @@ ElType SumTab(TabInt T)
     int i;
     
     // Algoritma
-    if(!IsEmpty(T)){
-        for (i=GetFirstIdx(T); i<=GetLastIdx(T); i++){
+    if(!IsEmptyDin(T)){
+        for (i=GetFirstIdxDin(T); i<=GetLastIdxDin(T); i++){
             sum+=Elmt(T,i);
         }
     }
@@ -329,10 +328,10 @@ int CountX(TabInt T, ElType X)
     int i;
 
     // Algoritma
-    if(IsEmpty(T)) return count;
+    if(IsEmptyDin(T)) return count;
 
     // else
-    for (i = GetFirstIdx(T); i<=GetLastIdx(T); i++){
+    for (i = GetFirstIdxDin(T); i<=GetLastIdxDin(T); i++){
         if(Elmt(T,i)==X) count++;
     }
 
@@ -348,8 +347,8 @@ boolean IsAllGenap(TabInt T)
 
     // Algoritma
     ans = true;
-    i=GetFirstIdx(T);
-    while(ans && i<=GetLastIdx(T)){
+    i=GetFirstIdxDin(T);
+    while(ans && i<=GetLastIdxDin(T)){
         if(Elmt(T,i)%2==1) ans = false;
         i++;
     }
@@ -370,9 +369,9 @@ void Sort(TabInt *T, boolean asc)
     int max, min;
 
     // Algoritma
-    if(NbElmt(*T) != 0){
+    if(NbElmtDin(*T) != 0){
         if(asc){
-                for (i=GetFirstIdx(*T)+1; i<=GetLastIdx(*T); i++){
+                for (i=GetFirstIdxDin(*T)+1; i<=GetLastIdxDin(*T); i++){
                     j = i-1;
                     min = Elmt(*T,i);
                     
@@ -383,7 +382,7 @@ void Sort(TabInt *T, boolean asc)
                     Elmt(*T, j+1) = min;
                 }
             } else {
-                for (i=GetFirstIdx(*T)+1; i<=GetLastIdx(*T); i++){
+                for (i=GetFirstIdxDin(*T)+1; i<=GetLastIdxDin(*T); i++){
                     j = i-1;
                     max = Elmt(*T,i);
                     
@@ -407,7 +406,7 @@ void AddAsLastEl(TabInt *T, ElType X)
 
 {
     // Algoritma
-    if(IsEmpty(*T)) Elmt(*T, IdxMin) = X;
+    if(IsEmptyDin(*T)) Elmt(*T, IdxMin) = X;
     else{
         Elmt(*T, Neff(*T)) = X;
     }
@@ -424,7 +423,7 @@ void DelLastEl(TabInt *T, ElType *X)
 /*      Tabel T mungkin menjadi kosong */
 {
     // Algoritma
-    *X = Elmt(*T, GetLastIdx(*T));
+    *X = Elmt(*T, GetLastIdxDin(*T));
     Neff(*T)--;
 
 }

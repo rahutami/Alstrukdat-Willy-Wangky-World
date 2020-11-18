@@ -127,7 +127,7 @@ void TulisMATRIKS (MATRIKS M)
     // ALGORITMA
     for (i = GetFirstIdxBrs(M); i <= GetLastIdxBrs(M); i++){
         for (j = GetFirstIdxKol(M); j <=GetLastIdxKol(M); j++){
-            printf("%d", Elmt(M, i, j));
+            printf("%c", Elmt(M, i, j));
             if(j != GetLastIdxKol(M)) printf(" ");
         }
         if(i != GetLastIdxBrs(M)) printf("\n");

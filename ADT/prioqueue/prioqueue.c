@@ -9,7 +9,7 @@ boolean IsEmptyQueue (PrioQueue Q){
     /* Mengirim true jika Q kosong: lihat definisi di atas */
     return(Head(Q) == NilQueue && Tail(Q) == NilQueue);
 }
-boolean IsFull (PrioQueue Q){
+boolean IsFullQueue (PrioQueue Q){
     /* Mengirim true jika tabel penampung elemen Q sudah penuh */
     /* yaitu mengandung elemen sebanyak MaxEl */
     return(NbElmtQueue(Q) == MaxEl(Q));
