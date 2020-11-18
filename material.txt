@@ -1,0 +1,5 @@
+clay 50
+sand 75
+wood 100
+rock 120
+steel 150
