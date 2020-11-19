@@ -10,17 +10,17 @@
 
 typedef struct {
     Kata Name;
-    POINT position;
+    POINT Position;
     int MapNum;
     JAM CJam;
-    int money;
+    int Money;
     int Day;
 } player;
 
-#define X(P) Absis((P).position)
-#define Y(P) Ordinat((P).position)
+#define X(P) Absis((P).Position)
+#define Y(P) Ordinat((P).Position)
 #define MapNum(P) (P).MapNum
-#define Money(P) (P).money
+#define Money(P) (P).Money
 #define CJam(P) (P).CJam
 #define Day(P) (P).Day
 

@@ -85,79 +85,10 @@ void TulisMATRIKS (MATRIKS M);
 8 9 10
 */
 
-/* ********** KELOMPOK OPERASI ARITMATIKA TERHADAP TYPE ********** */                                  
-MATRIKS TambahMATRIKS (MATRIKS M1, MATRIKS M2);
-/* Prekondisi : M1  berukuran sama dengan M2 */
-/* Mengirim hasil penjumlahan matriks: M1 + M2 */ 
-MATRIKS KurangMATRIKS (MATRIKS M1, MATRIKS M2);
-/* Prekondisi : M berukuran sama dengan M */
-/* Mengirim hasil pengurangan matriks: salinan M1 – M2 */ 
-MATRIKS KaliMATRIKS (MATRIKS M1, MATRIKS M2);
-/* Prekondisi : Ukuran kolom efektif M1 = ukuran baris efektif M2 */
-/* Mengirim hasil perkalian matriks: salinan M1 * M2 */
-MATRIKS KaliKons (MATRIKS M, ElType X);
-/* Mengirim hasil perkalian setiap elemen M dengan X */
-void PKaliKons (MATRIKS * M, ElType K);
-/* I.S. M terdefinisi, K terdefinisi */
-/* F.S. Mengalikan setiap elemen M dengan K */
-
-/* ********** KELOMPOK OPERASI RELASIONAL TERHADAP MATRIKS ********** */
-
-boolean EQSize (MATRIKS M1, MATRIKS M2);
-/* Mengirimkan true jika ukuran efektif matriks M1 sama dengan ukuran efektif M2 */
-/* yaitu GetBrsEff(M1) = GetNBrsEff (M2) dan GetNKolEff (M1) = GetNKolEff (M2) */
-
 /* ********** Operasi lain ********** */
 int NBElmt (MATRIKS M);
 /* Mengirimkan banyaknya elemen M */
 
-/* ********** KELOMPOK TEST TERHADAP MATRIKS ********** */
-boolean IsBujurSangkar (MATRIKS M);
-/* Mengirimkan true jika M adalah matriks dg ukuran baris dan kolom sama */
-boolean IsSimetri (MATRIKS M);
-/* Mengirimkan true jika M adalah matriks simetri : IsBujurSangkar(M) 
-   dan untuk setiap elemen M, M(i,j)=M(j,i) */
-boolean IsSatuan (MATRIKS M);
-/* Mengirimkan true jika M adalah matriks satuan: IsBujurSangkar(M) dan 
-   setiap elemen diagonal M bernilai 1 dan elemen yang bukan diagonal bernilai 0 */ 
-boolean IsSparse (MATRIKS M);
-/* Mengirimkan true jika M adalah matriks sparse: mariks “jarang” dengan definisi: 
-   hanya maksimal 5% dari memori matriks yang efektif bukan bernilai 0 */ 
-MATRIKS Inverse1 (MATRIKS M);
-/* Menghasilkan salinan M dengan setiap elemen "di-invers", yaitu dinegasikan (dikalikan -1) */
-float Determinan (MATRIKS M);
-/* Prekondisi: IsBujurSangkar(M) */
-/* Menghitung nilai determinan M */
-void PInverse1 (MATRIKS * M);
-/* I.S. M terdefinisi */
-/* F.S. M di-invers, yaitu setiap elemennya dinegasikan (dikalikan -1) */
-void Transpose (MATRIKS * M);
-/* I.S. M terdefinisi dan IsBujursangkar(M) */
-/* F.S. M "di-transpose", yaitu setiap elemen M(i,j) ditukar nilainya dengan elemen M(j,i) */
-/* Operasi berbasis baris dan per kolom */
-
-float RataBrs (MATRIKS M, indeks i);
-/* Menghasilkan rata-rata dari elemen pada baris ke-i */
-/* Prekondisi: i adalah indeks baris efektif dari M */
-float RataKol (MATRIKS M, indeks j);
-/* Menghasilkan rata-rata dari elemen pada kolom ke-j */
-/* Prekondisi: j adalah indeks kolom efektif dari M */
-void MaxMinBrs (MATRIKS M, indeks i, ElType * max, ElType * min);
-/* I.S. i adalah indeks baris efektif dari M, M terdefinisi */
-/* F.S. max berisi elemen maksimum pada baris i dari M
-           min berisi elemen minimum pada baris i dari M */
-void MaxMinKol (MATRIKS M, indeks j, ElType * max, ElType * min);
-/* I.S. j adalah indeks kolom efektif dari M, M terdefinisi */
-/* F.S. max berisi elemen maksimum pada kolom j dari M
-           min berisi elemen minimum pada kolom j dari M */
-int CountXBrs (MATRIKS M, indeks i, ElType X);
-/* Menghasilkan banyaknya kemunculan X pada baris i dari M */
-int CountXKol (MATRIKS M, indeks j, ElType X);
-/* Menghasilkan banyaknya kemunculan X pada kolom j dari M */
-void MakePETA (char* filename, MATRIKS * P); 
-/* Membentuk sebuah PETA "kosong" yang siap diisi berukuran NB x NK di "ujung kiri" memori */
-/* I.S. NB dan NK adalah valid untuk memori PETA yang dibuat */
-/* F.S. PETA M sesuai dengan definisi di atas terbentuk */
 void SearchMatriks(MATRIKS M, int * i, int * j, ElType X);
 /* ********** Assignment  PETA ********** */
 

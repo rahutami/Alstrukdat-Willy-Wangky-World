@@ -22,26 +22,6 @@ typedef struct {
 	addressGraph First;
 } Graph;
 
-/* Definisi graph :
-   Graph kosong : First(L) = Nil
-   Setiap elemen dengan addressGraph P dapat diacu Info(P), Next(P)
-   Elemen terakhir graph : jika addressnya Last, maka NextGraph(Last)=Nil */
-
-/*	Penggunaan pada tubes:
-	Graph digunakan untuk menyimpan indeks dari building pada array of building.
-	contoh = graph untuk jumlah building 4
-	file config =
-   			0 1 1 1
-   			1 0 0 0
-   			1 0 0 1
-   			1 0 1 0
-	graph yang terjadi
-		1 2->3->4
-		2 1
-		3 1->4
-		4 1->3
-*/
-
 #define ID(P) (P)->ID
 #define Peta(P) (P)->Peta
 #define NextGraph(P) (P)->next
@@ -60,10 +40,6 @@ addressGraph AlokasiGraph(int id, MATRIKS peta);
 /* Jika alokasi berhasil, maka addressGraph tidak nil, dan misalnya */
 /* menghasilkan P, maka InfoGraph(P)=X, NextGraph(P)=NULL, dan Link(P) berisi list kosong */
 /* Jika alokasi gagal, mengirimkan NULL */
-
-// void initGraph(Graph *G, int n);
-// /* I. S. Graph G sembarang, n adalah jumlah building/ jumlah elemen parent list
-//    F. S. Terbentuk Graph n elemen dan link tiap elemen berupa empty list */
 
 void InsGraphLast(Graph * G, addressGraph P);
 

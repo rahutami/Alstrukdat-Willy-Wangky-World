@@ -10,8 +10,8 @@ JAM JamTutup;
 void CreatePlayer(player *P){
     CopyKata(CKata, &(P->Name));
     
-    (*P).position.X = 1;
-    (*P).position.Y = 1;
+    X(*P) = 1;
+    Y(*P) = 1;
     MapNum(*P) = 1;
     Money(*P) = 1000;
     CJam(*P) = MakeJAM(21,0,0);

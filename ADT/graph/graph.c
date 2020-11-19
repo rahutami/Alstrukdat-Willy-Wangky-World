@@ -17,7 +17,12 @@ boolean IsGraphEmpty(Graph G){
 }
 /* Mengirimkan true jika graph kosong */
 
-addressGraph AlokasiGraph(int id, MATRIKS peta){
+addressGraph AlokasiGraph(int id, MATRIKS peta)
+/* Mengirimkan addressGraph hasil alokasi sebuah elemen */
+/* Jika alokasi berhasil, maka addressGraph tidak nil, dan misalnya */
+/* menghasilkan P, maka ID(P)=X, NextGraph(P)=NULL, dan Link(P) berisi list kosong */
+/* Jika alokasi gagal, mengirimkan NULL */
+{
     addressGraph P;
 
     P = (ElmtGraph *) malloc (sizeof(ElmtGraph));
@@ -30,29 +35,13 @@ addressGraph AlokasiGraph(int id, MATRIKS peta){
 
     return P;
 }
-/* Mengirimkan addressGraph hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka addressGraph tidak nil, dan misalnya */
-/* menghasilkan P, maka ID(P)=X, NextGraph(P)=NULL, dan Link(P) berisi list kosong */
-/* Jika alokasi gagal, mengirimkan NULL */
 
-// void initGraph(Graph *G, int n){
-//     /* KAMUS LOKAL */
-//     addressGraph P;
-//     int i;
-
-//     /* ALGORITMA */
-//     CreateEmptyGraph(G);
-//     FirstGraph(*G) = AlokasiGraph(1);
-//     P = FirstGraph(*G);
-//     for (i = 2; i <= n; i++) {
-//         NextGraph(P) = AlokasiGraph(i);
-//         P = NextGraph(P);
-//     }
-// }
-/* I. S. Graph G sembarang, n adalah jumlah building/ jumlah elemen parent list
-   F. S. Terbentuk Graph n elemen dan link tiap elemen berupa empty list */
-
-void PrintGraph(Graph G){
+void PrintGraph(Graph G)
+/* I.S. Graph mungkin kosong */
+/* F.S. Jika Graph tidak kosong, isi info Graph dicetak ke kanan: [e1,e2,...,en] */
+/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
+/* Jika Graph kosong : menulis [] */
+{
     /* KAMUS LOKAL */
     addressGraph P;
 
@@ -66,10 +55,7 @@ void PrintGraph(Graph G){
     printf("%d", ID(P));
     printf("]\n");
 }
-/* I.S. Graph mungkin kosong */
-/* F.S. Jika Graph tidak kosong, isi info Graph dicetak ke kanan: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika Graph kosong : menulis [] */
+
 
 void AddLink(Graph *G, int n, int p){
     /* KAMUS LOKAL */
@@ -94,16 +80,6 @@ void AddLink(Graph *G, int n, int p){
         InsVLastLink(&Link(addrGp), n);
     }
 }
-/* I. S. Graph G terdefinisi, n dan p pasti tidak lebih dari jumlah building
-   F. S. Link dari elemen n bertambah dengan p, dan sebaliknya (soalnya bolak balik)
-   contoh :
-   1 2->3
-   2 1
-   3 1
-   Add(&G, 2, 3) 
-   1 2->3
-   2 1->3
-   3 1->3 */
 
 void PrintLink(Graph G, infoTypeLink X){
     /* KAMUS LOKAL */
