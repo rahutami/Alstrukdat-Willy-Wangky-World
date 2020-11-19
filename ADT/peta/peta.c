@@ -158,25 +158,25 @@ int loadPeta(MATRIKS *Peta1, MATRIKS *Peta2, MATRIKS *Peta3, MATRIKS *Peta4){
 
     // start of peta 1
     
-    MakePETA("Peta/Peta_1.txt", Peta1);
+    MakePETA("Files/Peta/Peta_1.txt", Peta1);
 
     // end of peta 1
 
     // start of peta 2
 
-    MakePETA("Peta/Peta_2.txt", Peta2);
+    MakePETA("Files/Peta/Peta_2.txt", Peta2);
 
     // end of peta 2
 
     // start of peta 3
 
-    MakePETA("Peta/Peta_3.txt", Peta3);
+    MakePETA("Files/Peta/Peta_3.txt", Peta3);
 
     // end of peta 3
 
     // start of peta 4
 
-    MakePETA("Peta/Peta_4.txt", Peta4);
+    MakePETA("Files/Peta/Peta_4.txt", Peta4);
 
     // end of peta 4
 }
