@@ -51,12 +51,12 @@ int main(){
         while(!IsKataSama("exit")){
             if(IsKataSama("prepare")){
                 Day(p1)++;
-                CJam(p1) = MakeJAM(21,0,0);
+                CJam(p1) = MakeJAM(21,0);
                 Preparation(&p1);
             }
             else if (IsKataSama("main") || IsKataSama("execute")){
                 PrioQueue Q;
-                CJam(p1) = MakeJAM(9,0,0);
+                CJam(p1) = MakeJAM(9,0);
                 CreateEmptyQueue(&Q, 10);
                 MainPhase(&p1,&Q);
             }

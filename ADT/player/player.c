@@ -14,7 +14,7 @@ void CreatePlayer(player *P){
     Y(*P) = 1;
     MapNum(*P) = 1;
     Money(*P) = 1000;
-    CJam(*P) = MakeJAM(21,0,0);
+    CJam(*P) = MakeJAM(21,0);
     Day(*P) = 1;
 }
 
