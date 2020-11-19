@@ -12,7 +12,6 @@
 #include "ADT/menu/menu.h"
 #include "ADT/peta/peta.h"
 #include "ADT/graph/graph.h"
-#include "ADT/linkgraph/linkgraph.h"
 #include "ADT/listlinier/listlinier.h"
 
 #define MAXCHAR 100
@@ -69,4 +68,4 @@ int main(){
     return 0;
 }
 
-// gcc main.c ADT/listlinier/listlinier.c ADT/graph/graph.c ADT/jam/jam.c ADT/linkgraph/linkgraph.c ADT/matriks/matriks.c ADT/menu/menu.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c ADT/peta/peta.c ADT/player/player.c ADT/point/point.c ADT/prioqueue/prioqueue.c ADT/stack/stackt.c -o main
+// gcc main.c ADT/listlinier/listlinier.c ADT/graph/graph.c ADT/jam/jam.c ADT/matriks/matriks.c ADT/menu/menu.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c ADT/peta/peta.c ADT/player/player.c ADT/point/point.c ADT/prioqueue/prioqueue.c ADT/stack/stackt.c -o main
