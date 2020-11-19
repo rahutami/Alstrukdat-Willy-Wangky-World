@@ -116,3 +116,10 @@ void CopyKata(Kata K1, Kata * K2){
         (K2->TabKata)[i] = K1.TabKata[i];
     }
 }
+
+void PrintKata(Kata K){
+    for ( int i = 0; i < K.Length; i++)
+    {
+        printf("%c",K.TabKata[i]);
+    }
+}
