@@ -89,14 +89,14 @@ boolean JLT (JAM J1, JAM J2);
 boolean JGT (JAM J1, JAM J2);
 /* Mengirimkan true jika J1>J2, false jika tidak */
 /* *** Operator aritmatika JAM *** */
-JAM NextDetik (JAM J);
-/* Mengirim 1 detik setelah J dalam bentuk JAM */
-JAM NextNDetik (JAM J, int N);
-/* Mengirim N detik setelah J dalam bentuk JAM */
-JAM PrevDetik (JAM J);
-/* Mengirim 1 detik sebelum J dalam bentuk JAM */
-JAM PrevNDetik (JAM J, int N);
-/* Mengirim N detik sebelum J dalam bentuk JAM */
+JAM NextMenit (JAM J);
+/* Mengirim 1 Menit setelah J dalam bentuk JAM */
+JAM NextNMenit (JAM J, int N);
+/* Mengirim N Menit setelah J dalam bentuk JAM */
+JAM PrevMenit (JAM J);
+/* Mengirim 1 Menit sebelum J dalam bentuk JAM */
+JAM PrevNMenit (JAM J, int N);
+/* Mengirim N Menit sebelum J dalam bentuk JAM */
 /* *** Kelompok Operator Aritmetika *** */
 long Durasi (JAM JAw, JAM JAkh);
 /* Mengirim JAkh-JAw dlm Detik, dengan kalkulasi */

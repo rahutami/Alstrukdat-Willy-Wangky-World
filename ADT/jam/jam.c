@@ -127,27 +127,27 @@ boolean JGT (JAM J1, JAM J2){
 /* Mengirimkan true jika J1>J2, false jika tidak */
 
 /* *** Operator aritmatika JAM *** */
-JAM NextDetik (JAM J){
-    return DetikToJAM(JAMToDetik(J) + 1);
+JAM NextMenit (JAM J){
+    return DetikToJAM(JAMToDetik(J) + 60);
 }
 /* Mengirim 1 detik setelah J dalam bentuk JAM */
 
-JAM NextNDetik (JAM J, int N){
-    return DetikToJAM(JAMToDetik(J) + N);
+JAM NextNMenit (JAM J, int N){
+    return DetikToJAM(JAMToDetik(J) + N*60);
 }
 /* Mengirim N detik setelah J dalam bentuk JAM */
 
-JAM PrevDetik (JAM J){
+JAM PrevMenit (JAM J){
     long temp = JAMToDetik(J);
-    temp--;
+    temp-=60;
     if(temp < 0) temp += 86400;
 
     return DetikToJAM(temp);
 }
 /* Mengirim 1 detik sebelum J dalam bentuk JAM */
-JAM PrevNDetik (JAM J, int N){
+JAM PrevNMenit (JAM J, int N){
     long temp = JAMToDetik(J);
-    temp -= N;
+    temp -= N * 60;
     if(temp < 0) temp += 86400;
 
     return DetikToJAM(temp);

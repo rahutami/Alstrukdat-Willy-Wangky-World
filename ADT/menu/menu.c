@@ -25,6 +25,7 @@ void MainMenu(){
 }
 
 void MenuJalan(player *p1, Graph G){
+    CJam(*p1) = NextMenit(CJam(*p1));
     if (IsKataSama("w")){
         w(p1, G);
     }else if (IsKataSama("a")){
