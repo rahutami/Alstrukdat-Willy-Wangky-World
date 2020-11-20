@@ -11,7 +11,7 @@ Deskripsi: implementasi stack
 /* Implementasi dalam bahasa C dengan alokasi statik */
 
 
-#include "booleans.h"
+#include "../boolean/boolean.h"
 #include <stdio.h>
 #include "stackt.h"
 
