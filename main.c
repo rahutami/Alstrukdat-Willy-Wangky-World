@@ -52,11 +52,29 @@ int main(){
                 Day(p1)++;
                 CJam(p1) = MakeJAM(21,0);
                 Preparation(&p1);
-            }
-            else if (IsKataSama("main") || IsKataSama("execute")){
-                PrioQueue Q;
+            } else if (IsKataSama("main") || IsKataSama("execute")){
                 CJam(p1) = MakeJAM(9,0);
+
+                // Buat queue baru sementara manual dulu
+                PrioQueue Q;
+                List L;
+                int i;
+                infotypeQueue A;
+
+                CreateEmptyList(&L);
                 CreateEmptyQueue(&Q, 10);
+                for(i = 0; i < 5; i++){
+                    STARTKATA();
+                    InsVLast(&L, CKata);
+                    PrintKata(CKata);
+                    printf("\n");
+                }
+                Prio(A) = 5;
+                InfoQueue(A) = L;
+                Enqueue(&Q, A);
+                PrintPrioQueue(Q);
+
+
                 MainPhase(&p1,&Q);
             }
         }

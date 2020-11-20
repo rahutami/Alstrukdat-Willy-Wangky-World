@@ -8,6 +8,7 @@
 //  Deskripsi   : Implementasi Mesin Kata Model Akuisisi Versi I
 
 #include "mesinkata.h"
+#include <stdio.h>
 
 boolean EndKata;
 Kata CKata;
@@ -65,7 +66,7 @@ void SalinKata()
 {
     int i;
     i = 0;
-    while ((i < NMax) && (CC != MARK) && (CC != EOL))
+    while ((i < NMax) && (CC != MARK) && (CC != EOL) && (CC != BLANK))
     {
         CKata.TabKata[i] = CC;
         ADV();
@@ -118,8 +119,9 @@ void CopyKata(Kata K1, Kata * K2){
 }
 
 void PrintKata(Kata K){
-    for ( int i = 0; i < K.Length; i++)
-    {
+    /* Note: Tidak memberikan newline di akhir */
+    int i;
+    for (i = 0; i < K.Length; i++) {
         printf("%c",K.TabKata[i]);
     }
 }

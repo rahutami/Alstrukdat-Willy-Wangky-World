@@ -151,7 +151,7 @@ void PrintPrioQueue (PrioQueue Q){
     if(Head(Q) <= Tail(Q)){
         for(i = Head(Q); i <= Tail(Q); i++){
             PrintInfo(InfoQueue(ElmtQueue(Q, i)));
-            printf("kesabaran: %d\n", Prio(ElmtQueue(Q, i)));
+            printf(", kesabaran: %d\n", Prio(ElmtQueue(Q, i)));
         }
     } else {
         i = Head(Q);

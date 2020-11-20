@@ -11,11 +11,16 @@ void Serve(Kata W, PrioQueue *Q){
     /*      wahana akan dikeluarkan dari list tersebut. Jika list menjadi kosong, antrian berkurang */
     /* ALGORITMA */
     if(!IsEmptyQueue(*Q)){
-        if(Search(InfoQueue(InfoHead(*Q)), W) == NilList){
-            printf("Wahana salah\n");
+        List L = InfoQueue(InfoHead(*Q));
+        addressList P = Search(L, W);
+        if(P == NilList){
+            printf("Wahana tidak ada di dalam antrian pelanggan. Silahkan coba lagi. \n");
         } else {
-            // perlu data2 wahana dulu soalnya harus cek harga wahana, etc2
-            printf("berhasil!");
+            DelP(&L, W);
+            printf("Selamat menikmati wahana ");
+            PrintKata(W);
+            printf("!\n");
+            PrintPrioQueue(*Q);
         }
     } else {
         printf("Antrian kosong.\n");

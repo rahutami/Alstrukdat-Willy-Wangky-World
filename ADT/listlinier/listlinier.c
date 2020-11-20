@@ -13,6 +13,7 @@ void CreateEmptyList (List *L){
    /* I.S. sembarang             */
    /* F.S. Terbentuk list kosong */
    First(*L) = NilList;
+   
 }
  
 /****************** Manajemen Memori ******************/
@@ -49,7 +50,7 @@ addressList Search (List L, Kata X){
    boolean found = false;
    /* ALGORITMA */
    while(!found && (P != NilList)) {
-       if (IsKataSamaKata((InfoList(P).wahana), X)) {
+       if (IsKataSamaKata(InfoList(P), X)) {
            found = true;
         } else {
            P = Next(P);
@@ -151,10 +152,11 @@ void DelFirst (List *L, addressList *P){
    /*      Elemen list berkurang satu (mungkin menjadi kosong) */
    /* First element yg baru adalah suksesor elemen pertama yang lama */
    /* ALGORITMA */
-   *P = First(*L);
-   First(*L) = Next(First(*L));
-   Next(*P) = NilList;
+   addressList A = First(*L);
+   First(*L) = Next(A);
+   *P = A;
 }
+
 void DelP (List *L, infotypeList X){
    /* I.S. Sembarang */
    /* F.S. Jika ada elemen list beraddress P, dengan InfoList(P)=X  */
@@ -168,7 +170,7 @@ void DelP (List *L, infotypeList X){
    boolean found = false;
    /* ALGORITMA */
    while((P != NilList) && (!found)) {
-       if (InfoList(P).id == X.id) {
+       if (IsKataSamaKata(InfoList(P), X)) {
            found = true;
        } else {
            prec = P;
@@ -239,14 +241,18 @@ void PrintInfo (List L) {
 	addressList P;
 	/* ALGORITMA */
 	if(IsEmptyList(L)) {
-        printf("()\n");
+        printf("[]\n");
     } else { 
-        printf("(");
+        printf("[");
         P = First(L);
         while(P != NilList) {
-            printf("%s", InfoList(P).wahana);
+            PrintKata(InfoList(P));
+            if(Next(P) != NilList){
+                printf(", ");
+            }
             P = Next(P);
         }
+        printf("]");
     }
 }
 

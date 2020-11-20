@@ -1,6 +1,6 @@
-ID-WAHANA-TIPE-HARGA-DESKRIPSI-KAPASITAS-DURASI(MENIT)
-1-Coaster-TIPE-60-Rasakan sensasi menaiki kereta coaster yang sangat lincah!-10-10
-2-Helicap-TIPE-30-Bagaimana rasanya diterbangkan diudara bebas?-15-15
-3-Watersplash-TIPE-40-Air, siapa takut? Tak sabar untuk berpetualang dalam ombak yang menantang!-10-15
-4-Jungle-TIPE-50-Pacu adrenalinmu dengan memanjat tebing ala Willy Wangky!-5-10
-5-Shotgun-TIPE-20-Simulasi untuk menembak gebetan, Shotgun adalah arenanya!-5-20
+WAHANA-TIPE-HARGA-DESKRIPSI-KAPASITAS-DURASI(MENIT)
+Coaster-TIPE-60-Rasakan sensasi menaiki kereta coaster yang sangat lincah!-10-10
+Helicap-TIPE-30-Bagaimana rasanya diterbangkan diudara bebas?-15-15
+Watersplash-TIPE-40-Air, siapa takut? Tak sabar untuk berpetualang dalam ombak yang menantang!-10-15
+Jungle-TIPE-50-Pacu adrenalinmu dengan memanjat tebing ala Willy Wangky!-5-10
+Shotgun-TIPE-20-Simulasi untuk menembak gebetan, Shotgun adalah arenanya!-5-20

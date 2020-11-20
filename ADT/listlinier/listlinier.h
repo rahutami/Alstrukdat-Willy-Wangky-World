@@ -11,10 +11,7 @@
 
 #define NilList NULL
 
-typedef struct {
-	int id;
-	Kata wahana;
-} infotypeList;
+typedef Kata infotypeList;
 
 typedef struct tElmtlist *addressList;
 typedef struct tElmtlist {
