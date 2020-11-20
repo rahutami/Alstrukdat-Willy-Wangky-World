@@ -13,14 +13,15 @@
 #include "ADT/peta/peta.h"
 #include "ADT/graph/graph.h"
 #include "ADT/listlinier/listlinier.h"
+#include "ADT/listplayer/listplayer.h"
 
 #define MAXCHAR 100
 char CC;
 Kata CKata;
 boolean EOP;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
-JAM JamBuka;
-JAM JamTutup;
+JAM JamBuka, JamTutup;
+listPlayer LP;
 extern Graph GraphPeta;
 
 void NewGame(player *p1){
@@ -74,6 +75,8 @@ int main(){
                 Enqueue(&Q, A);
                 PrintPrioQueue(Q);
 
+                // Untuk sementara bikin list player disini aja yah
+                CreateEmptyLP(&LP);
 
                 MainPhase(&p1,&Q);
             }

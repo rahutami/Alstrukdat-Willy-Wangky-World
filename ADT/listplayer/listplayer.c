@@ -14,7 +14,7 @@ boolean IsEmptyPlayer (listPlayer LP) {
 }
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmptyListPlayer (listPlayer *LP) {
+void CreateEmptyLP (listPlayer *LP) {
     /* I.S. sembarang             */
     /*  F.S. Terbentuk list player kosong */
     First(*LP) = NilList;
@@ -151,11 +151,10 @@ int CountCompleted (listPlayer LP) {
     boolean found = false;
     /* ALGORITMA */
      while(P != NilList) {
-       if (Remaining(InfoLP(P)) == 0) {
-           count++;
-        } else {
-           P = Next(P);
+        if (Remaining(InfoLP(P)) == 0) {
+            count++;
         }
+        P = Next(P);
     }
-    return P;
+    return count;
 }

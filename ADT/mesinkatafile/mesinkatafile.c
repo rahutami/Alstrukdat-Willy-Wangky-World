@@ -43,7 +43,7 @@ void ADVKATAFile()
     IgnoreBlankFile();
 
     if (CC == MARK){
-        EndKata = true;
+        EndKataFile = true;
     }else{
         SalinKataFile();
         IgnoreBlankFile();
