@@ -2,6 +2,12 @@
 #include <string.h>
 #include "peta.h"
 #include "../graph/graph.h"
+#include "../mesinkata/mesinkata.h"
+
+boolean EndKata;
+Kata CKata;
+char CC;
+boolean EOP;
 
 void MakePETA (char* filename, MATRIKS * P)
 /* Membentuk sebuah PETA "kosong" yang siap diisi berukuran NB x NK di "ujung kiri" memori */
@@ -9,19 +15,29 @@ void MakePETA (char* filename, MATRIKS * P)
 /* F.S. PETA M sesuai dengan definisi di atas terbentuk */
 {
     FILE* cFile;
-    int i;
+    int i, j;
 
-    cFile = fopen(filename, "r");
+    STARTFILE(filename);
 
     i = 0;
-    while(fscanf(cFile, "%s\n", (*P).Mem[i]) > 0){
-        i++;
+    j = 0;
+
+    while(!EOP){
+        Elmt(*P, i, j) = CC;
+        ADV();
+        if(CC == EOL){
+            j = 0;
+            i++;
+            ADV();
+        } else {
+            j++;
+        }
     }
 
-    NBrsEff(*P) = i;
-    NKolEff(*P) = strlen((*P).Mem[0]);
+    ADV();
 
-    fclose(cFile);
+    NBrsEff(*P) = i;
+    NKolEff(*P) = j;
 }
 
 

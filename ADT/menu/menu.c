@@ -84,7 +84,7 @@ void Preparation(player *p1){
             TulisPlayer(*p1);
             printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
             printf("Opening Time: "); TulisJAM(JamBuka); printf("\n");
-            printf("Time Remaining: "); TulisTimeRemaining(Durasi(CJam(*p1), JamBuka)); printf("\n");
+            printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamBuka)); printf("\n");
             // Total aksi yang akan dilakukan:
             // Total waktu yang dibutuhkan:
             // Total uang yang dibutuhkan:
@@ -96,6 +96,7 @@ void Preparation(player *p1){
         printf("Masukkan perintah:\n");
 
         STARTKATA();
+
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
            MenuJalan(p1, GraphPeta);
         } else if (IsKataSama("command")){
@@ -132,7 +133,7 @@ void MainPhase(player * p1, PrioQueue * Q){
             TulisPlayer(*p1); //print nama dan uang
             printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
             printf("Closing Time: "); TulisJAM(JamTutup); printf("\n");
-            printf("Time Remaining: "); TulisTimeRemaining(Durasi(CJam(*p1), JamTutup)); printf("\n");
+            printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamTutup)); printf("\n");
             // Antrian
             printf("==========================================================\n");
             printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");

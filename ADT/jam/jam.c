@@ -152,7 +152,8 @@ JAM PrevNMenit (JAM J, int N){
 
 /* *** Kelompok Operator Aritmetika *** */
 long Durasi (JAM JAw, JAM JAkh){
-    return abs((JAMToMenit(JAkh) - JAMToMenit(JAw)) % 86400);
+    if(JAMToMenit(JAkh) > JAMToMenit(JAw)) return JAMToMenit(JAkh) - JAMToMenit(JAw);
+    else return JAMToMenit(JAkh) + 60*24 - JAMToMenit(JAw);
 }
 /* Mengirim JAkh-JAw dlm Detik, dengan kalkulasi */
 /* Jika JAw > JAkh, maka JAkh adalah 1 hari setelah JAw */
@@ -164,11 +165,11 @@ void CreateJamBukaTutup(){
 
 void TulisTimeRemaining(int durasi){
     JAM J = MenitToJAM(durasi);
-    if(Hour(J) == 1) printf("%d Hour", Hour(J));
-    else if(Hour(J) != 0) printf("%d Hours", Hour(J));
+    if(Hour(J) == 1) printf(" %d Hour", Hour(J));
+    else if(Hour(J) != 0) printf(" %d Hours", Hour(J));
 
-    if(Minute(J) == 1) printf("%d Minute", Minute(J));
-    else if(Minute(J) != 0) printf("%d Minutes", Minute(J));
+    if(Minute(J) == 1) printf(" %d Minute", Minute(J));
+    else if(Minute(J) != 0) printf(" %d Minutes", Minute(J));
 
 
 }

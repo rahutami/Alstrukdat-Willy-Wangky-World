@@ -1,63 +1,55 @@
-/* File: mesinkata.h */
+/* File: mesinkatafile.h */
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
 
-//  NIM         : 13519192
-//  NAMA        : Gayuh Tri Rahutami
-//  Tanggal     : 1 Oktober 2020
-//  Topik       : Mesin Karakter dan Mesin Kata
-//  Deskripsi   : Implementasi Mesin Kata Model Akuisisi Versi I
+#include "mesinkatafile.h"
 
-#include "mesinkata.h"
-#include <stdio.h>
+boolean EndKataFile;
+Kata CKataFile;
 
-boolean EndKata;
-Kata CKata;
-
-void IgnoreBlank()
+void IgnoreBlankFile()
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : CC sembarang 
    F.S. : CC ≠ BLANK atau CC = MARK */
 {
     while ((CC == BLANK) && (CC != MARK)){
-        ADV();
+        ADVFILE();
     }
 }
 
-void STARTKATA()
+void STARTKATAFile()
 /* I.S. : CC sembarang 
    F.S. : EndKata = true, dan CC = MARK; 
           atau EndKata = false, CKata adalah kata yang sudah diakuisisi,
           CC karakter pertama sesudah karakter terakhir kata */
 {
-    START();
-    IgnoreBlank();
+    STARTFILE();
+    IgnoreBlankFile();
 
     if (CC == MARK){
-        EndKata = true;
+        EndKataFile = true;
     }
     else{
-        EndKata = false;
-        SalinKata();
+        EndKataFile = false;
+        SalinKataFile();
     }
 }
-void ADVKATA()
+void ADVKATAFile()
 /* I.S. : CC adalah karakter pertama kata yang akan diakuisisi 
    F.S. : CKata adalah kata terakhir yang sudah diakuisisi, 
           CC adalah karakter pertama dari kata berikutnya, mungkin MARK
           Jika CC = MARK, EndKata = true.		  
    Proses : Akuisisi kata menggunakan procedure SalinKata */
 {
-    IgnoreBlank();
+    IgnoreBlankFile();
 
     if (CC == MARK){
         EndKata = true;
     }else{
-        SalinKata();
-        IgnoreBlank();
+        SalinKataFile();
+        IgnoreBlankFile();
     } 
 }
-
-void SalinKata()
+void SalinKataFile()
 /* Mengakuisisi kata, menyimpan dalam CKata
    I.S. : CC adalah karakter pertama dari kata
    F.S. : CKata berisi kata yang sudah diakuisisi; 
@@ -67,16 +59,16 @@ void SalinKata()
 {
     int i;
     i = 0;
-    while ((i < NMax) && (CC != MARK) && (CC != EOL) && (CC != BLANK))
+    while ((i < NMax) && (CC != MARK) && (CC != EOL))
     {
-        CKata.TabKata[i] = CC;
+        CKataFile.TabKata[i] = CC;
         ADV();
         i++;
     }
-    CKata.Length = i;
+    CKataFile.Length = i;
 }
 
-boolean IsKataSama (const char *command){
+boolean IsKataSamaFile (const char *command){
     /* Membandingkan CKata dengan string
 
     */
@@ -84,16 +76,16 @@ boolean IsKataSama (const char *command){
     int i = 0;
 
     while(command[i] != '\0' && ans){ //ngecek panjang command sekaligus ngecompare command sama CKata
-        if(command[i] != CKata.TabKata[i]) ans = false;
+        if(command[i] != CKataFile.TabKata[i]) ans = false;
         i++;
     }
 
-    if(i != CKata.Length) ans = false;
+    if(i != CKataFile.Length) ans = false;
 
     return ans;
 }
 
-boolean IsKataSamaKata (Kata K1, Kata K2){
+boolean IsKataSamaKataFile (Kata K1, Kata K2){
     /* Membandingkan kata dengan kata
 
     */
@@ -112,17 +104,9 @@ boolean IsKataSamaKata (Kata K1, Kata K2){
     return ans;
 }
 
-void CopyKata(Kata K1, Kata * K2){
+void CopyKataFile(Kata K1, Kata * K2){
     K2->Length = K1.Length;
     for (int i = 0; i<K1.Length; i++){
         (K2->TabKata)[i] = K1.TabKata[i];
-    }
-}
-
-void PrintKata(Kata K){
-    /* Note: Tidak memberikan newline di akhir */
-    int i;
-    for (i = 0; i < K.Length; i++) {
-        printf("%c",K.TabKata[i]);
     }
 }

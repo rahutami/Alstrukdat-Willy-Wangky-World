@@ -1,16 +1,18 @@
-/* File: mesinkar.c */
+/* File: mesinkarfile.c */
 /* Implementasi Mesin Karakter */
 
-#include "mesinkar.h"
+#include "mesinkarfile.h"
 #include <stdio.h>
 
+/* ****** variabel Global ketika include "masinkar.h" */
 char CC;
 boolean EOP;
+char * Name_File; // bias di deklararikan di luar file ini dengan cara Name_file = "blabla.txt"
 
 static FILE * pita;
 static int retval;
 
-void START() {
+void STARTFILE() {
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Karakter pertama yang ada pada pita posisinya adalah pada jendela.
    I.S. : sembarang
@@ -18,23 +20,11 @@ void START() {
           Jika CC = MARK maka EOP akan menyala (true) */
 
 	/* Algoritma */
-	pita = stdin;
-	ADV();
+	pita = fopen(Name_File,"r");
+	ADVFILE();
 }
 
-void STARTFILE(char* filename) {
-/* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
-   Karakter pertama yang ada pada pita posisinya adalah pada jendela.
-   I.S. : sembarang
-   F.S. : CC adalah karakter pertama pada pita. Jika CC != MARK maka EOP akan padam (false).
-          Jika CC = MARK maka EOP akan menyala (true) */
-
-	/* Algoritma */
-	pita = fopen(filename, "r");
-	ADV();
-}
-
-void ADV() {
+void ADVFILE() {
 /* Pita dimajukan satu karakter. 
    I.S. : Karakter pada jendela = 
           CC, CC != MARK
