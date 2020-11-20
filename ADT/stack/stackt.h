@@ -7,7 +7,6 @@
 
 #include "../boolean/boolean.h"
 
-
 #define Nil -1
 #define MaxEl 10
 /* Nil adalah stack dengan elemen kosong . */
@@ -15,10 +14,12 @@
 typedef int infotype;
 typedef int address;   /* indeks tabel */
 
+/* Belom fix */
 typedef struct {
      int aksi;
      int waktu; 
 } Aksi;
+
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
@@ -38,7 +39,7 @@ typedef struct {
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-void CreateEmptyStack (Stack *S);
+void CreateEmpty (Stack *S);
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
 /* jadi indeksnya antara 0.. MaxEl */
@@ -68,5 +69,21 @@ void CopyStack (Stack Sin, Stack *Sout);
 /* F.S. Sout berisi salinan Sin yang identik */
 
 void InverseStack (Stack S);
+
+void PrintStack (Stack S); /* Buat membantu aja ini */
+
+int SumOfStack (Stack S, infotype X);
+/* Me-return sum waktu pada setiap aksi (untuk saat ini baru int aja) */
+
+void Undo (Stack *S, infotype *X);
+/* Undo pada eksekusi terakhir */
+/* Sama aja kayak nge-POP stack yang kumpulan aksi */
+
+void Execute (Stack S);
+/* Eksekusi mulai command terakhir, berarti POP */
+/* Kalo sambil pop, sambil jalanin fungsinya */
+
+void mainmain (Stack * S, infotype * X);
+/* Mengosongkan stack tanpa melakukan perintah */
 
 #endif
