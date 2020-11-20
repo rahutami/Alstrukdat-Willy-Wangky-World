@@ -1,4 +1,17 @@
-#include "../boolean/boolean.h"
+/* NIM: 13519040
+Nama: Shafira Naya Aprisadianti
+Tanggal: 21 Oktober 2020
+Topik: Pra praktikum 8
+Deskripsi: implementasi stack
+*/
+
+/* File : stackt.h */
+/* deklarasi stack yang diimplementasi dengan tabel kontigu dan ukuran sama */
+/* TOP adalah alamat elemen puncak */
+/* Implementasi dalam bahasa C dengan alokasi statik */
+
+
+#include "booleans.h"
 #include <stdio.h>
 #include "stackt.h"
 
@@ -27,7 +40,7 @@
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
-void CreateEmptyStack (Stack *S)
+void CreateEmpty (Stack *S)
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
 /* jadi indeksnya antara 0.. MaxEl */
@@ -73,8 +86,8 @@ void CopyStack (Stack Sin, Stack *Sout)
 {
     Stack Stemp;
     infotype X;
-    CreateEmptyStack(&Stemp);
-    CreateEmptyStack(Sout);
+    CreateEmpty(&Stemp);
+    CreateEmpty(Sout);
     while (!IsEmptyStack(Sin)) {
         Pop(&Sin,&X);
         Push(&Stemp,X);
@@ -89,8 +102,8 @@ void InverseStack (Stack S) {
     Stack Stemp1;
     Stack Stemp2;
     infotype X;
-    CreateEmptyStack(&Stemp1);
-    CreateEmptyStack(&Stemp2);
+    CreateEmpty(&Stemp1);
+    CreateEmpty(&Stemp2);
     while (!IsEmptyStack(S)) {
         Pop(&S,&X);
         Push(&Stemp1,X);
@@ -103,4 +116,37 @@ void InverseStack (Stack S) {
         Pop(&Stemp2,&X);
         Push(&S,X);
     }
+}
+void PrintStack (Stack S) { // Ini biar ngebantu aja
+    infotype X;
+    if (IsEmptyStack(S)) {
+        printf("\nStacknya kosong\n") ; 
+    }
+    else {
+        while (!IsEmptyStack(S)) {
+            int top = InfoTop(S);
+            printf("%d\n",top);
+            Pop(&S,&X);
+            //Push(&S,top);
+        }
+    }
+}
+
+int SumOfStack (Stack S, infotype X) {
+    int sum=0;
+    while (!IsEmptyStack(S)) {
+        sum += InfoTop(S);
+        Pop(&S,&X);
+    }
+    return sum;
+}
+void mainmain (Stack *S, infotype *X) {
+    //infotype buang;
+    while (!IsEmptyStack(*S)) {
+        Pop(S,X);
+    }
+}
+
+void Undo(Stack *S, infotype *X) {
+    Pop(S,X);
 }
