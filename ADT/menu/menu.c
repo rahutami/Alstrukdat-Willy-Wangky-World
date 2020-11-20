@@ -147,7 +147,7 @@ void MainPhase(player * p1, PrioQueue * Q){
             ListCommand();
         } else if (IsKataSama("serve")) {
             ADVKATA();
-            Serve(CKata, Q);
+            Serve(&p1, CKata, Q);
         }// nanti tambahin elif aja buat command yang lain 
         // else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
         //     printf("==========================================================\n");

@@ -102,4 +102,5 @@ long Durasi (JAM JAw, JAM JAkh);
 void CreateJamBukaTutup();
 
 void TulisTimeRemaining(int durasi);
+
 #endif
