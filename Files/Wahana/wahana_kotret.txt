@@ -55,3 +55,5 @@ UPGRADE //ga ditampilin di txt
 STATUSRUSAK //ga ditampilin di txt
 
 STATUSBUILD //ga ditampilin di txt
+
+WAHANA-TIPE-HARGA-DESKRIPSI-KAPASITAS-DURASI(MENIT)
