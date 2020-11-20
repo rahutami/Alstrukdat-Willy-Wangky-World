@@ -56,6 +56,7 @@ void ADVKATA()
         IgnoreBlank();
     } 
 }
+
 void SalinKata()
 /* Mengakuisisi kata, menyimpan dalam CKata
    I.S. : CC adalah karakter pertama dari kata

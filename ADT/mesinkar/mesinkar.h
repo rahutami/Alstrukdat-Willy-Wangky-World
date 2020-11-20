@@ -19,6 +19,8 @@ void START();
           Jika CC != MARK maka EOP akan padam (false)
           Jika CC = MARK maka EOP akan menyala (true) */
 
+void STARTFILE(char* filename);
+
 void ADV();
 /* Pita dimajukan satu karakter. 
    I.S. : Karakter pada jendela = CC, CC != MARK
