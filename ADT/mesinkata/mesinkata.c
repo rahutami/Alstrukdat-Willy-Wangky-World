@@ -40,6 +40,7 @@ void STARTKATA()
         SalinKata();
     }
 }
+
 void ADVKATA()
 /* I.S. : CC adalah karakter pertama kata yang akan diakuisisi 
    F.S. : CKata adalah kata terakhir yang sudah diakuisisi, 
@@ -54,6 +55,22 @@ void ADVKATA()
     }else{
         SalinKata();
         IgnoreBlank();
+    } 
+}
+
+void ADVKATAFILE()
+/* I.S. : CC adalah karakter pertama kata yang akan diakuisisi 
+   F.S. : CKata adalah kata terakhir yang sudah diakuisisi, 
+          CC adalah karakter pertama dari kata berikutnya, mungkin MARK
+          Jika CC = MARK, EndKata = true.		  
+   Proses : Akuisisi kata menggunakan procedure SalinKata */
+{
+    IgnoreBlank();
+
+    if (CC == MARK){
+        EndKata = true;
+    }else{
+        SalinKataFile();
     } 
 }
 
@@ -73,6 +90,27 @@ void SalinKata()
         ADV();
         i++;
     }
+    CKata.Length = i;
+}
+
+void SalinKataFile()
+/* Mengakuisisi kata, menyimpan dalam CKata
+   I.S. : CC adalah karakter pertama dari kata
+   F.S. : CKata berisi kata yang sudah diakuisisi; 
+          CC = BLANK atau CC = MARK; 
+          CC adalah karakter sesudah karakter terakhir yang diakuisisi.
+          Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+{
+    int i;
+    i = 0;
+    while ((i < NMax) && (CC != MARK) && (CC != '-') && (CC != EOL))
+    {
+        CKata.TabKata[i] = CC;
+        ADV();
+        i++;
+    }
+
+    if(CC == '-') ADV();
     CKata.Length = i;
 }
 

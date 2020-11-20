@@ -7,7 +7,7 @@
 #include "../boolean/boolean.h"
 #include "../mesinkar/mesinkar.h"
 
-#define NMax 50
+#define NMax 100
 #define BLANK ' '
 #define EOL '\n'
 
@@ -31,6 +31,7 @@ void STARTKATA();
           atau EndKata = false, CKata adalah kata yang sudah diakuisisi,
           CC karakter pertama sesudah karakter terakhir kata */
 
+void ADVKATAFILE();
 void ADVKATA();
 /* I.S. : CC adalah karakter pertama kata yang akan diakuisisi 
    F.S. : CKata adalah kata terakhir yang sudah diakuisisi, 
@@ -38,6 +39,7 @@ void ADVKATA();
           Jika CC = MARK, EndKata = true.		  
    Proses : Akuisisi kata menggunakan procedure SalinKata */
 
+void SalinKataFile();
 void SalinKata();
 /* Mengakuisisi kata, menyimpan dalam CKata
    I.S. : CC adalah karakter pertama dari kata
