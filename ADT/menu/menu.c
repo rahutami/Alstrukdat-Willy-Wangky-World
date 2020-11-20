@@ -96,6 +96,7 @@ void Preparation(player *p1){
         printf("Masukkan perintah:\n");
 
         STARTKATA();
+
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
            MenuJalan(p1, GraphPeta);
         } else if (IsKataSama("command")){
