@@ -188,7 +188,6 @@ int convToInt (Kata CKata)
 {
   int total = 0, i;
   /* ALGORITMA */
-  printf("%d\n", CKata.Length);
   for (i = 0; i < CKata.Length ;i++) {
     total = total*10 + (CKata.TabKata[i] - '0');
   }

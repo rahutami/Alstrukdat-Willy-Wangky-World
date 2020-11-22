@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 #include "ADT/boolean/boolean.h"
 #include "ADT/mesinkar/mesinkar.h"
 #include "ADT/mesinkata/mesinkata.h"
@@ -26,8 +27,9 @@ extern Graph GraphPeta;
 
 void NewGame(player *p1){
     
-    printf("Enter your name: \n");
+    printf("Enter your name: ");
     STARTKATA();
+    printf("\n");
     
     
     CreateJamBukaTutup();
@@ -54,31 +56,9 @@ int main(){
                 CJam(p1) = MakeJAM(21,0);
                 Preparation(&p1);
             } else if (IsKataSama("main") || IsKataSama("execute")){
+                srand(time(NULL));
                 CJam(p1) = MakeJAM(9,0);
-
-                // Buat queue baru sementara manual dulu
-                PrioQueue Q;
-                List L;
-                int i;
-                infotypeQueue A;
-
-                CreateEmptyList(&L);
-                CreateEmptyQueue(&Q, 10);
-                for(i = 0; i < 5; i++){
-                    STARTKATA();
-                    InsVLast(&L, CKata);
-                    PrintKata(CKata);
-                    printf("\n");
-                }
-                Prio(A) = 5;
-                InfoQueue(A) = L;
-                Enqueue(&Q, A);
-                PrintPrioQueue(Q);
-
-                // Untuk sementara bikin list player disini aja yah
-                CreateEmptyLP(&LP);
-
-                MainPhase(&p1,&Q);
+                MainPhase(&p1);
             }
         }
     }
@@ -89,4 +69,4 @@ int main(){
     return 0;
 }
 
-// gcc main.c ADT/listlinier/listlinier.c ADT/graph/graph.c ADT/jam/jam.c ADT/matriks/matriks.c ADT/menu/menu.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c ADT/peta/peta.c ADT/player/player.c ADT/point/point.c ADT/prioqueue/prioqueue.c ADT/stack/stackt.c -o main
+// gcc main.c ADT/listlinier/listlinier.c ADT/listplayer/listplayer.c ADT/graph/graph.c ADT/jam/jam.c ADT/matriks/matriks.c ADT/menu/menu.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c ADT/peta/peta.c ADT/player/player.c ADT/point/point.c ADT/prioqueue/prioqueue.c ADT/stack/stackt.c -o main

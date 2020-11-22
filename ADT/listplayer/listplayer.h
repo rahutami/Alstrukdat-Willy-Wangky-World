@@ -73,7 +73,7 @@ void InsertLastLP (listPlayer *LP, addressLP P);
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 
-void InsVLastLP (listPlayer *LP, infotypeLP X);
+void InsVLastLP (listPlayer *LP, infoLP X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
@@ -98,6 +98,11 @@ void DelLastLP (listPlayer *LP, addressLP *P);
 /* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* Last element baru adalah predesesor elemen terakhir yg lama, */
+
+void DelAfterLP (listPlayer *LP, addressLP *Pdel, addressLP Prec);
+/* I.S. List tidak kosong. Prec adalah anggota list  */
+/* F.S. Menghapus Next(Prec): */
+/*      Pdel adalah alamat elemen list yang dihapus  */
 
 int CountCompleted(listPlayer LP);
 /* Menghitung jumlah customer yang telah selesai bermain */

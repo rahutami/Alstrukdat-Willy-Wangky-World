@@ -84,16 +84,18 @@ void Preparation(player *p1){
             TulisPlayer(*p1);
             printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
             printf("Opening Time: "); TulisJAM(JamBuka); printf("\n");
-            printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamBuka)); printf("\n");
+            printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamBuka)); 
+            printf("\n");
             // Total aksi yang akan dilakukan:
             // Total waktu yang dibutuhkan:
             // Total uang yang dibutuhkan:
             printf("==========================================================\n");
             printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
             printf("==========================================================\n");
+            printf("\n");
         }
         
-        printf("Masukkan perintah:\n");
+        printf("Masukkan perintah: ");
 
         STARTKATA();
 
@@ -114,7 +116,11 @@ void Preparation(player *p1){
 
 }
 
-void MainPhase(player * p1, PrioQueue * Q){
+void MainPhase(player * p1){
+    PrioQueue Q;
+    CreateEmptyQueue(&Q, 5);
+    RandomizeQueue(&Q);
+
     do{
         if (!IsKataSama("command")){
             printf("===================================\n");
@@ -130,16 +136,26 @@ void MainPhase(player * p1, PrioQueue * Q){
             printf("O = Office\n");
             printf("^, >, v, < = Gerbang\n");
             printf("===================================\n");
+            printf("\n");
             TulisPlayer(*p1); //print nama dan uang
             printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
             printf("Closing Time: "); TulisJAM(JamTutup); printf("\n");
-            printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamTutup)); printf("\n");
-            // Antrian
+            printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamTutup)); 
+            printf("\n");
+            printf("\n");
+            if(!IsEmptyQueue(Q)){
+                printf("Antrian [%d/5] :\n", NbElmtQueue(Q));
+                PrintPrioQueue(Q);
+            } else {
+                printf("Antrian kosong\n");
+            }
+            printf("\n");
             printf("==========================================================\n");
             printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
             printf("==========================================================\n");
+            printf("\n");
         }
-        printf("Masukkan perintah:\n");
+        printf("Masukkan perintah: ");
         
         STARTKATA();
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
@@ -148,7 +164,7 @@ void MainPhase(player * p1, PrioQueue * Q){
             ListCommand();
         } else if (IsKataSama("serve")) {
             ADVKATA();
-            Serve(&p1, CKata, Q);
+            Serve(&p1, CKata, &Q);
         }// nanti tambahin elif aja buat command yang lain 
         // else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
         //     printf("==========================================================\n");

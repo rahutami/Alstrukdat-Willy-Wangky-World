@@ -8,7 +8,7 @@
 #include "listplayer.h"
 
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmptyPlayer (listPlayer LP) {
+boolean IsEmptyLP (listPlayer LP) {
     /* Mengirim true jika list player kosong */
     return(First(LP) == NULL);
 }
@@ -93,6 +93,27 @@ void DelCompleted (listPlayer *LP, infoLP *del) {
             DelAfterLP(LP, del, prec);
         }
     }
+}
+
+void DelAfterLP (listPlayer *LP, addressLP *Pdel, addressLP Prec) {
+	/* I.S. List tidak kosong. Prec adalah anggota list  */
+	/* F.S. Menghapus Next(Prec): */
+	/*      Pdel adalah alamat elemen list yang dihapus  */
+	/* KAMUS */
+	addressLP P = FirstLP(*LP);
+	boolean found = false;
+	/* ALGORITMA  */
+	while((P != NilList) && (!found)) {
+        if (P == Prec) {
+            found = true;
+        } else {
+            P = Next(P);
+        }
+    }
+
+    *Pdel = NextLP(P);
+    NextLP(P) = NextLP(Next(P));
+    NextLP(*Pdel) = NilList;
 }
 
 void InsertFirstLP (listPlayer *LP, addressLP P){

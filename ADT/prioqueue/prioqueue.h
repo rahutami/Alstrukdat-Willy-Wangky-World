@@ -8,9 +8,11 @@
 
 #include "../boolean/boolean.h"
 #include  "../listlinier/listlinier.h"
+#include "../mesinkata/mesinkata.h"
 
 #define NilQueue -1
 /* Konstanta untuk mendefinisikan addressQueue tak terdefinisi */
+
 
 /* Definisi elemen dan addressQueue */
 typedef struct {
@@ -28,6 +30,9 @@ typedef struct {
     int MaxEl;     /* Max elemen queue */
 } PrioQueue;
 /* Definisi PrioQueue kosong: HEAD=Nil; TAIL=Nil. */
+
+extern Kata CKata;
+extern char CC;
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah infotypeQueue dan Q adalah PrioQueue, maka akses elemen : */
@@ -85,5 +90,10 @@ void PrintPrioQueue (PrioQueue Q);
 <prio-n> <elemen-n>
 #
 */
+
+void RandomizeQueue (PrioQueue *Q);
+/* Mengisi queue Q secara random */
+/* I.S. Q terdefinisi dan kosong */
+/* F.S. Q terisi secara random */
 
 #endif

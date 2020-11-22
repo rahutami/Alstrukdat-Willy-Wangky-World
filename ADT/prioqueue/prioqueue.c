@@ -169,3 +169,43 @@ void PrintPrioQueue (PrioQueue Q){
    }
 
 }
+
+void RandomizeQueue (PrioQueue *Q) {
+    /* Mengisi queue Q secara random */
+    /* I.S. Q terdefinisi dan kosong */
+    /* F.S. Q terisi secara random */
+    /* KAMUS */
+    Kata arrayKata[5];
+    int count = 0;
+    int i, j, k, queueLength, wahana;
+    List L;
+    infotypeQueue new;
+    /* ALGORITMA */
+    /* Randomize queue length */
+    queueLength =  rand() % 5;
+
+    /* Read wahana.txt */
+    STARTFILE("./Files/Wahana/wahana.txt"); // Hanya bisa dijalanin dari main ok
+    while(!EOP){
+        SalinKataFile();
+        arrayKata[count] = CKata;
+        count++;
+        while(CC != EOL && CC != MARK) {
+            ADV();
+        }
+        ADV();
+    }
+    printf("4\n");
+    for(i = 0; i <= queueLength; i++) {
+        CreateEmptyList(&L);
+        wahana = rand() % 5;
+        for(j = 0; j <= wahana; j++){
+            k = rand() % 5;
+            InsVLast(&L, arrayKata[k]);
+        }
+        InfoQueue(new) = L;
+        Prio(new) = 5;
+        Enqueue(Q, new);
+    }
+
+}

@@ -8,6 +8,6 @@
 void MainMenu();
 void MenuJalan(player *p1, Graph G);
 void Preparation(player *p1);
-void MainPhase(player * p1, PrioQueue * Q);
+void MainPhase(player * p1);
 void ListCommand();
 #endif
