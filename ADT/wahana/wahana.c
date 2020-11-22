@@ -71,10 +71,7 @@ void MakeTree(TreeWahanaS *T)
 /* I.S P adalah tree kosong */
 /* F.S P adalah tree berisi ElmtWahanaStatis yang diambil dari file txt */
 {
-<<<<<<< Updated upstream
     boolean empty = true;
-=======
->>>>>>> Stashed changes
     addressWahanaS temptree[10];
     for (int i = 0; i < 10; i++)
         temptree[i] = AlokNode(i);
@@ -86,24 +83,16 @@ void MakeTree(TreeWahanaS *T)
 
     while(!EOP){
         empty = false;
-        i++;
-<<<<<<< Updated upstream
         SalinKataFile();
-=======
-        //PrintKata(CKata); printf("[i : %d] ",i);
->>>>>>> Stashed changes
+        i++;
         if(CC == EOL){
             if (i == 7){
                 TimeWahana(temptree[indexarr]) = convToInt(CKata);
                 //printf("bisa 7, %d\n",TimeWahana(temptree[indexarr]));
             }
             ADV(); //pita maju 1 karakter
-<<<<<<< Updated upstream
-            i = 0;
-=======
             i=0;
             //printf("\n");
->>>>>>> Stashed changes
             indexarr++;
             //printf("[index arr: %d] ",indexarr);
         } else {
@@ -142,7 +131,6 @@ void MakeTree(TreeWahanaS *T)
         }
     }  
 
-<<<<<<< Updated upstream
     if(!empty){
         SubTree(temptree[0], temptree[1], temptree[2]);
         SubTree(temptree[1], temptree[3], temptree[4]);
@@ -152,16 +140,6 @@ void MakeTree(TreeWahanaS *T)
         SubTree(temptree[5], temptree[9], NilList);
         Root(*T) = temptree[0];
     }
-=======
-    SubTree(temptree[0], temptree[1], temptree[2]);
-    SubTree(temptree[1], temptree[3], temptree[4]);
-    SubTree(temptree[3], temptree[7], NilList);
-    SubTree(temptree[4], temptree[8], NilList);
-    SubTree(temptree[2], temptree[5], temptree[6]);
-    SubTree(temptree[5], temptree[9], NilList);
-    Root(*T) = temptree[0];
-    //printf("oke\n");
->>>>>>> Stashed changes
 }
 
 /* Manajemen Memory */
@@ -251,12 +229,7 @@ void PrintTreeNode(addressWahanaS P)
 /* Mencetak node tree dengan address P */
 {
     if (P!= NilList){
-<<<<<<< Updated upstream
-        PrintKata(NamaWahana(P));
-        printf("\n");
-=======
         PrintKata(NamaWahana(P)); printf("\n");
->>>>>>> Stashed changes
         PrintTreeNode(Left(P));
         PrintTreeNode(Right(P));
     }

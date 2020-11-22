@@ -10,17 +10,9 @@ boolean EOP;
 int main(){
     
     TreeWahanaS T;
-<<<<<<< Updated upstream
     MakeTree(&T);
     PrintTree(T);
 
-=======
-    //addressWahanaS temptree[10];
-    //printf("TEST");
-    MakeTree(&T);
-    PrintTree(T);   
-    
->>>>>>> Stashed changes
     return 0;
     
 }
