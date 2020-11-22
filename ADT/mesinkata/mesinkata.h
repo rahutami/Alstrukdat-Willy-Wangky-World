@@ -57,7 +57,7 @@ boolean IsKataSamaKata (Kata K1, Kata K2);
 
 void PrintKata(Kata K);
 
-void convToInt (Kata CKata, int *val);
+int convToInt (Kata CKata);
 // merubah ckata menjadi integer dalam alamat val
 
 #endif

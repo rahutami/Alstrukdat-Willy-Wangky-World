@@ -181,13 +181,16 @@ void PrintKata(Kata K){
     }
 }
 
-void convToInt (Kata CKata, int *val)
-// merubah ckata menjadi integer dalam alamat val
+int convToInt (Kata CKata)
+/* Mereturn hasil convert CKata menjadi integer */
+/* I.S. CKata harus berupa angka */
+/* F.S. Integer baru bernilai sama dengan CKT */
 {
-  *val = 0;
-  for (int i=0; i< CKata.Length ;i++) {
-    //printf("%c", CKata.TabKata[i] );
-    *val = *val * 10 +  (CKata.TabKata[i] - '0');
+  int total = 0, i;
+  /* ALGORITMA */
+  printf("%d\n", CKata.Length);
+  for (i = 0; i < CKata.Length ;i++) {
+    total = total*10 + (CKata.TabKata[i] - '0');
   }
-
+  return total;
 }
