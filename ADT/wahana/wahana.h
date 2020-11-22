@@ -122,8 +122,26 @@ boolean IsBiner(TreeWahanaS T);
 /* Mengirimkan true jika pohon biner tidak kosong P adalah pohon biner: mempunyai subpohon kiri dan subpohon kanan*/
 
 void PrintTreeNode(addressWahanaS P);
+/* Mencetak node tree dengan address P */
 
 void PrintTree(TreeWahanaS T);
+/* Mencetak tree dengan PreOrder */
+/*Print PreOrder
+[A]Coaster
+[B]Helicap
+[C]Jungle
+[D]Stars
+[E]Shotgun
+[F]Dancingking
+[G]Watersplash
+[H]Marinebay
+[I]Rush
+[J]Liftup
 
+     A
+  B     G
+C  E   H  J
+D  F   I
+*/
 
 #endif
