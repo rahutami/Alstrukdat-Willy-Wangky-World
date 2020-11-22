@@ -1,3 +1,4 @@
+
 /* File: mesinkata.h */
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
 
@@ -41,6 +42,19 @@ void STARTKATA()
     }
 }
 
+void STARTKATAFILE(char* filename)
+//membaca kata dari file
+{
+    STARTFILE(filename);
+
+    if (CC == MARK){
+        EndKata = true;
+    }
+    else{
+        EndKata = false;
+    }
+}
+
 void ADVKATA()
 /* I.S. : CC adalah karakter pertama kata yang akan diakuisisi 
    F.S. : CKata adalah kata terakhir yang sudah diakuisisi, 
@@ -65,12 +79,12 @@ void ADVKATAFILE()
           Jika CC = MARK, EndKata = true.		  
    Proses : Akuisisi kata menggunakan procedure SalinKata */
 {
-    IgnoreBlank();
 
     if (CC == MARK){
         EndKata = true;
     }else{
         SalinKataFile();
+
     } 
 }
 
@@ -110,7 +124,9 @@ void SalinKataFile()
         i++;
     }
 
-    if(CC == '-') ADV();
+    if(CC == '-') {
+      ADV();
+    }
     CKata.Length = i;
 }
 
@@ -163,4 +179,15 @@ void PrintKata(Kata K){
     for (i = 0; i < K.Length; i++) {
         printf("%c",K.TabKata[i]);
     }
+}
+
+void convToInt (Kata CKata, int *val)
+// merubah ckata menjadi integer dalam alamat val
+{
+  *val = 0;
+  for (int i=0; i< CKata.Length ;i++) {
+    //printf("%c", CKata.TabKata[i] );
+    *val = *val * 10 +  (CKata.TabKata[i] - '0');
+  }
+
 }

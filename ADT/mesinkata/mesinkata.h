@@ -25,6 +25,7 @@ void IgnoreBlank();
    I.S. : CC sembarang 
    F.S. : CC ≠ BLANK atau CC = MARK */
 
+void STARTKATAFILE(char* filename);
 void STARTKATA();
 /* I.S. : CC sembarang 
    F.S. : EndKata = true, dan CC = MARK; 
@@ -55,6 +56,9 @@ void CopyKata(Kata K1, Kata * K2);
 boolean IsKataSamaKata (Kata K1, Kata K2);
 
 void PrintKata(Kata K);
+
+void convToInt (Kata CKata, int *val);
+// merubah ckata menjadi integer dalam alamat val
 
 #endif
 
