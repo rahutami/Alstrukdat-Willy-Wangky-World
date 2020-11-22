@@ -1,7 +1,6 @@
 
 #include "wahana.h"
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 
 
@@ -67,11 +66,7 @@ void MakeTree(TreeWahanaS *T)
 /* I.S P adalah tree kosong */
 /* F.S P adalah tree berisi ElmtWahanaStatis yang diambil dari file txt */
 {
-    boolean EndKata;
-    Kata CKata;
-    char CC;
-    boolean EOP;
-
+    boolean empty = true;
     addressWahanaS temptree[10];
     for (int i = 0; i < 10; i++)
         temptree[i] = AlokNode(i);
@@ -81,12 +76,12 @@ void MakeTree(TreeWahanaS *T)
     int indexarr=0; //akan bertambah perbaris dan pernode
 
     while(!EOP){
-        SalinKataFile();
+        empty = false;
         i++;
+        SalinKataFile();
         if(CC == EOL){
             ADV(); //pita maju 1 karakter
-            i=0;
-            printf("\n");
+            i = 0;
             indexarr++;
         } else {
             switch (i) {
@@ -117,13 +112,15 @@ void MakeTree(TreeWahanaS *T)
         }
     }  
 
-    SubTree(temptree[0], temptree[1], temptree[2]);
-    SubTree(temptree[1], temptree[3], temptree[4]);
-    SubTree(temptree[3], temptree[7], NilList);
-    SubTree(temptree[4], temptree[8], NilList);
-    SubTree(temptree[2], temptree[5], temptree[6]);
-    SubTree(temptree[5], temptree[9], NilList);
-    Root(*T) = temptree[0];
+    if(!empty){
+        SubTree(temptree[0], temptree[1], temptree[2]);
+        SubTree(temptree[1], temptree[3], temptree[4]);
+        SubTree(temptree[3], temptree[7], NilList);
+        SubTree(temptree[4], temptree[8], NilList);
+        SubTree(temptree[2], temptree[5], temptree[6]);
+        SubTree(temptree[5], temptree[9], NilList);
+        Root(*T) = temptree[0];
+    }
 }
 
 /* Manajemen Memory */
@@ -212,6 +209,7 @@ boolean IsBiner(TreeWahanaS T)
 void PrintTreeNode(addressWahanaS P){
     if (P!= NilList){
         PrintKata(NamaWahana(P));
+        printf("\n");
         PrintTreeNode(Left(P));
         PrintTreeNode(Right(P));
     }

@@ -3,11 +3,10 @@
 #ifndef WAHANA_H
 #define WAHANA_H
 
-#include "../listlinier/listlinier.h"
-#include "../boolean/boolean.h"
-#include "../point/point.h"
 #include "../jam/jam.h"
-#include "../mesinkar/mesinkar.h"
+#include "../point/point.h"
+#include "../boolean/boolean.h"
+#include "../listlinier/listlinier.h"
 #include "../mesinkata/mesinkata.h"
 
 typedef struct tElmtWahanaS *addressWahanaS;
@@ -50,7 +49,7 @@ typedef struct {
 	addressWahanaS Root;
 } TreeWahanaS;
 
-extern addressWahanaS temptree[10];
+// extern addressWahanaS temptree[10];
 
 /*T : TreeWahanaS
   N : Node dari TreeWahanaS, berupa ElmtWahanaStatis

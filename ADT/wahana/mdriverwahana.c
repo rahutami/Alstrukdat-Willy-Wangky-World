@@ -5,10 +5,10 @@
 
 int main(){
     TreeWahanaS T;
-    addressWahanaS temptree[10];
-    printf("TEST");
     MakeTree(&T);
     PrintTree(T);
+
+    return 0;
     
 }
 //error : undefined reference Maketree dan PrintTree
