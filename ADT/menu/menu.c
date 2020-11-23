@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "menu.h"
-#include "../../serve.c"
+
 
 Graph GraphPeta;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
@@ -124,7 +124,6 @@ void MainPhase(player * p1, TreeWahanaS T){
             ReduceTime(&LP);
             for(int i = 0; i < CountCompleted(LP); i++) {
                 DelCompleted(&LP, &del);
-                PrintInfo(del);
                 FirstEnqueue(&Q, del);
             }
         }

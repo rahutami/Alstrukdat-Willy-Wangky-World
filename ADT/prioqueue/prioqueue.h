@@ -6,9 +6,14 @@
 #ifndef PrioQueue_H
 #define PrioQueue_H
 
+#include "../jam/jam.h"
 #include "../boolean/boolean.h"
 #include  "../listlinier/listlinier.h"
+#include "../listplayer/listplayer.h"
 #include "../mesinkata/mesinkata.h"
+#include "../player/player.h"
+#include "../wahana/wahana.h"
+
 
 #define NilQueue -1
 /* Konstanta untuk mendefinisikan addressQueue tak terdefinisi */
@@ -98,5 +103,11 @@ void RandomizeQueue (PrioQueue *Q);
 /* Mengisi queue Q secara random */
 /* I.S. Q terdefinisi dan kosong */
 /* F.S. Q terisi secara random */
+
+void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, TreeWahanaS T);
+/* I.S. W adalah wahana, bisa tidak valid. Q adalah priority queue */
+/* F.S. Jika wahana terdapat pada salah satu list wahana di priority queue, maka */
+/*      wahana akan dikeluarkan dari list tersebut. Jika list menjadi kosong, antrian berkurang */
+
 
 #endif
