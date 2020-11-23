@@ -241,7 +241,7 @@ void PrintInfo (List L) {
 	addressList P;
 	/* ALGORITMA */
 	if(IsEmptyList(L)) {
-        printf("()\n");
+        printf("()");
     } else { 
         printf("(");
         P = First(L);

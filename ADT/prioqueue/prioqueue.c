@@ -109,10 +109,12 @@ void Enqueue (PrioQueue * Q, infotypeQueue X){
 
 }
 
-void FirstEnqueue(PrioQueue *Q, infotypeQueue X){
+void FirstEnqueue(PrioQueue *Q, List L){
     /* Menambahkan X ke dalam queue dengan prioritas terbesar */
-    Prio(X) = 1;
-    Enqueue(Q, X);
+    infotypeQueue P;
+    InfoQueue(P) = L;
+    Prio(P) = 1;
+    Enqueue(Q, P);
 }
 
 void Dequeue (PrioQueue * Q, infotypeQueue * X){

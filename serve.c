@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 
-void Serve(player *P, Kata W, PrioQueue *Q, TreeWahanaS T){
+void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, TreeWahanaS T){
     /* I.S. W adalah wahana, bisa tidak valid. Q adalah priority queue */
     /* F.S. Jika wahana terdapat pada salah satu list wahana di priority queue, maka */
     /*      wahana akan dikeluarkan dari list tersebut. Jika list menjadi kosong, antrian berkurang */
@@ -22,22 +22,23 @@ void Serve(player *P, Kata W, PrioQueue *Q, TreeWahanaS T){
         L = InfoQueue(InfoHead(*Q));
         S = Search(L, W);
         if(S == NilList){
-            printf("Wahana tidak ada di dalam antrian pelanggan. Silahkan coba lagi. \n");
+            printf("Wahana tidak ada di dalam antrian pelanggan. Silahkan coba lagi. \n\n");
         } else {
             CJam(*P) = NextMenit(CJam(*P));
             /* Masih perlu implementasi ADT wahana untuk penambahan uang */
             /* Money(*P) += (Insert wahana price) */
-            DelP(&L, W);
             Dequeue(Q, &del);
-            // if (!IsEmptyList(InfoQueue(del))) {
-            //     PlayerInfo(customer) = del;
-            // }
+            DelP(&InfoQueue(del), W);
+            if (!IsEmptyList(InfoQueue(del))) {
+                PlayerInfo(customer) = InfoQueue(del);
+                Remaining(customer) = 10; // untuk sementara diset semua wahana durasinya 10 menit
+                InsVLastLP(LP, customer);
+            }
             printf("Selamat menikmati wahana ");
             PrintKata(W);
-            printf("!\n");
-            printf("\n");
+            printf("!\n\n");
         }
     } else {
-        printf("Antrian kosong.\n");
+        printf("Antrian kosong.\n\n");
     }
 }

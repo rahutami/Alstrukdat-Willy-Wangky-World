@@ -111,10 +111,25 @@ void Preparation(player *p1, TreeWahanaS T){
 
 void MainPhase(player * p1, TreeWahanaS T){
     PrioQueue Q;
+    listPlayer LP;
+    List del;
+
     CreateEmptyQueue(&Q, 5);
+    CreateEmptyLP(&LP);
     RandomizeQueue(&Q);
 
+
     do{
+        if(!IsEmptyLP(LP)){
+            ReduceTime(&LP);
+            for(int i = 0; i < CountCompleted(LP); i++) {
+                DelCompleted(&LP, &del);
+                PrintInfo(del);
+                FirstEnqueue(&Q, del);
+            }
+        }
+        
+        
         if (!IsKataSama("command")){
             printf("===================================\n");
             printf("            Main Phase\n");
@@ -157,7 +172,7 @@ void MainPhase(player * p1, TreeWahanaS T){
             ListCommand();
         } else if (IsKataSama("serve")) {
             ADVKATA();
-            Serve(&p1, CKata, &Q, T);
+            Serve(p1, CKata, &Q, &LP, T);
         }// nanti tambahin elif aja buat command yang lain 
         // else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
         //     printf("==========================================================\n");
@@ -166,7 +181,7 @@ void MainPhase(player * p1, TreeWahanaS T){
         //     printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
         //     printf("==========================================================\n");
         // } 
-        else {
+        else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
             printf("==========================================================\n");
             printf("Command tidak tersedia\n");
             printf("==========================================================\n");

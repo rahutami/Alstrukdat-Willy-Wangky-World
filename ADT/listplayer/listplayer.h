@@ -15,7 +15,7 @@
 
 typedef struct {
     int remaining; // Integer --> dianggap semua satuan durasinya menit
-    infotypeQueue player;
+    List player;
 } infoLP;
 
 typedef struct tElmtLP *addressLP;
@@ -57,7 +57,7 @@ void DealokasiLP (addressLP *P);
 /* Melakukan dealokasi/pengembalian addressList P */
 
 /****************** Manajemen Jam Permainan ******************/
-void ReduceTime (listPlayer LP);
+void ReduceTime (listPlayer *LP);
 /* Mengurangi jam tersisa pemain dalam memainkan permainan sebanyak satu menit */
 
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
@@ -103,6 +103,11 @@ void DelAfterLP (listPlayer *LP, addressLP *Pdel, addressLP Prec);
 /* I.S. List tidak kosong. Prec adalah anggota list  */
 /* F.S. Menghapus Next(Prec): */
 /*      Pdel adalah alamat elemen list yang dihapus  */
+
+void DelCompleted (listPlayer *LP, List *del);
+/* Menghapus pemain yang sudah selesai bermain */
+/* I.S. List terdefinisi dan tidak kosong */
+/* F.S. Elemen list akan berkurang dengan syarat Remamining(p) = 0 */
 
 int CountCompleted(listPlayer LP);
 /* Menghitung jumlah customer yang telah selesai bermain */

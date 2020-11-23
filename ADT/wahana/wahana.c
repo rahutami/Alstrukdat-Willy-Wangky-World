@@ -76,7 +76,7 @@ void MakeTree(TreeWahanaS *T)
     for (int i = 0; i < 10; i++)
         temptree[i] = AlokNode(i);
 
-    STARTFILE("../../Files/Wahana/wahana.txt");
+    STARTFILE("./Files/Wahana/wahana.txt");
     //printf("baca file\n");
     int i=0;
     int indexarr=0; //akan bertambah perbaris dan pernode

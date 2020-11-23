@@ -10,14 +10,14 @@
 /****************** TEST LIST KOSONG ******************/
 boolean IsEmptyLP (listPlayer LP) {
     /* Mengirim true jika list player kosong */
-    return(First(LP) == NULL);
+    return(FirstLP(LP) == NULL);
 }
 
 /****************** PEMBUATAN LIST KOSONG ******************/
 void CreateEmptyLP (listPlayer *LP) {
     /* I.S. sembarang             */
     /*  F.S. Terbentuk list player kosong */
-    First(*LP) = NilList;
+    FirstLP(*LP) = NilList;
 }
 
 /****************** Manajemen Memori ******************/
@@ -44,9 +44,9 @@ void DealokasiLP (addressLP *P){
 }
 
 /****************** Manajemen Jam Permainan ******************/
-void ReduceTime (listPlayer LP) {
+void ReduceTime (listPlayer * LP) {
     /* Mengurangi jam tersisa pemain dalam memainkan permainan sebanyak satu menit */
-    addressLP P = FirstLP(LP);
+    addressLP P = FirstLP(*LP);
 
     while(P != NilList) {
         Remaining(InfoLP(P)) -= 1;
@@ -61,38 +61,8 @@ void DelFirstLP (listPlayer *LP, addressLP *P) {
     /*      Elemen list berkurang satu (mungkin menjadi kosong) */
     /* First element yg baru adalah suksesor elemen pertama yang lama */
     addressLP A = FirstLP(*LP);
-    FirstLP(*LP) = Next(A);
+    FirstLP(*LP) = NextLP(A);
     *P = A;
-}
-
-void DelCompleted (listPlayer *LP, infoLP *del) {
-    /* I.S. Sembarang */
-    /* F.S. Jika ada elemen list beraddress P, dengan InfoList(P)=X  */
-    /* Maka P dihapus dari list dan di-dealokasi */
-    /* Jika ada lebih dari satu elemen list dengan InfoList bernilai X */
-    /* maka yang dihapus hanya elemen pertama dengan InfoList = X */
-    /* Jika tidak ada elemen list dengan InfoList(P)=X, maka list tetap */
-    /* List mungkin menjadi kosong karena penghapusan */
-    /* KAMUS */
-   addressLP P = FirstLP(*LP), prec = NilList;
-   boolean found = false;
-   /* ALGORITMA */
-   while((P != NilList) && (!found)) {
-       if (Remaining(InfoLP(P)) == 0) {
-           found = true;
-       } else {
-           prec = P;
-           P = NextLP(P);
-       }
-    }
- 
-   if(found) {
-        if (prec == NilList) {
-            DelFirstLP(LP, del);
-        } else {
-            DelAfterLP(LP, del, prec);
-        }
-    }
 }
 
 void DelAfterLP (listPlayer *LP, addressLP *Pdel, addressLP Prec) {
@@ -107,21 +77,53 @@ void DelAfterLP (listPlayer *LP, addressLP *Pdel, addressLP Prec) {
         if (P == Prec) {
             found = true;
         } else {
-            P = Next(P);
+            P = NextLP(P);
         }
     }
 
     *Pdel = NextLP(P);
-    NextLP(P) = NextLP(Next(P));
+    NextLP(P) = NextLP(NextLP(P));
     NextLP(*Pdel) = NilList;
+}
+
+void DelCompleted (listPlayer *LP, List *del) {
+    /* I.S. Sembarang */
+    /* F.S. Jika ada elemen list beraddress P, dengan InfoList(P)=X  */
+    /* Maka P dihapus dari list dan di-dealokasi */
+    /* Jika ada lebih dari satu elemen list dengan InfoList bernilai X */
+    /* maka yang dihapus hanya elemen pertama dengan InfoList = X */
+    /* Jika tidak ada elemen list dengan InfoList(P)=X, maka list tetap */
+    /* List mungkin menjadi kosong karena penghapusan */
+    /* KAMUS */
+   addressLP P = FirstLP(*LP), prec = NilList, Pdel = NilList;
+   boolean found = false;
+   /* ALGORITMA */
+   while((P != NilList) && (!found)) {
+       if (Remaining(InfoLP(P)) == 0) {
+           found = true;
+       } else {
+           prec = P;
+           P = NextLP(P);
+       }
+    }
+ 
+   if(found) {
+        if (prec == NilList) {
+            DelFirstLP(LP, &Pdel);
+        } else {
+            DelAfterLP(LP, &Pdel, prec);
+        }
+    }
+
+    *del = PlayerInfo(InfoLP(Pdel));
 }
 
 void InsertFirstLP (listPlayer *LP, addressLP P){
    /* I.S. Sembarang, P sudah dialokasi  */
    /* F.S. Menambahkan elemen ber-addressList P sebagai elemen pertama */
    /* ALGORITMA */
-   Next(P) = First(*LP);
-   First(*LP) = P;
+   NextLP(P) = FirstLP(*LP);
+   FirstLP(*LP) = P;
 }
 
 void InsertAfterLP (listPlayer *LP, addressLP P, addressLP Prec){
@@ -160,7 +162,7 @@ void InsVLastLP (listPlayer *LP, infoLP X){
    /* ALGORITMA */
    P = AlokasiLP(X);
    if(P != NilList) {
-       InsertLast(LP,P);
+       InsertLastLP(LP,P);
     }
 }
 
@@ -175,7 +177,7 @@ int CountCompleted (listPlayer LP) {
         if (Remaining(InfoLP(P)) == 0) {
             count++;
         }
-        P = Next(P);
+        P = NextLP(P);
     }
     return count;
 }

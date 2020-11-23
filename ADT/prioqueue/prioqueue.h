@@ -69,6 +69,9 @@ void DealokasiQueue(PrioQueue * Q);
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
+void FirstEnqueue(PrioQueue *Q, List L);
+/* Menambahkan X ke dalam queue dengan prioritas terbesar */
+
 void Enqueue (PrioQueue * Q, infotypeQueue X);
 /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
