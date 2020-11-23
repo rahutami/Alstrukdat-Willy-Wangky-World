@@ -62,6 +62,11 @@ void SubTree(addressWahanaS parent, addressWahanaS l, addressWahanaS r){
     Right(parent) = r;
 }
 
+boolean EndKata;
+Kata CKata;
+char CC;
+boolean EOP;
+
 void MakeTree(TreeWahanaS *T)
 /* I.S P adalah tree kosong */
 /* F.S P adalah tree berisi ElmtWahanaStatis yang diambil dari file txt */
@@ -71,41 +76,54 @@ void MakeTree(TreeWahanaS *T)
     for (int i = 0; i < 10; i++)
         temptree[i] = AlokNode(i);
 
-    // STARTFILE("../../Files/Wahana/wahana.txt"); <-- untuk dipake di driver
-    STARTFILE("./Files/Wahana/wahana.txt"); // <-- untuk dipake di main
+    STARTFILE("../../Files/Wahana/wahana.txt");
+    //printf("baca file\n");
     int i=0;
     int indexarr=0; //akan bertambah perbaris dan pernode
 
     while(!EOP){
         empty = false;
-        i++;
         SalinKataFile();
+        i++;
         if(CC == EOL){
+            if (i == 7){
+                TimeWahana(temptree[indexarr]) = convToInt(CKata);
+                //printf("bisa 7, %d\n",TimeWahana(temptree[indexarr]));
+            }
             ADV(); //pita maju 1 karakter
-            i = 0;
+            i=0;
+            //printf("\n");
             indexarr++;
+            //printf("[index arr: %d] ",indexarr);
         } else {
             switch (i) {
                 case 1:
                     IDWahana(temptree[indexarr]) = convToInt(CKata); 
+                    //printf("bisa 1, %d\n",IDWahana(temptree[indexarr]));
                     break;
                 case 2:
                     NamaWahana(temptree[indexarr]) = CKata;
+                    //printf("bisa 2, "); PrintKata(NamaWahana(temptree[indexarr])); printf("\n");
                     break;
                 case 3:
                     TipeWahana(temptree[indexarr]) = CKata;
+                    //printf("bisa 3, "); PrintKata(TipeWahana(temptree[indexarr])); printf("\n");
                     break;
                 case 4:
                     PriceWahana(temptree[indexarr]) = convToInt(CKata);
+                    //printf("bisa 4, %d\n",PriceWahana(temptree[indexarr]));
                     break;
                 case 5:
                     DescWahana(temptree[indexarr]) = CKata;
+                    //printf("bisa 5, "); PrintKata(DescWahana(temptree[indexarr])); printf("\n");
                     break;
                 case 6:
                     CapacityWahana(temptree[indexarr]) = convToInt(CKata);
+                    //printf("bisa 6, %d\n",CapacityWahana(temptree[indexarr]));
                     break;
                 case 7:
                     TimeWahana(temptree[indexarr]) = convToInt(CKata);
+                    //printf("bisa 7, %d\n",TimeWahana(temptree[indexarr]));
                     break;
                 default:
                     break;
@@ -207,15 +225,18 @@ boolean IsBiner(TreeWahanaS T)
 }
 //ID-WAHANA-TIPE-HARGA-DESKRIPSI-KAPASITAS-DURASI(MENIT)
 
-void PrintTreeNode(addressWahanaS P){
+void PrintTreeNode(addressWahanaS P)
+/* Mencetak node tree dengan address P */
+{
     if (P!= NilList){
-        PrintKata(NamaWahana(P));
-        printf("\n");
+        PrintKata(NamaWahana(P)); printf("\n");
         PrintTreeNode(Left(P));
         PrintTreeNode(Right(P));
     }
 }
 
-void PrintTree(TreeWahanaS T){
+void PrintTree(TreeWahanaS T)
+/* Mencetak tree dengan PreOrder */
+{
     PrintTreeNode(Root(T));
 }

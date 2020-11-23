@@ -14,7 +14,7 @@ int main(){
         if(CC == EOL){
             ADV();
             printf("\n");
-        } 
+        }
     }
     return 0;
 }
