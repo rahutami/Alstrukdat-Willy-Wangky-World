@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include "menu.h"
-#include "../mesinkar/mesinkar.h"
-#include "../mesinkata/mesinkata.h"
-#include "../matriks/matriks.h"
-#include "../jam/jam.h"
-#include "../peta/peta.h"
-#include "../prioqueue/prioqueue.h"
 #include "../../serve.c"
-#include "../graph/graph.h"
 
 Graph GraphPeta;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
@@ -65,7 +58,7 @@ void ListCommand(){
     printf("================================================================\n");
 }
 
-void Preparation(player *p1){
+void Preparation(player *p1, TreeWahanaS T){
     do{
         if (!IsKataSama("command")){
             printf("===================================\n");
@@ -116,7 +109,7 @@ void Preparation(player *p1){
 
 }
 
-void MainPhase(player * p1){
+void MainPhase(player * p1, TreeWahanaS T){
     PrioQueue Q;
     CreateEmptyQueue(&Q, 5);
     RandomizeQueue(&Q);
@@ -164,7 +157,7 @@ void MainPhase(player * p1){
             ListCommand();
         } else if (IsKataSama("serve")) {
             ADVKATA();
-            Serve(&p1, CKata, &Q);
+            Serve(&p1, CKata, &Q, T);
         }// nanti tambahin elif aja buat command yang lain 
         // else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
         //     printf("==========================================================\n");

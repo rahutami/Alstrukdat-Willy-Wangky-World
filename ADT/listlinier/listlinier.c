@@ -241,9 +241,9 @@ void PrintInfo (List L) {
 	addressList P;
 	/* ALGORITMA */
 	if(IsEmptyList(L)) {
-        printf("[]\n");
+        printf("()\n");
     } else { 
-        printf("[");
+        printf("(");
         P = First(L);
         while(P != NilList) {
             PrintKata(InfoList(P));
@@ -252,7 +252,7 @@ void PrintInfo (List L) {
             }
             P = Next(P);
         }
-        printf("]");
+        printf(")");
     }
 }
 

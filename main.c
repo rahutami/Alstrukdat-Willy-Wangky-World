@@ -15,6 +15,7 @@
 #include "ADT/graph/graph.h"
 #include "ADT/listlinier/listlinier.h"
 #include "ADT/listplayer/listplayer.h"
+#include "ADT/wahana/wahana.h"
 
 #define MAXCHAR 100
 char CC;
@@ -46,19 +47,21 @@ int main(){
 
     if (IsKataSama("new")){
         player p1;
+        TreeWahanaS T;
+        MakeTree(&T);
         
         NewGame(&p1);
         
-        Preparation(&p1);
+        Preparation(&p1, T);
         while(!IsKataSama("exit")){
             if(IsKataSama("prepare")){
                 Day(p1)++;
                 CJam(p1) = MakeJAM(21,0);
-                Preparation(&p1);
+                Preparation(&p1, T);
             } else if (IsKataSama("main") || IsKataSama("execute")){
                 srand(time(NULL));
                 CJam(p1) = MakeJAM(9,0);
-                MainPhase(&p1);
+                MainPhase(&p1, T);
             }
         }
     }

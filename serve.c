@@ -2,12 +2,13 @@
 #include "ADT/listlinier/listlinier.h"
 #include "ADT/listplayer/listplayer.h"
 #include "ADT/mesinkata/mesinkata.h"
+#include "ADT/wahana/wahana.h"
 #include "ADT/player/player.h"
 #include "ADT/jam/jam.h"
 #include <stdio.h>
 
 
-void Serve(player *P, Kata W, PrioQueue *Q){
+void Serve(player *P, Kata W, PrioQueue *Q, TreeWahanaS T){
     /* I.S. W adalah wahana, bisa tidak valid. Q adalah priority queue */
     /* F.S. Jika wahana terdapat pada salah satu list wahana di priority queue, maka */
     /*      wahana akan dikeluarkan dari list tersebut. Jika list menjadi kosong, antrian berkurang */
@@ -28,14 +29,13 @@ void Serve(player *P, Kata W, PrioQueue *Q){
             /* Money(*P) += (Insert wahana price) */
             DelP(&L, W);
             Dequeue(Q, &del);
-            if (!IsEmptyList(InfoQueue(del))) {
-                PlayerInfo(customer) = del;
-                // Remaining(customer) =  <-- perlu data durasi wahana
-            }
+            // if (!IsEmptyList(InfoQueue(del))) {
+            //     PlayerInfo(customer) = del;
+            // }
             printf("Selamat menikmati wahana ");
             PrintKata(W);
             printf("!\n");
-            PrintPrioQueue(*Q);
+            printf("\n");
         }
     } else {
         printf("Antrian kosong.\n");
