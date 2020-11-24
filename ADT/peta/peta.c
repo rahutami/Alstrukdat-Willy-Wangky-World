@@ -36,7 +36,7 @@ void MakePETA (char* filename, MATRIKS * P)
 
     ADV();
 
-    NBrsEff(*P) = i;
+    NBrsEff(*P) = ++i;
     NKolEff(*P) = j;
 }
 
@@ -96,9 +96,9 @@ void MovePeta(player *P, Graph G, int NewMapID){
     while(ID(NewPeta) != NewMapID) NewPeta = NextGraph(NewPeta);
     SearchMatriks(Peta(NewPeta), &Y(*P), &X(*P), IntToChar(MapNum(*P)));
     if(X(*P) == 0) X(*P)++;
-    else if (Y(*P) == 0) Y(*P)++;
-    else if(X(*P) == NKolEff(Peta(NewPeta))-1) X(*P)--;
-    else if(Y(*P) == NBrsEff(Peta(NewPeta))-1) Y(*P)--;
+    if (Y(*P) == 0) Y(*P)++;
+    if(X(*P) == NKolEff(Peta(NewPeta))-1) X(*P)--;
+    if(Y(*P) == NBrsEff(Peta(NewPeta))-1) Y(*P)--;
 
     MapNum(*P) = NewMapID;
 }
