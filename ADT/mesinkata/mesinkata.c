@@ -127,6 +127,9 @@ void SalinKataFile()
     if(CC == '-') {
       ADV();
     }
+    if(CC == EOL) {
+      ADV();
+    }
     CKata.Length = i;
 }
 

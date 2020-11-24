@@ -9,4 +9,4 @@ iron-180
 silver-225
 gold-240
 iridium-275
-starstone-325
+starstone-325.
