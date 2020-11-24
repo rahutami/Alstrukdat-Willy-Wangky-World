@@ -60,6 +60,11 @@ void DeAlokasi(address *M);
 /* *** Primitif Add/Delete *** */
 void Insert (Map *M, KeyType X, ValType Y);
 /* Proses: menanmbahka key dan val */
+boolean SearcKey(Map *M,KeyType X);
+// menegmbakikan val dari key jika ada , jika tidak val = 
+
+int SearcVal(Map *M,KeyType X);
+// menegmbakikan val dari key jika ada , jika tidak val = -1
 
 
 #endif

@@ -82,3 +82,29 @@ void Insert (Map *M, KeyType X, ValType Y)
 		}
 	}
 }
+
+boolean SearcKey(Map *M,KeyType X)
+// menegmbakikan true jika key ada 
+{
+	address P;
+	P = First(*M);
+	while (P != Nil && !IsKataSamaKata (Key(P), X)){
+		P = Next(P);
+	}
+	return IsKataSamaKata (Key(P), X);
+}
+
+int SearcVal(Map *M,KeyType X)
+// menegmbakikan val dari key jika ada , jika tidak val = -1
+{
+	address P;
+	P = First(*M);
+	while (P != Nil && !IsKataSamaKata (Key(P), X)){
+		P = Next(P);
+	}
+	if (IsKataSamaKata (Key(P), X)){
+		return Val(P);
+	}else{
+		return -1;
+	}
+}

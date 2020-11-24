@@ -6,26 +6,35 @@
 #define stackt_H
 
 #include "../boolean/boolean.h"
+#include "../jam/jam.h"
+#include "../wahana/wahana.h"
+#include "../point/point.h"
+#include "../mesinkata/mesinkata.h"
+#include "../player/player.h"
 
 #define Nil -1
 #define MaxEl 10
 /* Nil adalah stack dengan elemen kosong . */
 
-typedef int infotype;
-typedef int address;   /* indeks tabel */
+//typedef int aksi;
+typedef int addressStack;   /* indeks tabel */
 
 /* Belom fix */
 typedef struct {
-     int aksi;
-     int waktu; 
-} Aksi;
-
+  Kata commandStack;
+  int durasi;
+  POINT pointStack;
+  // Nama bahan
+  // Jumlah bahan
+  int uang;
+  // ID wahana yang sebelumnya
+} aksi;
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct { 
-  infotype T[MaxEl]; /* tabel penyimpan elemen */
-  address TOP;  /* alamat TOP: elemen puncak */
+  aksi T[MaxEl]; /* tabel penyimpan elemen */
+  addressStack TOP;  /* alamat TOP: elemen puncak */
 } Stack;
 /* Definisi stack S kosong : S.TOP = Nil */
 /* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
@@ -52,13 +61,13 @@ boolean IsFullStack (Stack S);
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void Push (Stack * S, infotype X);
+void Push (Stack * S, aksi X);
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 
 /* ************ Menghapus sebuah elemen Stack ************ */
-void Pop (Stack * S, infotype* X);
+void Pop (Stack * S, aksi* X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
@@ -72,10 +81,10 @@ void InverseStack (Stack S);
 
 void PrintStack (Stack S); /* Buat membantu aja ini */
 
-int SumOfStack (Stack S, infotype X);
-/* Me-return sum waktu pada setiap aksi (untuk saat ini baru int aja) */
+int SumDurasiStack (Stack S);
+/* Me-return sum durasi pada setiap aksi */
 
-void Undo (Stack *S, infotype *X);
+void Undo (Stack *S, aksi *X);
 /* Undo pada eksekusi terakhir */
 /* Sama aja kayak nge-POP stack yang kumpulan aksi */
 
@@ -83,7 +92,9 @@ void Execute (Stack S);
 /* Eksekusi mulai command terakhir, berarti POP */
 /* Kalo sambil pop, sambil jalanin fungsinya */
 
-void mainmain (Stack * S, infotype * X);
+void mainmain (Stack * S, aksi * X);
 /* Mengosongkan stack tanpa melakukan perintah */
+
+void Upgrade (Stack *S, aksi *X);
 
 #endif

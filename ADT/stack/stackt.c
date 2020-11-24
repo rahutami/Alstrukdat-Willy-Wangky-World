@@ -19,13 +19,13 @@ Deskripsi: implementasi stack
 //#define MaxEl 10
 /* Nil adalah stack dengan elemen kosong . */
 
-//typedef int infotype;
+//typedef int aksi;
 //typedef int address;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 //typedef struct { 
- // infotype T[MaxEl]; /* tabel penyimpan elemen */
+ // aksi T[MaxEl]; /* tabel penyimpan elemen */
  // address TOP;  /* alamat TOP: elemen puncak */
 //} Stack;
 /* Definisi stack S kosong : S.TOP = Nil */
@@ -60,7 +60,7 @@ boolean IsFullStack (Stack S)
     return(Top(S)==(MaxEl-1));
 }
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void Push (Stack * S, infotype X)
+void Push (Stack * S, aksi X)
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
@@ -69,7 +69,7 @@ void Push (Stack * S, infotype X)
     InfoTop(*S)=X;
 }
 /* ************ Menghapus sebuah elemen Stack ************ */
-void Pop (Stack * S, infotype* X)
+void Pop (Stack * S, aksi* X)
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
@@ -85,7 +85,7 @@ void CopyStack (Stack Sin, Stack *Sout)
 /* F.S. Sout berisi salinan Sin yang identik */
 {
     Stack Stemp;
-    infotype X;
+    aksi X;
     CreateEmpty(&Stemp);
     CreateEmpty(Sout);
     while (!IsEmptyStack(Sin)) {
@@ -101,7 +101,7 @@ void CopyStack (Stack Sin, Stack *Sout)
 void InverseStack (Stack S) {
     Stack Stemp1;
     Stack Stemp2;
-    infotype X;
+    aksi X;
     CreateEmpty(&Stemp1);
     CreateEmpty(&Stemp2);
     while (!IsEmptyStack(S)) {
@@ -118,35 +118,36 @@ void InverseStack (Stack S) {
     }
 }
 void PrintStack (Stack S) { // Ini biar ngebantu aja
-    infotype X;
+    aksi X;
     if (IsEmptyStack(S)) {
         printf("\nStacknya kosong\n") ; 
     }
     else {
         while (!IsEmptyStack(S)) {
-            int top = InfoTop(S);
-            printf("%d\n",top);
+            aksi top = InfoTop(S);
+            printf("%d\n", top.durasi);
             Pop(&S,&X);
             //Push(&S,top);
         }
     }
 }
 
-int SumOfStack (Stack S, infotype X) {
+int SumDurasiStack (Stack S) {
     int sum=0;
+    aksi X;
     while (!IsEmptyStack(S)) {
-        sum += InfoTop(S);
+        sum += (InfoTop(S)).durasi;
         Pop(&S,&X);
     }
     return sum;
 }
-void mainmain (Stack *S, infotype *X) {
-    //infotype buang;
+void mainmain (Stack *S, aksi *X) {
+    //aksi buang;
     while (!IsEmptyStack(*S)) {
         Pop(S,X);
     }
 }
 
-void Undo(Stack *S, infotype *X) {
+void Undo (Stack *S, aksi *X) {
     Pop(S,X);
 }
