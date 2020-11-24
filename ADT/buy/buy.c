@@ -6,6 +6,7 @@ yang menampilkan commad BUY
 #include "buy.h"
 #include <stdio.h>
 
+
 void CommmandBuy()
 // melakukan semua perintah yang ada didalam Command Buy
 {
@@ -19,27 +20,37 @@ void CommmandBuy()
 		int val;
 		if (count % 2 == 0 ){
 			CopyKata (CKata, &keyKata);
-			//PrintKata(keyKata);
 			
 		} else{
 			val = convToInt (CKata);
 			Insert (&File_Buy, keyKata, val);
 		}
 		count ++;
-		//printf("%i\n", count );
 		ADVKATAFILE();
 	}
-
+	printf("%s\n%s\n", "Ingin membeli apa?","List:" );
 	address P;
 	P = First(File_Buy);
 	while (P != Nil){
-		//for (int i=0; i< Key(P).Length ;i++) {
-		//		printf("%c", Key(P).TabKata[i] );
-		//	}
+		printf("  -- ");
 		PrintKata(Key(P));
+		printf(" <$%i>", Val(P) );
 		printf("\n" );
-		printf("%i\n", Val(P) );
 		P = Next(P);
+	}
+	printf("\n%s\n%s\n%s\n%s","Masukkan Perintah:","<jumlah> <material>","<enter untuk keluar>","-> ");
+	STARTKATA();
+	Kata InputEnter;
+	InputEnter.Length = 1;
+	InputEnter.TabKata[1] = '\n';
+	if (!IsKataSamaKata (CKata, InputEnter)){
+		int val;
+		val = convToInt(CKata);
+		ADVKATA();
+		val = val * SearcKey(&File_Buy,CKata);
+		printf("%i\n",val);
+
+
 	}
 
 }
