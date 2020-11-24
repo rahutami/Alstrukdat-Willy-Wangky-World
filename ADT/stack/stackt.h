@@ -26,7 +26,7 @@ typedef struct {
   POINT pointStack;
   // Nama bahan
   // Jumlah bahan
-  // Uang yang dipakai
+  int uang;
   // ID wahana yang sebelumnya
 } aksi;
 
