@@ -22,15 +22,13 @@ typedef int addressStack;   /* indeks tabel */
 /* Belom fix */
 typedef struct {
   Kata commandStack;
-  JAM jamStack;
+  int durasi;
   POINT pointStack;
   // Nama bahan
   // Jumlah bahan
   int uang;
   // ID wahana yang sebelumnya
 } aksi;
-
-
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
@@ -47,10 +45,6 @@ typedef struct {
 /* Definisi akses dengan Selektor : Set dan Get */
 #define Top(S) (S).TOP
 #define InfoTop(S) (S).T[(S).TOP]
-
-#define commandStack(S) (S)->commandStack
-#define jamStack(S) (S)->jamStack 
-#define pointStack(S) (S)->pointStack
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
@@ -87,8 +81,8 @@ void InverseStack (Stack S);
 
 void PrintStack (Stack S); /* Buat membantu aja ini */
 
-int SumOfStack (Stack S, aksi X);
-/* Me-return sum waktu pada setiap aksi (untuk saat ini baru int aja) */
+int SumDurasiStack (Stack S);
+/* Me-return sum durasi pada setiap aksi */
 
 void Undo (Stack *S, aksi *X);
 /* Undo pada eksekusi terakhir */

@@ -125,17 +125,18 @@ void PrintStack (Stack S) { // Ini biar ngebantu aja
     else {
         while (!IsEmptyStack(S)) {
             aksi top = InfoTop(S);
-            printf("%d\n",top);
+            printf("%d\n", top.durasi);
             Pop(&S,&X);
             //Push(&S,top);
         }
     }
 }
 
-int SumOfStack (Stack S, aksi X) {
+int SumDurasiStack (Stack S) {
     int sum=0;
+    aksi X;
     while (!IsEmptyStack(S)) {
-        //sum += InfoTop(S);
+        sum += (InfoTop(S)).durasi;
         Pop(&S,&X);
     }
     return sum;

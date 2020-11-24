@@ -2,57 +2,43 @@
 #include "stackt.h"
 
 int main() {
-    /* 
+    
     Stack stacktest;
     Stack S;
-    int buang;
-    infotype gajadi;
+    aksi buang;
+    aksi gajadi;
     CreateEmpty(&stacktest);
-    Push(&stacktest,1);
-    Push(&stacktest,3);
-    Push(&stacktest,5);
-    PrintStack(stacktest);
-    printf("\nCOBA\n");
-    Push(&stacktest,2);
-    //Pop(&stacktest,InfoTop(S));
-    PrintStack(stacktest);
-    //S=InverseStack(stacktest);
-    //PrintStack(&S);
-    // SUM OF STACK
-    int sum=0;
-    int waktu=12;
-    Stack target;
-    CreateEmpty(&target);
-    CopyStack(stacktest,&target);
-    printf("stack awal:\n\n");
-    PrintStack(stacktest);
-    */
-    /* JUMLAH STACK */
-    //SumOfStack(S);
-    /* 
-    printf("SUM: %d", SumOfStack(stacktest)); udah fix bisa :)
-*/    
-/* 
-    Undo(&stacktest,&gajadi);
-    //Pop(&stacktest,&gajadi);
-    printf("setelah di undo :\n\n");
+
+    aksi aksi1, aksi2, aksi3, aksi5;
+    aksi1.durasi = 1;
+    aksi3.durasi = 3;
+    aksi5.durasi = 5;
+    aksi2.durasi = 2;
+
+    Push(&stacktest,aksi1);
+    Push(&stacktest,aksi3);
+    Push(&stacktest,aksi5);
+    printf("Stack awal:\n");
     PrintStack(stacktest);
 
-    while (!IsEmpty(stacktest)) {
-        sum+= InfoTop(stacktest);
-        Pop(&stacktest,&buang);
-    }
-    printf("\n jumlahnya: \n %d \n",sum) ; 
-    */
+    Push(&stacktest,aksi2);
+    printf("Stack, setelah 2 dipush ke stack:\n");
+    PrintStack(stacktest);
+    printf("Jumlah durasi semua aksi dalam stack: %d \n", SumDurasiStack(stacktest));
+    //S=InverseStack(stacktest);
+    //PrintStack(&S);
+
+    Undo(&stacktest,&gajadi);
+    printf("Setelah di undo (1):\n");
+    PrintStack(stacktest);
+    Pop(&stacktest,&gajadi);
+    printf("Setelah di undo (2):\n");
+    PrintStack(stacktest);
+
     // Ngosongin stack aja tanpa execute
-    // mainmain(&stacktest,&buang); udah fix bisa :)
-    /* 
-    while (!IsEmpty(stacktest)) {
-        Pop(&stacktest,&buang);
-    } 
-    */
-    //printf("\n\nstack setelah dikosongin\n");
-    //PrintStack(stacktest);
+    mainmain(&stacktest,&buang);
+    printf("Stack setelah dikosongin:\n");
+    PrintStack(stacktest);
     // MULAI MAIN PHASE
     
     //EXECUTE
