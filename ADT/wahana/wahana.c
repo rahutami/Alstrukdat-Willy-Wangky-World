@@ -22,6 +22,7 @@ void Details(Kata inputWahana, ListWahanaD L)
         printf("Ukuran : "); printf("\n");
         printf("Status kerusakan : "); printf("\n");
         printf("Status build : "); printf("\n");//sudah dibuild ato belom, jadi tau next actionnya upgrade ato build
+        //printf("Jenis material : ")
     } else {
         printf("Wahana tidak ditemukan!");
     }
@@ -50,6 +51,7 @@ addressWahanaD SearchWahanaD (Kata inputWahana, ListWahanaD L)
     while (!found && (P != NilList)){
         if (IsKataSamaKata(inputWahana, NamaWahana(ElmtStatis(P)))){
             found = true;
+            printf("berhasil");
         } else {
             P = Next(P);
         }
@@ -76,7 +78,7 @@ void MakeTree(TreeWahanaS *T)
     for (int i = 0; i < 10; i++)
         temptree[i] = AlokNode(i);
 
-    STARTFILE("./Files/Wahana/wahana.txt");
+    STARTFILE("../../Files/Wahana/wahana.txt");
     //printf("baca file\n");
     int i=0;
     int indexarr=0; //akan bertambah perbaris dan pernode
@@ -86,8 +88,8 @@ void MakeTree(TreeWahanaS *T)
         SalinKataFile();
         i++;
         if(CC == EOL){
-            if (i == 7){
-                TimeWahana(temptree[indexarr]) = convToInt(CKata);
+            if (i == 9){
+                JmlBahan(temptree[indexarr]) = convToInt(CKata);
                 //printf("bisa 7, %d\n",TimeWahana(temptree[indexarr]));
             }
             ADV(); //pita maju 1 karakter
@@ -124,6 +126,12 @@ void MakeTree(TreeWahanaS *T)
                 case 7:
                     TimeWahana(temptree[indexarr]) = convToInt(CKata);
                     //printf("bisa 7, %d\n",TimeWahana(temptree[indexarr]));
+                    break;
+                case 8:
+                    BahanWahana(temptree[indexarr]) = CKata;
+                    break;
+                case 9:
+                    JmlBahan(temptree[indexarr]) = convToInt(CKata);
                     break;
                 default:
                     break;

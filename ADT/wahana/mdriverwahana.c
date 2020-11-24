@@ -9,10 +9,12 @@ boolean EOP;
 
 int main(){
     
+    ListWahanaD L;
     TreeWahanaS T;
     MakeTree(&T);
     PrintTree(T);
-
+    STARTKATA();
+    addressWahanaD P = SearchWahanaD(CKata,L);
     return 0;
     
 }

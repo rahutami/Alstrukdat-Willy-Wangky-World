@@ -11,7 +11,7 @@ int main(){
     while(!EOP){
         SalinKataFile();
         PrintKata(CKata); printf(" ");
-        if(CC == EOL){
+        if(CC == EOL){ //urus EOL tergantung kebutuhan masing2
             ADV();
             printf("\n");
         }
