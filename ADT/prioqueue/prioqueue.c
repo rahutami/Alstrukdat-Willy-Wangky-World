@@ -109,11 +109,19 @@ void Enqueue (PrioQueue * Q, infotypeQueue X){
 
 }
 
+void ReducePatience(PrioQueue *Q) {
+    /* Mengurangi kesabaran tiap customer yang sedang mengantri */
+    /* I.S. Q adalah prioqueue tidak kosong yang terdefinisi */
+    /* F.S. Kesabaran tiap elemen di queue berkurang, tetapi prioritas bertambah */
+    /* KAMUS */
+    /* ALGORITMA */
+}
+
 void FirstEnqueue(PrioQueue *Q, List L){
     /* Menambahkan X ke dalam queue dengan prioritas terbesar */
     infotypeQueue P;
     InfoQueue(P) = L;
-    Prio(P) = 1;
+    Prio(P) = Prio(InfoHead(*Q)) - 1;
     Enqueue(Q, P);
 }
 
@@ -153,13 +161,13 @@ void PrintPrioQueue (PrioQueue Q){
     if(Head(Q) <= Tail(Q)){
         for(i = Head(Q); i <= Tail(Q); i++){
             PrintInfo(InfoQueue(ElmtQueue(Q, i)));
-            printf(", kesabaran: %d\n", Prio(ElmtQueue(Q, i)));
+            printf(", kesabaran: %d\n", Patience(ElmtQueue(Q, i)));
         }
     } else {
         i = Head(Q);
         while(i <= Tail(Q)){
             PrintInfo(InfoQueue(ElmtQueue(Q, i)));
-            printf("kesabaran: %d\n", Prio(ElmtQueue(Q, i)));
+            printf("kesabaran: %d\n", Patience(ElmtQueue(Q, i)));
             if(i == MaxEl(Q) - 1 && i != Tail(Q)){
                 i = 0;
             } else {
@@ -208,6 +216,7 @@ void RandomizeQueue (PrioQueue *Q) {
             k = rand() % 10;
             InsVLast(&L, arrayKata[k]);
         }
+        Patience(new) = rand() % 5 + 1;
         InfoQueue(new) = L;
         Prio(new) = 5;
         Enqueue(Q, new);
@@ -235,8 +244,6 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, TreeWahanaS T){
             /* Masih perlu implementasi ADT wahana untuk penambahan uang */
             /* Money(*P) += (Insert wahana price) */
             Dequeue(Q, &del);
-            PrintInfo(InfoQueue(del));
-            printf("\n");
             if(NbElmt(InfoQueue(del)) > 1) {
                 DelP(&InfoQueue(del), W);
                 PlayerInfo(customer) = InfoQueue(del);

@@ -106,7 +106,6 @@ void Preparation(player *p1, TreeWahanaS T){
         }
         
     } while (!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute")));
-
 }
 
 void MainPhase(player * p1, TreeWahanaS T){
@@ -170,8 +169,18 @@ void MainPhase(player * p1, TreeWahanaS T){
         } else if (IsKataSama("command")){
             ListCommand();
         } else if (IsKataSama("serve")) {
+            addressGraph CPeta = FirstGraph(GraphPeta);
+            int x = X(*p1), y = Y(*p1);
+            while(ID(CPeta) != MapNum(*p1)){
+                CPeta = NextGraph(CPeta);
+            }
             ADVKATA();
-            Serve(p1, CKata, &Q, &LP, T);
+            if(Elmt(Peta(CPeta), x + 1, y) == 'A' || Elmt(Peta(CPeta), x, y+1) == 'A' || Elmt(Peta(CPeta), x - 1, y) == 'A' || Elmt(Peta(CPeta), x, y - 1) == 'A'){
+                Serve(p1, CKata, &Q, &LP, T);
+            } else {
+                printf("Silahkan pergi ke sebelah antrian untuk menggunakan command ini \n\n");
+            }
+
         }// nanti tambahin elif aja buat command yang lain 
         // else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
         //     printf("==========================================================\n");

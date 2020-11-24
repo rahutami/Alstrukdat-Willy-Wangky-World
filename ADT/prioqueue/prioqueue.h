@@ -21,6 +21,7 @@
 
 /* Definisi elemen dan addressQueue */
 typedef struct {
+    int patience;
     int prio;  /* [1..100], prioritas dengan nilai 1..100 (1 adalah prioritas tertinggi) */
     List info;  /* elemen karakter */
 } infotypeQueue;
@@ -41,6 +42,7 @@ extern char CC;
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika e adalah infotypeQueue dan Q adalah PrioQueue, maka akses elemen : */
+#define Patience(e) (e).patience
 #define Prio(e)     (e).prio
 #define InfoQueue(e)     (e).info
 #define Head(Q)     (Q).HEAD
@@ -72,6 +74,11 @@ void DealokasiQueue(PrioQueue * Q);
 /* Proses: Mengembalikan memori Q */
 /* I.S. Q pernah dialokasi */
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
+
+void ReducePatience(PrioQueue *Q);
+/* Mengurangi kesabaran tiap customer yang sedang mengantri */
+/* I.S. Q adalah prioqueue tidak kosong yang terdefinisi */
+/* F.S. Kesabaran tiap elemen di queue berkurang, tetapi prioritas bertambah */
 
 /* *** Primitif Add/Delete *** */
 void FirstEnqueue(PrioQueue *Q, List L);

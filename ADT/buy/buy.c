@@ -25,6 +25,9 @@ void CommmandBuy()
 			val = convToInt (CKata);
 			Insert (&File_Buy, keyKata, val);
 		}
+		if (CC == EOL){
+			ADV();
+		}
 		count ++;
 		ADVKATAFILE();
 	}
@@ -43,14 +46,15 @@ void CommmandBuy()
 	Kata InputEnter;
 	InputEnter.Length = 1;
 	InputEnter.TabKata[1] = '\n';
-	if (!IsKataSamaKata (CKata, InputEnter)){
+	if (!IsKataSama("Cancel")){
 		int val;
 		val = convToInt(CKata);
 		ADVKATA();
-		val = val * SearcKey(&File_Buy,CKata);
-		printf("%i\n",val);
-
-
+		val = val * SearcVal(&File_Buy,CKata);
+		printf("%i\n",val); // cuma check
+		//<nama item> <jumlah item>
+	}else{
+		printf("Anda Keluar dari buy");//coba
 	}
 
 }

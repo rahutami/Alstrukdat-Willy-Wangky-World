@@ -39,6 +39,7 @@ typedef struct tElmtWahanaD {
     int IncomeWahana;
     int DailyFreqWahana;
     addressWahanaD next;
+    //addressWahanaD prev;
     addressWahanaS ElmtStatis;
 } ElmtWahanaDinamis;
 
@@ -125,7 +126,8 @@ boolean IsUnerRight(TreeWahanaS T);
 boolean IsBiner(TreeWahanaS T);
 /* Mengirimkan true jika pohon biner tidak kosong P adalah pohon biner: mempunyai subpohon kiri dan subpohon kanan*/
 
-
+void initWahana(TreeWahanaS T);
+/* Mencetak 3 wahana awal yang dapat dibangun pertama kali*/
 
 void PrintTreeNode(addressWahanaS P);
 /* Mencetak node tree dengan address P */

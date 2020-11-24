@@ -248,3 +248,20 @@ void PrintTree(TreeWahanaS T)
 {
     PrintTreeNode(Root(T));
 }
+
+void initWahana(TreeWahanaS T)
+{
+    addressWahanaS Coaster1 = Root(T);
+    addressWahanaS Heli2 = Left(Root(T));
+    addressWahanaS Water3 = Right(Root(T));
+    printf("List:\n");
+    printf("  -"); PrintKata(NamaWahana(Coaster1));printf("\n");
+    printf("  -"); PrintKata(NamaWahana(Heli2));printf("\n");
+    printf("  -"); PrintKata(NamaWahana(Water3));printf("\n");
+    STARTKATA();
+    //user masukin input wahana mana yang mau di build
+    //build di tempat dia berdiri
+    //player pindah ke bawah
+}
+
+void nextUpWahana()

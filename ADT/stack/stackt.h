@@ -11,6 +11,7 @@
 #include "../point/point.h"
 #include "../mesinkata/mesinkata.h"
 #include "../player/player.h"
+#include "../maplist/maplist.h"
 
 #define Nil -1
 #define MaxEl 10
@@ -19,14 +20,17 @@
 //typedef int aksi;
 typedef int addressStack;   /* indeks tabel */
 
+player *P;
 /* Belom fix */
 typedef struct {
   Kata commandStack;
   int durasi;
-  POINT pointStack;
-  // Nama bahan
-  // Jumlah bahan
-  int uang;
+  POINT PointWahana;
+  int MapNum(*P);
+  Kata NamaBahan;
+  int JumlahBahan;
+  int uang; // nanti disambungin ke Money nya Player
+  //int Money(player);
   // ID wahana yang sebelumnya
 } aksi;
 
@@ -36,6 +40,8 @@ typedef struct {
   aksi T[MaxEl]; /* tabel penyimpan elemen */
   addressStack TOP;  /* alamat TOP: elemen puncak */
 } Stack;
+
+extern Stack stackExecute;
 /* Definisi stack S kosong : S.TOP = Nil */
 /* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
 /* Jika S adalah Stack maka akses elemen : */
@@ -95,6 +101,6 @@ void Execute (Stack S);
 void mainmain (Stack * S, aksi * X);
 /* Mengosongkan stack tanpa melakukan perintah */
 
-void Upgrade (Stack *S, aksi *X);
+void Upgrade (Stack *S, aksi *X, player *P);
 
 #endif

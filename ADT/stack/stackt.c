@@ -15,6 +15,8 @@ Deskripsi: implementasi stack
 #include <stdio.h>
 #include "stackt.h"
 
+Stack stackExecute;
+
 //#define Nil -1
 //#define MaxEl 10
 /* Nil adalah stack dengan elemen kosong . */
@@ -150,4 +152,10 @@ void mainmain (Stack *S, aksi *X) {
 
 void Undo (Stack *S, aksi *X) {
     Pop(S,X);
+}
+
+void Upgrade (Stack *S, aksi *X, player *P) {
+    (*X).uang = -25;
+
+
 }
