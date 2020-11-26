@@ -17,20 +17,19 @@
 #define MaxEl 10
 /* Nil adalah stack dengan elemen kosong . */
 
-//typedef int aksi;
 typedef int addressStack;   /* indeks tabel */
 
-player *P;
 /* Belom fix */
+player Pemain;
 typedef struct {
   Kata commandStack;
   int durasi;
   POINT PointWahana;
-  int MapNum(*P);
+  // int MapNum(P); // MapNum
   Kata NamaBahan;
   int JumlahBahan;
-  int uang; // nanti disambungin ke Money nya Player
-  //int Money(player);
+  int uang;
+  //int Money(P); // nanti disambungin ke Money nya Player
   // ID wahana yang sebelumnya
 } aksi;
 
@@ -88,7 +87,13 @@ void InverseStack (Stack S);
 void PrintStack (Stack S); /* Buat membantu aja ini */
 
 int SumDurasiStack (Stack S);
-/* Me-return sum durasi pada setiap aksi */
+/* Me-return total waktu yang akan dibutuhkan untuk semua aksi */
+
+int SumUangStack (Stack S);
+/* Me-return total uang yang akan dibutuhkan untuk semua aksi */
+
+int NbElmtStack (Stack S);
+/* Me-return total aksi yang akan dilakukan (atau NbElmt dari stack) */
 
 void Undo (Stack *S, aksi *X);
 /* Undo pada eksekusi terakhir */
@@ -102,5 +107,7 @@ void mainmain (Stack * S, aksi * X);
 /* Mengosongkan stack tanpa melakukan perintah */
 
 void Upgrade (Stack *S, aksi *X, player *P);
+
+void PrintInfoStack (Stack S);
 
 #endif

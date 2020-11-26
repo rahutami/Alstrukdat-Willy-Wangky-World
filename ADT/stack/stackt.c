@@ -143,6 +143,27 @@ int SumDurasiStack (Stack S) {
     }
     return sum;
 }
+
+int SumUangStack (Stack S) {
+    int sum=0;
+    aksi X;
+    while (!IsEmptyStack(S)) {
+        sum += (InfoTop(S)).uang;
+        Pop(&S,&X);
+    }
+    return sum;
+}
+
+int NbElmtStack (Stack S) {
+    int count=0;
+    aksi X;
+    while (!IsEmptyStack(S)) {
+        count += 1;
+        Pop(&S,&X);
+    }
+    return count;
+}
+
 void mainmain (Stack *S, aksi *X) {
     //aksi buang;
     while (!IsEmptyStack(*S)) {
@@ -155,7 +176,27 @@ void Undo (Stack *S, aksi *X) {
 }
 
 void Upgrade (Stack *S, aksi *X, player *P) {
-    (*X).uang = -25;
+    // Cek resource
+    // Cek uang
+    Money(*P) = -250; // misal biaya upgrade itu 250 (kalo mencukupi baru kurangin)
+    
+    printf("Ingin melakukan upgrade apa?\n List: \n");
+    // List Wahana yang bisa di upgrade ke sana
 
+    // Ketik nama wahana
+    // Wahana pada lokasi (X,Y) berubah menjadi ...
+    // ngecek kanan kiri atas bawah yg mana
+    // terus ngereturn addresswahana
+    // if kanan kiri atas bawah bkn wahana print error
 
+}
+
+void PrintInfoStack (Stack S) {
+    printf("Total aksi yang akan dilakukan: %d",NbElmtStack(S));
+    printf("\n");
+    printf("Total waktu yang akan dibutuhkan: ");
+    TulisTimeRemaining(SumDurasiStack(S));
+    printf("\n");   
+    printf("Total uang yang dibutuhkan: %d",SumUangStack(S));
+    printf("\n");    
 }
