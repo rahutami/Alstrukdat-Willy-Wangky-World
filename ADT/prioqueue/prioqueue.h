@@ -116,5 +116,12 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, TreeWahanaS T);
 /* F.S. Jika wahana terdapat pada salah satu list wahana di priority queue, maka */
 /*      wahana akan dikeluarkan dari list tersebut. Jika list menjadi kosong, antrian berkurang */
 
+void DeleteLastQueue(PrioQueue *Q);
+/* Dequeue tapi dari belakang */
+
+void AngryCustomer(PrioQueue *Q);
+/* Mengeluarkan elemen Q yang kesabarannya 0 */
+/* I.S. Q terdefinisi tidak kosong */
+/* F.S. Elemen Q tidak berkurang, tidak ada yang kesabarannya 0 */
 
 #endif

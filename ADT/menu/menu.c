@@ -112,6 +112,7 @@ void MainPhase(player * p1, TreeWahanaS T){
     PrioQueue Q;
     listPlayer LP;
     List del;
+    boolean enter = false;
 
     CreateEmptyQueue(&Q, 5);
     CreateEmptyLP(&LP);
@@ -127,6 +128,13 @@ void MainPhase(player * p1, TreeWahanaS T){
             }
         }
         
+        if(enter){
+            ReducePatience(&Q);
+        }
+        
+        enter = true;
+
+        AngryCustomer(&Q);
         
         if (!IsKataSama("command")){
             printf("===================================\n");

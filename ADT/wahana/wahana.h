@@ -152,4 +152,7 @@ C  E   H  J
 D  F   I
 */
 
+void nextUpWahana();
+
+
 #endif

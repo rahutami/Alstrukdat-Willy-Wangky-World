@@ -114,7 +114,14 @@ void ReducePatience(PrioQueue *Q) {
     /* I.S. Q adalah prioqueue tidak kosong yang terdefinisi */
     /* F.S. Kesabaran tiap elemen di queue berkurang, tetapi prioritas bertambah */
     /* KAMUS */
+    int i;
     /* ALGORITMA */
+    i = Head(*Q);
+    while(i <= Tail(*Q)) {
+        Patience(ElmtQueue(*Q, i)) -= 1;
+        Prio(ElmtQueue(*Q, i)) -= 1;
+        i++;
+    }
 }
 
 void FirstEnqueue(PrioQueue *Q, List L){
@@ -258,5 +265,37 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, TreeWahanaS T){
         }
     } else {
         printf("Antrian kosong\n\n");
+    }
+}
+
+void DeleteLastQueue(PrioQueue *Q, infotypeQueue *X) {
+    /* Dequeue tapi dari belakang */
+    *X = InfoTail(*Q);
+    if(Head(*Q) == Tail(*Q)){
+        Head(*Q) = NilQueue;
+        Tail(*Q) = NilQueue;
+    } else {
+        if(Tail(*Q) == 0){
+            Tail(*Q) = MaxEl(*Q) - 1;
+        } else {
+            Tail(*Q)--;
+        }
+    }
+}
+
+void AngryCustomer(PrioQueue *Q) {
+    /* Mengeluarkan elemen Q yang kesabarannya 0 */
+    /* I.S. Q terdefinisi tidak kosong */
+    /* F.S. Elemen Q tidak berkurang, tidak ada yang kesabarannya 0 */
+    /* KAMUS LOKAL */
+    int i;
+    infotypeQueue del;
+    /* ALGORITMA */
+    i = Tail(*Q);
+    while(i >= Head(*Q)) {
+        DeleteLastQueue(Q, &del);
+        if(Patience(del) > 0) {
+            Enqueue(Q, del);
+        }
     }
 }
