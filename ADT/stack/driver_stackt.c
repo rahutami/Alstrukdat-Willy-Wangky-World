@@ -8,7 +8,9 @@ int main() {
     aksi buang;
     aksi gajadi;
     CreateEmpty(&stacktest);
-
+    player Pemain;
+    CreatePlayer(&Pemain);
+    TreeWahanaS Pohon;
     aksi aksi1, aksi2, aksi3, aksi5;
     aksi1.durasi = 1;
     aksi3.durasi = 3;
@@ -71,6 +73,7 @@ int main() {
     lalu push ke stack target.
     terus, eksekusi perintah dengan pop satu per satu dari stack target
     */
+    Upgrade(&stacktest,&Pemain,Pohon);
     return 0;
 }
 // COMMAND

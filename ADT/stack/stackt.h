@@ -106,7 +106,7 @@ void Execute (Stack S);
 void mainmain (Stack * S, aksi * X);
 /* Mengosongkan stack tanpa melakukan perintah */
 
-void Upgrade (Stack *S, aksi *X, player *P);
+void Upgrade (Stack *S, player *P, TreeWahanaS T);
 
 void PrintInfoStack (Stack S);
 
