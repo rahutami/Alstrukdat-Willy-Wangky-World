@@ -3,6 +3,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+boolean EndKata;
+Kata CKata;
+char CC;
+boolean EOP;
 
 void Details(Kata inputWahana, ListWahanaD L)
 /* I.S namaWahana dimasukkan user */
@@ -64,11 +68,6 @@ void SubTree(addressWahanaS parent, addressWahanaS l, addressWahanaS r){
     Left(parent) = l;
     Right(parent) = r;
 }
-
-boolean EndKata;
-Kata CKata;
-char CC;
-boolean EOP;
 
 void MakeTree(TreeWahanaS *T)
 /* I.S P adalah tree kosong */
@@ -159,7 +158,7 @@ addressWahanaS AlokNode(int i)
 /* Jika alokasi gagal, mengirimkan Nil */
 {
     addressWahanaS P;
-    P = (addressWahanaS)malloc(sizeof(ElmtWahanaStatis));
+    P = (ElmtWahanaStatis *)malloc(sizeof(ElmtWahanaStatis));
     if (P != NilList){
         Left(P) = NilList;
         Right(P) = NilList;
@@ -269,7 +268,7 @@ void initWahana(TreeWahanaS T)
     //player pindah ke bawah
 }
 
-void buildWahana(POINT Pos)
+void buildWahana(POINT Pos, ListWahanaD *L)
 /*Command ini digunakan untuk membuat wahana baru di petak di mana
 pemain sedang berdiri.
 1. Setelah meminta command ini, program akan menampilkan
@@ -286,14 +285,29 @@ stack*/
     MakeTree(&T); PrintTree(T);
 
     printf("Ingin membangun wahana apa?\n");
-    STARTKATA();
-
+    STARTKATA(); printf("oke1");
+    PrintKata(CKata);
     //Menambah elemen pada list linier
-    ListWahanaD L;
+    //ListWahanaD L;
+    
     //POINT Pos;
     //addressWahanaD P1;
-    P = AlokWahana(Pos);
-    if (IsEmptyListW(L)){
+    P = AlokWahana(Pos); 
+    
+    if (IsEmptyListW(*L)){
+        printf("oke2");
+        InsFirstW(&L,P);
+    }
+    else{
+        Prec = First(*L); 
+
+        while (Next(Prec)!=NilList){
+            Prec = Next(Prec);
+        }
+        InsAfterW(L,P,Prec); printf("oke3");
+    }
+    
+    /*if (IsEmptyListW(L)){
         InsFirstW(&L,P);
     } else {
         Prec = First(L);
@@ -302,13 +316,14 @@ stack*/
         }
         InsAfterW(&L,P,Prec);
     }
-    NamaWahana(ElmtStatis(P)) = CKata;
+    NamaWahana(ElmtStatis(P)) = CKata;*/
 
 }
 boolean IsEmptyListW (ListWahanaD L){
    /* Mengirim true jika list kosong */
    return(First(L) == NilList);
 }
+
 addressWahanaD AlokWahana (POINT P){
    /* Mengirimkan addressList hasil alokasi sebuah elemen */
    /* Jika alokasi berhasil, maka addressList tidak NilList, dan misalnya */
@@ -317,7 +332,7 @@ addressWahanaD AlokWahana (POINT P){
    /* KAMUS */
    addressWahanaD D;
    /* ALGORITMA */
-   D = (addressWahanaD *) malloc(sizeof(ElmtWahanaDinamis));
+   D = (ElmtWahanaDinamis *) malloc(sizeof(ElmtWahanaDinamis)); 
    if (D!= NilList) {
        PositionWahana(D) = P;
        StatusWahana(D) = true ;
@@ -325,8 +340,11 @@ addressWahanaD AlokWahana (POINT P){
        IncomeWahana(D) = 0;
        DailyFreqWahana(D) = 0;
        NextWahana(D) = NilList;
+       //printf("OKE2");
     }
+    //printf("OKE3");
     return D;
+    
 }
 
 void InsFirstW (ListWahanaD *L, addressWahanaD D){

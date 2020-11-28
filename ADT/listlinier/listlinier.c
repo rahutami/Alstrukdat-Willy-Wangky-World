@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "listlinier.h"
+//#include "../wahana/wahana.h"
 
 /****************** TEST LIST KOSONG ******************/
 boolean IsEmptyList (List L){
@@ -306,7 +307,7 @@ void Konkat1 (List *L1, List *L2, List *L3) {
 	}
 }
 
-boolean IsAllRusak (List L, ListWahanaD LW) {
+/*boolean IsAllRusak (List L, ListWahanaD LW) {
    addressList P = First(L);
    addressWahanaD W;
    boolean rusak = true;
@@ -318,4 +319,4 @@ boolean IsAllRusak (List L, ListWahanaD LW) {
     }
 
     return rusak;
-}
+}*/

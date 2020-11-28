@@ -158,7 +158,7 @@ C  E   H  J
 D  F   I
 */
 
-void buildWahana(POINT Pos);
+void buildWahana(POINT Pos, ListWahanaD *L);
 addressWahanaD AlokWahana (POINT P);
 /*membuat node dalam list linier elemen dinamis
 untuk build wahana baru*/

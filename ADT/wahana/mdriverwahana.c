@@ -10,6 +10,7 @@ boolean EOP;
 int main(){
     
     ListWahanaD L;
+    First(L) = NilList;
     //TreeWahanaS T;
     //MakeTree(&T);
     printf("Daftar Wahana: \n");
@@ -17,8 +18,8 @@ int main(){
     //STARTKATA();
     //addressWahanaD P = SearchWahanaD(CKata,L);
     POINT P = MakePOINT(1,1);
-    buildWahana(P);
-    PrintInfoWD(L);
+    buildWahana(P,&L);
+    //PrintInfoWD(L);
     return 0;
     
 }
