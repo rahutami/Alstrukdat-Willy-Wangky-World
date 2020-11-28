@@ -280,6 +280,7 @@ boolean SearchB(Tab T, keyType k, valType v)
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
 /* Skema searching yang digunakan bebas */
 /* NOTE: NANTI BAKAL BIKIN FUNGSI UNTUK NGECEK PERSEDIAAN (?) (kalo bakal disimpen di arraydin), JADI CEK VALUENYA JUGA. */
+// Semoga bener
 {
     // Kamus Lokal
     boolean ans;
@@ -291,7 +292,7 @@ boolean SearchB(Tab T, keyType k, valType v)
 
     do{
         i++;
-        if(IsKataSamaKata(Elmt(T,i).key,k)) {
+        if(IsKataSamaKata(Elmt(T,i).key,k) && (Elmt(T,i).value >= v)) {
             ans = true;
         }
     } while (i<=GetLastIdxDin(T) && (!IsKataSamaKata(Elmt(T,i).key,k)));
