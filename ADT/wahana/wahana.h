@@ -32,26 +32,17 @@ typedef struct tElmtWahanaD *addressWahanaD;
 datanya berupa data dinamis yang berubah2 tergantung pd jalannya program*/
 /*Akan terisi jika wahana sudah di bangun*/
 //typedef struct infotypeWahana *infotypeW;
-typedef struct {
+
+
+typedef struct tElmtWahanaD {
+    //int IDWahanaD;
+    //Kata NameWahanaD;
     POINT PositionWahana;
     boolean StatusWahana; //berfungsi : true, rusak: false
     //boolean BuildWahana; // 
     int TotalFreqWahana;
     int IncomeWahana;
     int DailyFreqWahana;
-} infotypeW;
-
-
-typedef struct tElmtWahanaD {
-    //int IDWahanaD;
-    //Kata NameWahanaD;
-    /*POINT PositionWahana;
-    boolean StatusWahana; //berfungsi : true, rusak: false
-    //boolean BuildWahana; // 
-    int TotalFreqWahana;
-    int IncomeWahana;
-    int DailyFreqWahana;*/
-    infotypeW infoW;
     addressWahanaD next;
     //addressWahanaD prev;
     addressWahanaS ElmtStatis;
@@ -90,7 +81,7 @@ typedef struct {
 
 #define InfoW(D) (D)->infoW
 #define PositionWahana(D) (D)->PositionWahana
-#define StatusWahana(D) ((D)->StatusWahana 
+#define StatusWahana(D) (D)->StatusWahana 
 #define TotalFreqWahana(D) (D)->TotalFreqWahana
 #define IncomeWahana(D) (D)->IncomeWahana
 #define DailyFreqWahana(D) (D)->DailyFreqWahana

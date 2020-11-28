@@ -269,7 +269,6 @@ void initWahana(TreeWahanaS T)
     //player pindah ke bawah
 }
 
-<<<<<<< HEAD
 void buildWahana(POINT Pos)
 /*Command ini digunakan untuk membuat wahana baru di petak di mana
 pemain sedang berdiri.
@@ -320,12 +319,12 @@ addressWahanaD AlokWahana (POINT P){
    /* ALGORITMA */
    D = (addressWahanaD *) malloc(sizeof(ElmtWahanaDinamis));
    if (D!= NilList) {
-       PositionWahana(infoW(D)) = P;
-       StatusWahana(infoW(D)) = true ;
-       TotalFreqWahana(infoW(D)) = 0;
-       IncomeWahana(infoW(D)) = 0;
-       DailyFreqWahana(infoW(D)) = 0;
-       NextWahana(infoW(D)) = NilList;
+       PositionWahana(D) = P;
+       StatusWahana(D) = true ;
+       TotalFreqWahana(D) = 0;
+       IncomeWahana(D) = 0;
+       DailyFreqWahana(D) = 0;
+       NextWahana(D) = NilList;
     }
     return D;
 }
@@ -362,7 +361,7 @@ void PrintInfoWD (ListWahanaD L) {
         printf("(");
         P = First(L);
         while(P != NilList) {
-            PrintKata(NamaWahana(ElmtStatis(P))));
+            PrintKata(NamaWahana(ElmtStatis(P)));
             if(Next(P) != NilList){
                 printf(", ");
             }
@@ -371,6 +370,3 @@ void PrintInfoWD (ListWahanaD L) {
         printf(")");
     }
 }
-=======
-void nextUpWahana();
->>>>>>> 99c160cec7e7330e6f1d485795ea8e573beeff12
