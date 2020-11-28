@@ -286,7 +286,7 @@ stack*/
 
     printf("Ingin membangun wahana apa?\n");
     STARTKATA(); //printf("oke1");
-    PrintKata(CKata);
+    //PrintKata(CKata);
     //Menambah elemen pada list linier
     //ListWahanaD L;
     

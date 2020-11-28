@@ -78,16 +78,17 @@ int main() {
     TreeWahanaS T;
     MakeTree(&T);
     PrintTree(T);
+
     Kata namaWahana;
-    printf("Input nama wahana: ");
     STARTKATA();
-    SalinKata(CKata,&namaWahana);
-    printf("Ingin melakukan upgrade apa?\n List: \n");
-    if (SearchTree2(namaWahana,T)) {
+    CopyKata(CKata,&namaWahana);
+    printf("INPUTAN KAMU ADALAH: ");
+    PrintKata(namaWahana);
+    printf("\n");
+    if (SearchTree(namaWahana,T)) {
         printf("KETEMU");
         /* 
-        addressWahanaD addressUpgrade = SearchTree(); // return addressWahanaD
-        addressWahanaS elmtStatisUpgrade = ElmtStatis(addressUpgrade);
+        addressWahanaS elmtStatisUpgrade = SearchTree;
         printf("Ingin melakukan upgrade apa?2\n List: \n");
         PrintKata(NamaWahana(namaWahana));
         PrintKata(NamaWahana(elmtStatisUpgrade));
@@ -95,17 +96,13 @@ int main() {
         PrintKata(NamaWahana(Right(elmtStatisUpgrade))); */
     }
     else {
-        printf("Gak ketemu!!!\n");
+        PrintKata(namaWahana);
+        printf(" tidak ditemukan pada tree. ");
     }
     /* 
-    Kata inputan1,inputan2;
-    STARTKATA();
-    CopyKata(CKata,&inputan1);
-    STARTKATA();
-    CopyKata(CKata,&inputan2);
-    printf("INPUTAN KAMU ADALAH: ");
-    PrintKata(inputan1);
-    PrintKata(inputan2); */
+
+
+    */
 
     return 0;
 }

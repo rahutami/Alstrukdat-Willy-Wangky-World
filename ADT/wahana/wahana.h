@@ -167,6 +167,7 @@ boolean SearchTree(Kata X, addressWahanaS P);
 boolean SearchTree2 (Kata X, TreeWahanaS T);
 boolean IsEmptyListW (ListWahanaD L);
 
+void InsAfterW(ListWahanaD *L, addressWahanaD P, addressWahanaD Prec);
 void InsFirstW (ListWahanaD *L, addressWahanaD D);
 void PrintInfoWD (ListWahanaD L);
 addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana);
