@@ -146,7 +146,7 @@ void MakeTree(TreeWahanaS *T)
         SubTree(temptree[4], temptree[8], NilList);
         SubTree(temptree[2], temptree[5], temptree[6]);
         SubTree(temptree[5], temptree[9], NilList);
-        Root(*T) = temptree[0];
+        *T = temptree[0];
     }
 }
 
@@ -178,7 +178,7 @@ void DealokNode(addressWahanaS *P)
 boolean IsTreeEmpty(TreeWahanaS T)
 /* Mengirimkan true jika P adalah pohon biner kosong */
 {
-    return (Root(T) ==  NilList);
+    return (T ==  NilList);
 }
 
 boolean IsTreeOneElmt(TreeWahanaS T)
@@ -186,7 +186,7 @@ boolean IsTreeOneElmt(TreeWahanaS T)
 {
     if (IsTreeEmpty(T)) return false;
     else {
-        if (Left(Root(T)) == NilList && Right(Root(T)) == NilList){
+        if (Left(T) == NilList && Right(T) == NilList){
             return true;
         } 
         else{
@@ -199,7 +199,7 @@ boolean IsUnerLeft(TreeWahanaS T)
 /* Mengirimkan true jika pohon biner tidak kosong P adalah pohon unerleft: hanya mempunyai subpohon kiri */
 {
     if (!IsTreeEmpty(T)) {
-        if (Left(Root(T)) != NilList && Right(Root(T)) == NilList){
+        if (Left(T) != NilList && Right(T) == NilList){
             return true;
         }    
         return false;
@@ -211,7 +211,7 @@ boolean IsUnerRight(TreeWahanaS T)
 /* Mengirimkan true jika pohon biner tidak kosong P adalah pohon unerright: hanya mempunyai subpohon kanan*/
 {
     if (!IsTreeEmpty(T)){
-        if (Right(Root(T)) != NilList && Left(Root(T)) == NilList){
+        if (Right(T) != NilList && Left(T) == NilList){
             return true;    
         }
 
@@ -224,7 +224,7 @@ boolean IsBiner(TreeWahanaS T)
 /* Mengirimkan true jika pohon biner tidak kosong P adalah pohon biner: mempunyai subpohon kiri dan subpohon kanan*/
 {
     if (!IsTreeEmpty(T)) {
-        if (Left(Root(T)) != NilList && Right(Root(T)) != NilList){
+        if (Left(T) != NilList && Right(T) != NilList){
             return true;
         }
         return false; 
@@ -250,14 +250,14 @@ void PrintTreeNode(addressWahanaS P)
 void PrintTree(TreeWahanaS T)
 /* Mencetak tree dengan PreOrder */
 {
-    PrintTreeNode(Root(T));
+    PrintTreeNode(T);
 }
 
 void initWahana(TreeWahanaS T)
 {
-    addressWahanaS Coaster1 = Root(T);
-    addressWahanaS Heli2 = Left(Root(T));
-    addressWahanaS Water3 = Right(Root(T));
+    addressWahanaS Coaster1 = T;
+    addressWahanaS Heli2 = Left(T);
+    addressWahanaS Water3 = Right(T);
     printf("List:\n");
     printf("  -"); PrintKata(NamaWahana(Coaster1));printf("\n");
     printf("  -"); PrintKata(NamaWahana(Heli2));printf("\n");
@@ -268,7 +268,6 @@ void initWahana(TreeWahanaS T)
     //player pindah ke bawah
 }
 
-<<<<<<< HEAD
 void nextUpWahana();
 
 boolean SearchTree(Kata X, addressWahanaS P)
@@ -290,19 +289,18 @@ boolean SearchTree(Kata X, addressWahanaS P)
 boolean SearchTree2 (Kata X, TreeWahanaS T)
 /* Mengirimkan true jika ada node dari P yang bernilai X */
 {
-    if (Root(T)==NilList) {
+    if (T==NilList) {
         return false;
     }
     else {
-        if (IsKataSamaKata(NamaWahana(Root(T)),X)) {
+        if (IsKataSamaKata(NamaWahana(T),X)) {
             return true;
         }
         else {
-            return (IsKataSamaKata(NamaWahana(Left(Root(T))),X) ||IsKataSamaKata(NamaWahana(Right(Root(T))),X));// || SearchTree2(X,Root(Left(T))) || SearchTree2(X,Root(Right(T))));
+            return (IsKataSamaKata(NamaWahana(Left(T)),X) ||IsKataSamaKata(NamaWahana(Right(T)),X));// || SearchTree2(X,Root(Left(T))) || SearchTree2(X,Root(Right(T))));
         }
     }
 }
-=======
 void buildWahana(POINT Pos, ListWahanaD *L)
 /*Command ini digunakan untuk membuat wahana baru di petak di mana
 pemain sedang berdiri.
@@ -423,4 +421,3 @@ void PrintInfoWD (ListWahanaD L) {
         printf(")");
     }
 }
->>>>>>> 6f21b0b46f1376773aa33d83600aefc2c86662da

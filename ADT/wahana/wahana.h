@@ -53,10 +53,10 @@ typedef struct {
 } ListWahanaD;
 
 /*TreeWahanaS merupakan tree yang setiap nodenya berisi ElmtWahanaStatis*/
-//typedef addressWahanaS TreeWahanaS; ganti jd ini keknya
-typedef struct {
-	addressWahanaS Root;
-} TreeWahanaS;
+typedef addressWahanaS TreeWahanaS; //ganti jd ini keknya
+// typedef struct {
+// 	addressWahanaS Root;
+// } TreeWahanaS;
 
 // extern addressWahanaS temptree[10];
 
@@ -164,12 +164,9 @@ addressWahanaD AlokWahana (POINT P);
 /*membuat node dalam list linier elemen dinamis
 untuk build wahana baru*/
 
-<<<<<<< HEAD
 boolean SearchTree(Kata X, addressWahanaS P);
 boolean SearchTree2 (Kata X, TreeWahanaS T);
-=======
 boolean IsEmptyListW (ListWahanaD L);
->>>>>>> 6f21b0b46f1376773aa33d83600aefc2c86662da
 
 void InsFirstW (ListWahanaD *L, addressWahanaD D);
 void PrintInfoWD (ListWahanaD L);
