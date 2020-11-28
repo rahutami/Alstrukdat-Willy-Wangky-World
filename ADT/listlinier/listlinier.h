@@ -8,6 +8,7 @@
 
 #include "../boolean/boolean.h"
 #include "../mesinkata/mesinkata.h"
+#include "../wahana/wahana.h"
 
 #define NilList NULL
 
@@ -145,5 +146,8 @@ void Konkat1 (List *L1, List *L2, List *L3);
 /* menghasilkan L3 yang baru (dengan elemen list L1 dan L2) */
 /* dan L1 serta L2 menjadi list kosong.*/
 /* Tidak ada alokasi/dealokasi pada prosedur ini */
+
+//boolean IsAllRusak(List L, ListWahanaD LW);
+/* Memeriksa apakah semua wahana rusak */
 
 #endif

@@ -24,17 +24,22 @@ typedef struct tElmtWahanaS {
     int JumlahBahan;
 	  addressWahanaS left; //untuk anak kiri
     addressWahanaS right; //untuk anak kanan
+
 } ElmtWahanaStatis;
 
 typedef struct tElmtWahanaD *addressWahanaD;
 /*ElmtWahanaDinamis merupakan list linier, 
 datanya berupa data dinamis yang berubah2 tergantung pd jalannya program*/
+/*Akan terisi jika wahana sudah di bangun*/
+//typedef struct infotypeWahana *infotypeW;
+
+
 typedef struct tElmtWahanaD {
     //int IDWahanaD;
     //Kata NameWahanaD;
     POINT PositionWahana;
-    boolean StatusWahana;
-    //boolean BuildWahana;
+    boolean StatusWahana; //berfungsi : true, rusak: false
+    //boolean BuildWahana; // 
     int TotalFreqWahana;
     int IncomeWahana;
     int DailyFreqWahana;
@@ -57,7 +62,7 @@ typedef struct {
 
 /*T : TreeWahanaS
   N : Node dari TreeWahanaS, berupa ElmtWahanaStatis
-  D : addressWahanaS yang merupakan address list linier ElmtWahanaDinamis*/
+  D : addressWahanaD yang merupakan address list linier ElmtWahanaDinamis*/
 
 #define FirstWahana(L) ((L).First)
 
@@ -75,8 +80,9 @@ typedef struct {
 #define BahanWahana(N) (N)->BahanWahana
 #define JmlBahan(N) (N)->JumlahBahan
 
+#define InfoW(D) (D)->infoW
 #define PositionWahana(D) (D)->PositionWahana
-#define StatusWahana(D) ((D)->StatusWahana 
+#define StatusWahana(D) (D)->StatusWahana 
 #define TotalFreqWahana(D) (D)->TotalFreqWahana
 #define IncomeWahana(D) (D)->IncomeWahana
 #define DailyFreqWahana(D) (D)->DailyFreqWahana
@@ -153,9 +159,18 @@ C  E   H  J
 D  F   I
 */
 
-void nextUpWahana();
+void buildWahana(POINT Pos, ListWahanaD *L);
+addressWahanaD AlokWahana (POINT P);
+/*membuat node dalam list linier elemen dinamis
+untuk build wahana baru*/
 
+<<<<<<< HEAD
 boolean SearchTree(Kata X, addressWahanaS P);
 boolean SearchTree2 (Kata X, TreeWahanaS T);
+=======
+boolean IsEmptyListW (ListWahanaD L);
+>>>>>>> 6f21b0b46f1376773aa33d83600aefc2c86662da
 
+void InsFirstW (ListWahanaD *L, addressWahanaD D);
+void PrintInfoWD (ListWahanaD L);
 #endif

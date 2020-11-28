@@ -248,24 +248,30 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
         if(S == NilList){
             printf("Wahana tidak ada di dalam antrian pelanggan. Silahkan coba lagi. \n\n");
         } else {
-            CJam(*P) = NextMenit(CJam(*P));
-            ReducePatience(Q);
-            AngryCustomer(Q);
-            /* Masih perlu implementasi ADT wahana untuk penambahan uang */
-            /* Money(*P) += (Insert wahana price) */
-            Dequeue(Q, &del);
-            if(NbElmt(InfoQueue(del)) > 1) {
-                DelP(&InfoQueue(del), W);
-                PlayerInfo(customer) = InfoQueue(del);
-                PrintInfo(InfoQueue(del));
-                printf("\n");
-                Remaining(customer) = TimeWahana(ElmtStatis(target));
-                InsVLastLP(LP, customer);
+            if (StatusWahana(target)) {
+                CJam(*P) = NextMenit(CJam(*P));
+                ReducePatience(Q);
+                AngryCustomer(Q);
+                Dequeue(Q, &del);
+                if(NbElmt(InfoQueue(del)) > 1) {
+                    DelP(&InfoQueue(del), W);
+                    PlayerInfo(customer) = InfoQueue(del);
+                    PrintInfo(InfoQueue(del));
+                    printf("\n");
+                    Remaining(customer) = TimeWahana(ElmtStatis(target));
+                    InsVLastLP(LP, customer);
+
+                }
+                Money(*P) += PriceWahana(ElmtStatis(target));
+                TotalFreqWahana(target) += 1;
+                DailyFreqWahana(target) += 1;
+                IncomeWahana(target) +=PriceWahana(ElmtStatis(target));
+                printf("Selamat menikmati wahana ");
+                PrintKata(W);
+                printf("!\n\n");
+            } else {
+                printf("Maaf, wahana sedang dalam perbaikan.\n");
             }
-            Money(*P) += PriceWahana(ElmtStatis(target));
-            printf("Selamat menikmati wahana ");
-            PrintKata(W);
-            printf("!\n\n");
         }
     } else {
         printf("Antrian kosong\n\n");

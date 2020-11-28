@@ -30,7 +30,7 @@ typedef struct
 {
   MapEntry *TI; /* memori tempat penyimpan elemen (container) */
   int Neff;   /* >=0, banyaknya elemen efektif */
-  int MaxEl;  /* ukuran elemen */
+  int MaxElMap;  /* ukuran elemen */
 } Tab;
 /* Indeks yang digunakan [IdxMin..MaxEl-1] */
 /* Jika T adalah Tab, cara deklarasi dan akses: */
@@ -48,7 +48,7 @@ typedef struct
 #define Neff(T) (T).Neff
 #define TI(T) (T).TI
 #define Elmt(T, i) (T).TI[(i)]
-#define MaxEl(T) (T).MaxEl
+#define MaxElMap(T) (T).MaxElMap
 
 /* ********** KONSTRUKTOR ********** */
 /* Konstruktor : create tabel kosong  */
@@ -133,6 +133,9 @@ boolean SearchB(Tab T, keyType k, valType v);
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
 /* Skema searching yang digunakan bebas */
+
+boolean SearchK(Tab T, keyType k);
+/* mengembalikan true jika key ada di Tap T */
 
 /* ********** NILAI EKSTREM ********** */
 void MaxMin(Tab T, MapEntry *Max, MapEntry *Min);

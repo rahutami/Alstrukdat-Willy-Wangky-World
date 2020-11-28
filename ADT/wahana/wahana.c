@@ -3,6 +3,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+boolean EndKata;
+Kata CKata;
+char CC;
+boolean EOP;
 
 void Details(Kata inputWahana, ListWahanaD L)
 /* I.S namaWahana dimasukkan user */
@@ -41,7 +45,8 @@ void Report(Kata inputWahana, ListWahanaD L)
 
 addressWahanaD SearchWahanaD (Kata inputWahana, ListWahanaD L)
 /* I.S namaWahana dimasukkan user */
-/* F.S Mengembalikan address dnegan wahana yang sesuai dengan yang dicari*/
+/* F.S Mengembalikan address dnegan wahana yang sesuai dengan yang dicari,
+       apakah dia sudah pernah di build atau belum*/
 {
     //KAMUS LOKAL
     boolean found = false;
@@ -63,11 +68,6 @@ void SubTree(addressWahanaS parent, addressWahanaS l, addressWahanaS r){
     Left(parent) = l;
     Right(parent) = r;
 }
-
-boolean EndKata;
-Kata CKata;
-char CC;
-boolean EOP;
 
 void MakeTree(TreeWahanaS *T)
 /* I.S P adalah tree kosong */
@@ -158,7 +158,7 @@ addressWahanaS AlokNode(int i)
 /* Jika alokasi gagal, mengirimkan Nil */
 {
     addressWahanaS P;
-    P = (addressWahanaS)malloc(sizeof(ElmtWahanaStatis));
+    P = (ElmtWahanaStatis *)malloc(sizeof(ElmtWahanaStatis));
     if (P != NilList){
         Left(P) = NilList;
         Right(P) = NilList;
@@ -236,7 +236,11 @@ boolean IsBiner(TreeWahanaS T)
 void PrintTreeNode(addressWahanaS P)
 /* Mencetak node tree dengan address P */
 {
+    
+    //int i = 0;
     if (P!= NilList){
+        //i++;
+        printf("- ");
         PrintKata(NamaWahana(P)); printf("\n");
         PrintTreeNode(Left(P));
         PrintTreeNode(Right(P));
@@ -264,6 +268,7 @@ void initWahana(TreeWahanaS T)
     //player pindah ke bawah
 }
 
+<<<<<<< HEAD
 void nextUpWahana();
 
 boolean SearchTree(Kata X, addressWahanaS P)
@@ -297,3 +302,125 @@ boolean SearchTree2 (Kata X, TreeWahanaS T)
         }
     }
 }
+=======
+void buildWahana(POINT Pos, ListWahanaD *L)
+/*Command ini digunakan untuk membuat wahana baru di petak di mana
+pemain sedang berdiri.
+1. Setelah meminta command ini, program akan menampilkan
+wahana dasar yang mungkin dibuat (hasil load file eksternal).
+2. Setelah pemain memilih wahana dasar yang ingin dibuat.
+3. Jika resource untuk membangun wahana tidak mencukupi, maka
+akan ditampilkan pesan error.
+4. Setelah itu, perintah eksekusi ini akan dimasukkan ke dalam
+stack*/
+{
+    //Menampilkan wahana dasar (ada 10, diambil dari tree wahana)
+    TreeWahanaS T;
+    addressWahanaD P, Prec;
+    MakeTree(&T); PrintTree(T);
+
+    printf("Ingin membangun wahana apa?\n");
+    STARTKATA(); printf("oke1");
+    PrintKata(CKata);
+    //Menambah elemen pada list linier
+    //ListWahanaD L;
+    
+    //POINT Pos;
+    //addressWahanaD P1;
+    P = AlokWahana(Pos); 
+    
+    if (IsEmptyListW(*L)){
+        printf("oke2");
+        InsFirstW(&L,P);
+    }
+    else{
+        Prec = First(*L); 
+
+        while (Next(Prec)!=NilList){
+            Prec = Next(Prec);
+        }
+        InsAfterW(L,P,Prec); printf("oke3");
+    }
+    
+    /*if (IsEmptyListW(L)){
+        InsFirstW(&L,P);
+    } else {
+        Prec = First(L);
+        while (Next(Prec)!=NilList){
+            Prec = Next(Prec);
+        }
+        InsAfterW(&L,P,Prec);
+    }
+    NamaWahana(ElmtStatis(P)) = CKata;*/
+
+}
+boolean IsEmptyListW (ListWahanaD L){
+   /* Mengirim true jika list kosong */
+   return(First(L) == NilList);
+}
+
+addressWahanaD AlokWahana (POINT P){
+   /* Mengirimkan addressList hasil alokasi sebuah elemen */
+   /* Jika alokasi berhasil, maka addressList tidak NilList, dan misalnya */
+   /* menghasilkan P, maka InfoList(P)=X, Next(P)=NilList */
+   /* Jika alokasi gagal, mengirimkan NilList */
+   /* KAMUS */
+   addressWahanaD D;
+   /* ALGORITMA */
+   D = (ElmtWahanaDinamis *) malloc(sizeof(ElmtWahanaDinamis)); 
+   if (D!= NilList) {
+       PositionWahana(D) = P;
+       StatusWahana(D) = true ;
+       TotalFreqWahana(D) = 0;
+       IncomeWahana(D) = 0;
+       DailyFreqWahana(D) = 0;
+       NextWahana(D) = NilList;
+       //printf("OKE2");
+    }
+    //printf("OKE3");
+    return D;
+    
+}
+
+void InsFirstW (ListWahanaD *L, addressWahanaD D){
+   /* I.S. L mungkin kosong */
+   /* F.S. Melakukan alokasi sebuah elemen dan */
+   /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
+   /* KAMUS */
+   Next(D) = First(*L);
+   First(*L) = D;
+}
+void InsAfterW (ListWahanaD *L, addressWahanaD P, addressWahanaD Prec){
+   /* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
+   /*      P sudah dialokasi  */
+   /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
+   /* ALGORITMA */
+   Next(P) = Next(Prec);
+   Next(Prec) = P;
+}
+//print wahana yang sudah dibangun
+void PrintInfoWD (ListWahanaD L) {
+	/* I.S. List mungkin kosong */
+	/* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
+	/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
+	/* Jika list kosong : menulis [] */
+	/* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
+	/* KAMUS */
+	addressWahanaD P;
+	/* ALGORITMA */
+	if(IsEmptyListW(L)) {
+        printf("()");
+    } else { 
+        printf("(");
+        P = First(L);
+        while(P != NilList) {
+            PrintKata(NamaWahana(ElmtStatis(P)));
+            if(Next(P) != NilList){
+                printf(", ");
+            }
+            P = Next(P);
+        }
+        printf(")");
+    }
+}
+>>>>>>> 6f21b0b46f1376773aa33d83600aefc2c86662da
