@@ -140,12 +140,8 @@ void MainPhase(player * p1){
             AngryCustomer(&Q);
         }
         enter = true;
-<<<<<<< HEAD
-        AngryCustomer(&Q);
-=======
 
         
->>>>>>> ca61a25b5648bc1175dc413fd079fb093c968c31
         if (!IsKataSama("command")){
             printf("===================================\n");
             printf("            Main Phase\n");
