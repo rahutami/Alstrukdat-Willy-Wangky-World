@@ -184,7 +184,7 @@ void MainPhase(player * p1, TreeWahanaS T){
             }
             ADVKATA();
             if(Elmt(Peta(CPeta), x + 1, y) == 'A' || Elmt(Peta(CPeta), x, y+1) == 'A' || Elmt(Peta(CPeta), x - 1, y) == 'A' || Elmt(Peta(CPeta), x, y - 1) == 'A'){
-                Serve(p1, CKata, &Q, &LP, );
+                Serve(p1, CKata, &Q, &LP, LW);
             } else {
                 printf("Silahkan pergi ke sebelah antrian untuk menggunakan command ini \n\n");
             }
