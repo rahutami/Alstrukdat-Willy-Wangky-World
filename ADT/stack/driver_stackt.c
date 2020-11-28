@@ -81,8 +81,9 @@ int main() {
     //TreeWahanaS T;
     MakeTree();
     PrintTree(UpgradeTree);
-
     Kata namaWahana;
+    POINT Post = MakePOINT(1,1);
+    buildWahana(Post, &WahanaBuilt);
     printf("Inputan kamu adalah: ");
     STARTKATA(); // Ini masih salah :>
     printf("ok");
@@ -293,4 +294,4 @@ int main() {
 // COMMAND
 // gcc -o tes driver_stackt.c stackt.c -lm
 
-// gcc stackt.c driver_stackt.c ../mesinkata/mesinkata.c ../mesinkar/mesinkar.c ../wahana/wahana.c ../player/player.c ../jam/jam.c ../point/point.c -o tes
+// gcc ../maplist/maplist.c stackt.c driver_stackt.c ../mesinkata/mesinkata.c ../mesinkar/mesinkar.c ../wahana/wahana.c ../player/player.c ../jam/jam.c ../point/point.c -o tes
