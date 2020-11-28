@@ -20,7 +20,7 @@ void MakeEmptyDin(Tab *T, int maxel)
     // Kamus
 
     // ALGORITMA
-    MaxEl(*T) = maxel;
+    MaxElMap(*T) = maxel;
     Neff(*T) = 0;
     TI(*T) = (MapEntry *) malloc(maxel * sizeof(MapEntry));
 }
@@ -29,7 +29,7 @@ void Dealokasi(Tab *T)
 /* I.S. T terdefinisi; */
 /* F.S. TI(T) dikembalikan ke system, MaxEl(T)=0; Neff(T)=0 */
 {
-    MaxEl(*T) = 0;
+    MaxElMap(*T) = 0;
     Neff(*T) = 0;
     free(TI(*T));
 }
@@ -47,7 +47,7 @@ int NbElmtDin(Tab T)
 int MaxElement(Tab T)
 /* Mengirimkan maksimum elemen yang dapat ditampung oleh tabel */
 {
-    return MaxEl(T);
+    return MaxElMap(T);
 }
 /* *** Selektor INDEKS *** */
 IdxType GetFirstIdxDin(Tab T)
@@ -69,7 +69,7 @@ boolean IsIdxValidDin(Tab T, IdxType i)
 /* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
 /* yaitu antara indeks yang terdefinisi utk container*/
 {
-    return i >= 0 && i < MaxEl(T);
+    return i >= 0 && i < MaxElMap(T);
 }
 
 boolean IsIdxEffDin(Tab T, IdxType i)
@@ -91,7 +91,7 @@ boolean IsEmptyDin(Tab T)
 boolean IsFullDin(Tab T)
 /* Mengirimkan true jika tabel T penuh, mengirimkan false jika tidak */
 {
-    return Neff(T) == MaxEl(T);
+    return Neff(T) == MaxElMap(T);
 }
 
 /* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
@@ -177,9 +177,10 @@ void TulisIsiTab(Tab T)
     int i;
     // Algoritma
     //printf("[");
-    printf("<NamaBahan> <Harga>\n");
+    printf("Ingin Membangun Apa? \n<NamaBahan> <Harga>\n");
     if(!IsEmptyDin(T)){
         for (i=GetFirstIdxDin(T); i<=GetLastIdxDin(T); i++){
+            printf("    - ");
             PrintKata(Elmt(T,i).key);
             printf(" %d",Elmt(T,i).value);
             printf("\n");
@@ -317,6 +318,19 @@ boolean SearchB(Tab T, keyType k, valType v)
     */
 }
 
+boolean SearchK(Tab T, keyType k)
+/* mengembalikan true jika key ada di Tap T */
+{
+    int i = 0;
+    while (i < Neff(T) && !IsKataSamaKata(Elmt(T, i).key,k))
+    {
+        i++;
+        
+    }
+    return IsKataSamaKata(Elmt(T, i).key,k);
+    
+}
+
 
 /* ********** OPERASI LAIN ********** */
 void CopyTab(Tab Tin, Tab *Tout)
@@ -328,7 +342,7 @@ void CopyTab(Tab Tin, Tab *Tout)
     int i;
 
     // Algoritma
-    MakeEmptyDin(Tout, MaxEl(Tin));
+    MakeEmptyDin(Tout, MaxElMap(Tin));
     for (i=0; i< Neff(Tin); i++){
         Elmt(*Tout, i).key = Elmt(Tin, i).key;
         Elmt(*Tout, i).value = Elmt(Tin, i).value;
