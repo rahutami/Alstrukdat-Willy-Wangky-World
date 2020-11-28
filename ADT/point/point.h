@@ -92,4 +92,8 @@ void Putar (POINT *P, float Sudut);
 /* I.S. P terdefinisi */
 /* F.S. P digeser sebesar Sudut derajat dengan sumbu titik (0,0) searah jarum jam*/
 
+/* FUNGSI TAMBAHAN */
+boolean IsPointSama (POINT P1, POINT P2);
+boolean IsSekitar (POINT P1, POINT P2);
+
 #endif

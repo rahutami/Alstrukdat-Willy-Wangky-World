@@ -185,3 +185,11 @@ void Putar (POINT *P, float Sudut){
 }
 /* I.S. P terdefinisi */
 /* F.S. P digeser sebesar Sudut derajat dengan sumbu titik (0,0) searah jarum jam*/
+
+/* FUNGSI TAMBAHAn */
+boolean IsPointSama (POINT P1, POINT P2) {
+    return((Absis(P1)==Absis(P2)) && (Ordinat(P1)==Ordinat(P2)));
+}
+boolean IsSekitar (POINT P1, POINT P2) {
+    return( (Absis(P1) == Absis(NextX(P2))) || (Ordinat(P1) == Ordinat(NextY(P2))) || (Absis(P2) == Absis(NextX(P1))) || (Ordinat(P2) == Ordinat(NextX(P1))));
+}
