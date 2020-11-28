@@ -10,11 +10,15 @@ boolean EOP;
 int main(){
     
     ListWahanaD L;
-    TreeWahanaS T;
-    MakeTree(&T);
-    PrintTree(T);
-    STARTKATA();
-    addressWahanaD P = SearchWahanaD(CKata,L);
+    //TreeWahanaS T;
+    //MakeTree(&T);
+    printf("Daftar Wahana: \n");
+    //PrintTree(T);
+    //STARTKATA();
+    //addressWahanaD P = SearchWahanaD(CKata,L);
+    POINT P = MakePOINT(1,1);
+    buildWahana(P);
+    PrintInfoWD(L);
     return 0;
     
 }

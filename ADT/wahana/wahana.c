@@ -41,7 +41,8 @@ void Report(Kata inputWahana, ListWahanaD L)
 
 addressWahanaD SearchWahanaD (Kata inputWahana, ListWahanaD L)
 /* I.S namaWahana dimasukkan user */
-/* F.S Mengembalikan address dnegan wahana yang sesuai dengan yang dicari*/
+/* F.S Mengembalikan address dnegan wahana yang sesuai dengan yang dicari,
+       apakah dia sudah pernah di build atau belum*/
 {
     //KAMUS LOKAL
     boolean found = false;
@@ -236,7 +237,11 @@ boolean IsBiner(TreeWahanaS T)
 void PrintTreeNode(addressWahanaS P)
 /* Mencetak node tree dengan address P */
 {
+    
+    //int i = 0;
     if (P!= NilList){
+        //i++;
+        printf("- ");
         PrintKata(NamaWahana(P)); printf("\n");
         PrintTreeNode(Left(P));
         PrintTreeNode(Right(P));
@@ -264,4 +269,104 @@ void initWahana(TreeWahanaS T)
     //player pindah ke bawah
 }
 
-void nextUpWahana()
+void buildWahana(POINT Pos)
+/*Command ini digunakan untuk membuat wahana baru di petak di mana
+pemain sedang berdiri.
+1. Setelah meminta command ini, program akan menampilkan
+wahana dasar yang mungkin dibuat (hasil load file eksternal).
+2. Setelah pemain memilih wahana dasar yang ingin dibuat.
+3. Jika resource untuk membangun wahana tidak mencukupi, maka
+akan ditampilkan pesan error.
+4. Setelah itu, perintah eksekusi ini akan dimasukkan ke dalam
+stack*/
+{
+    //Menampilkan wahana dasar (ada 10, diambil dari tree wahana)
+    TreeWahanaS T;
+    addressWahanaD P, Prec;
+    MakeTree(&T); PrintTree(T);
+
+    printf("Ingin membangun wahana apa?\n");
+    STARTKATA();
+
+    //Menambah elemen pada list linier
+    ListWahanaD L;
+    //POINT Pos;
+    //addressWahanaD P1;
+    P = AlokWahana(Pos);
+    if (IsEmptyListW(L)){
+        InsFirstW(&L,P);
+    } else {
+        Prec = First(L);
+        while (Next(Prec)!=NilList){
+            Prec = Next(Prec);
+        }
+        InsAfterW(&L,P,Prec);
+    }
+    NamaWahana(ElmtStatis(P)) = CKata;
+
+}
+boolean IsEmptyListW (ListWahanaD L){
+   /* Mengirim true jika list kosong */
+   return(First(L) == NilList);
+}
+addressWahanaD AlokWahana (POINT P){
+   /* Mengirimkan addressList hasil alokasi sebuah elemen */
+   /* Jika alokasi berhasil, maka addressList tidak NilList, dan misalnya */
+   /* menghasilkan P, maka InfoList(P)=X, Next(P)=NilList */
+   /* Jika alokasi gagal, mengirimkan NilList */
+   /* KAMUS */
+   addressWahanaD D;
+   /* ALGORITMA */
+   D = (addressWahanaD *) malloc(sizeof(ElmtWahanaDinamis));
+   if (D!= NilList) {
+       PositionWahana(infoW(D)) = P;
+       StatusWahana(infoW(D)) = true ;
+       TotalFreqWahana(infoW(D)) = 0;
+       IncomeWahana(infoW(D)) = 0;
+       DailyFreqWahana(infoW(D)) = 0;
+       NextWahana(infoW(D)) = NilList;
+    }
+    return D;
+}
+
+void InsFirstW (ListWahanaD *L, addressWahanaD D){
+   /* I.S. L mungkin kosong */
+   /* F.S. Melakukan alokasi sebuah elemen dan */
+   /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
+   /* KAMUS */
+   Next(D) = First(*L);
+   First(*L) = D;
+}
+void InsAfterW (ListWahanaD *L, addressWahanaD P, addressWahanaD Prec){
+   /* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
+   /*      P sudah dialokasi  */
+   /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
+   /* ALGORITMA */
+   Next(P) = Next(Prec);
+   Next(Prec) = P;
+}
+//print wahana yang sudah dibangun
+void PrintInfoWD (ListWahanaD L) {
+	/* I.S. List mungkin kosong */
+	/* F.S. Jika list tidak kosong, iai list dicetak ke kanan: [e1,e2,...,en] */
+	/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
+	/* Jika list kosong : menulis [] */
+	/* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
+	/* KAMUS */
+	addressWahanaD P;
+	/* ALGORITMA */
+	if(IsEmptyListW(L)) {
+        printf("()");
+    } else { 
+        printf("(");
+        P = First(L);
+        while(P != NilList) {
+            PrintKata(NamaWahana(ElmtStatis(P))));
+            if(Next(P) != NilList){
+                printf(", ");
+            }
+            P = Next(P);
+        }
+        printf(")");
+    }
+}
