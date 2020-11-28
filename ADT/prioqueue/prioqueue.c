@@ -231,7 +231,7 @@ void RandomizeQueue (PrioQueue *Q) {
 
 }
 
-void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, TreeWahanaS T){
+void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
     /* I.S. W adalah wahana, bisa tidak valid. Q adalah priority queue */
     /* F.S. Jika wahana terdapat pada salah satu list wahana di priority queue, maka */
     /*      wahana akan dikeluarkan dari list tersebut. Jika list menjadi kosong, antrian berkurang */
@@ -240,6 +240,7 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, TreeWahanaS T){
     addressList S;
     infotypeQueue del;
     infoLP customer;
+    addressWahanaD target = SearchWahanaD(W, LW);
     /* ALGORITMA */
     if(!IsEmptyQueue(*Q)){
         L = InfoQueue(InfoHead(*Q));
@@ -248,6 +249,8 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, TreeWahanaS T){
             printf("Wahana tidak ada di dalam antrian pelanggan. Silahkan coba lagi. \n\n");
         } else {
             CJam(*P) = NextMenit(CJam(*P));
+            ReducePatience(Q);
+            AngryCustomer(Q);
             /* Masih perlu implementasi ADT wahana untuk penambahan uang */
             /* Money(*P) += (Insert wahana price) */
             Dequeue(Q, &del);
@@ -256,9 +259,10 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, TreeWahanaS T){
                 PlayerInfo(customer) = InfoQueue(del);
                 PrintInfo(InfoQueue(del));
                 printf("\n");
-                Remaining(customer) = 10; // untuk sementara diset semua wahana durasinya 10 menit
+                Remaining(customer) = TimeWahana(ElmtStatis(target));
                 InsVLastLP(LP, customer);
             }
+            Money(*P) += PriceWahana(ElmtStatis(target));
             printf("Selamat menikmati wahana ");
             PrintKata(W);
             printf("!\n\n");
