@@ -255,7 +255,7 @@ void PrintTree(TreeWahanaS T)
 
 void initWahana(TreeWahanaS T)
 {
-    addressWahanaS Coaster1 = T;
+     addressWahanaS Coaster1 = T;
     addressWahanaS Heli2 = Left(T);
     addressWahanaS Water3 = Right(T);
     printf("List:\n");
@@ -289,7 +289,7 @@ boolean SearchTree(Kata X, addressWahanaS P)
 boolean SearchTree2 (Kata X, TreeWahanaS T)
 /* Mengirimkan true jika ada node dari P yang bernilai X */
 {
-    if (T==NilList) {
+     if (T==NilList) {
         return false;
     }
     else {
@@ -337,7 +337,11 @@ stack*/
         while (Next(Prec)!=NilList){
             Prec = Next(Prec);
         }
+<<<<<<< HEAD
         InsAfterW(L,P,Prec);
+=======
+        //komnen dlInsAfterW(L,P,Prec); printf("oke3");
+>>>>>>> 75cc8ffa6f8828224d5ddd3bf6a8a3e6001dfd0d
     }
     
     /*if (IsEmptyListW(L)){
