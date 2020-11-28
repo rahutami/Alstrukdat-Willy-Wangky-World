@@ -121,5 +121,4 @@ void AngryCustomer(PrioQueue *Q);
 /* I.S. Q terdefinisi tidak kosong */
 /* F.S. Elemen Q tidak berkurang, tidak ada yang kesabarannya 0 */
 
-
 #endif

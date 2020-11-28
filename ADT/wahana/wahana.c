@@ -54,7 +54,6 @@ addressWahanaD SearchWahanaD (Kata inputWahana, ListWahanaD L)
     boolean found = false;
     addressWahanaD P = First(L);
     //ALGORITMA
-
     while (!found && (P != NilList)){
         if (IsKataSamaKata(inputWahana, NamaWahana(ElmtStatis(P)))){
             found = true;

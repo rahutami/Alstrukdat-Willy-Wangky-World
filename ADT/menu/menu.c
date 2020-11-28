@@ -137,7 +137,7 @@ void MainPhase(player * p1){
         if(enter){
             ReducePatience(&Q);
             PrintPrioQueue(Q);
-            AngryCustomer(&Q);
+            Q = AngryCustomer(Q);
         }
         enter = true;
 
