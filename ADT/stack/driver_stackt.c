@@ -78,3 +78,5 @@ int main() {
 }
 // COMMAND
 // gcc -o tes driver_stackt.c stackt.c -lm
+
+// gcc stackt.c driver_stackt.c ../mesinkata/mesinkata.c ../mesinkar/mesinkar.c ../wahana/wahana.c ../player/player.c ../jam/jam.c ../point/point.c -o tes

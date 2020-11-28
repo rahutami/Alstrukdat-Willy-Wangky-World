@@ -4,7 +4,8 @@
 
 int main() {
     Tab T;
-    Kata Tami;
+    keyType k;
+    valType v;
     //MakeEmptyDin(&T,10);
 
     //AddAsLastEl(&T,Tami,3);
@@ -13,6 +14,8 @@ int main() {
     printf("Baca isi\n");
     BacaIsi(&T);
     printf("Tulis isi\n");
+    TulisIsiTab(T);
+    DelLastEl(&T,&k,&v);
     TulisIsiTab(T);
     return 0;
 }

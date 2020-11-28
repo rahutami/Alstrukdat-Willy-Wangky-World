@@ -126,6 +126,9 @@ IdxType Search1(Tab T, MapEntry X);
 /* Jika tidak ada, mengirimkan IdxUndef */
 /* Menghasilkan indeks tak terdefinisi (IdxUndef) jika tabel T kosong */
 /* Skema Searching yang digunakan bebas */
+
+valType SearchVal(Tab T, keyType k);
+
 boolean SearchB(Tab T, keyType k, valType v);
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */

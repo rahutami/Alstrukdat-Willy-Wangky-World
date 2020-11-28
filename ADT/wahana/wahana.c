@@ -264,4 +264,4 @@ void initWahana(TreeWahanaS T)
     //player pindah ke bawah
 }
 
-void nextUpWahana()
+void nextUpWahana();

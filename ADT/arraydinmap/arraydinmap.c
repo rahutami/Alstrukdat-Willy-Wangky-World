@@ -225,6 +225,7 @@ IdxType Search1(Tab T, MapEntry X)
 /* Jika tidak ada, mengirimkan IdxUndef */
 /* Menghasilkan indeks tak terdefinisi (IdxUndef) jika tabel T kosong */
 /* Skema Searching yang digunakan bebas */
+/* KAYAKNYA GAPERLU SIH */
 {
     // Kamus Lokal
     int ans;
@@ -247,11 +248,37 @@ IdxType Search1(Tab T, MapEntry X)
     return ans;
 }
 
+valType SearchVal(Tab T, keyType k)
+/* Search apakah ada elemen tabel T yang keynya adalah k */
+/* Jika ada, menghasilkan value elemen tabel T yang keynya adalah k */
+/* Jika tidak ada atau tabel kosong, mengirimkan -1 */
+/* Skema Searching yang digunakan bebas */
+{
+    // Kamus Lokal
+    int ans;
+    int i;
+
+    // Algoritma
+    if(NbElmtDin(T) == 0) return -1; // Kalo gaketemu, return -1
+    // else
+    ans = -1;
+    i = GetFirstIdxDin(T)-1;
+
+    do{
+        i++;
+        if (IsKataSamaKata(Elmt(T,i).key,k)){
+            ans = Elmt(T,i).value;
+        }
+    } while (i<=GetLastIdxDin(T)&& (!IsKataSamaKata(Elmt(T,i).key,k)));
+    
+    return ans;
+}
+
 boolean SearchB(Tab T, keyType k, valType v)
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan true, jika tidak ada menghasilkan false */
 /* Skema searching yang digunakan bebas */
-/* NOTE: NANTI BAKAL BIKIN FUNGSI UNTUK NGECEK PERSEDIAAN, JADI CEK VALUENYA JUGA. */
+/* NOTE: NANTI BAKAL BIKIN FUNGSI UNTUK NGECEK PERSEDIAAN (?) (kalo bakal disimpen di arraydin), JADI CEK VALUENYA JUGA. */
 {
     // Kamus Lokal
     boolean ans;

@@ -25,6 +25,7 @@ typedef struct {
   Kata commandStack;
   int durasi;
   POINT PointWahana;
+  //int MapNum(P);
   // int MapNum(P); // MapNum
   Kata NamaBahan;
   int JumlahBahan;
@@ -109,5 +110,7 @@ void mainmain (Stack * S, aksi * X);
 void Upgrade (Stack *S, player *P, TreeWahanaS T);
 
 void PrintInfoStack (Stack S);
+
+boolean UangCukup (player *P, int harga);
 
 #endif
