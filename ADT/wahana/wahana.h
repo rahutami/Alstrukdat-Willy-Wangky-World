@@ -8,6 +8,8 @@
 #include "../boolean/boolean.h"
 #include "../listlinier/listlinier.h"
 #include "../mesinkata/mesinkata.h"
+#include "../peta/peta.h"
+#include "../player/player.h"
 
 typedef struct tElmtWahanaS *addressWahanaS;
 /*ElmtWahanaStatis merupakan Node dalam TreeWahanaS, 
@@ -174,4 +176,6 @@ void InsAfterW(ListWahanaD *L, addressWahanaD P, addressWahanaD Prec);
 void InsFirstW (ListWahanaD *L, addressWahanaD D);
 void PrintInfoWD (ListWahanaD L);
 addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana);
+
+void wahanaRusak();
 #endif

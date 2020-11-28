@@ -18,6 +18,10 @@ POINT MakePOINT (float X, float Y){
     
     return P;
 }
+
+boolean IsEqPOINT (POINT X, POINT P){
+    return (Absis(X)==Absis(P) && Ordinat(X)==Ordinat(P));
+}
 /* Membentuk sebuah POINT dari komponen-komponennya */
 
 /* *** KELOMPOK Interaksi dengan I/O device, BACA/TULIS  *** */
