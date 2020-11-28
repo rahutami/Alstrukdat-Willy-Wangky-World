@@ -175,14 +175,23 @@ void Undo (Stack *S, aksi *X) {
     Pop(S,X);
 }
 
-void Upgrade (Stack *S, aksi *X, player *P) {
+void Upgrade (Stack *S, player *P, TreeWahanaS T) {
     // Cek resource
-    // Cek uang
-    Money(*P) = -250; // misal biaya upgrade itu 250 (kalo mencukupi baru kurangin)
-    
-    printf("Ingin melakukan upgrade apa?\n List: \n");
-    // List Wahana yang bisa di upgrade ke sana
 
+    // Cek uang
+    /* 
+    if ((Money(*P) > 250)) {
+        Money(*P) = -250; // misal biaya upgrade itu 250 (kalo mencukupi baru kurangin)
+    
+    }
+    */
+    printf("Ingin melakukan upgrade apa?\n List: \n");
+   // PrintKata(&Root(T));
+    //PrintKata(Left(T));
+    //PrintKata(Right(T));
+    // List Wahana yang bisa di upgrade ke sana
+    //PrintKata(Left(TreeWahanaS));
+    //PrintKata(Right(TreeWahanaS));
     // Ketik nama wahana
     // Wahana pada lokasi (X,Y) berubah menjadi ...
     // ngecek kanan kiri atas bawah yg mana
