@@ -2,7 +2,11 @@
 #include <stdlib.h>
 #include "graph.h"
 
+<<<<<<< HEAD
 Graph GraphPeta;
+=======
+player Player;
+>>>>>>> 8d7e4657448da25d8c12f39456859781b02f5a64
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
@@ -255,10 +259,10 @@ void MakeLink(addressGraph * P){
 
     for (i = 0; i<NKolEff(Peta(*P)); i++){
         for(j = 0; j<NBrsEff(Peta(*P)); j++){
-            if(Elmt(Peta(*P), j, i) == '1') InsVLastLink(&(Link(*P)), 1);
-            else if(Elmt(Peta(*P), j, i) == '2') InsVLastLink(&(Link(*P)), 2);
-            else if(Elmt(Peta(*P), j, i) == '3') InsVLastLink(&(Link(*P)), 3);
-            else if(Elmt(Peta(*P), j, i) == '4') InsVLastLink(&(Link(*P)), 4);
+            if(ElmtMatriks(Peta(*P), j, i) == '1') InsVLastLink(&(Link(*P)), 1);
+            else if(ElmtMatriks(Peta(*P), j, i) == '2') InsVLastLink(&(Link(*P)), 2);
+            else if(ElmtMatriks(Peta(*P), j, i) == '3') InsVLastLink(&(Link(*P)), 3);
+            else if(ElmtMatriks(Peta(*P), j, i) == '4') InsVLastLink(&(Link(*P)), 4);
         }
     }
 }

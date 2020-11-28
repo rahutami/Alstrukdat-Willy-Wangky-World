@@ -111,15 +111,14 @@ void RandomizeQueue (PrioQueue *Q);
 /* I.S. Q terdefinisi dan kosong */
 /* F.S. Q terisi secara random */
 
-void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW);
+void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP);
 /* I.S. W adalah wahana, bisa tidak valid. Q adalah priority queue */
 /* F.S. Jika wahana terdapat pada salah satu list wahana di priority queue, maka */
 /*      wahana akan dikeluarkan dari list tersebut. Jika list menjadi kosong, antrian berkurang */
 
-void AngryCustomer(PrioQueue *Q);
+PrioQueue AngryCustomer(PrioQueue Q);
 /* Mengeluarkan elemen Q yang kesabarannya 0 */
 /* I.S. Q terdefinisi tidak kosong */
 /* F.S. Elemen Q tidak berkurang, tidak ada yang kesabarannya 0 */
-
 
 #endif

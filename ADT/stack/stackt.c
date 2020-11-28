@@ -18,7 +18,7 @@ Deskripsi: implementasi stack
 Stack stackExecute;
 
 //#define Nil -1
-//#define MaxEl 10
+//#define MaxElS 10
 /* Nil adalah stack dengan elemen kosong . */
 
 //typedef int aksi;
@@ -27,11 +27,11 @@ Stack stackExecute;
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 //typedef struct { 
- // aksi T[MaxEl]; /* tabel penyimpan elemen */
+ // aksi T[MaxElS]; /* tabel penyimpan elemen */
  // address TOP;  /* alamat TOP: elemen puncak */
 //} Stack;
 /* Definisi stack S kosong : S.TOP = Nil */
-/* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
+/* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxElS-1] */
 /* Jika S adalah Stack maka akses elemen : */
    /* S.T[(S.TOP)] untuk mengakses elemen TOP */
    /* S.TOP adalah alamat elemen TOP */
@@ -44,8 +44,8 @@ Stack stackExecute;
 /* *** Konstruktor/Kreator *** */
 void CreateEmpty (Stack *S)
 /* I.S. sembarang; */
-/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-/* jadi indeksnya antara 0.. MaxEl */
+/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxElS */
+/* jadi indeksnya antara 0.. MaxElS */
 /* Ciri stack kosong : TOP bernilai Nil */
 {
     Top(*S)=Nil;
@@ -59,7 +59,7 @@ boolean IsEmptyStack (Stack S)
 boolean IsFullStack (Stack S)
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 {
-    return(Top(S)==(MaxEl-1));
+    return(Top(S)==(MaxElS-1));
 }
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
 void Push (Stack * S, aksi X)
@@ -181,80 +181,16 @@ void Upgrade (Stack *S, player *P, TreeWahanaS T) {
 - Cek titik, krn cuma bisa upgrade di sekitar tempat yg ada wahana.
 - Cek uang dan resource, kalo gacukup tampilkan pesan error.
 - Kalo cukup => pengen upgrade apa?
+
+1. Setelah meminta command ini, program akan menampilkan daftar
+upgrade yang mungkin untuk tipe wahana tersebut.
+2. Jika resource untuk mengupgrade wahana tidak mencukupi, maka
+akan ditampilkan pesan error.
+3. Setelah itu, perintah eksekusi ini akan dimasukkan ke dalam
+stack
+
  */
-    // CEK UANG DAN RESOURCE
-    /* 
     
-    ListWahanaD listWahana; // Ini buat nanti insertlast (kalo udah)
-    Kata namaWahana;
-    printf("Input nama wahana: ");
-    STARTKATA();
-    SalinKata(CKata,&namaWahana);
-    printf("Ingin melakukan upgrade apa?\n List: \n");
-    if (SearchWahanaD(namaWahana,listWahana)) {
-        addressWahanaD addressUpgrade = SearchWahanaD(namaWahana,listWahana); // return addressWahanaD
-        addressWahanaS elmtStatisUpgrade = ElmtStatis(addressUpgrade);
-        printf("Ingin melakukan upgrade apa?2\n List: \n");
-        //PrintKata(NamaWahana(namaWahana));
-        PrintKata(NamaWahana(elmtStatisUpgrade));
-        PrintKata(NamaWahana(Left(elmtStatisUpgrade)));
-        PrintKata(NamaWahana(Right(elmtStatisUpgrade)));
-    }
-    else {
-        printf("Gak ketemu!!!\n");
-    }
-    */
-
-    //PrintKata(&NamaWahana(Left(namaWahana)));
-    //PrintKata(&NamaWahana(Right(namaWahana)));
-    /* */
-
-    TreeWahanaS TS;
-    addressWahanaS Q; // statis
-    
-   // addressWahanaD P = listWahana; // dinamis, ini gimana ya :<
-    /* 
-    addressWahanaS tempatWahanaS;
-    addressWahanaD tempatWahanaD;
-   // tempatWahanaD = Root(tempatWahanaS);
-    //tempatWahana = Root(T);
-    addressWahanaS kiri = Left(tempatWahanaS);
-    addressWahanaS kanan = Right(tempatWahanaS);
-    //addressWahanaS infonyaWahana = ElmtStatis(tempatWahana);
-    printf("Nama wahana yang ketemu : ");
-   /* tempatWahanaS = (SearchWahanaD(namaWahana,listWahana));
-    addressWahanaS infonyaWahana = ElmtStatis(tempatWahanaS);*/
-   /*  PrintKata(NamaWahana(tempatWahanaS));
-    PrintKata(NamaWahana(kiri));
-    PrintKata(NamaWahana(kanan)); */
-    // addressWahanaD P = LD;
-    /* 
-    ListWahanaD LD;
-
-
-    while (P != NULL){
-        P = Next(P);
-    }
-    if(P == NULL){
-        //not found
-    } else {
-        Q = ElmtStatis(P);
-        PrintKata(NamaWahana(Q));
-        ListWahanaD
-        // Upgradenya ke left/right Q
-        // Q = Left(Q)
-        ElmtStatis(P) = Q;
-        // -> isi sama wahana di Q
-
-        // -> P didelete
-        // InsertLast(Q);
-        InsertLast(Q,.);
-    } */
-
-  //kalo u
-   // PrintKata(&Root(T));
-    //PrintKata(Left(T));
-    //PrintKata(Right(T));
     // List Wahana yang bisa di upgrade ke sana
     //PrintKata(Left(TreeWahanaS));
     //PrintKata(Right(TreeWahanaS));
@@ -279,4 +215,8 @@ void PrintInfoStack (Stack S) {
 
 boolean UangCukup (player *P, int harga) {
     return(Money(*P)>=harga);
+}
+
+boolean BahanCukup (player *P, Kata NamaBahan, int JumlahBahan) {
+    return (SearchB(Tab(*P),NamaBahan,JumlahBahan));
 }

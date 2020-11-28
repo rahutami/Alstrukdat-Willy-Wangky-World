@@ -118,8 +118,8 @@ void ReducePatience(PrioQueue *Q) {
     /* ALGORITMA */
     i = Head(*Q);
     while(i <= Tail(*Q)) {
-        Patience(ElmtQueue(*Q, i)) -= 1;
-        Prio(ElmtQueue(*Q, i)) -= 1;
+        Patience(ElmtQueue(*Q, i)) = Patience(ElmtQueue(*Q, i)) - 1;
+        Prio(ElmtQueue(*Q, i)) = Prio(ElmtQueue(*Q, i)) - 1;
         i++;
     }
 }
@@ -231,7 +231,7 @@ void RandomizeQueue (PrioQueue *Q) {
 
 }
 
-void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
+void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP){
     /* I.S. W adalah wahana, bisa tidak valid. Q adalah priority queue */
     /* F.S. Jika wahana terdapat pada salah satu list wahana di priority queue, maka */
     /*      wahana akan dikeluarkan dari list tersebut. Jika list menjadi kosong, antrian berkurang */
@@ -240,7 +240,7 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
     addressList S;
     infotypeQueue del;
     infoLP customer;
-    addressWahanaD target = SearchWahanaD(W, LW);
+    // addressWahanaD target = SearchWahanaD(W, LW);
     /* ALGORITMA */
     if(!IsEmptyQueue(*Q)){
         L = InfoQueue(InfoHead(*Q));
@@ -248,52 +248,50 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
         if(S == NilList){
             printf("Wahana tidak ada di dalam antrian pelanggan. Silahkan coba lagi. \n\n");
         } else {
-            if (StatusWahana(target)) {
-                CJam(*P) = NextMenit(CJam(*P));
-                Dequeue(Q, &del);
-                if(NbElmt(InfoQueue(del)) > 1) {
-                    DelP(&InfoQueue(del), W);
-                    PlayerInfo(customer) = InfoQueue(del);
-                    PrintInfo(InfoQueue(del));
-                    printf("\n");
-                    Remaining(customer) = TimeWahana(ElmtStatis(target));
-                    InsVLastLP(LP, customer);
+            CJam(*P) = NextMenit(CJam(*P));
+            Dequeue(Q, &del);
+            if(NbElmt(InfoQueue(del)) > 1) {
+                DelP(&InfoQueue(del), W);
+                PlayerInfo(customer) = InfoQueue(del);
+                PrintInfo(InfoQueue(del));
+                printf("\n");
+                // Remaining(customer) = TimeWahana(ElmtStatis(target));
+                Remaining(customer) = 10;
+                InsVLastLP(LP, customer);
 
-                }
-                Money(*P) += PriceWahana(ElmtStatis(target));
-                TotalFreqWahana(target) += 1;
-                DailyFreqWahana(target) += 1;
-                IncomeWahana(target) +=PriceWahana(ElmtStatis(target));
-                printf("Selamat menikmati wahana ");
-                PrintKata(W);
-                printf("!\n\n");
-            } else {
-                printf("Maaf, wahana sedang dalam perbaikan.\n");
             }
+            // Money(*P) += PriceWahana(ElmtStatis(target));
+            // TotalFreqWahana(target) += 1;
+            // DailyFreqWahana(target) += 1;
+            // IncomeWahana(target) +=PriceWahana(ElmtStatis(target));
+            printf("Selamat menikmati wahana ");
+            PrintKata(W);
+            printf("!\n\n");
+            // if (StatusWahana(target)) {
+            // } else {
+            //     printf("Maaf, wahana sedang dalam perbaikan.\n");
+            // }
+            PrintPrioQueue(*Q);
         }
     } else {
         printf("Antrian kosong\n\n");
     }
 }
 
-void AngryCustomer(PrioQueue *Q) {
+PrioQueue AngryCustomer(PrioQueue Q) {
     /* Mengeluarkan elemen Q yang kesabarannya 0 */
     /* I.S. Q terdefinisi tidak kosong */
     /* F.S. Elemen Q tidak berkurang, tidak ada yang kesabarannya 0 */
-    /* KAMUS LOKAL */
-    int i;
     infotypeQueue del;
-    /* ALGORITMA */
-    i = Head(*Q);
-    while(i <= Tail(*Q)) {
-        Dequeue(Q, &del);
-        if(Patience(del) > 0) {
-            Enqueue(Q, del);
-        }
-<<<<<<< HEAD
-        i--;
-=======
-        i++;
->>>>>>> b22e940fea766d44145740c4eb3b368156e43f79
+    PrioQueue NewQ;
+    addressQueue P;
+    CreateEmptyQueue(&NewQ, 5);
+    P = Head(Q);
+
+    while(!IsEmptyQueue(Q)){
+        Dequeue(&Q, &del);
+
+        if(Patience(del) > 0) Enqueue(&NewQ, del);
     }
+    return NewQ;
 }

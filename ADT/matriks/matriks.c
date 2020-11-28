@@ -21,7 +21,7 @@ void MakeMATRIKS (int NB, int NK, MATRIKS * M)
 /* *** Selektor *** */
 // #define NBrsEff(M) (M).NBrsEff
 // #define NKolEff(M) (M).NKolEff
-// #define Elmt(M,i,j) (M).Mem[(i)][(j)]
+// #define ElmtMatriks(M,i,j) (M).Mem[(i)][(j)]
 
 /* *** Selektor "DUNIA MATRIKS" *** */
 boolean IsIdxValid (int i, int j)
@@ -66,7 +66,7 @@ ElType GetElmtDiagonal (MATRIKS M, indeks i)
 /* Mengirimkan elemen M(i,i) */
 {
     // ALGORITMA
-    return Elmt(M, i, i);
+    return ElmtMatriks(M, i, i);
 }
 
 /* ********** Assignment  MATRIKS ********** */
@@ -82,7 +82,7 @@ void CopyMATRIKS (MATRIKS MIn, MATRIKS * MHsl)
 
     for (i=GetFirstIdxBrs(MIn); i<=GetLastIdxBrs(MIn); i++){
         for (j=GetFirstIdxKol(MIn); j<=GetLastIdxKol(MIn); j++){
-            Elmt(*MHsl, i, j) = Elmt(MIn, i, j);
+            ElmtMatriks(*MHsl, i, j) = ElmtMatriks(MIn, i, j);
         }
     }
 }
@@ -106,7 +106,7 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK)
     
     for (i = GetFirstIdxBrs(*M); i <= GetLastIdxBrs(*M); i++){
         for (j = GetFirstIdxKol(*M); j <=GetLastIdxKol(*M); j++){
-            scanf("%d", &Elmt(*M, i, j));
+            scanf("%d", &ElmtMatriks(*M, i, j));
         }
     }
 }
@@ -127,7 +127,7 @@ void TulisMATRIKS (MATRIKS M)
     // ALGORITMA
     for (i = GetFirstIdxBrs(M); i <= GetLastIdxBrs(M); i++){
         for (j = GetFirstIdxKol(M); j <=GetLastIdxKol(M); j++){
-            printf("%c", Elmt(M, i, j));
+            printf("%c", ElmtMatriks(M, i, j));
             if(j != GetLastIdxKol(M)) printf(" ");
         }
         if(i != GetLastIdxBrs(M)) printf("\n");
@@ -145,12 +145,12 @@ int NBElmt (MATRIKS M)
 void SearchMatriks(MATRIKS M, int * i, int * j, ElType X){
     *i = 0;
 
-    while(*i <= GetLastIdxBrs(M) && Elmt(M, *i, *j) != X){
+    while(*i <= GetLastIdxBrs(M) && ElmtMatriks(M, *i, *j) != X){
         *j = 0;
-        while(*j <= GetLastIdxKol(M) && Elmt(M, *i, *j) != X){
+        while(*j <= GetLastIdxKol(M) && ElmtMatriks(M, *i, *j) != X){
             (*j)++;
         }
-        if(Elmt(M, *i, *j) != X) (*i)++;
+        if(ElmtMatriks(M, *i, *j) != X) (*i)++;
     }
 
     if(*i > GetLastIdxBrs(M) || *j > GetLastIdxKol(M)){

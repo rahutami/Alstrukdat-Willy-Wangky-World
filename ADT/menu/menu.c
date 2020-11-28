@@ -77,7 +77,7 @@ void Preparation(player *p1){
             printf("O = Office\n");
             printf("^, >, v, < = Gerbang\n");
             printf("===================================\n");
-            TulisPlayer(*p1);
+            TulisPlayer();
             printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
             printf("Opening Time: "); TulisJAM(JamBuka); printf("\n");
             printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamBuka)); 
@@ -101,6 +101,9 @@ void Preparation(player *p1){
             ListCommand();
         } else if (IsKataSama("build")){
             buildWahana(Position(Player), &WahanaBuilt);
+            AddWToPeta();
+        } else if (IsKataSama("buy")){
+            CommmandBuyArray();
         }
         // nanti tambahin elif aja buat command yang lain
         else if(!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute"))){
@@ -121,11 +124,9 @@ void MainPhase(player * p1){
     listPlayer LP;
     List del;
     boolean enter = false;
-
     CreateEmptyQueue(&Q, 5);
     CreateEmptyLP(&LP);
     RandomizeQueue(&Q);
-
 
     do{
         if(!IsEmptyLP(LP)){
@@ -135,14 +136,13 @@ void MainPhase(player * p1){
                 FirstEnqueue(&Q, del);
             }
         }
-        
         if(enter){
             ReducePatience(&Q);
+            PrintPrioQueue(Q);
+            Q = AngryCustomer(Q);
         }
-        
         enter = true;
 
-        AngryCustomer(&Q);
         
         if (!IsKataSama("command")){
             printf("===================================\n");
@@ -159,7 +159,7 @@ void MainPhase(player * p1){
             printf("^, >, v, < = Gerbang\n");
             printf("===================================\n");
             printf("\n");
-            TulisPlayer(*p1); //print nama dan uang
+            TulisPlayer(); //print nama dan uang
             printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
             printf("Closing Time: "); TulisJAM(JamTutup); printf("\n");
             printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamTutup)); 
@@ -185,17 +185,18 @@ void MainPhase(player * p1){
         } else if (IsKataSama("command")){
             ListCommand();
         } else if (IsKataSama("serve")) {
-            addressGraph CPeta = FirstGraph(GraphPeta);
-            int x = X(*p1), y = Y(*p1);
-            while(ID(CPeta) != MapNum(*p1)){
-                CPeta = NextGraph(CPeta);
-            }
             ADVKATA();
-            if(Elmt(Peta(CPeta), x + 1, y) == 'A' || Elmt(Peta(CPeta), x, y+1) == 'A' || Elmt(Peta(CPeta), x - 1, y) == 'A' || Elmt(Peta(CPeta), x, y - 1) == 'A'){
-                Serve(p1, CKata, &Q, &LP, WahanaBuilt);
-            } else {
-                printf("Silahkan pergi ke sebelah antrian untuk menggunakan command ini \n\n");
-            }
+            Serve(p1, CKata, &Q, &LP);
+            // addressGraph CPeta = FirstGraph(GraphPeta);
+            // int x = X(*p1), y = Y(*p1);
+            // while(ID(CPeta) != MapNum(*p1)){
+            //     CPeta = NextGraph(CPeta);
+            // }
+            // ADVKATA();
+            // if(Elmt(Peta(CPeta), x + 1, y) == 'A' || Elmt(Peta(CPeta), x, y+1) == 'A' || Elmt(Peta(CPeta), x - 1, y) == 'A' || Elmt(Peta(CPeta), x, y - 1) == 'A'){
+            // } else {
+            //     printf("Silahkan pergi ke sebelah antrian untuk menggunakan command ini \n\n");
+            // }
         }
         // nanti tambahin elif aja buat command yang lain 
         // else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {

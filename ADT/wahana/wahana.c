@@ -262,22 +262,36 @@ stack*/
 {
     //Menampilkan wahana dasar (ada 10, diambil dari tree wahana)
     addressWahanaD P, Prec;
- 
-    printf("Ingin membangun wahana apa?\n");
+
+    printf("\nIngin membangun wahana apa?\n-> ");
     STARTKATA(); 
+    if (!IsKataSama (""))
+    {
+        if(SearchTree(CKata,UpgradeTree))
+        {
+            //masukkin ke list  wahana
+            P = AlokWahana(Pos, CKata); 
+            if (IsEmptyListW(*L)){
+                InsFirstW(L,P);
+            }
+            else{
+                Prec = First(*L); 
 
-    P = AlokWahana(Pos, CKata); 
-    if (IsEmptyListW(*L)){
-        InsFirstW(L,P);
-    }
-    else{
-        Prec = First(*L); 
-
-        while (Next(Prec)!=NilList){
-            Prec = Next(Prec);
+                while (Next(Prec)!=NilList){
+                    Prec = Next(Prec);
+                }
+                InsAfterW(L, P, Prec);
+            }
         }
-        InsAfterW(L, P, Prec);
+        else
+        {
+            printf("%s\n","Wahana tidak ada dalam list wahana" );
+        }   
     }
+    else
+	{
+		printf("%s\n","Masukkan Anda enter" );
+	}
 }
 
 boolean IsEmptyListW (ListWahanaD L){
@@ -455,63 +469,45 @@ void wahanaRusak(addressWahanaS *P, addressWahanaD *D){
 
 boolean isWahanaRusak (POINT Pos, addressWahanaD *D){
     
-    //include apa ya;(
-    ListWahanaD L;
-    addressGraph CPeta = FirstGraph(GraphPeta); //kenapa gabisa ajg
-
-    while(ID(CPeta) != MapNum(Player)) 
-        CPeta = NextGraph(CPeta);
-    // Pos : Posisi wahana
-
-    if(ElmtMatriks(Peta(CPeta), x+1, y) == 'W'){
-        POINT Pos = MakePOINT(x+1, y);
-    } 
-    else if (ElmtMatriks(Peta(CPeta), x, y+1) == 'W'){
-        POINT Pos = MakePOINT(x, y+1);
-    }
-    else if (ElmtMatriks(Peta(CPeta), x - 1, y) == 'W'){
-        POINT Pos = MakePOINT(x-1, y);
-    }
-    else if (ElmtMatriks(Peta(CPeta), x, y - 1) == 'W'){
-        POINT Pos = MakePOINT(x, y-1);
-    }
+    POINT Pemain; //belum tau cara ambil posisi pemain
+    POINT Pos = WahanaSebelah(Pemain);
     
-    *D = SearchWahanaDP(Pos,L);
+    *D = SearchWahanaDP(Pos,WahanaBuilt);
     if (*D != NilList){
         return (!StatusWahana(*D));
     }
 }
 
 //masi belom bener
-POINT WahanaSebelah (POINT Pemain, POINT Pos){
-    ListWahanaD L;
+POINT WahanaSebelah (POINT Pemain){
     addressGraph CPeta = FirstGraph(GraphPeta); //kenapa gabisa ajg
 
     while(ID(CPeta) != MapNum(Player)) 
         CPeta = NextGraph(CPeta);
     // Pos : Posisi wahana
+    int x = Absis(Pemain);
+    int y = Ordinat(Pemain);
 
     if(ElmtMatriks(Peta(CPeta), x+1, y) == 'W'){
-        &Pos = MakePOINT(x+1, y);
-        return Pos;
+        return MakePOINT(x+1, y);
     } 
     else if (ElmtMatriks(Peta(CPeta), x, y+1) == 'W'){
-        POINT Pos = MakePOINT(x, y+1);
+        return MakePOINT(x, y+1);
     }
     else if (ElmtMatriks(Peta(CPeta), x - 1, y) == 'W'){
-        POINT Pos = MakePOINT(x-1, y);
+        return MakePOINT(x-1, y);
     }
     else if (ElmtMatriks(Peta(CPeta), x, y - 1) == 'W'){
-        POINT Pos = MakePOINT(x, y-1);
+        return MakePOINT(x, y-1);
     }
 }
 
 //repair
 void Repair(addressWahanaD *D){
-    ListWahanaD L;
-    POINT Pemain, POINT PosWahana;
-    POINT Pos = WahanaSebelah(Pemain,PosWahana);
-    *D = SearchWahanaDP(Pos,L);
+    POINT Pemain;
+    POINT Pos = WahanaSebelah(Pemain);
+
+    *D = SearchWahanaDP(Pos,WahanaBuilt);
     if (*D!=NilList){
         StatusWahana(*D) = true;
     }

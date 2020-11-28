@@ -19,4 +19,4 @@ int main() {
     TulisIsiTab(T);
     return 0;
 }
-// gcc arraydinmap.c driver_arraydinmap.c ../mesinkata/mesinkata.c ../mesinkar/mesinkar.c -o tes
+// gcc arraydinmap.c driver_arraydinmap.c ../mesinkata/mesinkata.c ../mesinkar/mesinkar.c -o driverarraydinmap

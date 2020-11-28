@@ -10,6 +10,7 @@
 #include "../mesinkata/mesinkata.h"
 #include "../peta/peta.h"
 #include "../player/player.h"
+#include "../matriks/matriks.h"
 
 typedef struct tElmtWahanaS *addressWahanaS;
 /*ElmtWahanaStatis merupakan Node dalam TreeWahanaS, 
@@ -164,18 +165,42 @@ D  F   I
 */
 
 void buildWahana(POINT Pos, ListWahanaD *L);
+
 addressWahanaD AlokWahana (POINT P, Kata NamaWahana);
 /*membuat node dalam list linier elemen dinamis
 untuk build wahana baru*/
 
 boolean SearchTree(Kata X, addressWahanaS P);
-boolean SearchTree2 (Kata X, TreeWahanaS T);
+
 boolean IsEmptyListW (ListWahanaD L);
 
 void InsAfterW(ListWahanaD *L, addressWahanaD P, addressWahanaD Prec);
-void InsFirstW (ListWahanaD *L, addressWahanaD D);
-void PrintInfoWD (ListWahanaD L);
-addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana);
 
-void wahanaRusak();
+void InsFirstW (ListWahanaD *L, addressWahanaD D);
+
+void PrintInfoWD (ListWahanaD L);
+
+addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana);
+//Mencari address Statis dari Upgrade Tree (berdasarkan nama yg diinput)
+
+addressWahanaS SearchAddressID (TreeWahanaS P, int num);
+//Mencari address Statis dari Upgrade Tree (berdasarkan ID yg diinput)
+
+addressWahanaD SearchWahanaDP (POINT Pos, ListWahanaD L);
+//Mencari address Dinamis dari WahanaBuilt (berdasarkan POINT Posisi Wahana yg diinput)
+
+void wahanaRusak(addressWahanaS *P, addressWahanaD *D);
+//random ID wahana yang rusak dari ID 1-10
+//cari address statis P dan address dinamis D yang bersesuaian dgn ID
+//mengubah StatusWahana pada address dinamis D menjadi 'false'
+
+boolean isWahanaRusak (POINT Pos, addressWahanaD *D);
+//Mengembalikan status wahana yang memiliki posisi Pos
+
+POINT WahanaSebelah (POINT Pemain);
+//Mengembalikan POINT dari wahana yang berada di sebelah Pemain
+
+void Repair(addressWahanaD *D);
+//Mengubah StatusWahana pada address dinamis D menjadi 'true'
+
 #endif
