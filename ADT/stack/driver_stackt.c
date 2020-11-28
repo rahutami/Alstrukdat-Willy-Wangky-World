@@ -27,6 +27,8 @@ int main() {
     printf("Stack, setelah 2 dipush ke stack:\n");
     PrintStack(stacktest);
     printf("Jumlah durasi semua aksi dalam stack: %d \n", SumDurasiStack(stacktest));
+    
+    PrintInfoStack(stacktest);
     //S=InverseStack(stacktest);
     //PrintStack(&S);
 
@@ -81,9 +83,12 @@ int main() {
     //TreeWahanaS T;
     MakeTree();
     PrintTree(UpgradeTree);
+
     Kata namaWahana;
+    /* 
     POINT Post = MakePOINT(1,1);
     buildWahana(Post, &WahanaBuilt);
+    */
     printf("Inputan kamu adalah: ");
     STARTKATA(); // Ini masih salah :>
     printf("ok");
@@ -107,6 +112,8 @@ int main() {
     }
     */
     /* CARI */
+    /*  ini versi pake wahana built */
+    /*
     addressWahanaS elmtStatisUpgrade = ElmtStatis(SearchWahanaD(namaWahana,WahanaBuilt));
     if (elmtStatisUpgrade != NULL) {
         printf("Ketemu, nama wahana: "); printf("\n");
@@ -208,13 +215,12 @@ int main() {
         printf(" tidak ditemukan pada tree. ");
     }
 
-
     */
+    
 
-
-    /* WOI KENAPA GAK BISA AAAAAAAAKkk
+    /* Ini versi awal, yang udah bener BISMILLAH */
     printf("\n");
-    addressWahanaS elmtStatisUpgrade = SearchAddress(T,namaWahana);
+    addressWahanaS elmtStatisUpgrade = SearchAddress(UpgradeTree,namaWahana);
     if (elmtStatisUpgrade != NULL) { // Wahana yang dicari ada
         printf("Ketemu, nama wahana: "); printf("\n");
         PrintKata(NamaWahana(elmtStatisUpgrade));
@@ -267,7 +273,7 @@ int main() {
             // elmtUpgrade = Left atau elmtUpgrade = Right
             // Melakukan upgrade
             addressWahanaS parent = elmtStatisUpgrade; // Kayaknya mau bikin fungsi parent
-            addressWahanaS addrElmtUpgraded = SearchAddress(T,elmtUpgrade);
+            addressWahanaS addrElmtUpgraded = SearchAddress(UpgradeTree,elmtUpgrade);
             elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
             // Harusnya udah berubah nih
             // INI BUAT NGETES
@@ -282,7 +288,7 @@ int main() {
         PrintKata(namaWahana);
         printf(" tidak ditemukan pada tree. ");
     }
-    */    
+     
 
 /* 
 
@@ -294,4 +300,4 @@ int main() {
 // COMMAND
 // gcc -o tes driver_stackt.c stackt.c -lm
 
-// gcc ../maplist/maplist.c stackt.c driver_stackt.c ../mesinkata/mesinkata.c ../mesinkar/mesinkar.c ../wahana/wahana.c ../player/player.c ../jam/jam.c ../point/point.c -o tes
+// gcc ../maplist/maplist.c stackt.c driver_stackt.c ../mesinkata/mesinkata.c ../mesinkar/mesinkar.c ../wahana/wahana.c ../player/player.c ../jam/jam.c ../point/point.c -o yubisayu
