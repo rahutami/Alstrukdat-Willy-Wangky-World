@@ -5,6 +5,7 @@
 #include "../jam/jam.h"
 #include "../mesinkar/mesinkar.h"
 #include "../mesinkata/mesinkata.h"
+#include "../arraydinmap/arraydinmap.h"
 
 #define MaxLength 20
 
@@ -15,7 +16,9 @@ typedef struct {
     JAM CJam;
     int Money;
     int Day;
+    // Tab TabBahan; hem di struct atau bikin empty aja pas di awal ?
 } player;
+
 
 extern player Player;
 
@@ -26,6 +29,8 @@ extern player Player;
 #define Money(P) (P).Money
 #define CJam(P) (P).CJam
 #define Day(P) (P).Day
+#define Tab(P) (P).TabBahan 
+// hem di struct atau bikin empty aja ya,,
 
 JAM JamBuka;
 JAM JamTutup;
