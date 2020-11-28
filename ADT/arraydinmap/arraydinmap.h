@@ -95,6 +95,9 @@ boolean IsFullDin(Tab T);
 /* ********** BACA dan TULIS dengan INPUT/OUTPUT device ********** */
 /* *** Mendefinisikan isi tabel dari pembacaan *** */
 void BacaIsi(Tab *T);
+void TulisIsiTab(Tab T);
+
+void BacaIsiMaterial(Tab *T);
 /* I.S. T sembarang dan sudah dialokasikan sebelumnya */
 /* F.S. Tabel T terdefinisi */
 /* Proses : membaca banyaknya elemen T dan mengisi nilainya */
@@ -104,7 +107,7 @@ void BacaIsi(Tab *T);
 /* 2. Jika 0 < N <= MaxElement(T); Lakukan N kali: Baca elemen mulai dari indeks
       IdxMin satu per satu diakhiri enter */
 /*    Jika N = 0; hanya terbentuk T kosong */
-void TulisIsiTab(Tab T);
+void TulisIsiTabMaterial(Tab T);
 /* Proses : Menuliskan isi tabel dengan traversal, tabel ditulis di antara kurung siku;
    antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan karakter di depan,
    di tengah, atau di belakang, termasuk spasi dan enter */
