@@ -88,6 +88,9 @@ typedef addressWahanaS TreeWahanaS; //ganti jd ini keknya
 #define NextWahana(D) (D)->next
 #define ElmtStatis(D) (D)->ElmtStatis
 
+extern TreeWahanaS UpgradeTree;
+extern ListWahanaD WahanaBuilt;
+
 void Details(Kata namaWahana, ListWahanaD L);
 /* I.S namaWahana dimasukkan user */
 /* F.S Menampilkan detail dari wahana*/
@@ -103,7 +106,7 @@ addressWahanaD SearchWahanaD (Kata namaWahana, ListWahanaD L);
 void SubTree(addressWahanaS parent, addressWahanaS l, addressWahanaS r);
 /* Membuat pohon dengan parent, left, right*/
 
-void MakeTree(TreeWahanaS *T);
+void MakeTree();
 /* I.S P adalah tree kosong */
 /* F.S P adalah tree berisi ElmtWahanaStatis yang diambil dari file txt */
 
@@ -159,7 +162,7 @@ D  F   I
 */
 
 void buildWahana(POINT Pos, ListWahanaD *L);
-addressWahanaD AlokWahana (POINT P, Kata NamaWahana, TreeWahanaS T);
+addressWahanaD AlokWahana (POINT P, Kata NamaWahana);
 /*membuat node dalam list linier elemen dinamis
 untuk build wahana baru*/
 

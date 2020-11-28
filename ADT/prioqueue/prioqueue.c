@@ -250,8 +250,6 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
         } else {
             if (StatusWahana(target)) {
                 CJam(*P) = NextMenit(CJam(*P));
-                ReducePatience(Q);
-                AngryCustomer(Q);
                 Dequeue(Q, &del);
                 if(NbElmt(InfoQueue(del)) > 1) {
                     DelP(&InfoQueue(del), W);
@@ -307,5 +305,6 @@ void AngryCustomer(PrioQueue *Q) {
         if(Patience(del) > 0) {
             Enqueue(Q, del);
         }
+        i--;
     }
 }

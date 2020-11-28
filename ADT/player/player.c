@@ -6,6 +6,7 @@ boolean EndKata;
 Kata CKata;
 JAM JamBuka;
 JAM JamTutup;
+player Player;
 
 void CreatePlayer(player *P){
     CopyKata(CKata, &(P->Name));
