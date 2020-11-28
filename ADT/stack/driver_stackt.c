@@ -106,9 +106,10 @@ int main() {
     }
     */
     /* CARI */
+    /* WOI KENAPA GAK BISA AAAAAAAAKkk
     printf("\n");
     addressWahanaS elmtStatisUpgrade = SearchAddress(T,namaWahana);
-    if (elmtStatisUpgrade != NULL) {
+    if (elmtStatisUpgrade != NULL) { // Wahana yang dicari ada
         printf("Ketemu, nama wahana: "); printf("\n");
         PrintKata(NamaWahana(elmtStatisUpgrade));
         printf("Ingin melakukan upgrade apa?\n List: \n");
@@ -116,22 +117,47 @@ int main() {
             printf("Tidak dapat diupgrade.");
         }
         else { // bisa diupgrade
-            if (Left(elmtStatisUpgrade)!=NULL){
-                PrintKata(NamaWahana(Left(elmtStatisUpgrade))); printf("\n");
-            } 
-            if (Right(elmtStatisUpgrade)!=NULL) {
-                PrintKata(NamaWahana(Right(elmtStatisUpgrade))); printf("\n");
-            }
+         
             Kata elmtUpgrade;
-            printf("Mau upgrade kemana: ");
-            STARTKATA();
-            CopyKata(CKata,&elmtUpgrade);
-            // !!! Kalo salah satunya NULL bisa segmentation fault, biar gak segmentationfault gimana yh kondisinya
-            while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade)))) && (!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
-                printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+            if (Left(elmtStatisUpgrade)!=NULL && Right(elmtStatisUpgrade)==NULL){ // Cuma bisa upgrade ke left
+                PrintKata(NamaWahana(Left(elmtStatisUpgrade))); printf("\n");
+                printf("Mau upgrade kemana: ");
                 STARTKATA();
                 CopyKata(CKata,&elmtUpgrade);
+                while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade))))) {
+                    printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                    STARTKATA();
+                    CopyKata(CKata,&elmtUpgrade);
+                }
+            } 
+            else if (Left(elmtStatisUpgrade)==NULL && Right(elmtStatisUpgrade)!=NULL){ // Cuma bisa upgrade ke right
+                PrintKata(NamaWahana(Right(elmtStatisUpgrade))); printf("\n");
+                printf("Mau upgrade kemana: ");
+                STARTKATA();
+                CopyKata(CKata,&elmtUpgrade);
+                while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
+                    printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                    STARTKATA();
+                    CopyKata(CKata,&elmtUpgrade);
+                }
             }
+            else { // Bisa diupgrade ke left ataupun right
+
+                PrintKata(NamaWahana(Left(elmtStatisUpgrade))); printf("\n");
+                PrintKata(NamaWahana(Right(elmtStatisUpgrade))); printf("\n");
+                printf("Mau upgrade kemana: ");
+                STARTKATA();
+                CopyKata(CKata,&elmtUpgrade);
+                while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade)))) && (!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
+                    printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                    STARTKATA();
+                    CopyKata(CKata,&elmtUpgrade);
+                }
+            }
+
+          
+            // !!! Kalo salah satunya NULL bisa segmentation fault, biar gak segmentationfault gimana yh kondisinya GUE MENTOK
+
             // elmtUpgrade = Left atau elmtUpgrade = Right
             // Melakukan upgrade
             addressWahanaS parent = elmtStatisUpgrade; // Kayaknya mau bikin fungsi parent
@@ -145,14 +171,12 @@ int main() {
             printf("Nama wahana sebelumnya  : ");PrintKata(NamaWahana(parent));printf("\n");
             //printf("Posisinya tetep         : ");TulisPOINT(PositionWahana());
         }
-
-
-        //  MELAKUKAN UPGRADE
     }
-    else {
+    else { // ga ketemu
         PrintKata(namaWahana);
         printf(" tidak ditemukan pada tree. ");
     }
+    */
     /* 
 
 
