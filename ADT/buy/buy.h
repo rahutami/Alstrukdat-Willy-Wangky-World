@@ -3,9 +3,13 @@ merupakan bagian preparation phase
 yang menampilkan commad BUY
 */
 
-#include "../maplist/maplist.h"
-//nclude "../stack/stack.h"
+#include "../arraydinmap/arraydinmap.h"
+#include "../stack/stackt.h"
+#include "../point/point.h"
+#include "../mesinkata/mesinkata.h"
 #include <stdio.h>
 
-void CommmandBuy();
 // melakukan semua perintah yang ada didalam Command Buy
+
+
+void CommmandBuyArray();

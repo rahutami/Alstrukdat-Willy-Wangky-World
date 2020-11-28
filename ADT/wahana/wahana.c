@@ -269,6 +269,7 @@ void initWahana(TreeWahanaS T)
     //player pindah ke bawah
 }
 
+<<<<<<< HEAD
 void buildWahana(POINT Pos)
 /*Command ini digunakan untuk membuat wahana baru di petak di mana
 pemain sedang berdiri.
@@ -370,3 +371,6 @@ void PrintInfoWD (ListWahanaD L) {
         printf(")");
     }
 }
+=======
+void nextUpWahana();
+>>>>>>> 99c160cec7e7330e6f1d485795ea8e573beeff12

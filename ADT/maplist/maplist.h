@@ -7,7 +7,7 @@ definisi Map */
 
 #include "../mesinkata/mesinkata.h"
 
-#define Nil NULL
+//#define Nil NULL
 
 typedef int ValType;
 typedef Kata KeyType;
@@ -23,32 +23,32 @@ typedef struct tMap {
 } ElmtMap;
 
 typedef struct {
-	address First;
+	address FirstMap;
 } Map;
 
 /* selektor tipe bentukan */
 
 #define Key(P) (P)->key
 #define Val(P) (P)->val
-#define Next(P) (P)->next
-#define First(M) ((M).First)
+#define NextMap(P) (P)->next
+#define FirstMap(M) ((M).FirstMap)
 
 
 boolean IsEmpty (Map M);
-/* Mengirim true jika First(M) = nil */
+/* Mengirim true jika FirstMap(M) = nil */
 
 /* *** Kreator *** */
 void CreateEmptyMap (Map *M);
 /* I.S. sembarang */
-/* F.S. Sebuah First Map M terbentuk dan salah satu kondisi sbb: */
-/* First(M) = nil
+/* F.S. Sebuah FirstMap Map M terbentuk dan salah satu kondisi sbb: */
+/* FirstMap(M) = nil */
 
 
 /* *** Destruktor *** */
-address Alokasi (KeyType X, ValType Y );
+address AlokasiMap (KeyType X, ValType Y );
 /* I.S. sembarang */
-/* F.S. Sebuah First Map M terbentuk dan salah satu kondisi sbb: */
-/* Jika alokasi berhasil, Key(M) = nil dan Val(M) = nil dan Next(M) = nil */
+/* F.S. Sebuah FirstMap Map M terbentuk dan salah satu kondisi sbb: */
+/* Jika alokasi berhasil, Key(M) = nil dan Val(M) = nil dan NextMap(M) = nil */
 /* alokasi dilakuka sampai berhasil*/
 
 

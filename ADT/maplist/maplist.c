@@ -14,41 +14,41 @@ Deskripsi: file body maplist.h
 
 #define Key(P) (P)->key
 #define Val(P) (P)->val
-#define Next(P) (P)->next
-#define First(M) ((M).First)
+#define NextMap(P) (P)->next
+#define FirstMap(M) ((M).FirstMap)
 */
 
 
 boolean IsEmpty (Map M)
-/* Mengirim true jika First(M) = nil */
+/* Mengirim true jika FirstMap(M) = nil */
 {
-	return First(M) == Nil;
+	return FirstMap(M) == NULL;
 }
 
 /* *** Kreator *** */
 void CreateEmptyMap (Map *M)
 /* I.S. sembarang */
-/* F.S. Sebuah First Map M terbentuk dan salah satu kondisi sbb: */
-/* First(M) = nil*/
+/* F.S. Sebuah FirstMap Map M terbentuk dan salah satu kondisi sbb: */
+/* FirstMap(M) = nil*/
 {
-	First(*M) = Nil;
+	FirstMap(*M) = NULL;
 }
 
 
 /* *** Destruktor *** */
-address Alokasi (KeyType X, ValType Y )
+address AlokasiMap (KeyType X, ValType Y )
 /* I.S. sembarang */
-/* F.S. Sebuah First Map M terbentuk dan salah satu kondisi sbb: */
-/* Jika alokasi berhasil, Key(M) = nil dan Val(M) = nil dan Next(M) = nil */
+/* F.S. Sebuah FirstMap Map M terbentuk dan salah satu kondisi sbb: */
+/* Jika alokasi berhasil, Key(M) = nil dan Val(M) = nil dan NextMap(M) = nil */
 /* alokasi dilakuka sampai berhasil*/
 {
 	address P;
-	P = Nil;
+	P = NULL;
 	P = (ElmtMap *) malloc(sizeof(ElmtMap));
-	if(P != Nil){
+	if(P != NULL){
 		Key(P) = X;
 		Val(P) = Y;
-		Next(P) = Nil;
+		NextMap(P) = NULL;
 	}
 
 	return P;
@@ -68,17 +68,17 @@ void DeAlokasi(address *M)
 void Insert (Map *M, KeyType X, ValType Y)
 /* Proses: menanmbahka key dan val */
 {
-	address P = Alokasi(X,Y);
-	if(P != Nil){
+	address P = AlokasiMap(X,Y);
+	if(P != NULL){
 		if(IsEmpty(*M)){
-			First(*M) = Alokasi(X,Y);
+			FirstMap(*M) = AlokasiMap(X,Y);
 		}else{
-			P = First(*M);
-			while(Next(P) != Nil){
-				P = Next(P);
+			P = FirstMap(*M);
+			while(NextMap(P) != NULL){
+				P = NextMap(P);
 			}
-			//Kondisi Next = nill
-			Next(P) = Alokasi(X,Y);
+			//Kondisi NextMap = nill
+			NextMap(P) = AlokasiMap(X,Y);
 		}
 	}
 }
@@ -87,9 +87,9 @@ boolean SearcKey(Map *M,KeyType X)
 // menegmbakikan true jika key ada 
 {
 	address P;
-	P = First(*M);
-	while (P != Nil && !IsKataSamaKata (Key(P), X)){
-		P = Next(P);
+	P = FirstMap(*M);
+	while (P != NULL && !IsKataSamaKata (Key(P), X)){
+		P = NextMap(P);
 	}
 	return IsKataSamaKata (Key(P), X);
 }
@@ -98,9 +98,9 @@ int SearcVal(Map *M,KeyType X)
 // menegmbakikan val dari key jika ada , jika tidak val = -1
 {
 	address P;
-	P = First(*M);
-	while (P != Nil && !IsKataSamaKata (Key(P), X)){
-		P = Next(P);
+	P = FirstMap(*M);
+	while (P != NULL && !IsKataSamaKata (Key(P), X)){
+		P = NextMap(P);
 	}
 	if (IsKataSamaKata (Key(P), X)){
 		return Val(P);

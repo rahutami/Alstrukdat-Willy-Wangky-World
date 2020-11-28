@@ -127,7 +127,8 @@ void PrintStack (Stack S) { // Ini biar ngebantu aja
     else {
         while (!IsEmptyStack(S)) {
             aksi top = InfoTop(S);
-            printf("%d\n", top.durasi);
+            printf("Uang yang dibutuhkan per aksi: %d\n", top.uang);
+            printf("Durasi yang dibutuhkan per aksi: %d\n", top.durasi);
             Pop(&S,&X);
             //Push(&S,top);
         }
@@ -176,16 +177,55 @@ void Undo (Stack *S, aksi *X) {
 }
 
 void Upgrade (Stack *S, player *P, TreeWahanaS T) {
-    // Cek resource
+    // CEK UANG DAN RESOURCE
 
-    // Cek uang
-    /* 
-    if ((Money(*P) > 250)) {
-        Money(*P) = -250; // misal biaya upgrade itu 250 (kalo mencukupi baru kurangin)
     
-    }
-    */
+    ListWahanaD listWahana;
+    Kata namaWahana;
     printf("Ingin melakukan upgrade apa?\n List: \n");
+    addressWahanaS Coaster1 = Root(T);
+    addressWahanaS Heli2 = Left(Root(T));
+    addressWahanaS Water3 = Right(Root(T));
+    printf("List:\n");
+    printf("  -"); PrintKata(NamaWahana(Coaster1));printf("\n");
+    printf("  -"); PrintKata(NamaWahana(Heli2));printf("\n");
+    printf("  -"); PrintKata(NamaWahana(Water3));printf("\n");
+    /* 
+    addressWahanaS tempatWahanaS;
+    addressWahanaD tempatWahanaD;
+   // tempatWahanaD = Root(tempatWahanaS);
+    //tempatWahana = Root(T);
+    addressWahanaS kiri = Left(tempatWahanaS);
+    addressWahanaS kanan = Right(tempatWahanaS);
+    //addressWahanaS infonyaWahana = ElmtStatis(tempatWahana);
+    printf("Nama wahana yang ketemu : ");
+    /* 
+    tempatWahanaS = (SearchWahanaD(namaWahana,listWahana));
+    addressWahanaS infonyaWahana = ElmtStatis(tempatWahanaS);*/
+   /*  PrintKata(NamaWahana(tempatWahanaS));
+    PrintKata(NamaWahana(kiri));
+    PrintKata(NamaWahana(kanan)); */
+    // addressWahanaD P = LD;
+   /* 
+    while (tempatWahanaS != NULL){
+        tempatWahanaS = Next(tempatWahanaS);
+    }
+
+    if(tempatWahanaS == NULL){
+        //not found
+    } else {
+        addressWahanaS Q = ElmtStatis(tempatWahanaS);
+        // Upgradenya ke left/right Q
+        // Q = Left(Q)
+        Q = Left(Q);
+        PrintKata(NamaWahana(Left(Q));
+        //ElmtStatis(tempatWahanaS) = Q;
+        // -> isi sama wahana di Q
+        // -> P didelete
+        // InsertLast(Q);
+    }
+*/
+  //kalo u
    // PrintKata(&Root(T));
     //PrintKata(Left(T));
     //PrintKata(Right(T));
@@ -208,4 +248,8 @@ void PrintInfoStack (Stack S) {
     printf("\n");   
     printf("Total uang yang dibutuhkan: %d",SumUangStack(S));
     printf("\n");    
+}
+
+boolean UangCukup (player *P, int harga) {
+    return(Money(*P)>=harga);
 }

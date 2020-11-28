@@ -6,55 +6,52 @@ yang menampilkan commad BUY
 #include "buy.h"
 #include <stdio.h>
 
-
-void CommmandBuy()
-// melakukan semua perintah yang ada didalam Command Buy
+void CommmandBuyArray()
 {
-	Map File_Buy;
-	CreateEmptyMap (&File_Buy);
-	STARTKATAFILE("../../Files/material.txt");
-	int count = 0;
-	SalinKataFile();
-	while( ! EndKata){
-		Kata keyKata;
-		int val;
-		if (count % 2 == 0 ){
-			CopyKata (CKata, &keyKata);
-			
-		} else{
-			val = convToInt (CKata);
-			Insert (&File_Buy, keyKata, val);
-		}
-		if (CC == EOL){
-			ADV();
-		}
-		count ++;
-		ADVKATAFILE();
-	}
-	printf("%s\n%s\n", "Ingin membeli apa?","List:" );
-	address P;
-	P = First(File_Buy);
-	while (P != Nil){
-		printf("  -- ");
-		PrintKata(Key(P));
-		printf(" <$%i>", Val(P) );
-		printf("\n" );
-		P = Next(P);
-	}
+	//CreateEmpty (&stackExecute); // coba // buat test
+	Tab File_material;
+	BacaIsi(&File_material);
+	TulisIsiTab(File_material);
 	printf("\n%s\n%s\n%s\n%s","Masukkan Perintah:","<jumlah> <material>","<enter untuk keluar>","-> ");
 	STARTKATA();
-	Kata InputEnter;
-	InputEnter.Length = 1;
-	InputEnter.TabKata[1] = '\n';
-	if (!IsKataSama("Cancel")){
+	if (!IsKataSama (""))
+	{
 		int val;
-		val = convToInt(CKata);
+		int Nbahan;
+		Nbahan = convToInt(CKata);
 		ADVKATA();
-		val = val * SearcVal(&File_Buy,CKata);
-		printf("%i\n",val); // cuma check
-		//<nama item> <jumlah item>
-	}else{
-		printf("Anda Keluar dari buy");//coba
+		PrintKata(CKata);
+		if (SearchK(File_material, CKata) && !IsKataSama (""))
+		{
+			val = Nbahan * SearchVal(File_material, CKata);
+			//printf("%i\n",val);
+			Kata command;
+			command.TabKata[0]='B';
+			command.TabKata[1]='u';
+			command.TabKata[2]='y';
+			command.TabKata[3]='\n';
+			command.Length = 3;
+
+			POINT P = MakePOINT(0,0);
+
+			aksi X;
+			X.commandStack = command;
+			X.durasi = 5;
+			X.PointWahana = P;
+			X.NamaBahan = CKata;
+			X.JumlahBahan = Nbahan;
+			X.uang = val;
+
+			Push (&stackExecute, X); //Variabel globla stackExecute
+			//PrintInfoStack(stackExecute); // buat test
+		}
+		else
+		{
+			printf("%s\n","Material tidak ada di list" );
+		}	
+	}else
+	{
+		printf("%s\n","Masukkana Anda enter" );
 	}
 
 }
