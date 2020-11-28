@@ -278,7 +278,7 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP){
     }
 }
 
-void AngryCustomer(PrioQueue Q) {
+PrioQueue AngryCustomer(PrioQueue Q) {
     /* Mengeluarkan elemen Q yang kesabarannya 0 */
     /* I.S. Q terdefinisi tidak kosong */
     /* F.S. Elemen Q tidak berkurang, tidak ada yang kesabarannya 0 */

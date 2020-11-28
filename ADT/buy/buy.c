@@ -14,7 +14,7 @@ void CommmandBuyArray()
 	TulisIsiTab(File_material);
 	printf("\n%s\n%s\n%s\n%s","Masukkan Perintah:","<jumlah> <material>","<enter untuk keluar>","-> ");
 	STARTKATA();
-	if (!IsKataSama (""))
+	while (!IsKataSama (""))
 	{
 		int val;
 		int Nbahan;
@@ -48,10 +48,13 @@ void CommmandBuyArray()
 		else
 		{
 			printf("%s\n","Material tidak ada di list" );
-		}	
-	}else
-	{
-		printf("%s\n","Masukkana Anda enter" );
+		}
+		printf("\n%s\n%s\n%s\n%s","Masukkan Perintah:","<jumlah> <material>","<enter untuk keluar>","-> ");
+		STARTKATA();	
 	}
+	// else
+	// {
+		printf("Anda keluar dari menu buy\n");
+	// }
 
 }

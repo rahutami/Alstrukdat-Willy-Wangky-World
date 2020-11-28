@@ -14,7 +14,7 @@
 #include "../maplist/maplist.h"
 
 #define Nil -1
-#define MaxEl 10
+#define MaxElS 10
 /* Nil adalah stack dengan elemen kosong . */
 
 typedef int addressStack;   /* indeks tabel */
@@ -37,13 +37,13 @@ typedef struct {
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct { 
-  aksi T[MaxEl]; /* tabel penyimpan elemen */
+  aksi T[MaxElS]; /* tabel penyimpan elemen */
   addressStack TOP;  /* alamat TOP: elemen puncak */
 } Stack;
 
 extern Stack stackExecute;
 /* Definisi stack S kosong : S.TOP = Nil */
-/* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
+/* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxElS-1] */
 /* Jika S adalah Stack maka akses elemen : */
    /* S.T[(S.TOP)] untuk mengakses elemen TOP */
    /* S.TOP adalah alamat elemen TOP */
@@ -56,8 +56,8 @@ extern Stack stackExecute;
 /* *** Konstruktor/Kreator *** */
 void CreateEmpty (Stack *S);
 /* I.S. sembarang; */
-/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-/* jadi indeksnya antara 0.. MaxEl */
+/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxElS */
+/* jadi indeksnya antara 0.. MaxElS */
 /* Ciri stack kosong : TOP bernilai Nil */
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */

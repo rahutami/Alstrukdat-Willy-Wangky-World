@@ -102,6 +102,8 @@ void Preparation(player *p1){
         } else if (IsKataSama("build")){
             buildWahana(Position(Player), &WahanaBuilt);
             AddWToPeta();
+        } else if (IsKataSama("buy")){
+            CommmandBuyArray();
         }
         // nanti tambahin elif aja buat command yang lain
         else if(!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute"))){
