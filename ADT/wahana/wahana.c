@@ -265,3 +265,35 @@ void initWahana(TreeWahanaS T)
 }
 
 void nextUpWahana();
+
+boolean SearchTree(Kata X, addressWahanaS P)
+/* Mengirimkan true jika ada node dari P yang bernilai X */
+{
+    if (P==NilList) {
+        return false;
+    }
+    else {
+        if (IsKataSamaKata(NamaWahana(P),X)) {
+            return true;
+        }
+        else {
+            return (SearchTree(X,Left(P)) || SearchTree(X,Right(P)));
+    }
+}
+}
+
+boolean SearchTree2 (Kata X, TreeWahanaS T)
+/* Mengirimkan true jika ada node dari P yang bernilai X */
+{
+    if (Root(T)==NilList) {
+        return false;
+    }
+    else {
+        if (IsKataSamaKata(NamaWahana(Root(T)),X)) {
+            return true;
+        }
+        else {
+            return (IsKataSamaKata(NamaWahana(Left(Root(T))),X) ||IsKataSamaKata(NamaWahana(Right(Root(T))),X));// || SearchTree2(X,Root(Left(T))) || SearchTree2(X,Root(Right(T))));
+        }
+    }
+}

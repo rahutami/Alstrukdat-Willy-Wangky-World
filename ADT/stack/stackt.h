@@ -23,13 +23,13 @@ typedef int addressStack;   /* indeks tabel */
 player Pemain;
 typedef struct {
   Kata commandStack;
-  int durasi;
-  POINT PointWahana;
+  int durasi; // Waktu yang dibutuhkan untuk melakukan satu aksi
+  POINT PointWahana; // Point tempat aksi tsb dilakukan
   //int MapNum(P);
   // int MapNum(P); // MapNum
   Kata NamaBahan;
   int JumlahBahan;
-  int uang;
+  int uang; // Uang yang dibutuhkan untuk melakukan satu aksi
   //int Money(P); // nanti disambungin ke Money nya Player
   // ID wahana yang sebelumnya
 } aksi;
@@ -99,6 +99,7 @@ int NbElmtStack (Stack S);
 void Undo (Stack *S, aksi *X);
 /* Undo pada eksekusi terakhir */
 /* Sama aja kayak nge-POP stack yang kumpulan aksi */
+/* Sama melakukan aksi kebalikan dari yang udah dilakuin  */
 
 void Execute (Stack S);
 /* Eksekusi mulai command terakhir, berarti POP */

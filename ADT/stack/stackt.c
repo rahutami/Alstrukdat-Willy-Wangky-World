@@ -177,19 +177,42 @@ void Undo (Stack *S, aksi *X) {
 }
 
 void Upgrade (Stack *S, player *P, TreeWahanaS T) {
+/* STEPS:
+- Cek titik, krn cuma bisa upgrade di sekitar tempat yg ada wahana.
+- Cek uang dan resource, kalo gacukup tampilkan pesan error.
+- Kalo cukup => pengen upgrade apa?
+ */
     // CEK UANG DAN RESOURCE
-
+    /* 
     
-    ListWahanaD listWahana;
+    ListWahanaD listWahana; // Ini buat nanti insertlast (kalo udah)
     Kata namaWahana;
+    printf("Input nama wahana: ");
+    STARTKATA();
+    SalinKata(CKata,&namaWahana);
     printf("Ingin melakukan upgrade apa?\n List: \n");
-    addressWahanaS Coaster1 = Root(T);
-    addressWahanaS Heli2 = Left(Root(T));
-    addressWahanaS Water3 = Right(Root(T));
-    printf("List:\n");
-    printf("  -"); PrintKata(NamaWahana(Coaster1));printf("\n");
-    printf("  -"); PrintKata(NamaWahana(Heli2));printf("\n");
-    printf("  -"); PrintKata(NamaWahana(Water3));printf("\n");
+    if (SearchWahanaD(namaWahana,listWahana)) {
+        addressWahanaD addressUpgrade = SearchWahanaD(namaWahana,listWahana); // return addressWahanaD
+        addressWahanaS elmtStatisUpgrade = ElmtStatis(addressUpgrade);
+        printf("Ingin melakukan upgrade apa?2\n List: \n");
+        //PrintKata(NamaWahana(namaWahana));
+        PrintKata(NamaWahana(elmtStatisUpgrade));
+        PrintKata(NamaWahana(Left(elmtStatisUpgrade)));
+        PrintKata(NamaWahana(Right(elmtStatisUpgrade)));
+    }
+    else {
+        printf("Gak ketemu!!!\n");
+    }
+    */
+
+    //PrintKata(&NamaWahana(Left(namaWahana)));
+    //PrintKata(&NamaWahana(Right(namaWahana)));
+    /* */
+
+    TreeWahanaS TS;
+    addressWahanaS Q; // statis
+    
+   // addressWahanaD P = listWahana; // dinamis, ini gimana ya :<
     /* 
     addressWahanaS tempatWahanaS;
     addressWahanaD tempatWahanaD;
@@ -199,32 +222,35 @@ void Upgrade (Stack *S, player *P, TreeWahanaS T) {
     addressWahanaS kanan = Right(tempatWahanaS);
     //addressWahanaS infonyaWahana = ElmtStatis(tempatWahana);
     printf("Nama wahana yang ketemu : ");
-    /* 
-    tempatWahanaS = (SearchWahanaD(namaWahana,listWahana));
+   /* tempatWahanaS = (SearchWahanaD(namaWahana,listWahana));
     addressWahanaS infonyaWahana = ElmtStatis(tempatWahanaS);*/
    /*  PrintKata(NamaWahana(tempatWahanaS));
     PrintKata(NamaWahana(kiri));
     PrintKata(NamaWahana(kanan)); */
     // addressWahanaD P = LD;
-   /* 
-    while (tempatWahanaS != NULL){
-        tempatWahanaS = Next(tempatWahanaS);
-    }
+    /* 
+    ListWahanaD LD;
 
-    if(tempatWahanaS == NULL){
+
+    while (P != NULL){
+        P = Next(P);
+    }
+    if(P == NULL){
         //not found
     } else {
-        addressWahanaS Q = ElmtStatis(tempatWahanaS);
+        Q = ElmtStatis(P);
+        PrintKata(NamaWahana(Q));
+        ListWahanaD
         // Upgradenya ke left/right Q
         // Q = Left(Q)
-        Q = Left(Q);
-        PrintKata(NamaWahana(Left(Q));
-        //ElmtStatis(tempatWahanaS) = Q;
+        ElmtStatis(P) = Q;
         // -> isi sama wahana di Q
+
         // -> P didelete
         // InsertLast(Q);
-    }
-*/
+        InsertLast(Q,.);
+    } */
+
   //kalo u
    // PrintKata(&Root(T));
     //PrintKata(Left(T));
@@ -237,7 +263,8 @@ void Upgrade (Stack *S, player *P, TreeWahanaS T) {
     // ngecek kanan kiri atas bawah yg mana
     // terus ngereturn addresswahana
     // if kanan kiri atas bawah bkn wahana print error
-
+    
+    /* PROSEDUR UNTUK NGEPUSH KE STACK */
 }
 
 void PrintInfoStack (Stack S) {

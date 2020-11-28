@@ -48,6 +48,7 @@ typedef struct {
 } ListWahanaD;
 
 /*TreeWahanaS merupakan tree yang setiap nodenya berisi ElmtWahanaStatis*/
+//typedef addressWahanaS TreeWahanaS; ganti jd ini keknya
 typedef struct {
 	addressWahanaS Root;
 } TreeWahanaS;
@@ -154,5 +155,7 @@ D  F   I
 
 void nextUpWahana();
 
+boolean SearchTree(Kata X, addressWahanaS P);
+boolean SearchTree2 (Kata X, TreeWahanaS T);
 
 #endif
