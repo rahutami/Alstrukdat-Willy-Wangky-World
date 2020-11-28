@@ -22,6 +22,7 @@ typedef struct {
 
 extern player Player;
 
+#define NamaPlayer(P) (P).Name
 #define Position(P) (P).Position
 #define X(P) Absis((P).Position)
 #define Y(P) Ordinat((P).Position)
@@ -37,6 +38,6 @@ JAM JamTutup;
 
 void CreatePlayer(player *P);
 
-void TulisPlayer(player P);
+void TulisPlayer();
 
 #endif

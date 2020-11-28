@@ -77,7 +77,7 @@ void Preparation(player *p1){
             printf("O = Office\n");
             printf("^, >, v, < = Gerbang\n");
             printf("===================================\n");
-            TulisPlayer(*p1);
+            TulisPlayer();
             printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
             printf("Opening Time: "); TulisJAM(JamBuka); printf("\n");
             printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamBuka)); 
@@ -159,7 +159,7 @@ void MainPhase(player * p1){
             printf("^, >, v, < = Gerbang\n");
             printf("===================================\n");
             printf("\n");
-            TulisPlayer(*p1); //print nama dan uang
+            TulisPlayer(); //print nama dan uang
             printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
             printf("Closing Time: "); TulisJAM(JamTutup); printf("\n");
             printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamTutup)); 
