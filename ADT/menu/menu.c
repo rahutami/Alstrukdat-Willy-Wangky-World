@@ -122,11 +122,9 @@ void MainPhase(player * p1){
     listPlayer LP;
     List del;
     boolean enter = false;
-
     CreateEmptyQueue(&Q, 5);
     CreateEmptyLP(&LP);
     RandomizeQueue(&Q);
-
 
     do{
         if(!IsEmptyLP(LP)){
@@ -136,15 +134,11 @@ void MainPhase(player * p1){
                 FirstEnqueue(&Q, del);
             }
         }
-        
         if(enter){
             ReducePatience(&Q);
         }
-        
         enter = true;
-
         AngryCustomer(&Q);
-        
         if (!IsKataSama("command")){
             printf("===================================\n");
             printf("            Main Phase\n");
