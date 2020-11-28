@@ -270,6 +270,20 @@ void initWahana(TreeWahanaS T)
 
 void nextUpWahana();
 
+addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana){
+   if(IsTreeEmpty(P)) return NULL;
+   else if(IsKataSamaKata(NamaWahana(P), NamWahana)){
+      return P;
+   }
+   else{
+      addressWahanaS L = SearchAddress(Left(P), NamWahana);
+      addressWahanaS R = SearchAddress(Right(P), NamWahana);
+      if(L != NULL) return L;
+      else if (R != NULL) return R;
+      else return NULL;
+   }
+}
+
 boolean SearchTree(Kata X, addressWahanaS P)
 /* Mengirimkan true jika ada node dari P yang bernilai X */
 {
