@@ -8,6 +8,7 @@ boolean EndKata;
 Kata CKata;
 char CC;
 boolean EOP;
+Graph GraphPeta;
 
 void MakePETA (char* filename, MATRIKS * P)
 /* Membentuk sebuah PETA "kosong" yang siap diisi berukuran NB x NK di "ujung kiri" memori */
@@ -195,4 +196,14 @@ int loadPeta(MATRIKS *Peta1, MATRIKS *Peta2, MATRIKS *Peta3, MATRIKS *Peta4){
     MakePETA("Files/Peta/Peta_4.txt", Peta4);
 
     // end of peta 4
+}
+
+void AddWToPeta(){
+    addressGraph CPeta = FirstGraph(GraphPeta);
+    while(ID(CPeta) != MapNum(Player)) CPeta = NextGraph(CPeta);
+
+    Elmt(Peta(CPeta), Y(Player), X(Player)) = 'W';
+
+    if(X(Player) == 1) X(Player)++;
+    else X(Player)--;
 }

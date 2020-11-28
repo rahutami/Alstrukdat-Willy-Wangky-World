@@ -101,6 +101,7 @@ void Preparation(player *p1){
             ListCommand();
         } else if (IsKataSama("build")){
             buildWahana(Position(Player), &WahanaBuilt);
+            AddWToPeta();
         }
         // nanti tambahin elif aja buat command yang lain
         else if(!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute"))){

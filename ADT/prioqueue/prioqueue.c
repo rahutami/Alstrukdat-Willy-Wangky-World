@@ -290,10 +290,6 @@ void AngryCustomer(PrioQueue *Q) {
         if(Patience(del) > 0) {
             Enqueue(Q, del);
         }
-<<<<<<< HEAD
-        i--;
-=======
         i++;
->>>>>>> b22e940fea766d44145740c4eb3b368156e43f79
     }
 }
