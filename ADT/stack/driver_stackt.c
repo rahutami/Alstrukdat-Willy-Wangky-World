@@ -134,14 +134,15 @@ int main() {
     if (elmtStatisUpgradeD != NULL) {
         elmtStatisUpgrade = ElmtStatis(elmtStatisUpgradeD);
         printf("Ketemu, nama wahana: "); printf("\n");
-        PrintKata(NamaWahana(elmtStatisUpgrade));
-        printf("Ingin melakukan upgrade apa?\n List: \n");
+        PrintKata(NamaWahana(elmtStatisUpgrade)); printf("\n");
+        printf("Ingin melakukan upgrade apa?\n");
         addressWahanaS addrElmtUpgraded;
         if (Left(elmtStatisUpgrade)== NULL && Right(elmtStatisUpgrade)==NULL) { // Kondisi udah mentok gabisa diupgrade
             printf("Tidak dapat diupgrade.");
         }
         else { // bisa diupgrade
             Kata elmtUpgrade;
+            printf("List:\n");
             if (Left(elmtStatisUpgrade)!=NULL && Right(elmtStatisUpgrade)==NULL){ // Cuma bisa upgrade ke left
                 PrintKata(NamaWahana(Left(elmtStatisUpgrade))); printf("\n");
                 printf("Mau upgrade kemana: ");
@@ -152,7 +153,6 @@ int main() {
                     STARTKATA();
                     CopyKata(CKata,&elmtUpgrade);
                 }
-                printf("cumabisakekiri");
                 addrElmtUpgraded = Left(elmtStatisUpgrade);
             } 
             else if (Left(elmtStatisUpgrade)==NULL && Right(elmtStatisUpgrade)!=NULL){ // Cuma bisa upgrade ke right
@@ -165,7 +165,6 @@ int main() {
                     STARTKATA();
                     CopyKata(CKata,&elmtUpgrade);
                 }
-                printf("cumabisakekanan");
                 addrElmtUpgraded = Right(elmtStatisUpgrade);
             }
             else { // Bisa diupgrade ke left ataupun right
@@ -173,9 +172,7 @@ int main() {
                 PrintKata(NamaWahana(Right(elmtStatisUpgrade))); printf("\n");
                 printf("Mau upgrade kemana: ");
                 STARTKATA();
-                printf("HALO");
                 CopyKata(CKata,&elmtUpgrade);
-                printf("HAI");
                 while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade)))) && (!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
                     printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
                     STARTKATA();
@@ -187,27 +184,21 @@ int main() {
                 if (IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade)))) {
                     addrElmtUpgraded = Right(elmtStatisUpgrade);
                 }
-                printf("bisake kiri or kekanan");
-
             }
-            addressWahanaS parent = elmtStatisUpgrade; // Kayaknya mau bikin fungsi parent
-            printf("hE");/* 
+            addressWahanaS parent = elmtStatisUpgrade; // Wahana sebelumnya
             addressWahanaS addrElmtUpgraded = ElmtStatis(SearchWahanaD(elmtUpgrade,WahanaBuilt));
             printf("nanan");
             elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
-            */
-            // Harusnya udah berubah nih
-            // INI BUAT NGETES
+            // INI BUAT NGETEST
             printf("Upgraded!\n");
             printf("Nama wahana yang baru   : ");PrintKata(NamaWahana(addrElmtUpgraded));printf("\n");
             printf("Deskripsi               : ");PrintKata(DescWahana(addrElmtUpgraded));printf("\n");
             printf("Nama wahana sebelumnya  : ");PrintKata(NamaWahana(parent));printf("\n");
-    
     }
     }
     else { // Gaketemu
         PrintKata(namaWahana);
-        printf(" tidak ditemukan pada daftar wahana yang sudah dibangun.");
+        printf(" tidak ditemukan pada daftar wahana yang sudah dibangun.\n");
     }
     
 

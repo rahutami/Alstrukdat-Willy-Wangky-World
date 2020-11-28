@@ -115,4 +115,6 @@ void PrintInfoStack (Stack S);
 
 boolean UangCukup (player *P, int harga);
 
+boolean BahanCukup (player *P, Kata NamaBahan, int JumlahBahan);
+
 #endif
