@@ -24,17 +24,20 @@ boolean EOP;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
 JAM JamBuka, JamTutup;
 listPlayer LP;
-extern Graph GraphPeta;
+Graph GraphPeta;
+TreeWahanaS UpgradeTree;
+player Player;
 
-void NewGame(player *p1){
+void NewGame(){
     
     printf("Enter your name: ");
     STARTKATA();
     printf("\n");
     
     
+    MakeTree();
     CreateJamBukaTutup();
-    CreatePlayer(p1);
+    CreatePlayer(&Player);
 
     loadPeta(&Peta1, &Peta2, &Peta3, &Peta4);
     CreateGraphPeta(Peta1, Peta2, Peta3, Peta4, &GraphPeta);
@@ -47,24 +50,20 @@ int main(){
 
     if (IsKataSama("new")){
         player p1;
-        TreeWahanaS T;
-        printf("lala");
-        MakeTree(&T);
-        printf("lala");
 
-        NewGame(&p1);
-        MakeTree(&T);
-        
-        Preparation(&p1, T);
+        NewGame();
+        First(WahanaBuilt) = NULL;
+
+        Preparation(&Player);
         while(!IsKataSama("exit")){
             if(IsKataSama("prepare")){
-                Day(p1)++;
-                CJam(p1) = MakeJAM(21,0);
-                Preparation(&p1, T);
+                Day(Player)++;
+                CJam(Player) = MakeJAM(21,0);
+                Preparation(&Player);
             } else if (IsKataSama("main") || IsKataSama("execute")){
                 srand(time(NULL));
-                CJam(p1) = MakeJAM(9,0);
-                MainPhase(&p1, T);
+                CJam(Player) = MakeJAM(9,0);
+                MainPhase(&Player);
             }
         }
     }

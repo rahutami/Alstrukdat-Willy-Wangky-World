@@ -7,6 +7,8 @@ boolean EndKata;
 Kata CKata;
 char CC;
 boolean EOP;
+TreeWahanaS UpgradeTree;
+ListWahanaD WahanaBuilt;
 
 void Details(Kata inputWahana, ListWahanaD L)
 /* I.S namaWahana dimasukkan user */
@@ -69,7 +71,7 @@ void SubTree(addressWahanaS parent, addressWahanaS l, addressWahanaS r){
     Right(parent) = r;
 }
 
-void MakeTree(TreeWahanaS *T)
+void MakeTree()
 /* I.S P adalah tree kosong */
 /* F.S P adalah tree berisi ElmtWahanaStatis yang diambil dari file txt */
 {
@@ -78,7 +80,7 @@ void MakeTree(TreeWahanaS *T)
     for (int i = 0; i < 10; i++)
         temptree[i] = AlokNode(i);
 
-    STARTFILE("../../Files/Wahana/wahana.txt");
+    STARTFILE("Files/Wahana/wahana.txt");
     //printf("baca file\n");
     int i=0;
     int indexarr=0; //akan bertambah perbaris dan pernode
@@ -146,7 +148,7 @@ void MakeTree(TreeWahanaS *T)
         SubTree(temptree[4], temptree[8], NilList);
         SubTree(temptree[2], temptree[5], temptree[6]);
         SubTree(temptree[5], temptree[9], NilList);
-        *T = temptree[0];
+        UpgradeTree = temptree[0];
     }
 }
 
@@ -268,6 +270,53 @@ void initWahana(TreeWahanaS T)
     //player pindah ke bawah
 }
 
+// void nextUpWahana(){}
+
+addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana){
+   if(IsTreeEmpty(P)) return NULL;
+   else if(IsKataSamaKata(NamaWahana(P), NamWahana)){
+      return P;
+   }
+   else{
+      addressWahanaS L = SearchAddress(Left(P), NamWahana);
+      addressWahanaS R = SearchAddress(Right(P), NamWahana);
+      if(L != NULL) return L;
+      else if (R != NULL) return R;
+      else return NULL;
+   }
+}
+
+boolean SearchTree(Kata X, addressWahanaS P)
+/* Mengirimkan true jika ada node dari P yang bernilai X */
+{
+    if (P==NilList) {
+        return false;
+    }
+    else {
+        if (IsKataSamaKata(NamaWahana(P),X)) {
+            return true;
+        }
+        else {
+            return (SearchTree(X,Left(P)) || SearchTree(X,Right(P)));
+    }
+}
+}
+
+boolean SearchTree2 (Kata X, TreeWahanaS T)
+/* Mengirimkan true jika ada node dari P yang bernilai X */
+{
+    if (T==NilList) {
+        return false;
+    }
+    else {
+        if (IsKataSamaKata(NamaWahana(T),X)) {
+            return true;
+        }
+        else {
+            return (IsKataSamaKata(NamaWahana(Left(T)),X) ||IsKataSamaKata(NamaWahana(Right(T)),X));// || SearchTree2(X,Root(Left(T))) || SearchTree2(X,Root(Right(T))));
+        }
+    }
+}
 void buildWahana(POINT Pos, ListWahanaD *L)
 /*Command ini digunakan untuk membuat wahana baru di petak di mana
 pemain sedang berdiri.
@@ -280,23 +329,14 @@ akan ditampilkan pesan error.
 stack*/
 {
     //Menampilkan wahana dasar (ada 10, diambil dari tree wahana)
-    TreeWahanaS T;
     addressWahanaD P, Prec;
-    MakeTree(&T); PrintTree(T);
 
     printf("Ingin membangun wahana apa?\n");
-    STARTKATA(); //printf("oke1");
-    //PrintKata(CKata);
-    //Menambah elemen pada list linier
-    //ListWahanaD L;
-    
-    //POINT Pos;
-    //addressWahanaD P1;
-    P = AlokWahana(Pos,CKata,T); 
-    
+    STARTKATA(); 
+
+    P = AlokWahana(Pos, CKata); 
     if (IsEmptyListW(*L)){
-        //printf("oke2");
-        InsFirstW(L,P); //printf("oke4");
+        InsFirstW(L,P);
     }
     else{
         Prec = First(*L); 
@@ -304,27 +344,16 @@ stack*/
         while (Next(Prec)!=NilList){
             Prec = Next(Prec);
         }
-        InsAfterW(L,P,Prec); //printf("oke3");
+        InsAfterW(L, P, Prec);
     }
-    
-    /*if (IsEmptyListW(L)){
-        InsFirstW(&L,P);
-    } else {
-        Prec = First(L);
-        while (Next(Prec)!=NilList){
-            Prec = Next(Prec);
-        }
-        InsAfterW(&L,P,Prec);
-    }
-    NamaWahana(ElmtStatis(P)) = CKata;*/
-
 }
+
 boolean IsEmptyListW (ListWahanaD L){
    /* Mengirim true jika list kosong */
    return(First(L) == NilList);
 }
 
-addressWahanaD AlokWahana (POINT P, Kata NamaWahana, TreeWahanaS T){
+addressWahanaD AlokWahana (POINT P, Kata NamaWahana){
    /* Mengirimkan addressList hasil alokasi sebuah elemen */
    /* Jika alokasi berhasil, maka addressList tidak NilList, dan misalnya */
    /* menghasilkan P, maka InfoList(P)=X, Next(P)=NilList */
@@ -340,10 +369,8 @@ addressWahanaD AlokWahana (POINT P, Kata NamaWahana, TreeWahanaS T){
        IncomeWahana(D) = 0;
        DailyFreqWahana(D) = 0;
        NextWahana(D) = NilList;
-       ElmtStatis(D) = SearchAddress (T, NamaWahana);
-       //printf("OKE2");
+       ElmtStatis(D) = SearchAddress(UpgradeTree, NamaWahana);
     }
-    //printf("OKE3");
     return D;
     
 }
@@ -395,32 +422,32 @@ void PrintInfoWD (ListWahanaD L) {
         printf(")");
     }
 }
-boolean SearchTree(Kata X, addressWahanaS P)
-/* Mengirimkan true jika ada node dari P yang bernilai X */
-{
-    if (P==NilList) {
-        return false;
-    }
-    else {
-        if (IsKataSamaKata(NamaWahana(P),X)) {
-            return true;
-        }
-        else {
-            return (SearchTree(X,Left(P)) || SearchTree(X,Right(P)));
-        }
-    }
-}
+// boolean SearchTree(Kata X, addressWahanaS P)
+// /* Mengirimkan true jika ada node dari P yang bernilai X */
+// {
+//     if (P==NilList) {
+//         return false;
+//     }
+//     else {
+//         if (IsKataSamaKata(NamaWahana(P),X)) {
+//             return true;
+//         }
+//         else {
+//             return (SearchTree(X,Left(P)) || SearchTree(X,Right(P)));
+//         }
+//     }
+// }
 
-addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana){
-   if(IsTreeEmpty(P)) return NULL;
-   else if(IsKataSamaKata(NamaWahana(P), NamWahana)){
-      return P;
-   }
-   else{
-      addressWahanaS L = SearchAddress(Left(P), NamWahana);
-      addressWahanaS R = SearchAddress(Right(P), NamWahana);
-      if(L != NULL) return L;
-      else if (R != NULL) return R;
-      else return NULL;
-   }
-}
+// addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana){
+//    if(IsTreeEmpty(P)) return NULL;
+//    else if(IsKataSamaKata(NamaWahana(P), NamWahana)){
+//       return P;
+//    }
+//    else{
+//       addressWahanaS L = SearchAddress(Left(P), NamWahana);
+//       addressWahanaS R = SearchAddress(Right(P), NamWahana);
+//       if(L != NULL) return L;
+//       else if (R != NULL) return R;
+//       else return NULL;
+//    }
+// }

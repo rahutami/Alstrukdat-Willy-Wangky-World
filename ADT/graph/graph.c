@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "graph.h"
 
+player Player;
+
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
 boolean IsEmptyLink (ListLink L)

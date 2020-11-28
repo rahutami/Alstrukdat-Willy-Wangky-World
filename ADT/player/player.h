@@ -20,6 +20,9 @@ typedef struct {
 } player;
 
 
+extern player Player;
+
+#define Position(P) (P).Position
 #define X(P) Absis((P).Position)
 #define Y(P) Ordinat((P).Position)
 #define MapNum(P) (P).MapNum

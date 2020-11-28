@@ -4,6 +4,9 @@
 
 Graph GraphPeta;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
+TreeWahanaS UpgradeTree;
+player Player;
+ListWahanaD WahanaBuilt;
 
 void MainMenu(){
     printf("====================================================================\n\n");
@@ -58,7 +61,7 @@ void ListCommand(){
     printf("================================================================\n");
 }
 
-void Preparation(player *p1, TreeWahanaS T){
+void Preparation(player *p1){
     do{
         if (!IsKataSama("command")){
             printf("===================================\n");
@@ -96,19 +99,25 @@ void Preparation(player *p1, TreeWahanaS T){
            MenuJalan(p1, GraphPeta);
         } else if (IsKataSama("command")){
             ListCommand();
-        } // nanti tambahin elif aja buat command yang lain
+        } else if (IsKataSama("build")){
+            buildWahana(Position(Player), &WahanaBuilt);
+            AddWToPeta();
+        }
+        // nanti tambahin elif aja buat command yang lain
         else if(!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute"))){
             printf("==========================================================\n");
             printf("Command tidak tersedia\n");
             printf("==========================================================\n");
             printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
             printf("==========================================================\n");
+            printf("Masukkan perintah: ");
+            STARTKATA();
         }
         
     } while (!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute")));
 }
 
-void MainPhase(player * p1, TreeWahanaS T){
+void MainPhase(player * p1){
     PrioQueue Q;
     listPlayer LP;
     List del;
@@ -184,12 +193,12 @@ void MainPhase(player * p1, TreeWahanaS T){
             }
             ADVKATA();
             if(Elmt(Peta(CPeta), x + 1, y) == 'A' || Elmt(Peta(CPeta), x, y+1) == 'A' || Elmt(Peta(CPeta), x - 1, y) == 'A' || Elmt(Peta(CPeta), x, y - 1) == 'A'){
-                Serve(p1, CKata, &Q, &LP, LW);
+                Serve(p1, CKata, &Q, &LP, WahanaBuilt);
             } else {
                 printf("Silahkan pergi ke sebelah antrian untuk menggunakan command ini \n\n");
             }
-
-        }// nanti tambahin elif aja buat command yang lain 
+        }
+        // nanti tambahin elif aja buat command yang lain 
         // else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
         //     printf("==========================================================\n");
         //     printf("Command tidak tersedia\n");
@@ -203,6 +212,8 @@ void MainPhase(player * p1, TreeWahanaS T){
             printf("==========================================================\n");
             printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
             printf("==========================================================\n");
+            printf("Masukkan perintah: ");
+            STARTKATA();
         } 
         
     } while(!(IsKataSama("prepare") || IsKataSama("exit")));

@@ -43,7 +43,7 @@ typedef struct {
 #define Link(P) 	 (P)->link
 #define FirstGraph(G) ((G).First)
 
-
+extern Graph GraphPeta;
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/
 boolean IsEmptyLink (ListLink L);

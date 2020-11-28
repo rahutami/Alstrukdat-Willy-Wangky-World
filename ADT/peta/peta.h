@@ -31,4 +31,5 @@ void d(player *P, Graph G);
 
 int loadPeta();
 
+void AddWToPeta();
 #endif
