@@ -268,39 +268,6 @@ void initWahana(TreeWahanaS T)
     //player pindah ke bawah
 }
 
-void nextUpWahana();
-
-boolean SearchTree(Kata X, addressWahanaS P)
-/* Mengirimkan true jika ada node dari P yang bernilai X */
-{
-    if (P==NilList) {
-        return false;
-    }
-    else {
-        if (IsKataSamaKata(NamaWahana(P),X)) {
-            return true;
-        }
-        else {
-            return (SearchTree(X,Left(P)) || SearchTree(X,Right(P)));
-    }
-}
-}
-
-boolean SearchTree2 (Kata X, TreeWahanaS T)
-/* Mengirimkan true jika ada node dari P yang bernilai X */
-{
-    if (T==NilList) {
-        return false;
-    }
-    else {
-        if (IsKataSamaKata(NamaWahana(T),X)) {
-            return true;
-        }
-        else {
-            return (IsKataSamaKata(NamaWahana(Left(T)),X) ||IsKataSamaKata(NamaWahana(Right(T)),X));// || SearchTree2(X,Root(Left(T))) || SearchTree2(X,Root(Right(T))));
-        }
-    }
-}
 void buildWahana(POINT Pos, ListWahanaD *L)
 /*Command ini digunakan untuk membuat wahana baru di petak di mana
 pemain sedang berdiri.
@@ -325,11 +292,11 @@ stack*/
     
     //POINT Pos;
     //addressWahanaD P1;
-    P = AlokWahana(Pos); 
+    P = AlokWahana(Pos,CKata,T); 
     
     if (IsEmptyListW(*L)){
         printf("oke2");
-        InsFirstW(&L,P);
+        InsFirstW(L,P); printf("oke4");
     }
     else{
         Prec = First(*L); 
@@ -357,7 +324,7 @@ boolean IsEmptyListW (ListWahanaD L){
    return(First(L) == NilList);
 }
 
-addressWahanaD AlokWahana (POINT P){
+addressWahanaD AlokWahana (POINT P, Kata NamaWahana, TreeWahanaS T){
    /* Mengirimkan addressList hasil alokasi sebuah elemen */
    /* Jika alokasi berhasil, maka addressList tidak NilList, dan misalnya */
    /* menghasilkan P, maka InfoList(P)=X, Next(P)=NilList */
@@ -373,6 +340,7 @@ addressWahanaD AlokWahana (POINT P){
        IncomeWahana(D) = 0;
        DailyFreqWahana(D) = 0;
        NextWahana(D) = NilList;
+       ElmtStatis(D) = SearchAddress (T, NamaWahana);
        //printf("OKE2");
     }
     //printf("OKE3");
@@ -408,9 +376,15 @@ void PrintInfoWD (ListWahanaD L) {
 	/* ALGORITMA */
 	if(IsEmptyListW(L)) {
         printf("()");
+    /*}else{
+        printf("\nokelagi");
+    }*/
     } else { 
         printf("(");
-        P = First(L);
+        P = First(L); //printf("oke5");
+        //printf("%d", PriceWahana(ElmtStatis(First(L))));
+        //PrintKata(NamaWahana(ElmtStatis(P)));
+        
         while(P != NilList) {
             PrintKata(NamaWahana(ElmtStatis(P)));
             if(Next(P) != NilList){
@@ -420,4 +394,33 @@ void PrintInfoWD (ListWahanaD L) {
         }
         printf(")");
     }
+}
+boolean SearchTree(Kata X, addressWahanaS P)
+/* Mengirimkan true jika ada node dari P yang bernilai X */
+{
+    if (P==NilList) {
+        return false;
+    }
+    else {
+        if (IsKataSamaKata(NamaWahana(P),X)) {
+            return true;
+        }
+        else {
+            return (SearchTree(X,Left(P)) || SearchTree(X,Right(P)));
+        }
+    }
+}
+
+addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana){
+   if(IsTreeEmpty(P)) return NULL;
+   else if(IsKataSamaKata(NamaWahana(P), NamWahana)){
+      return P;
+   }
+   else{
+      addressWahanaS L = SearchAddress(Left(P), NamWahana);
+      addressWahanaS R = SearchAddress(Right(P), NamWahana);
+      if(L != NULL) return L;
+      else if (R != NULL) return R;
+      else return NULL;
+   }
 }

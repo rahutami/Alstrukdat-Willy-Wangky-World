@@ -19,7 +19,7 @@ int main(){
     //addressWahanaD P = SearchWahanaD(CKata,L);
     POINT P = MakePOINT(1,1);
     buildWahana(P,&L);
-    //PrintInfoWD(L);
+    PrintInfoWD(L);
     return 0;
     
 }

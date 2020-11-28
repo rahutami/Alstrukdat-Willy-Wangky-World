@@ -80,7 +80,6 @@ typedef addressWahanaS TreeWahanaS; //ganti jd ini keknya
 #define BahanWahana(N) (N)->BahanWahana
 #define JmlBahan(N) (N)->JumlahBahan
 
-#define InfoW(D) (D)->infoW
 #define PositionWahana(D) (D)->PositionWahana
 #define StatusWahana(D) (D)->StatusWahana 
 #define TotalFreqWahana(D) (D)->TotalFreqWahana
@@ -160,7 +159,7 @@ D  F   I
 */
 
 void buildWahana(POINT Pos, ListWahanaD *L);
-addressWahanaD AlokWahana (POINT P);
+addressWahanaD AlokWahana (POINT P, Kata NamaWahana, TreeWahanaS T);
 /*membuat node dalam list linier elemen dinamis
 untuk build wahana baru*/
 
@@ -170,4 +169,5 @@ boolean IsEmptyListW (ListWahanaD L);
 
 void InsFirstW (ListWahanaD *L, addressWahanaD D);
 void PrintInfoWD (ListWahanaD L);
+addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana);
 #endif
