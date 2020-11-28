@@ -106,10 +106,66 @@ void BacaIsi(Tab *T)
 /* 2. Jika 0 < N <= MaxElement(T); Lakukan N kali: Baca elemen mulai dari indeks
       IdxMin satu per satu diakhiri enter */
 /*    Jika N = 0; hanya terbentuk T kosong */
+{
+    // Kamus
+    int N;
+    int i;
+
+    // Algoritma
+    printf("Masukkan nilai N: ");
+    do {
+        scanf("%d", &N);
+    } while (N<0 || N>MaxElMap(*T));
+    Neff(*T) = N;
+    printf("Masukkan input tabel: \n");
+    printf("Untuk key:\n");
+    STARTKATA();
+    CopyKata(CKata,&Elmt(*T,0).key);
+    for (i=0; i<N; i++){
+        printf("Key: ");
+        STARTKATA();
+        CopyKata(CKata,&Elmt(*T,i).key);
+    } ADVKATA(); 
+    printf("Untuk value:\n");
+    for (i=IdxMin; i<IdxMin+N; i++){
+        printf("Value: ");
+        scanf("%d", &Elmt(*T,i).value);
+    }
+}
+
+void TulisIsiTab(Tab T)
+/* Proses : Menuliskan isi tabel dengan traversal, tabel ditulis di antara kurung siku;
+   antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan karakter di depan,
+   di tengah, atau di belakang, termasuk spasi dan enter */
+/* I.S. T boleh kosong */
+/* F.S. Jika T tidak kosong: [e1,e2,...,en] */
+/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
+/* Jika tabel kosong : menulis [] */
+{
+    // Kamus Lokal
+    int i;
+    // Algoritma
+    printf("[");
+    if(!IsEmptyDin(T)){
+        for (i=GetFirstIdxDin(T); i<=GetLastIdxDin(T); i++){
+            PrintKata(Elmt(T,i).key);
+            printf(" - ");
+            printf("%d",Elmt(T,i).value);
+            if(i!=GetLastIdxDin(T)) printf(",");
+        }
+    }
+
+    printf("]");
+}
+
+
+void BacaIsiMaterial(Tab *T)
+/* I.S. T sembarang dan sudah dialokasikan sebelumnya */
+/* F.S. Tabel T terdefinisi */
 /* NOTE: PROSEDUR INI BUAT BACA FILE EXTERNAL TERUS BIKIN TABELNYA */
 {
     MakeEmptyDin(T,30);
-    STARTKATAFILE("Files/material.txt");
+    STARTKATAFILE("Files/material.txt"); // Gabisa dijalanin dari driver_arraydinmap
 	int count = 0;
     int i=0;
 	SalinKataFile();
@@ -164,19 +220,16 @@ void BacaIsi(Tab *T)
 		count ++;
 		ADVKATAFILE();
 	} */
-void TulisIsiTab(Tab T)
+void TulisIsiTabMaterial(Tab T)
 /* Proses : Menuliskan isi tabel dengan traversal, tabel ditulis di antara kurung siku;
    antara dua elemen dipisahkan dengan separator "koma", tanpa tambahan karakter di depan,
    di tengah, atau di belakang, termasuk spasi dan enter */
-/* I.S. T boleh kosong */
-/* F.S. Jika T tidak kosong: [e1,e2,...,en] */
-/* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
-/* Jika tabel kosong : menulis [] */
+/* I.S. T titak kosong */
+/* F.S. Mencetak dengan format: <NamaBahan> <HargaBahan> susun ke bawah */
 {
     // Kamus Lokal
     int i;
     // Algoritma
-    //printf("[");
     printf("Ingin Membangun Apa? \n<NamaBahan> <Harga>\n");
     if(!IsEmptyDin(T)){
         for (i=GetFirstIdxDin(T); i<=GetLastIdxDin(T); i++){
@@ -184,11 +237,8 @@ void TulisIsiTab(Tab T)
             PrintKata(Elmt(T,i).key);
             printf(" %d",Elmt(T,i).value);
             printf("\n");
-            //if(i!=GetLastIdxDin(T)) printf(",");
         }
     }
-
-    //printf("]");
 }
 
 

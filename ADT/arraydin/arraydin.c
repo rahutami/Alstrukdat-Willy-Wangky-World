@@ -112,7 +112,7 @@ void BacaIsi(TabInt *T)
     // Algoritma
     do{
         scanf("%d", &N);
-    } while (N<0 || N>MaxEl(*T));
+    } while (N<0 || N>maxel(*T));
 
     Neff(*T) = N;
 

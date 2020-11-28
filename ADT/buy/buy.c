@@ -16,6 +16,8 @@ void CommmandBuyArray()
 	STARTKATA();
 	while (!IsKataSama (""))
 	{
+		player PTes;
+		CreatePlayer(&PTes); // TEST
 		int val;
 		int Nbahan;
 		Nbahan = convToInt(CKata);
@@ -25,6 +27,7 @@ void CommmandBuyArray()
 		{
 			val = Nbahan * SearchVal(File_material, CKata);
 			//printf("%i\n",val);
+			AddAsLastEl(&Tab(PTes),CKata,Nbahan);  //TEST
 			Kata command;
 			command.TabKata[0]='B';
 			command.TabKata[1]='u';
