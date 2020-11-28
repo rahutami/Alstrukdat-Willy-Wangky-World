@@ -276,21 +276,6 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
     }
 }
 
-void DeleteLastQueue(PrioQueue *Q, infotypeQueue *X) {
-    /* Dequeue tapi dari belakang */
-    *X = InfoTail(*Q);
-    if(Head(*Q) == Tail(*Q)){
-        Head(*Q) = NilQueue;
-        Tail(*Q) = NilQueue;
-    } else {
-        if(Tail(*Q) == 0){
-            Tail(*Q) = MaxEl(*Q) - 1;
-        } else {
-            Tail(*Q)--;
-        }
-    }
-}
-
 void AngryCustomer(PrioQueue *Q) {
     /* Mengeluarkan elemen Q yang kesabarannya 0 */
     /* I.S. Q terdefinisi tidak kosong */
@@ -299,12 +284,16 @@ void AngryCustomer(PrioQueue *Q) {
     int i;
     infotypeQueue del;
     /* ALGORITMA */
-    i = Tail(*Q);
-    while(i >= Head(*Q)) {
-        DeleteLastQueue(Q, &del);
+    i = Head(*Q);
+    while(i <= Tail(*Q)) {
+        Dequeue(Q, &del);
         if(Patience(del) > 0) {
             Enqueue(Q, del);
         }
+<<<<<<< HEAD
         i--;
+=======
+        i++;
+>>>>>>> b22e940fea766d44145740c4eb3b368156e43f79
     }
 }

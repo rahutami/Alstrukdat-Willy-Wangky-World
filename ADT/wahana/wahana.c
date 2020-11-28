@@ -270,6 +270,7 @@ void initWahana(TreeWahanaS T)
     //player pindah ke bawah
 }
 
+<<<<<<< HEAD
 // void nextUpWahana(){}
 
 addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana){
@@ -317,6 +318,8 @@ boolean SearchTree2 (Kata X, TreeWahanaS T)
         }
     }
 }
+=======
+>>>>>>> b22e940fea766d44145740c4eb3b368156e43f79
 void buildWahana(POINT Pos, ListWahanaD *L)
 /*Command ini digunakan untuk membuat wahana baru di petak di mana
 pemain sedang berdiri.
