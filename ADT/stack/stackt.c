@@ -181,80 +181,16 @@ void Upgrade (Stack *S, player *P, TreeWahanaS T) {
 - Cek titik, krn cuma bisa upgrade di sekitar tempat yg ada wahana.
 - Cek uang dan resource, kalo gacukup tampilkan pesan error.
 - Kalo cukup => pengen upgrade apa?
+
+1. Setelah meminta command ini, program akan menampilkan daftar
+upgrade yang mungkin untuk tipe wahana tersebut.
+2. Jika resource untuk mengupgrade wahana tidak mencukupi, maka
+akan ditampilkan pesan error.
+3. Setelah itu, perintah eksekusi ini akan dimasukkan ke dalam
+stack
+
  */
-    // CEK UANG DAN RESOURCE
-    /* 
     
-    ListWahanaD listWahana; // Ini buat nanti insertlast (kalo udah)
-    Kata namaWahana;
-    printf("Input nama wahana: ");
-    STARTKATA();
-    SalinKata(CKata,&namaWahana);
-    printf("Ingin melakukan upgrade apa?\n List: \n");
-    if (SearchWahanaD(namaWahana,listWahana)) {
-        addressWahanaD addressUpgrade = SearchWahanaD(namaWahana,listWahana); // return addressWahanaD
-        addressWahanaS elmtStatisUpgrade = ElmtStatis(addressUpgrade);
-        printf("Ingin melakukan upgrade apa?2\n List: \n");
-        //PrintKata(NamaWahana(namaWahana));
-        PrintKata(NamaWahana(elmtStatisUpgrade));
-        PrintKata(NamaWahana(Left(elmtStatisUpgrade)));
-        PrintKata(NamaWahana(Right(elmtStatisUpgrade)));
-    }
-    else {
-        printf("Gak ketemu!!!\n");
-    }
-    */
-
-    //PrintKata(&NamaWahana(Left(namaWahana)));
-    //PrintKata(&NamaWahana(Right(namaWahana)));
-    /* */
-
-    TreeWahanaS TS;
-    addressWahanaS Q; // statis
-    
-   // addressWahanaD P = listWahana; // dinamis, ini gimana ya :<
-    /* 
-    addressWahanaS tempatWahanaS;
-    addressWahanaD tempatWahanaD;
-   // tempatWahanaD = Root(tempatWahanaS);
-    //tempatWahana = Root(T);
-    addressWahanaS kiri = Left(tempatWahanaS);
-    addressWahanaS kanan = Right(tempatWahanaS);
-    //addressWahanaS infonyaWahana = ElmtStatis(tempatWahana);
-    printf("Nama wahana yang ketemu : ");
-   /* tempatWahanaS = (SearchWahanaD(namaWahana,listWahana));
-    addressWahanaS infonyaWahana = ElmtStatis(tempatWahanaS);*/
-   /*  PrintKata(NamaWahana(tempatWahanaS));
-    PrintKata(NamaWahana(kiri));
-    PrintKata(NamaWahana(kanan)); */
-    // addressWahanaD P = LD;
-    /* 
-    ListWahanaD LD;
-
-
-    while (P != NULL){
-        P = Next(P);
-    }
-    if(P == NULL){
-        //not found
-    } else {
-        Q = ElmtStatis(P);
-        PrintKata(NamaWahana(Q));
-        ListWahanaD
-        // Upgradenya ke left/right Q
-        // Q = Left(Q)
-        ElmtStatis(P) = Q;
-        // -> isi sama wahana di Q
-
-        // -> P didelete
-        // InsertLast(Q);
-        InsertLast(Q,.);
-    } */
-
-  //kalo u
-   // PrintKata(&Root(T));
-    //PrintKata(Left(T));
-    //PrintKata(Right(T));
     // List Wahana yang bisa di upgrade ke sana
     //PrintKata(Left(TreeWahanaS));
     //PrintKata(Right(TreeWahanaS));

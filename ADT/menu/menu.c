@@ -136,9 +136,16 @@ void MainPhase(player * p1){
         }
         if(enter){
             ReducePatience(&Q);
+            PrintPrioQueue(Q);
+            AngryCustomer(&Q);
         }
         enter = true;
+<<<<<<< HEAD
         AngryCustomer(&Q);
+=======
+
+        
+>>>>>>> ca61a25b5648bc1175dc413fd079fb093c968c31
         if (!IsKataSama("command")){
             printf("===================================\n");
             printf("            Main Phase\n");
@@ -180,17 +187,18 @@ void MainPhase(player * p1){
         } else if (IsKataSama("command")){
             ListCommand();
         } else if (IsKataSama("serve")) {
-            addressGraph CPeta = FirstGraph(GraphPeta);
-            int x = X(*p1), y = Y(*p1);
-            while(ID(CPeta) != MapNum(*p1)){
-                CPeta = NextGraph(CPeta);
-            }
             ADVKATA();
-            if(Elmt(Peta(CPeta), x + 1, y) == 'A' || Elmt(Peta(CPeta), x, y+1) == 'A' || Elmt(Peta(CPeta), x - 1, y) == 'A' || Elmt(Peta(CPeta), x, y - 1) == 'A'){
-                Serve(p1, CKata, &Q, &LP, WahanaBuilt);
-            } else {
-                printf("Silahkan pergi ke sebelah antrian untuk menggunakan command ini \n\n");
-            }
+            Serve(p1, CKata, &Q, &LP);
+            // addressGraph CPeta = FirstGraph(GraphPeta);
+            // int x = X(*p1), y = Y(*p1);
+            // while(ID(CPeta) != MapNum(*p1)){
+            //     CPeta = NextGraph(CPeta);
+            // }
+            // ADVKATA();
+            // if(Elmt(Peta(CPeta), x + 1, y) == 'A' || Elmt(Peta(CPeta), x, y+1) == 'A' || Elmt(Peta(CPeta), x - 1, y) == 'A' || Elmt(Peta(CPeta), x, y - 1) == 'A'){
+            // } else {
+            //     printf("Silahkan pergi ke sebelah antrian untuk menggunakan command ini \n\n");
+            // }
         }
         // nanti tambahin elif aja buat command yang lain 
         // else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {

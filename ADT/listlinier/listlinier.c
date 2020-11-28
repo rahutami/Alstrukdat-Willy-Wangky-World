@@ -307,6 +307,24 @@ void Konkat1 (List *L1, List *L2, List *L3) {
 	}
 }
 
+boolean IsListSama (List L1, List L2) {
+    boolean sama = true;
+    if (NbElmt(L1) == NbElmt(L2)) {
+        addressList P1 = First(L1), P2 = First(L2);
+        while (sama && P1 != NilList) {
+            if (!IsKataSamaKata(InfoList(P1), InfoList(P2))) {
+                sama = false;
+            } else {
+                P1 = Next(P1);
+                P2 = Next(P2);
+            }
+        }
+        return sama;
+    } else {
+        return false;
+    }
+}
+
 /*boolean IsAllRusak (List L, ListWahanaD LW) {
    addressList P = First(L);
    addressWahanaD W;

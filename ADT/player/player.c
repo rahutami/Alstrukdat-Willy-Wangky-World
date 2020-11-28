@@ -17,6 +17,9 @@ void CreatePlayer(player *P){
     Money(*P) = 1000;
     CJam(*P) = MakeJAM(21,0);
     Day(*P) = 1;
+    // Inisialisasi Resources
+    //Tab TabResources;
+    //MakeEmptyDin(&TabResources,20);
 }
 
 void TulisPlayer(player P){

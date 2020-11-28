@@ -138,6 +138,8 @@ infotypeList Min (List L);
 infotypeList Max (List L);
 /* Mengirimkan nilai InfoList(P) yang maksimum */
 
+boolean IsListSama (List L1, List L2);
+
 /****************** PROSES TERHADAP LIST ******************/
 void Konkat1 (List *L1, List *L2, List *L3);
 /* I.S. L1 dan L2 sembarang */

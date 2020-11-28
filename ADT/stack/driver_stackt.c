@@ -11,6 +11,7 @@ int main() {
     player Pemain;
     CreatePlayer(&Pemain);
     TreeWahanaS Pohon;
+    /* 
     aksi aksi1, aksi2, aksi3, aksi5;
     aksi1.durasi = 1;
     aksi3.durasi = 3;
@@ -41,10 +42,12 @@ int main() {
     mainmain(&stacktest,&buang);
     printf("Stack setelah dikosongin:\n");
     PrintStack(stacktest);
+    */
     // MULAI MAIN PHASE
     
     //EXECUTE
-    /* 
+
+    /*  blahblah
     if (sum > waktu) {
         printf("error\n");
     }
@@ -65,6 +68,7 @@ int main() {
         PrintStack(target);
     }
     */
+   
     // EXECUTE
     /* Jika jumlah waktu aksi2 di dalam stack melebihi jumlah waktu yang diizinkan, tampilkan pesan error
     Jika waktu cukup:
@@ -80,20 +84,70 @@ int main() {
     PrintTree(T);
 
     Kata namaWahana;
-    STARTKATA();
+    STARTKATA(); // Ini masih salah :>
     CopyKata(CKata,&namaWahana);
-    printf("INPUTAN KAMU ADALAH: ");
+    printf("Inputan kamu adalah: ");
     PrintKata(namaWahana);
+    /* Nanti dulu deh 
+    // CEK TIME REMAINING (?)
+    // CEK UANG DAN RESOURCES
+    if (UangCukup(&P,250)) {
+        // CEK POINT ->
+        // Jika kanan kiri atas bawah ada W, oke bisa. Terus cari Wnya. Kalo gaada, gabisa
+        if (Next(X(P)= {
+            
+        }
+        else {
+            printf("Tidak dapat melakukan command upgrade, karena tidak ada wahana.")
+        }
+    }
+    else {
+
+    }
+    */
+    /* CARI */
     printf("\n");
-    if (SearchTree(namaWahana,T)) {
-        printf("KETEMU");
-        /* 
-        addressWahanaS elmtStatisUpgrade = SearchTree;
-        printf("Ingin melakukan upgrade apa?2\n List: \n");
-        PrintKata(NamaWahana(namaWahana));
+    addressWahanaS elmtStatisUpgrade = SearchAddress(T,namaWahana);
+    if (elmtStatisUpgrade != NULL) {
+        printf("Ketemu, nama wahana: "); printf("\n");
         PrintKata(NamaWahana(elmtStatisUpgrade));
-        PrintKata(NamaWahana(Left(elmtStatisUpgrade)));
-        PrintKata(NamaWahana(Right(elmtStatisUpgrade))); */
+        printf("Ingin melakukan upgrade apa?\n List: \n");
+        if (Left(elmtStatisUpgrade)== NULL && Right(elmtStatisUpgrade)==NULL) { // Kondisi udah mentok gabisa diupgrade
+            printf("Tidak dapat diupgrade.");
+        }
+        else { // bisa diupgrade
+            if (Left(elmtStatisUpgrade)!=NULL){
+                PrintKata(NamaWahana(Left(elmtStatisUpgrade))); printf("\n");
+            } 
+            if (Right(elmtStatisUpgrade)!=NULL) {
+                PrintKata(NamaWahana(Right(elmtStatisUpgrade))); printf("\n");
+            }
+            Kata elmtUpgrade;
+            printf("Mau upgrade kemana: ");
+            STARTKATA();
+            CopyKata(CKata,&elmtUpgrade);
+            // !!! Kalo salah satunya NULL bisa segmentation fault, biar gak segmentationfault gimana yh kondisinya
+            while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade)))) && (!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
+                printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                STARTKATA();
+                CopyKata(CKata,&elmtUpgrade);
+            }
+            // elmtUpgrade = Left atau elmtUpgrade = Right
+            // Melakukan upgrade
+            addressWahanaS parent = elmtStatisUpgrade; // Kayaknya mau bikin fungsi parent
+            addressWahanaS addrElmtUpgraded = SearchAddress(T,elmtUpgrade);
+            elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
+            // Harusnya udah berubah nih
+            // INI BUAT NGETES
+            printf("Upgraded!\n");
+            printf("Nama wahana yang baru   : ");PrintKata(NamaWahana(elmtStatisUpgrade));printf("\n");
+            printf("Deskripsi               : ");PrintKata(DescWahana(elmtStatisUpgrade));printf("\n");
+            printf("Nama wahana sebelumnya  : ");PrintKata(NamaWahana(parent));printf("\n");
+            //printf("Posisinya tetep         : ");TulisPOINT(PositionWahana());
+        }
+
+
+        //  MELAKUKAN UPGRADE
     }
     else {
         PrintKata(namaWahana);
