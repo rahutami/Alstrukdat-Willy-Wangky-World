@@ -22,11 +22,6 @@ char CC;
 Kata CKata;
 boolean EOP;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
-JAM JamBuka, JamTutup;
-listPlayer LP;
-Graph GraphPeta;
-TreeWahanaS UpgradeTree;
-player Player;
 
 void NewGame(){
     
@@ -38,6 +33,7 @@ void NewGame(){
     MakeTree();
     CreateJamBukaTutup();
     CreatePlayer(&Player);
+    CreateEmpty(&stackExecute);
 
     loadPeta(&Peta1, &Peta2, &Peta3, &Peta4);
     CreateGraphPeta(Peta1, Peta2, Peta3, Peta4, &GraphPeta);
@@ -74,4 +70,4 @@ int main(){
     return 0;
 }
 
-// gcc main.c ADT/wahana/wahana.c ADT/listlinier/listlinier.c ADT/listplayer/listplayer.c ADT/graph/graph.c ADT/jam/jam.c ADT/matriks/matriks.c ADT/menu/menu.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c ADT/peta/peta.c ADT/player/player.c ADT/point/point.c ADT/prioqueue/prioqueue.c ADT/stack/stackt.c -o main
+// gcc main.c ADT/buy/buy.c ADT/arraydinmap/arraydinmap.c ADT/build/build.c ADT/wahana/wahana.c ADT/listlinier/listlinier.c ADT/listplayer/listplayer.c ADT/graph/graph.c ADT/jam/jam.c ADT/matriks/matriks.c ADT/menu/menu.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c ADT/peta/peta.c ADT/player/player.c ADT/point/point.c ADT/prioqueue/prioqueue.c ADT/stack/stackt.c -o main

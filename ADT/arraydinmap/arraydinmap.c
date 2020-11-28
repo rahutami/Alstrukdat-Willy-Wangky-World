@@ -109,7 +109,7 @@ void BacaIsi(Tab *T)
 /* NOTE: PROSEDUR INI BUAT BACA FILE EXTERNAL TERUS BIKIN TABELNYA */
 {
     MakeEmptyDin(T,30);
-    STARTKATAFILE("../../Files/material.txt");
+    STARTKATAFILE("Files/material.txt");
 	int count = 0;
     int i=0;
 	SalinKataFile();

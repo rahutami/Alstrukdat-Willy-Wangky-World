@@ -54,7 +54,6 @@ addressWahanaD SearchWahanaD (Kata inputWahana, ListWahanaD L)
     boolean found = false;
     addressWahanaD P = First(L);
     //ALGORITMA
-
     while (!found && (P != NilList)){
         if (IsKataSamaKata(inputWahana, NamaWahana(ElmtStatis(P)))){
             found = true;
@@ -80,7 +79,8 @@ void MakeTree()
     for (int i = 0; i < 10; i++)
         temptree[i] = AlokNode(i);
 
-    STARTFILE("../../Files/Wahana/wahana.txt"); // :')
+    // STARTFILE("../../Files/Wahana/wahana.txt"); // :')
+    STARTFILE("Files/Wahana/wahana.txt");
     //printf("baca file\n");
     int i=0;
     int indexarr=0; //akan bertambah perbaris dan pernode
@@ -331,21 +331,35 @@ stack*/
     //Menampilkan wahana dasar (ada 10, diambil dari tree wahana)
     addressWahanaD P, Prec;
 
-    printf("Ingin membangun wahana apa?\n");
+    printf("\nIngin membangun wahana apa?\n-> ");
     STARTKATA(); 
+    if (!IsKataSama (""))
+    {
+        if(SearchTree(CKata,UpgradeTree))
+        {
+            //masukkin ke list  wahana
+            P = AlokWahana(Pos, CKata); 
+            if (IsEmptyListW(*L)){
+                InsFirstW(L,P);
+            }
+            else{
+                Prec = First(*L); 
 
-    P = AlokWahana(Pos, CKata); 
-    if (IsEmptyListW(*L)){
-        InsFirstW(L,P);
-    }
-    else{
-        Prec = First(*L); 
-
-        while (Next(Prec)!=NilList){
-            Prec = Next(Prec);
+                while (Next(Prec)!=NilList){
+                    Prec = Next(Prec);
+                }
+                InsAfterW(L, P, Prec);
+            }
         }
-        InsAfterW(L, P, Prec);
+        else
+        {
+            printf("%s\n","Wahana tidak ada dalam list wahana" );
+        }   
     }
+    else
+	{
+		printf("%s\n","Masukkan Anda enter" );
+	}
 }
 
 boolean IsEmptyListW (ListWahanaD L){

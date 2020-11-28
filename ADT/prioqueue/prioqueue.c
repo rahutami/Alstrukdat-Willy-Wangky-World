@@ -278,42 +278,20 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP){
     }
 }
 
-void AngryCustomer(PrioQueue *Q) {
+PrioQueue AngryCustomer(PrioQueue Q) {
     /* Mengeluarkan elemen Q yang kesabarannya 0 */
     /* I.S. Q terdefinisi tidak kosong */
     /* F.S. Elemen Q tidak berkurang, tidak ada yang kesabarannya 0 */
-    /* KAMUS LOKAL */
     infotypeQueue del;
-    List tail;
-    /* ALGORITMA */
-    printf("1\n");
-    tail = InfoQueue(InfoTail(*Q));
-    printf("2\n");
-    do {
-        Dequeue(Q, &del);
-        printf("3\n");
-        if(Patience(del) > 0) {
-            PrintPrioQueue(*Q);
-            printf("4\n");
-            Enqueue(Q, del);
-            printf("5\n");
-        } 
-        printf("6\n");
-        PrintPrioQueue(*Q);
-    } while(!IsListSama(tail, InfoQueue(InfoHead(*Q))) && !IsEmptyQueue(*Q));
+    PrioQueue NewQ;
+    addressQueue P;
+    CreateEmptyQueue(&NewQ, 5);
+    P = Head(Q);
 
-    printf("7\n");
-    Dequeue(Q, &del);
-    if(Patience(del) > 0) {
-        printf("8\n");
-        Enqueue(Q, del);
-        printf("9\n");
-    } 
-    PrintInfo(InfoQueue(del));
-    printf("%d", Patience(del));
-    printf("\n");
-    printf("10\n");
-    if(!IsEmptyQueue(*Q)){
-        PrintPrioQueue(*Q);
+    while(!IsEmptyQueue(Q)){
+        Dequeue(&Q, &del);
+
+        if(Patience(del) > 0) Enqueue(&NewQ, del);
     }
+    return NewQ;
 }

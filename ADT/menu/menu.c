@@ -102,6 +102,8 @@ void Preparation(player *p1){
         } else if (IsKataSama("build")){
             buildWahana(Position(Player), &WahanaBuilt);
             AddWToPeta();
+        } else if (IsKataSama("buy")){
+            CommmandBuyArray();
         }
         // nanti tambahin elif aja buat command yang lain
         else if(!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute"))){
@@ -137,7 +139,7 @@ void MainPhase(player * p1){
         if(enter){
             ReducePatience(&Q);
             PrintPrioQueue(Q);
-            AngryCustomer(&Q);
+            Q = AngryCustomer(Q);
         }
         enter = true;
 

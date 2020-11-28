@@ -18,7 +18,7 @@ Deskripsi: implementasi stack
 Stack stackExecute;
 
 //#define Nil -1
-//#define MaxEl 10
+//#define MaxElS 10
 /* Nil adalah stack dengan elemen kosong . */
 
 //typedef int aksi;
@@ -27,11 +27,11 @@ Stack stackExecute;
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 //typedef struct { 
- // aksi T[MaxEl]; /* tabel penyimpan elemen */
+ // aksi T[MaxElS]; /* tabel penyimpan elemen */
  // address TOP;  /* alamat TOP: elemen puncak */
 //} Stack;
 /* Definisi stack S kosong : S.TOP = Nil */
-/* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
+/* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxElS-1] */
 /* Jika S adalah Stack maka akses elemen : */
    /* S.T[(S.TOP)] untuk mengakses elemen TOP */
    /* S.TOP adalah alamat elemen TOP */
@@ -44,8 +44,8 @@ Stack stackExecute;
 /* *** Konstruktor/Kreator *** */
 void CreateEmpty (Stack *S)
 /* I.S. sembarang; */
-/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-/* jadi indeksnya antara 0.. MaxEl */
+/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxElS */
+/* jadi indeksnya antara 0.. MaxElS */
 /* Ciri stack kosong : TOP bernilai Nil */
 {
     Top(*S)=Nil;
@@ -59,7 +59,7 @@ boolean IsEmptyStack (Stack S)
 boolean IsFullStack (Stack S)
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 {
-    return(Top(S)==(MaxEl-1));
+    return(Top(S)==(MaxElS-1));
 }
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
 void Push (Stack * S, aksi X)

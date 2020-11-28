@@ -12,6 +12,8 @@
 #include "../player/player.h"
 #include "../graph/graph.h"
 #include "../wahana/wahana.h"
+#include "../buy/buy.h"
+#include "../build/build.h"
 
 void MainMenu();
 void MenuJalan(player *p1, Graph G);
