@@ -48,9 +48,12 @@ int main(){
     if (IsKataSama("new")){
         player p1;
         TreeWahanaS T;
+        printf("lala");
         MakeTree(&T);
-        
+        printf("lala");
+
         NewGame(&p1);
+        MakeTree(&T);
         
         Preparation(&p1, T);
         while(!IsKataSama("exit")){

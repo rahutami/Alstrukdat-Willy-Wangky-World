@@ -318,7 +318,7 @@ stack*/
     MakeTree(&T); PrintTree(T);
 
     printf("Ingin membangun wahana apa?\n");
-    STARTKATA(); printf("oke1");
+    STARTKATA();
     PrintKata(CKata);
     //Menambah elemen pada list linier
     //ListWahanaD L;
@@ -337,7 +337,7 @@ stack*/
         while (Next(Prec)!=NilList){
             Prec = Next(Prec);
         }
-        InsAfterW(L,P,Prec); printf("oke3");
+        InsAfterW(L,P,Prec);
     }
     
     /*if (IsEmptyListW(L)){
