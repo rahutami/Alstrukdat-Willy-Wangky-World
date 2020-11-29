@@ -69,8 +69,8 @@ void MakeTree()
         SalinKataFile();
         i++;
         if(CC == EOL){
-            if (i == 9){
-                JmlBahan(temptree[indexarr]) = convToInt(CKata);
+            if (i == 10){
+                UpgradeCost(temptree[indexarr]) = convToInt(CKata);
                 //printf("bisa 7, %d\n",TimeWahana(temptree[indexarr]));
             }
             ADV(); //pita maju 1 karakter
@@ -113,6 +113,9 @@ void MakeTree()
                     break;
                 case 9:
                     JmlBahan(temptree[indexarr]) = convToInt(CKata);
+                    break;
+                case 10:
+                    UpgradeCost(temptree[indexarr]) = convToInt(CKata);
                     break;
                 default:
                     break;
