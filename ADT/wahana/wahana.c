@@ -283,11 +283,11 @@ addressWahanaD WahanaSekitar() {
     addressWahanaD P = First(WahanaBuilt);
     while (!found) {
         if(Ordinat(PositionWahana(P)) == Y(Player)){
-            if((Absis(PositionWahana(P)) = X(Player) + 1) || (Absis(PositionWahana(P)) = X(Player) + 1)) {
+            if((Absis(PositionWahana(P)) = X(Player) + 1) || (Absis(PositionWahana(P)) = X(Player) - 1)) {
                 found = true;
             }
         } else if(Absis(PositionWahana(P)) == X(Player)) {
-            if((Ordinat(PositionWahana(P)) = Y(Player) + 1) || (Ordinat(PositionWahana(P)) = Y(Player) + 1)) {
+            if((Ordinat(PositionWahana(P)) = Y(Player) + 1) || (Ordinat(PositionWahana(P)) = Y(Player) - 1)) {
                 found = true;
             }
         } else {
@@ -483,20 +483,14 @@ addressWahanaD SearchWahanaDP (POINT Pos, int MapNum, ListWahanaD L)
     return P;    
 }
 
-void wahanaRusak(addressWahanaS *P, addressWahanaD *D){
-    //ListWahanaD L;
-    //int upper = 10; int lower = 0;
-    int num = (rand() % (10 - 0 + 1)) + 0; 
+void wahanaRusak(){
+    int num = (rand() % (9 - 0 + 1)) + 1; 
      
-    *P = SearchAddressID(UpgradeTree,num);
-    *D = SearchWahanaD (NamaWahana(*P),WahanaBuilt);
+    addressWahanaS P = SearchAddressID(UpgradeTree,num);
+    addressWahanaD D = SearchWahanaD (NamaWahana(P),WahanaBuilt);
     if (D!=NilList){
-        StatusWahana(*D) = false;
-        //printf("oke\n");
-        //return P; printf("oke2");
+        StatusWahana(D) = false;
     }
-    //cari ID yang == num -> address ElmtStatis
-    //cari address dinamisnya, ganti status jadi false
 }
 /*
 boolean isWahanaRusak (player Pemain, addressWahanaD *D){

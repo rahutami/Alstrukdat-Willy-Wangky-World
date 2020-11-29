@@ -125,7 +125,7 @@ addressWahanaD WahanaSekitar();
 
 void Repair(addressWahanaD *W);
 
-void wahanaRusak(addressWahanaS *P, addressWahanaD *D);
+void wahanaRusak();
 
 /* Manajemen Memory */
 addressWahanaS AlokNode(int i);
@@ -213,7 +213,6 @@ addressWahanaS SearchAddressID (TreeWahanaS P, int num);
 addressWahanaD SearchWahanaDP (POINT Pos, int MapNum, ListWahanaD L);
 //Mencari address Dinamis dari WahanaBuilt (berdasarkan POINT Posisi Wahana yg diinput)
 
-void wahanaRusak(addressWahanaS *P, addressWahanaD *D);
 //random ID wahana yang rusak dari ID 1-10
 //cari address statis P dan address dinamis D yang bersesuaian dgn ID
 //mengubah StatusWahana pada address dinamis D menjadi 'false'

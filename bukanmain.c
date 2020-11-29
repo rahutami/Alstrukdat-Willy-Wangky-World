@@ -4,7 +4,6 @@
 #include <time.h>
 #include "ADT/boolean/boolean.h"
 #include "ADT/listlinier/listlinier.h"
-#include "ADT/listplayer/listplayer.h"
 #include "ADT/mesinkata/mesinkata.h"
 #include "ADT/matriks/matriks.h"
 #include "ADT/jam/jam.h"
@@ -21,7 +20,6 @@ Kata CKata;
 boolean EOP;
 
 #include <stdio.h>
-#include "menu.h"
 
 
 Graph GraphPeta;
@@ -302,11 +300,15 @@ void MainPhase(player * p1){
             
             printf("\033[0;31m");
             addressWahanaD P = First(WahanaBuilt);
+            boolean brokenprinted = false;
             while (P != NilList){
                 if ((StatusWahana(P)) == false){
                     printf("\033[0;31m");
-                    printf("Broken : ");
-                    PrintKata(NamaWahana(ElmtStatis(P)));
+                    if (!brokenprinted){
+                        printf("     Broken : \n");
+                        brokenprinted = true;
+                    }
+                    printf("     "); PrintKata(NamaWahana(ElmtStatis(P))); printf("\n");
                     printf("\033[0;31m");
                 }
                 P = NextWahana(P);
@@ -351,7 +353,7 @@ void MainPhase(player * p1){
             if(ElmtMatriks(Peta(CPeta), y + 1, x) == 'A' || ElmtMatriks(Peta(CPeta), y, x+1) == 'A' || ElmtMatriks(Peta(CPeta), y - 1, x) == 'A' || ElmtMatriks(Peta(CPeta), y, x - 1) == 'A'){
                 Serve(p1, CKata, &Q, &LP, WahanaBuilt);
                 addressWahanaS P; addressWahanaD D;
-                wahanaRusak(&P, &D);
+                wahanaRusak();
             } else {
                 printf("\033[0;31m");
                 printf("Silahkan pergi ke sebelah antrian untuk menggunakan command ini \n\n");
