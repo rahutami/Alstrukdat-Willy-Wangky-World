@@ -113,10 +113,10 @@ stack*/
 }
 
 void UndoBuild() {
+    // Pop
     // Tambahin uang
     // Tambahin bahan -> cek inventory pake PrintIsiTab
     // Delete di list wahana built -> Cek list WahanaBuilt
-    // Pop
     aksi X;
     Pop(&stackExecute,&X);
     PrintInfoStack(stackExecute);
@@ -237,10 +237,9 @@ input salah atau benar kemudian masukin ke stack */
 }
 
 void UndoBuy () {
-    
+// Pop
 // Uang ditambah
 // Inventory berkurang (delete dari arraydinmap) -> belom bikin fungsinya. Cek inventory pake print Isi
-// Pop
 aksi X;
 Pop(&stackExecute,&X);
 Money(Player) += X.uang;
@@ -249,6 +248,19 @@ DelElTab(&Tab(Player), X.NamaBahan, X.JumlahBahan);
 
 
 void upgradeWahana() {
+/* STEPS:
+- Cek titik, krn cuma bisa upgrade di sekitar tempat yg ada wahana.
+- Cek uang dan resource, kalo gacukup tampilkan pesan error.
+- Kalo cukup => pengen upgrade apa?
+
+1. Setelah meminta command ini, program akan menampilkan daftar
+upgrade yang mungkin untuk tipe wahana tersebut.
+2. Jika resource untuk mengupgrade wahana tidak mencukupi, maka
+akan ditampilkan pesan error.
+3. Setelah itu, perintah eksekusi ini akan dimasukkan ke dalam
+stack
+
+ */
     int X = X(Player);
     int Y = Y(Player);
     POINT P;
@@ -283,6 +295,7 @@ void upgradeWahana() {
         addressWahanaD wahanaToUpgrade = SearchWahanaD(CKata, WahanaBuilt);
         addressWahanaS elmtStatisUpgrade = ElmtStatis(wahanaToUpgrade);
         addressWahanaS addrPrevWahana = elmtStatisUpgrade; // address wahana sebelumnya
+
         //addressWahanaD elmtStatisUpgradeD = SearchWahanaD(namaWahana,WahanaBuilt);
         //addressWahanaS elmtStatisUpgrade;
         /* 
@@ -325,7 +338,7 @@ void upgradeWahana() {
 
 
                         addrElmtUpgraded = Left(elmtStatisUpgrade);
-                        /* Kode mau upgrade kemana */
+
                         ElmtStatis(wahanaToUpgrade) = addrElmtUpgraded; // mengganti elemen statisnya
                         elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
                         PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
@@ -358,9 +371,8 @@ void upgradeWahana() {
                         addrElmtUpgraded = Right(elmtStatisUpgrade);
                         ElmtStatis(wahanaToUpgrade) = addrElmtUpgraded; // mengganti elemen statisnya
                         elmtStatisUpgrade = addrElmtUpgraded;
-                        /* Kode mau upgrade kemana */
-                            PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
+                            PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
                             UpgradeStack(addrPrevWahana,elmtStatisUpgrade); // Buat nge push ke stack
                             PrintInfoStack(stackExecute);
@@ -384,15 +396,6 @@ void upgradeWahana() {
                         // Mau upgrade ke kiri
                         if (SemuaCukup (&Player,BahanWahana(Left(elmtStatisUpgrade)),JmlBahan(Left(elmtStatisUpgrade)),UpgradeCost(elmtStatisUpgrade))) {
                             // Bisa upgrade
-                            /* Kode mau upgrade kemana 
-                            printf("Mau upgrade kemana: ");
-                            STARTKATA();
-                            CopyKata(CKata,&elmtUpgrade);
-                            while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade))))) {
-                                printf("Nama wahana yang Anda tulis salah. \nMau upgrade kemana: ");
-                                STARTKATA();
-                                CopyKata(CKata,&elmtUpgrade);
-                            } */
 
                             // Kurangin uang dan bahan
                             Money(Player) = Money(Player) - UpgradeCost(elmtStatisUpgrade);
@@ -404,7 +407,6 @@ void upgradeWahana() {
                             PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
                             UpgradeStack(addrPrevWahana,elmtStatisUpgrade); // Buat nge push ke stack
-                            printf("ok");
                             PrintInfoStack(stackExecute); 
                             }
                         else {
@@ -415,15 +417,6 @@ void upgradeWahana() {
                         if (SemuaCukup (&Player,BahanWahana(Right(elmtStatisUpgrade)),JmlBahan(Right(elmtStatisUpgrade)),UpgradeCost(elmtStatisUpgrade))) {
                             // Mau upgrade ke kanan
                             // Bisa upgrade
-                            /* Kode mau upgrade kemana 
-                            printf("Mau upgrade kemana: ");
-                            STARTKATA();
-                            CopyKata(CKata,&elmtUpgrade);
-                            while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade))))) {
-                                printf("Nama wahana yang Anda tulis salah. \nMau upgrade kemana: ");
-                                STARTKATA();
-                                CopyKata(CKata,&elmtUpgrade);
-                            } */
                             // Kurangin uang dan bahan
                             Money(Player) = Money(Player) - UpgradeCost(elmtStatisUpgrade);
                             DelElTab(&Tab(Player),BahanWahana(Right(elmtStatisUpgrade)),JmlBahan(Right(elmtStatisUpgrade)));
@@ -431,7 +424,7 @@ void upgradeWahana() {
                             addrElmtUpgraded = Right(elmtStatisUpgrade);
                             ElmtStatis(wahanaToUpgrade) = addrElmtUpgraded; // mengganti elemen statisnya
                             elmtStatisUpgrade = addrElmtUpgraded;
-                            /* Kode mau upgrade kemana */
+
                             PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
                             UpgradeStack(addrPrevWahana,elmtStatisUpgrade); // Buat nge push ke stack
@@ -442,10 +435,8 @@ void upgradeWahana() {
                         }
                     }
                 }
-                //addressWahanaS addrElmtUpgraded = ElmtStatis(SearchWahanaD(elmtUpgrade,WahanaBuilt));
-                //elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
+ 
         }
-        // Memasukkan perintah ke stack ONLY IF berhasil upgrade (uang dan resources cukup!)
 
     } else { // Tidak bisa upgrade, karena tidak di sekitar wahana
         printf("Tidak bisa melakukan upgrade, karena tidak berada di sekitar wahana\n");

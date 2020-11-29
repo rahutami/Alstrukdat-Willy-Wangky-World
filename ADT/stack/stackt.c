@@ -17,29 +17,6 @@ Deskripsi: implementasi stack
 
 Stack stackExecute;
 
-//#define Nil -1
-//#define MaxElS 10
-/* Nil adalah stack dengan elemen kosong . */
-
-//typedef int aksi;
-//typedef int address;   /* indeks tabel */
-
-/* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
-/* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
-//typedef struct { 
- // aksi T[MaxElS]; /* tabel penyimpan elemen */
- // address TOP;  /* alamat TOP: elemen puncak */
-//} Stack;
-/* Definisi stack S kosong : S.TOP = Nil */
-/* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxElS-1] */
-/* Jika S adalah Stack maka akses elemen : */
-   /* S.T[(S.TOP)] untuk mengakses elemen TOP */
-   /* S.TOP adalah alamat elemen TOP */
-
-/* Definisi akses dengan Selektor : Set dan Get */
-//#define Top(S) (S).TOP
-//#define InfoTop(S) (S).T[(S).TOP]
-
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */
 void CreateEmpty (Stack *S)
@@ -130,7 +107,6 @@ void PrintStack (Stack S) { // Ini biar ngebantu aja
             printf("Uang yang dibutuhkan per aksi: %d\n", top.uang);
             printf("Durasi yang dibutuhkan per aksi: %d\n", top.durasi);
             Pop(&S,&X);
-            //Push(&S,top);
         }
     }
 }
@@ -165,13 +141,6 @@ int NbElmtStack (Stack S) {
     return count;
 }
 
-void mainmain (Stack *S, aksi *X) {
-    //aksi buang;
-    while (!IsEmptyStack(*S)) {
-        Pop(S,X);
-    }
-}
-
 void PrintUpgraded(addressWahanaS prevWahana, addressWahanaS nextWahana) {
     // INI BUAT NGETEST
     printf("\nUpgraded!\n");
@@ -196,7 +165,7 @@ void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana) {
 		kataUpgrade.Length = 6;
 
         aksiUpgrade.commandStack = kataUpgrade;
-        aksiUpgrade.durasi = 240; // ceritanya 240 menit
+        aksiUpgrade.durasi = 240; // setiap upgrade butuh waktu 240 menit (2 jam)
         addressWahanaD elmtDin = SearchWahanaD(NamaWahana(nextWahana),WahanaBuilt);
         aksiUpgrade.PointWahana = PositionWahana(elmtDin);
         aksiUpgrade.MapNumAksi = PetaWahana(elmtDin);
@@ -206,32 +175,9 @@ void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana) {
         aksiUpgrade.addrPrevWahana = prevWahana; 
         Push(&stackExecute,aksiUpgrade);
 }
-/* STEPS:
-- Cek titik, krn cuma bisa upgrade di sekitar tempat yg ada wahana.
-- Cek uang dan resource, kalo gacukup tampilkan pesan error.
-- Kalo cukup => pengen upgrade apa?
 
-1. Setelah meminta command ini, program akan menampilkan daftar
-upgrade yang mungkin untuk tipe wahana tersebut.
-2. Jika resource untuk mengupgrade wahana tidak mencukupi, maka
-akan ditampilkan pesan error.
-3. Setelah itu, perintah eksekusi ini akan dimasukkan ke dalam
-stack
 
- */
     
-    // List Wahana yang bisa di upgrade ke sana
-    //PrintKata(Left(TreeWahanaS));
-    //PrintKata(Right(TreeWahanaS));
-    // Ketik nama wahana
-    // Wahana pada lokasi (X,Y) berubah menjadi ...
-    // ngecek kanan kiri atas bawah yg mana
-    // terus ngereturn addresswahana
-    // if kanan kiri atas bawah bkn wahana print error
-    
-    /* PROSEDUR UNTUK NGEPUSH KE STACK */
-
-
 void PrintInfoStack (Stack S) {
     if(IsEmptyStack(S)){
         printf("           Tidak ada aksi yang akan dilakukan\n");
