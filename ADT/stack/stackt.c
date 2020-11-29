@@ -176,7 +176,23 @@ void Undo (Stack *S, aksi *X) {
     Pop(S,X);
 }
 
-void Upgrade (Stack *S, player *P, TreeWahanaS T) {
+void PrintUpgraded(addressWahanaS prevWahana, addressWahanaS nextWahana) {
+    // INI BUAT NGETEST
+    printf("Upgraded!\n");
+    printf("Nama wahana yang baru   : ");PrintKata(NamaWahana(nextWahana));printf("\n");
+    printf("Deskripsi               : ");PrintKata(DescWahana(nextWahana));printf("\n");
+    printf("Nama wahana sebelumnya  : ");PrintKata(NamaWahana(prevWahana));printf("\n");
+}
+
+void UpgradeStack() {
+/* FUNGSI INI UNTUK NGE PUSH AKSI UPGRADE KE STACK */
+/* IF AND ONLY IF UPGRADENYA BERHASIL (RESOURCES DAN UANG CUKUP !!! ) */
+        aksi aksiUpgrade;
+        aksiUpgrade.uang = 0;
+        aksiUpgrade.durasi = 240;
+        aksiUpgrade.PointWahana = Position(Player);
+        Push(&stackExecute,aksiUpgrade);
+
 /* STEPS:
 - Cek titik, krn cuma bisa upgrade di sekitar tempat yg ada wahana.
 - Cek uang dan resource, kalo gacukup tampilkan pesan error.
@@ -220,3 +236,4 @@ boolean UangCukup (player *P, int harga) {
 boolean BahanCukup (player *P, Kata NamaBahan, int JumlahBahan) {
     return (SearchB(Tab(*P),NamaBahan,JumlahBahan));
 }
+

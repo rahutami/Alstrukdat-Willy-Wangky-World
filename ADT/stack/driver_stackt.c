@@ -1,16 +1,173 @@
 #include <stdio.h>
 #include "stackt.h"
 
-void SebelahWahana(){
+/*
+BUAT UPGRADE YANG BELOM:
+- Cek uang -> kayaknya mau tambahin upgrade cost di wahana.txt
+- Belom dites sih :< 
+- Untuk buy, build, upgrade belom memfungsikan inventorynya player. -> kurang fungsi delete Item gitu sih
+- Stack masih bingung.
+    -> Rencana awal:
+        //Kata commandStack;
+        //int durasi; // Waktu yang dibutuhkan untuk melakukan satu aksi
+        //POINT PointWahana; // Point tempat aksi tsb dilakukan
+        //int MapNum(P);
+        //Kata NamaBahan;
+        //int JumlahBahan;
+        //int uang; // Uang yang dibutuhkan untuk melakukan satu aksi
+        // ID wahana yang sebelumnya
+    -> FIXNYA GMN YA (?)
+        //Kata commandStack
+        //int durasi;
+        //POINT PointWahana
+        //int MapNum(P);
+        //int uang
+        // ID wahana yang sebelumnya
+- Undo Upgrade (mau dipastiin dulu bisa jalan)
+- Bismillah semoga langsung bisa aamiin
+*/
+
+void upgradeWahana() {
     int X = X(Player);
     int Y = Y(Player);
     POINT P;
     addressGraph CPeta = FirstGraph(GraphPeta);
     while(ID(CPeta) != MapNum(Player)) CPeta = NextGraph(CPeta);
-
-    if(ElmtMatriks(Peta(CPeta), X-1, Y) == 'W' || ElmtMatriks(Peta(CPeta), X+1, Y) == 'W' || ElmtMatriks(Peta(CPeta), X, Y-1) == 'W' || ElmtMatriks(Peta(CPeta), X, Y+1) == 'W'){
+    if (ElmtMatriks(Peta(CPeta), X-1, Y) == 'W' || ElmtMatriks(Peta(CPeta), X+1, Y) == 'W' || ElmtMatriks(Peta(CPeta), X, Y-1) == 'W' || ElmtMatriks(Peta(CPeta), X, Y+1) == 'W'){
         printf("List wahana yang bisa diupgrade:\n");
-    } else {
+        addressWahanaS elmtStatisUpgrade = ElmtStatis(SearchWahanaDP(P, WahanaBuilt));
+        addressWahanaS addrPrevWahana = elmtStatisUpgrade; // address wahana sebelumnya
+        //addressWahanaD elmtStatisUpgradeD = SearchWahanaD(namaWahana,WahanaBuilt);
+        //addressWahanaS elmtStatisUpgrade;
+        /* 
+        if (elmtStatisUpgradeD != NULL) {
+            elmtStatisUpgrade = ElmtStatis(elmtStatisUpgradeD);
+            printf("Ketemu, nama wahana: "); printf("\n");
+            PrintKata(NamaWahana(elmtStatisUpgrade)); printf("\n");
+            printf("Ingin melakukan upgrade apa?\n"); */
+            
+            addressWahanaS addrElmtUpgraded; // address wahana setelah upgrade
+            if (Left(elmtStatisUpgrade)== NULL && Right(elmtStatisUpgrade)==NULL) { // Kondisi udah mentok gabisa diupgrade
+                printf("Tidak dapat diupgrade.");
+            }
+            else { // bisa diupgrade
+                // Kalo bisa diupgrade, tampilin list terus cek resource dan uang
+                Kata elmtUpgrade;
+                printf("List:\n");
+                if (Left(elmtStatisUpgrade)!=NULL && Right(elmtStatisUpgrade)==NULL){ // Cuma bisa upgrade ke left
+                    PrintKata(NamaWahana(Left(elmtStatisUpgrade))); printf("\n");
+                    // cek resource DAN UPGRADE COST (BELOM)
+                    if (BahanCukup(&Player,BahanWahana(Left(elmtStatisUpgrade)),JmlBahan(Left(elmtStatisUpgrade)))) {
+                        // Bisa upgrade
+                        /* Kode mau upgrade kemana */
+                        printf("Mau upgrade kemana: ");
+                        STARTKATA();
+                        CopyKata(CKata,&elmtUpgrade);
+                        while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade))))) {
+                            printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                            STARTKATA();
+                            CopyKata(CKata,&elmtUpgrade);
+                        }
+                        addrElmtUpgraded = Left(elmtStatisUpgrade);
+                        /* Kode mau upgrade kemana */
+                        elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
+                                                    PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
+                                                            UpgradeStack(); // Buat nge push ke stack
+
+                    }
+                    else {
+                        printf("Bahan atau uang yang kamu miliki tidak cukup untuk melakukan upgrade.\n");
+                    }
+                } 
+                else if (Left(elmtStatisUpgrade)==NULL && Right(elmtStatisUpgrade)!=NULL){ // Cuma bisa upgrade ke right
+                    PrintKata(NamaWahana(Right(elmtStatisUpgrade))); printf("\n");
+                    if (BahanCukup(&Player,BahanWahana(Right(elmtStatisUpgrade)),JmlBahan(Right(elmtStatisUpgrade)))) {
+                        // Bisa upgrade
+                        /* Kode mau upgrade kemana */
+                        printf("Mau upgrade kemana: ");
+                        STARTKATA();
+                        CopyKata(CKata,&elmtUpgrade);
+                        while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
+                            printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                            STARTKATA();
+                            CopyKata(CKata,&elmtUpgrade);
+                        }
+                        addrElmtUpgraded = Right(elmtStatisUpgrade);
+                        elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
+                        /* Kode mau upgrade kemana */
+                                                    PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
+                            UpgradeStack(); // Buat nge push ke stack
+                    }
+                    else {
+                        printf("Bahan atau uang yang kamu miliki tidak cukup untuk melakukan upgrade.\n");
+                    }
+                }
+                else { // Bisa diupgrade ke left ataupun right
+                    PrintKata(NamaWahana(Left(elmtStatisUpgrade))); printf("\n");
+                    PrintKata(NamaWahana(Right(elmtStatisUpgrade))); printf("\n");
+                    printf("Mau upgrade kemana: ");
+                    STARTKATA();
+                    CopyKata(CKata,&elmtUpgrade);
+                    while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade)))) && (!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
+                        printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                        STARTKATA();
+                        CopyKata(CKata,&elmtUpgrade);
+                    }
+                    if (IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade)))) {
+                        // CEK RESOURCE KIRI
+                        if (BahanCukup(&Player,BahanWahana(Left(elmtStatisUpgrade)),JmlBahan(Left(elmtStatisUpgrade)))) {
+                            // Bisa upgrade
+                            /* Kode mau upgrade kemana */
+                            printf("Mau upgrade kemana: ");
+                            STARTKATA();
+                            CopyKata(CKata,&elmtUpgrade);
+                            while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade))))) {
+                                printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                                STARTKATA();
+                                CopyKata(CKata,&elmtUpgrade);
+                            }
+                            addrElmtUpgraded = Left(elmtStatisUpgrade);
+                            /* Kode mau upgrade kemana */
+                            elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
+                            PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
+                            UpgradeStack(); // Buat nge push ke stack
+                            }
+                        else {
+                            printf("Bahan atau uang yang kamu miliki tidak cukup untuk melakukan upgrade.\n");
+                        }
+                    }
+                    if (IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade)))) {
+                        if (BahanCukup(&Player,BahanWahana(Left(elmtStatisUpgrade)),JmlBahan(Left(elmtStatisUpgrade)))) {
+                            // Bisa upgrade
+                            /* Kode mau upgrade kemana */
+                            printf("Mau upgrade kemana: ");
+                            STARTKATA();
+                            CopyKata(CKata,&elmtUpgrade);
+                            while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade))))) {
+                                printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                                STARTKATA();
+                                CopyKata(CKata,&elmtUpgrade);
+                            }
+                            addrElmtUpgraded = Left(elmtStatisUpgrade);
+                            elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
+                            /* Kode mau upgrade kemana */
+                            PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
+                            UpgradeStack(); // Buat nge push ke stack
+                            }
+                        else { // gabisa upgrade
+                            printf("Bahan atau uang yang kamu miliki tidak cukup untuk melakukan upgrade.\n");
+                        }
+                    }
+                }
+                //addressWahanaS addrElmtUpgraded = ElmtStatis(SearchWahanaD(elmtUpgrade,WahanaBuilt));
+                printf("nanan");
+                //elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
+        }
+
+        // Memasukkan perintah ke stack ONLY IF berhasil upgrade (uang dan resources cukup!)
+
+
+    } else { // Tidak bisa upgrade, karena tidak di sekitar wahana
         printf("Kamu tidak berada di sekitar wahana\n");
     }
 
@@ -34,6 +191,7 @@ void SebelahWahana(){
         PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, WahanaBuilt)))); printf("\n");
     }
 }
+
 
 int main() {
     
@@ -122,10 +280,14 @@ int main() {
     
     POINT Post = MakePOINT(1,1);
     buildWahana(Post, &WahanaBuilt);
-    printf("Mau nge-upgrade wahana apa?");
-    STARTKATA(); // Ini masih salah :>
-    CopyKata(CKata,&namaWahana);
-    PrintKata(namaWahana);
+    upgradeWahana();
+
+            /* 
+            printf("Mau nge-upgrade wahana apa?");
+            STARTKATA(); // Ini masih salah :>
+            CopyKata(CKata,&namaWahana);
+            PrintKata(namaWahana);
+            */
 
 
     /* Nanti dulu deh 
@@ -144,25 +306,13 @@ int main() {
     else {
 
     }
-    */
-    // Masih bingung soal lokasi
-    /* 
-    player *p1;
-    addressGraph CPeta = FirstGraph(GraphPeta);
-    int x = X(*p1), y = Y(*p1);
-    while(ID(CPeta) != MapNum(*p1)){
-        CPeta = NextGraph(CPeta);
-    }
-    ADVKATA();
-    if(Elmt(Peta(CPeta), x + 1, y) == 'W' || Elmt(Peta(CPeta), x, y+1) == 'W' || Elmt(Peta(CPeta), x - 1, y) == 'W' || Elmt(Peta(CPeta), x, y - 1) == 'W'){
-    {
-            
-    }
-    */ 
-    /* CARI */
+    */  
+    
+    
+    /* CARI 
 
     printf("\n");
-    //addressWahanaS elmtStatisUpgrade = SearchAddress(UpgradeTree,namaWahana);
+
     addressWahanaD elmtStatisUpgradeD = SearchWahanaD(namaWahana,WahanaBuilt);
     addressWahanaS elmtStatisUpgrade;
     if (elmtStatisUpgradeD != NULL) {
@@ -247,5 +397,9 @@ int main() {
 }
 // COMMAND
 // gcc -o tes driver_stackt.c stackt.c -lm
+
+// gcc ../matriks/matriks.c ../graph/graph.c ../peta/peta.c ../maplist/maplist.c stackt.c driver_stackt.c ../mesinkata/mesinkata.c ../mesinkar/mesinkar.c ../wahana/wahana.c ../player/player.c ../jam/jam.c ../point/point.c ../arraydinmap/arraydinmap.c -o yubisayu
+
+
 
 // gcc ../maplist/maplist.c stackt.c driver_stackt.c ../mesinkata/mesinkata.c ../mesinkar/mesinkar.c ../wahana/wahana.c ../player/player.c ../jam/jam.c ../point/point.c ../arraydinmap/arraydinmap.c -o yubisayu
