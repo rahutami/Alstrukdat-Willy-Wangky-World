@@ -13,11 +13,9 @@ void MainMenu(){
     printf("                Welcome to Willy Wangky's World!\n");
     printf("Here, you can make your own amusement park and do so many fun stuff!\n\n");
     printf("====================================================================\n");
-    printf("Choose menu: \nNew Game (new)\nLoad Game (load)\nExit (exit)\n");
+    printf("Choose menu: \nNew Game (new)\nExit (exit)\n");
     printf("===================================\n");
     STARTKATA();
-
-    printf("===================================\n");
 }
 
 void MenuJalan(player *p1, Graph G){
@@ -64,7 +62,7 @@ void ListCommand(){
 void Preparation(player *p1){
     do{
         if (!IsKataSama("command")){
-            printf("=============================================\n");
+            printf("===================================\n");
             printf("        Preparation Phase\n");
             printf("             Day %d\n", Day(*p1));
             printf("===================================\n");
