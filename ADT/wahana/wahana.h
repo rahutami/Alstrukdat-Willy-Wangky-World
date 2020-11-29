@@ -25,6 +25,7 @@ typedef struct tElmtWahanaS {
     int TimeWahana; //dalam menit
     Kata BahanWahana;
     int JumlahBahan;
+    int UpgradeCost; // (tambahan) biaya untuk upgrade
 	  addressWahanaS left; //untuk anak kiri
     addressWahanaS right; //untuk anak kanan
 
@@ -41,6 +42,7 @@ typedef struct tElmtWahanaD {
     //int IDWahanaD;
     //Kata NameWahanaD;
     POINT PositionWahana;
+    int PetaWahana;
     boolean StatusWahana; //berfungsi : true, rusak: false
     //boolean BuildWahana; // 
     int TotalFreqWahana;
@@ -82,8 +84,10 @@ typedef addressWahanaS TreeWahanaS; //ganti jd ini keknya
 #define TimeWahana(N) (N)->TimeWahana 
 #define BahanWahana(N) (N)->BahanWahana
 #define JmlBahan(N) (N)->JumlahBahan
+#define UpgradeCost(N) (N)->UpgradeCost
 
 #define PositionWahana(D) (D)->PositionWahana
+#define PetaWahana(D) (D)->PetaWahana
 #define StatusWahana(D) (D)->StatusWahana 
 #define TotalFreqWahana(D) (D)->TotalFreqWahana
 #define IncomeWahana(D) (D)->IncomeWahana
@@ -173,7 +177,8 @@ addressWahanaD AlokWahana (POINT P, Kata NamaWahana);
 /*membuat node dalam list linier elemen dinamis
 untuk build wahana baru*/
 
-addressWahanaD AlokWahanaFile (POINT P, Kata NamaWahana, int TotalFreq, int Income, int DailyFreq, boolean Stat);
+//Tadinya buat load tapi gajadi
+// addressWahanaD AlokWahanaFile (POINT P, Kata NamaWahana, int TotalFreq, int Income, int DailyFreq, boolean Stat);
 
 boolean SearchTree(Kata X, addressWahanaS P);
 
@@ -191,7 +196,7 @@ addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana);
 addressWahanaS SearchAddressID (TreeWahanaS P, int num);
 //Mencari address Statis dari Upgrade Tree (berdasarkan ID yg diinput)
 
-addressWahanaD SearchWahanaDP (POINT Pos, ListWahanaD L);
+addressWahanaD SearchWahanaDP (POINT Pos, int MapNum, ListWahanaD L);
 //Mencari address Dinamis dari WahanaBuilt (berdasarkan POINT Posisi Wahana yg diinput)
 
 void wahanaRusak(addressWahanaS *P, addressWahanaD *D);

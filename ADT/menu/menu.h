@@ -1,7 +1,6 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include "../mesinkar/mesinkar.h"
 #include "../mesinkata/mesinkata.h"
 #include "../matriks/matriks.h"
 #include "../jam/jam.h"
@@ -12,8 +11,8 @@
 #include "../player/player.h"
 #include "../graph/graph.h"
 #include "../wahana/wahana.h"
-#include "../buy/buy.h"
-#include "../build/build.h"
+#include "../prepare/prepare.h"
+#include "../wahana/office.h"
 
 void MainMenu();
 void MenuJalan(player *p1, Graph G);

@@ -32,7 +32,6 @@ typedef struct {
   Kata NamaBahan;
   int JumlahBahan;
   int uang; // Uang yang dibutuhkan untuk melakukan satu aksi
-  //int Money(P); // nanti disambungin ke Money nya Player
   // ID wahana yang sebelumnya
 } aksi;
 
@@ -117,6 +116,8 @@ void PrintInfoStack (Stack S);
 boolean UangCukup (player *P, int harga);
 
 boolean BahanCukup (player *P, Kata NamaBahan, int JumlahBahan);
+
+boolean SemuaCukup (player *P, Kata NamaBahan, int JumlahBahan, int BiayaUpgrade);
 
 void PrintUpgraded(addressWahanaS prevWahana, addressWahanaS nextWahana);
 #endif

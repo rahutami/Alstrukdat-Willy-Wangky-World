@@ -5,8 +5,12 @@
 #include <stdlib.h>
 
 
+<<<<<<< HEAD
 void Inoffice(POINT P){
      //contoh 
+=======
+void Inoffice(){//contoh 
+>>>>>>> 5e4fd0c888911ca8e7d36b2dd1876595fc2d51f0
     
     Kata Cdetails, Crep, Cexit;
 

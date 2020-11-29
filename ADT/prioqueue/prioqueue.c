@@ -62,7 +62,7 @@ void DealokasiQueue(PrioQueue * Q){
 
 /* *** Primitif Add/Delete *** */
 void Enqueue (PrioQueue * Q, infotypeQueue X){
-    /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */
+    /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut membesar berdasarkan prio */
     /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
     /* F.S. X disisipkan pada posisi yang tepat sesuai dengan prioritas,
             TAIL "maju" dengan mekanisme circular buffer; */
@@ -194,7 +194,7 @@ void PrintPrioQueue (PrioQueue Q){
 
 
 void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
-    /* Mengisi queue Q secara random */
+    /* Mengisi queue Q secara random berdasarkan wahana yang sudah dibangun */
     /* I.S. Q terdefinisi dan kosong */
     /* F.S. Q terisi secara random */
     /* KAMUS */
@@ -205,6 +205,8 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
     /* ALGORITMA */
     /* Randomize queue length */
     queueLength =  rand() % 4 + 1;
+
+    /* Copy list wahana dan menghilangkan double element */
     List newListWahana;
     CreateEmptyList(&newListWahana);
     addressWahanaD P = FirstWahana(LW);
@@ -223,6 +225,7 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
         P = NextWahana(P);
     }
 
+    /* Menyalin list wahana unik ke array */
     Kata arrayKata[wahanaBuilt];
     int a = 0;
     addressList LP = First(newListWahana);
@@ -232,6 +235,7 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
         LP = Next(LP);
     }
 
+    /* Memilih wahana secara random */
     for(i = 0; i <= queueLength; i++) {
         CreateEmptyList(&L);
         wahana = rand() % 5;
@@ -261,6 +265,7 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
     /* ALGORITMA */
     if(!IsEmptyQueue(*Q)){
         L = InfoQueue(InfoHead(*Q));
+        /* Mencari query di list wahana yang sudah dibagnun */
         S = Search(L, W);
         if(S == NilList){
             printf("Wahana tidak ada di dalam antrian pelanggan. Silahkan coba lagi. \n\n");
@@ -270,6 +275,7 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
             if(StatusWahana(target)){
                 Dequeue(Q, &del);
                 if(NbElmt(InfoQueue(del)) > 1) {
+                    /* Memasukkan customer ke list player */
                     DelP(&InfoQueue(del), W);
                     PlayerInfo(customer) = InfoQueue(del);
                     PrintInfo(InfoQueue(del));
@@ -279,6 +285,7 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
                     InsVLastLP(LP, customer);
 
                 }
+                /* Menambah stats pemain */
                 Money(*P) += PriceWahana(ElmtStatis(target));
                 TotalFreqWahana(target) += 1;
                 DailyFreqWahana(target) += 1;
@@ -308,7 +315,6 @@ PrioQueue AngryCustomer(PrioQueue Q) {
 
     while(!IsEmptyQueue(Q)){
         Dequeue(&Q, &del);
-
         if(Patience(del) > 0) Enqueue(&NewQ, del);
     }
     return NewQ;

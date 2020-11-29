@@ -59,8 +59,8 @@ void MakeTree()
         SalinKataFile();
         i++;
         if(CC == EOL){
-            if (i == 9){
-                JmlBahan(temptree[indexarr]) = convToInt(CKata);
+            if (i == 10){
+                UpgradeCost(temptree[indexarr]) = convToInt(CKata);
                 //printf("bisa 7, %d\n",TimeWahana(temptree[indexarr]));
             }
             ADV(); //pita maju 1 karakter
@@ -103,6 +103,9 @@ void MakeTree()
                     break;
                 case 9:
                     JmlBahan(temptree[indexarr]) = convToInt(CKata);
+                    break;
+                case 10:
+                    UpgradeCost(temptree[indexarr]) = convToInt(CKata);
                     break;
                 default:
                     break;
@@ -298,6 +301,7 @@ addressWahanaD AlokWahana (POINT P, Kata NamaWahana){
    D = (ElmtWahanaDinamis *) malloc(sizeof(ElmtWahanaDinamis)); 
    if (D!= NilList) {
        PositionWahana(D) = P;
+       PetaWahana(D) = MapNum(Player);
        StatusWahana(D) = true ;
        TotalFreqWahana(D) = 0;
        IncomeWahana(D) = 0;
@@ -309,27 +313,28 @@ addressWahanaD AlokWahana (POINT P, Kata NamaWahana){
     
 }
 
-addressWahanaD AlokWahanaFile (POINT P, Kata NamaWahana, int TotalFreq, int Income, int DailyFreq, boolean Stat){
-   /* Mengirimkan addressList hasil alokasi sebuah elemen */
-   /* Jika alokasi berhasil, maka addressList tidak NilList, dan misalnya */
-   /* menghasilkan P, maka InfoList(P)=X, Next(P)=NilList */
-   /* Jika alokasi gagal, mengirimkan NilList */
-   /* KAMUS */
-   addressWahanaD D;
-   /* ALGORITMA */
-   D = (ElmtWahanaDinamis *) malloc(sizeof(ElmtWahanaDinamis)); 
-   if (D!= NilList) {
-       PositionWahana(D) = P;
-       StatusWahana(D) = Stat;
-       TotalFreqWahana(D) = TotalFreq;
-       IncomeWahana(D) = Income;
-       DailyFreqWahana(D) = DailyFreq;
-       NextWahana(D) = NilList;
-       ElmtStatis(D) = SearchAddress(UpgradeTree, NamaWahana);
-    }
-    return D;
+// Tadinya buat load tapi gajadi
+// addressWahanaD AlokWahanaFile (POINT P, Kata NamaWahana, int TotalFreq, int Income, int DailyFreq, boolean Stat){
+//    /* Mengirimkan addressList hasil alokasi sebuah elemen */
+//    /* Jika alokasi berhasil, maka addressList tidak NilList, dan misalnya */
+//    /* menghasilkan P, maka InfoList(P)=X, Next(P)=NilList */
+//    /* Jika alokasi gagal, mengirimkan NilList */
+//    /* KAMUS */
+//    addressWahanaD D;
+//    /* ALGORITMA */
+//    D = (ElmtWahanaDinamis *) malloc(sizeof(ElmtWahanaDinamis)); 
+//    if (D!= NilList) {
+//        PositionWahana(D) = P;
+//        StatusWahana(D) = Stat;
+//        TotalFreqWahana(D) = TotalFreq;
+//        IncomeWahana(D) = Income;
+//        DailyFreqWahana(D) = DailyFreq;
+//        NextWahana(D) = NilList;
+//        ElmtStatis(D) = SearchAddress(UpgradeTree, NamaWahana);
+//     }
+//     return D;
     
-}
+// }
 
 void InsFirstW (ListWahanaD *L, addressWahanaD D){
    /* I.S. L mungkin kosong */
@@ -438,7 +443,7 @@ addressWahanaD SearchWahanaD (Kata inputWahana, ListWahanaD L)
     return P;    
 }
 
-addressWahanaD SearchWahanaDP (POINT Pos, ListWahanaD L)
+addressWahanaD SearchWahanaDP (POINT Pos, int MapNum, ListWahanaD L)
 /* I.S namaWahana dimasukkan user */
 /* F.S Mengembalikan address dnegan wahana yang sesuai dengan yang dicari,
        apakah dia sudah pernah di build atau belum*/
@@ -450,7 +455,7 @@ addressWahanaD SearchWahanaDP (POINT Pos, ListWahanaD L)
     //ALGORITMA
 
     while (!found && (P != NilList)){
-        if (IsEqPOINT(Pos,Point)){
+        if (IsEqPOINT(Pos,Point) && MapNum == PetaWahana(P)){
             found = true;
         } else {
             P = Next(P);
@@ -480,7 +485,7 @@ boolean isWahanaRusak (player Pemain, addressWahanaD *D){
     // POINT Pemain; //belum tau cara ambil posisi pemain
     POINT Pos = SekitarPemain(Position(Pemain),'W');
     
-    *D = SearchWahanaDP(Pos,WahanaBuilt);
+    *D = SearchWahanaDP(Pos, MapNum(Pemain), WahanaBuilt);
     if (*D != NilList){
         return (!StatusWahana(*D));
     }
@@ -515,7 +520,7 @@ void Repair(addressWahanaD *D){
     POINT Pemain;
     POINT Pos = SekitarPemain(Pemain,'W');
 
-    *D = SearchWahanaDP(Pos,WahanaBuilt);
+    *D = SearchWahanaDP(Pos, MapNum(Player), WahanaBuilt);
     if (*D!=NilList){
         StatusWahana(*D) = true;
     }

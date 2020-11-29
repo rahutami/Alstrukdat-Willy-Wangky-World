@@ -231,13 +231,18 @@ stack
 }
 
 void PrintInfoStack (Stack S) {
-    printf("Total aksi yang akan dilakukan: %d",NbElmtStack(S));
-    printf("\n");
-    printf("Total waktu yang akan dibutuhkan: ");
-    TulisTimeRemaining(SumDurasiStack(S));
-    printf("\n");   
-    printf("Total uang yang dibutuhkan: %d",SumUangStack(S));
-    printf("\n");    
+    if(IsEmptyStack(S)){
+        printf("           Tidak ada aksi yang akan dilakukan\n");
+    }else{
+        printf("           Total aksi yang akan dilakukan: %d",NbElmtStack(S));
+        printf("\n");
+        printf("           Total waktu yang akan dibutuhkan:\n");
+        printf("           ");TulisTimeRemaining(SumDurasiStack(S));
+        printf("\n");   
+        printf("           Total uang yang dibutuhkan: %d",SumUangStack(S));
+        printf("\n");   
+    }
+ 
 }
 
 boolean UangCukup (player *P, int harga) {
@@ -246,5 +251,9 @@ boolean UangCukup (player *P, int harga) {
 
 boolean BahanCukup (player *P, Kata NamaBahan, int JumlahBahan) {
     return (SearchB(Tab(*P),NamaBahan,JumlahBahan));
+}
+
+boolean SemuaCukup (player *P, Kata NamaBahan, int JumlahBahan, int BiayaUpgrade) {
+    return (UangCukup(P,BiayaUpgrade) && BahanCukup(P,NamaBahan,JumlahBahan));
 }
 

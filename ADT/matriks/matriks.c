@@ -130,12 +130,27 @@ void TulisMATRIKS (MATRIKS M)
     
     // ALGORITMA
     for (i = GetFirstIdxBrs(M); i <= GetLastIdxBrs(M); i++){
+        printf("           ");
         for (j = GetFirstIdxKol(M); j <=GetLastIdxKol(M); j++){
-            printf("%c", ElmtMatriks(M, i, j));
-            if(j != GetLastIdxKol(M)) printf(" ");
+            if (j == X(Player) && i == Y(Player)){
+                printf("\033[1;31m");
+                printf("P");
+                printf("\033[0m");
+                printf("\033[0;34m");
+            } //Posisi player
+            else if(ElmtMatriks(M, i, j) >= '1' && ElmtMatriks(M, i, j) <= '4'){
+                if(i == 0) printf("^");
+                else if(j == 0) printf("<");
+                else if(i == NBrsEff(M)-1) printf("V");
+                else if(j == NKolEff(M)-1) printf(">");
+            }
+            else printf("%c", ElmtMatriks(M, i, j)); //Print yang ada di peta
+            if(j != NKolEff(M)-1) printf(" ");
         }
         if(i != GetLastIdxBrs(M)) printf("\n");
     }
+
+    printf("\n");
 }
 
 /* ********** Operasi lain ********** */
@@ -147,6 +162,10 @@ int NBElmt (MATRIKS M)
 }
 /* Operasi berbasis baris dan per kolom */
 void SearchMatriks(MATRIKS M, int * i, int * j, ElType X){
+/*
+Mencari Elemen matriks yang memiliki nilai X
+Jika tidak ada i dan j akan bernilai -1
+*/
     *i = 0;
 
     while(*i <= GetLastIdxBrs(M) && ElmtMatriks(M, *i, *j) != X){

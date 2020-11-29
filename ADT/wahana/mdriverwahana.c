@@ -32,13 +32,13 @@ int main(){
 [A]Coaster
 [B]Helicap
 [C]Jungle
-[D]Stars
+[D]Stars -> mentok
 [E]Shotgun
-[F]Dancingking
+[F]Dancingking -> mentok
 [G]Watersplash
 [H]Marinebay
-[I]Rush
-[J]Liftup
+[I]Rush -> mentok
+[J]Liftup -> mentok
 
      A
   B     G
