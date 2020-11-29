@@ -264,25 +264,25 @@ void MakeLink(addressGraph * P){
     }
 }
 
-void CreateGraphPeta(MATRIKS Peta1, MATRIKS Peta2, MATRIKS Peta3, MATRIKS Peta4, Graph * G){
+void CreateGraphPeta(){
     addressGraph P;
 
-    CreateEmptyGraph(G);
+    CreateEmptyGraph(&GraphPeta);
 
     P = AlokasiGraph(1, Peta1);
-    InsGraphLast(G, P);
+    InsGraphLast(&GraphPeta, P);
     MakeLink(&P);
 
     P = AlokasiGraph(2, Peta2);
-    InsGraphLast(G, P);
+    InsGraphLast(&GraphPeta, P);
     MakeLink(&P);
 
     P = AlokasiGraph(3, Peta3);
-    InsGraphLast(G, P);
+    InsGraphLast(&GraphPeta, P);
     MakeLink(&P);
 
     P = AlokasiGraph(4, Peta4);
-    InsGraphLast(G, P);
+    InsGraphLast(&GraphPeta, P);
     MakeLink(&P);
 
 }

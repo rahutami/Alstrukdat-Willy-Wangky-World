@@ -1,6 +1,40 @@
 #include <stdio.h>
 #include "stackt.h"
 
+void SebelahWahana(){
+    int X = X(Player);
+    int Y = Y(Player);
+    POINT P;
+    addressGraph CPeta = FirstGraph(GraphPeta);
+    while(ID(CPeta) != MapNum(Player)) CPeta = NextGraph(CPeta);
+
+    if(ElmtMatriks(Peta(CPeta), X-1, Y) == 'W' || ElmtMatriks(Peta(CPeta), X+1, Y) == 'W' || ElmtMatriks(Peta(CPeta), X, Y-1) == 'W' || ElmtMatriks(Peta(CPeta), X, Y+1) == 'W'){
+        printf("List wahana yang bisa diupgrade:\n");
+    } else {
+        printf("Kamu tidak berada di sekitar wahana\n");
+    }
+
+    if(ElmtMatriks(Peta(CPeta), X-1, Y) == 'W'){
+        P = MakePOINT(X-1, Y);
+        PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, WahanaBuilt)))); printf("\n");
+    }
+
+    if(ElmtMatriks(Peta(CPeta), X+1, Y) == 'W'){
+        P = MakePOINT(X-1, Y);
+        PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, WahanaBuilt)))); printf("\n");
+    }
+
+    if(ElmtMatriks(Peta(CPeta), X, Y-1) == 'W'){
+        P = MakePOINT(X-1, Y);
+        PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, WahanaBuilt)))); printf("\n");
+    }
+
+    if(ElmtMatriks(Peta(CPeta), X, Y+1) == 'W'){
+        P = MakePOINT(X-1, Y);
+        PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, WahanaBuilt)))); printf("\n");
+    }
+}
+
 int main() {
     
     Stack stacktest;

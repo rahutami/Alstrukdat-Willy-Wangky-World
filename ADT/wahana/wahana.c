@@ -256,9 +256,7 @@ pemain sedang berdiri.
 wahana dasar yang mungkin dibuat (hasil load file eksternal).
 2. Setelah pemain memilih wahana dasar yang ingin dibuat.
 3. Jika resource untuk membangun wahana tidak mencukupi, maka
-akan ditampilkan pesan error.
-4. Setelah itu, perintah eksekusi ini akan dimasukkan ke dalam
-stack*/
+akan ditampilkan pesan error. TANPA MASUKKIN KE STACK */
 {
     //Menampilkan wahana dasar (ada 10, diambil dari tree wahana)
     addressWahanaD P, Prec;
@@ -314,6 +312,28 @@ addressWahanaD AlokWahana (POINT P, Kata NamaWahana){
        TotalFreqWahana(D) = 0;
        IncomeWahana(D) = 0;
        DailyFreqWahana(D) = 0;
+       NextWahana(D) = NilList;
+       ElmtStatis(D) = SearchAddress(UpgradeTree, NamaWahana);
+    }
+    return D;
+    
+}
+
+addressWahanaD AlokWahanaFile (POINT P, Kata NamaWahana, int TotalFreq, int Income, int DailyFreq, boolean Stat){
+   /* Mengirimkan addressList hasil alokasi sebuah elemen */
+   /* Jika alokasi berhasil, maka addressList tidak NilList, dan misalnya */
+   /* menghasilkan P, maka InfoList(P)=X, Next(P)=NilList */
+   /* Jika alokasi gagal, mengirimkan NilList */
+   /* KAMUS */
+   addressWahanaD D;
+   /* ALGORITMA */
+   D = (ElmtWahanaDinamis *) malloc(sizeof(ElmtWahanaDinamis)); 
+   if (D!= NilList) {
+       PositionWahana(D) = P;
+       StatusWahana(D) = Stat;
+       TotalFreqWahana(D) = TotalFreq;
+       IncomeWahana(D) = Income;
+       DailyFreqWahana(D) = DailyFreq;
        NextWahana(D) = NilList;
        ElmtStatis(D) = SearchAddress(UpgradeTree, NamaWahana);
     }

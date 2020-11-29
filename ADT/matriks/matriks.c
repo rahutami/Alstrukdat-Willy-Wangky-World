@@ -7,6 +7,10 @@
 #include "matriks.h"
 #include <string.h>
 
+MATRIKS Peta1;
+MATRIKS Peta2;
+MATRIKS Peta3;
+MATRIKS Peta4;
 /* ********** DEFINISI PROTOTIPE PRIMITIF ********** */              
 /* *** Konstruktor membentuk MATRIKS *** */
 void MakeMATRIKS (int NB, int NK, MATRIKS * M)

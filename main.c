@@ -21,8 +21,6 @@
 char CC;
 Kata CKata;
 boolean EOP;
-MATRIKS Peta1, Peta2, Peta3, Peta4;
-ListWahanaD WahanaBuilt;
 
 void NewGame(){
     
@@ -37,7 +35,7 @@ void NewGame(){
     CreateEmpty(&stackExecute);
 
     loadPeta(&Peta1, &Peta2, &Peta3, &Peta4);
-    CreateGraphPeta(Peta1, Peta2, Peta3, Peta4, &GraphPeta);
+    CreateGraphPeta();
 }
 
 int main(){
@@ -49,7 +47,8 @@ int main(){
         player p1;
 
         NewGame();
-        First(WahanaBuilt) = NilList;
+        First(WahanaBuilt) = NULL;
+
         Preparation(&Player);
         while(!IsKataSama("exit")){
             if(IsKataSama("prepare")){
