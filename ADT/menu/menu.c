@@ -318,6 +318,8 @@ void MainPhase(player * p1){
             }
             if(ElmtMatriks(Peta(CPeta), y + 1, x) == 'A' || ElmtMatriks(Peta(CPeta), y, x+1) == 'A' || ElmtMatriks(Peta(CPeta), y - 1, x) == 'A' || ElmtMatriks(Peta(CPeta), y, x - 1) == 'A'){
                 Serve(p1, CKata, &Q, &LP, WahanaBuilt);
+                addressWahanaS P; addressWahanaD D;
+                wahanaRusak(&P, &D);
             } else {
                 printf("\033[0;31m");
                 printf("Silahkan pergi ke sebelah antrian untuk menggunakan command ini \n\n");
