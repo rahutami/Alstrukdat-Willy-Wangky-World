@@ -113,19 +113,21 @@ void PrintID (ListLink L)
 }
 
 void CreateEmptyGraph(Graph *G){
+/* I.S. sembarang             */
+/* F.S. Terbentuk graph kosong */
     /* KAMUS LOKAL */
     addressGraph P;
 
     /* ALGORITMA */
     FirstGraph(*G) = NULL;
 }
-/* I.S. sembarang             */
-/* F.S. Terbentuk graph kosong */
+
 
 boolean IsGraphEmpty(Graph G){
+
+/* Mengirimkan true jika graph kosong */
     return (FirstGraph(G) == NULL);
 }
-/* Mengirimkan true jika graph kosong */
 
 addressGraph AlokasiGraph(int id, MATRIKS peta)
 /* Mengirimkan addressGraph hasil alokasi sebuah elemen */
@@ -166,32 +168,8 @@ void PrintGraph(Graph G)
     printf("]\n");
 }
 
-
-void AddLink(Graph *G, int n, int p){
-    /* KAMUS LOKAL */
-    addressGraph addrGn, addrGp;
-
-    /* ALGORITMA */
-    /* Proses menambahkan link elemen n dengan p */
-    addrGn = FirstGraph(*G);
-    while (ID(addrGn) != n) {
-        addrGn = NextGraph(addrGn);
-    }
-    if (SearchLink(Link(addrGn), p) == NULL) {
-        InsVLastLink(&Link(addrGn), p);
-    }
-
-    /* Proses menambahkan link elemen p dengan n */
-    addrGp = FirstGraph(*G);
-    while (ID(addrGp) != p) {
-        addrGp = NextGraph(addrGp);
-    }
-    if (SearchLink(Link(addrGp), n) == NULL) {
-        InsVLastLink(&Link(addrGp), n);
-    }
-}
-
 void PrintLink(Graph G, infoTypeLink X){
+/* Mencetak list link dari elemen graph dengan ID X */
     /* KAMUS LOKAL */
     addressGraph P;
     ListLink L;
@@ -226,6 +204,8 @@ boolean IsLinked(Graph G, infoTypeLink n, infoTypeLink p){
 /* Mengembalikan true jika pada link n ada p */
 
 addressGraph SearchGraph(Graph G, infoTypeLink X){
+    /*Mengembalikan address elemen graph yang memiliki ID X*/
+
     /* KAMUS LOKAL */
     addressGraph addrG;
 
@@ -239,6 +219,9 @@ addressGraph SearchGraph(Graph G, infoTypeLink X){
 }
 
 void InsGraphLast(Graph * G, addressGraph P){
+/*I.S. G mungkin kosong, P adalah elemen graph*/
+/*F.S. P menjadi elemen terakhir dari G*/
+
     addressGraph PSearch = FirstGraph(*G);
     if(IsGraphEmpty(*G)){
         FirstGraph(*G) = P;
@@ -252,6 +235,8 @@ void InsGraphLast(Graph * G, addressGraph P){
 }
 
 void MakeLink(addressGraph * P){
+/* I.S P memiliki list link kosong */
+/* F.s list link dari p akan berisi elemen graph yg terhubung dengna peta P */
     int i, j;
 
     for (i = 0; i<NKolEff(Peta(*P)); i++){
@@ -265,6 +250,9 @@ void MakeLink(addressGraph * P){
 }
 
 void CreateGraphPeta(){
+/* I.S. GraphPeta kosong */
+/* F.S GraphPeta berisi peta-peta dari file-file .txt lengkap dengan linknya*/
+
     addressGraph P;
 
     CreateEmptyGraph(&GraphPeta);
@@ -288,6 +276,7 @@ void CreateGraphPeta(){
 }
 
 void PrintPetaGraph(Graph G){
+/*Mencetak Seluruh graph yang ada di peta beserta masing2 linknya*/
     addressGraph P = FirstGraph(G);
 
     while(P != NULL){

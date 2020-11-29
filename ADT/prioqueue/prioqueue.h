@@ -83,6 +83,8 @@ void ReducePatience(PrioQueue *Q);
 /* *** Primitif Add/Delete *** */
 void FirstEnqueue(PrioQueue *Q, infoLP LP);
 /* Menambahkan X ke dalam queue dengan prioritas terbesar */
+/* I.S. Q bisa kosong dan terdefinisi */
+/* F.S. Isi Q bertamabah */
 
 void Enqueue (PrioQueue * Q, infotypeQueue X);
 /* Proses: Menambahkan X pada Q dengan aturan priority queue, terurut mengecil berdasarkan prio */

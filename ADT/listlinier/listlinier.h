@@ -143,6 +143,9 @@ infotypeList Max (List L);
 boolean IsListSama (List L1, List L2);
 
 List RemoveDouble (List L);
+/* Mengeluarkan elemen double di dalam L */
+/* I.S. List L terdefinisi tidak kosong */
+/* F.S. Isi list L unik */
 
 /****************** PROSES TERHADAP LIST ******************/
 void Konkat1 (List *L1, List *L2, List *L3);

@@ -10,7 +10,6 @@ player Player;
 
 void CreatePlayer(player *P){
     CopyKata(CKata, &(NamaPlayer(*P)));
-    
     X(*P) = 1;
     Y(*P) = 1;
     MapNum(*P) = 1;

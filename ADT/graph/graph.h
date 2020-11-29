@@ -78,8 +78,8 @@ void InsVLastLink (ListLink *L, infoTypeLink X);
 /* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 
 void PrintID (ListLink L);
-// I.S Sembarang
-// F.S Mencetak ID Peta
+// I.S Sembarang, L muingkin kosong
+// F.S Mencetak ID Peta yang terhubung dengan peta yang memiliki listlink L
 
 void CreateEmptyGraph(Graph *G);
 /* I.S. sembarang             */
@@ -95,6 +95,8 @@ addressGraph AlokasiGraph(int id, MATRIKS peta);
 /* Jika alokasi gagal, mengirimkan NULL */
 
 void InsGraphLast(Graph * G, addressGraph P);
+/*I.S. G mungkin kosong, P adalah elemen graph*/
+/*F.S. P menjadi elemen terakhir dari G*/
 
 void PrintGraph(Graph G);
 /* I.S. Graph mungkin kosong */
@@ -102,29 +104,24 @@ void PrintGraph(Graph G);
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Graph kosong : menulis [] */
 
-
-void AddLink(Graph *G, infoTypeLink n, infoTypeLink p);
-/* I. S. Graph G terdefinisi, n dan p pasti tidak lebih dari jumlah building
-   F. S. Link dari elemen n bertambah dengan p, dan sebaliknya (soalnya bolak balik)
-   contoh :
-   1 2->3
-   2 1
-   3 1
-   Add(&G, 2, 3) 
-   1 2->3
-   2 1->3
-   3 1->3 */
-
 void PrintLink(Graph G, infoTypeLink X);
+/* Mencetak list link dari elemen graph dengan ID X */
 
 boolean IsLinked(Graph G, infoTypeLink n, infoTypeLink p);
 /* Mengembalikan true jika pada link n ada p */
 
 addressGraph SearchGraph(Graph G, infoTypeLink X);
+/*Mengembalikan address elemen graph yang memiliki ID X*/
 
 void CreateGraphPeta();
+/* I.S. GraphPeta kosong */
+/* F.S GraphPeta berisi peta-peta dari file-file .txt lengkap dengan linknya*/
 
 void PrintPetaGraph(Graph G);
+/*Mencetak Seluruh graph yang ada di peta beserta masing2 linknya*/
 
 void MakeLink(addressGraph * P);
+/* I.S P memiliki list link kosong */
+/* F.s list link dari p akan berisi elemen graph yg terhubung dengna peta P */
+
 #endif

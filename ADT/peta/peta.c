@@ -167,7 +167,7 @@ void d(player *P, Graph G){
     else if(ElmtMatriks(Peta(CPeta), Y, X+1) == '4') MovePeta(P, G, 4);
 }
 
-int loadPeta(MATRIKS *Peta1, MATRIKS *Peta2, MATRIKS *Peta3, MATRIKS *Peta4){
+void loadPeta(){
     FILE *cFile;
     char* filename;
     char str[MAXCHAR];
@@ -175,25 +175,25 @@ int loadPeta(MATRIKS *Peta1, MATRIKS *Peta2, MATRIKS *Peta3, MATRIKS *Peta4){
 
     // start of peta 1
     
-    MakePETA("Files/Peta/Peta_1.txt", Peta1);
+    MakePETA("Files/Peta/Peta_1.txt", &Peta1);
 
     // end of peta 1
 
     // start of peta 2
 
-    MakePETA("Files/Peta/Peta_2.txt", Peta2);
+    MakePETA("Files/Peta/Peta_2.txt", &Peta2);
 
     // end of peta 2
 
     // start of peta 3
 
-    MakePETA("Files/Peta/Peta_3.txt", Peta3);
+    MakePETA("Files/Peta/Peta_3.txt", &Peta3);
 
     // end of peta 3
 
     // start of peta 4
 
-    MakePETA("Files/Peta/Peta_4.txt", Peta4);
+    MakePETA("Files/Peta/Peta_4.txt", &Peta4);
 
     // end of peta 4
 }
