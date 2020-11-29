@@ -25,14 +25,20 @@ typedef int addressStack;   /* indeks tabel */
 player Pemain;
 typedef struct {
   Kata commandStack;
-  int durasi; // Waktu yang dibutuhkan untuk melakukan satu aksi
+  int durasi; // Waktu yang dibutuhkan untuk melakukan satu aksi (+)
   POINT PointWahana; // Point tempat aksi tsb dilakukan
+<<<<<<< HEAD
+  int MapNum; // BELUM NIH
+  Kata NamaBahan; // Nama bahan yang digunakan
+  int JumlahBahan; // Jumlah bahan yang dibutuhkan (+)
+=======
   int MapNum;
   // int MapNum(P); // MapNum
   Kata NamaBahan;
   int JumlahBahan;
+>>>>>>> 4bed7803d0a5d520798b7dc7dc03a3545bdab6eb
   int uang; // Uang yang dibutuhkan untuk melakukan satu aksi
-  // ID wahana yang sebelumnya
+  addressWahanaS addrPrevWahana; // address wahana sebelum upgrade
 } aksi;
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
@@ -104,7 +110,9 @@ void Execute (Stack S);
 void mainmain (Stack * S, aksi * X);
 /* Mengosongkan stack tanpa melakukan perintah */
 
-void UpgradeStack ();
+void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana);
+
+void UndoUpgrade(addressWahanaS prevWahana, addressWahanaS nextWahana);
 
 void PrintInfoStack (Stack S);
 
@@ -115,4 +123,5 @@ boolean BahanCukup (player *P, Kata NamaBahan, int JumlahBahan);
 boolean SemuaCukup (player *P, Kata NamaBahan, int JumlahBahan, int BiayaUpgrade);
 
 void PrintUpgraded(addressWahanaS prevWahana, addressWahanaS nextWahana);
+
 #endif

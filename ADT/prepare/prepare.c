@@ -157,7 +157,7 @@ void UndoBuild() {
             Prec = Next(Prec);
         }
         P = Next(Prec);
-        Next(Prec) == NilList;
+        Next(Prec) = NilList;
         free(P);
     }
 }
@@ -328,7 +328,8 @@ void upgradeWahana() {
                         elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
                         PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
-                        UpgradeStack(); // Buat nge push ke stack
+                            UpgradeStack(addrPrevWahana,elmtStatisUpgrade); // Buat nge push ke stack
+                            PrintInfoStack(stackExecute);
                     }
                     else {
                         printf("\nBahan atau uang yang kamu miliki \ntidak cukup untuk melakukan upgrade.\n");
@@ -358,8 +359,8 @@ void upgradeWahana() {
                             PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
 
-                            UpgradeStack(); // Buat nge push ke stack
-
+                            UpgradeStack(addrPrevWahana,elmtStatisUpgrade); // Buat nge push ke stack
+                            PrintInfoStack(stackExecute);
                     }
                     else {
                         printf("Bahan atau uang yang kamu miliki \ntidak cukup untuk melakukan upgrade.\n");
@@ -400,7 +401,7 @@ void upgradeWahana() {
 
 
 
-                            UpgradeStack(); // Buat nge push ke stack
+                            UpgradeStack(addrPrevWahana,elmtStatisUpgrade); // Buat nge push ke stack
                             PrintInfoStack(stackExecute); 
                             }
                         else {
@@ -429,8 +430,8 @@ void upgradeWahana() {
                             /* Kode mau upgrade kemana */
                             PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
-                            UpgradeStack(); // Buat nge push ke stack
-                            PrintInfoStack(stackExecute); 
+                            UpgradeStack(addrPrevWahana,elmtStatisUpgrade); // Buat nge push ke stack
+                            PrintInfoStack(stackExecute);
                             }
                         else { // gabisa upgrade
                             printf("Bahan atau uang yang kamu miliki \ntidak cukup untuk melakukan upgrade.\n");
