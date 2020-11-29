@@ -216,7 +216,7 @@ void PushE(Stack * S, aksi X)
   }
   else
   {
-    printf("Total durasi aksi melebihi Time Remaining");
+    printf("Total durasi aksi melebihi Time Remaining\n");
   }
   
 }

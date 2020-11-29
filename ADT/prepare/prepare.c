@@ -56,7 +56,7 @@ stack*/
                 command.Length = 5;
                 aksi X;
                 X.commandStack = command;
-                X.durasi = 60;
+                X.durasi = 120;
                 X.MapNumAksi = MapNum(Player);
                 X.PointWahana = Position(Player);
                 X.NamaBahan = BahanWahana(addrWahana);
