@@ -50,6 +50,7 @@ int main(){
         NewGame();
         First(WahanaBuilt) = NULL;
 
+        PrintListW(WahanaBuilt);
         Preparation(&Player);
         while(!IsKataSama("exit")){
             if(IsKataSama("prepare")){

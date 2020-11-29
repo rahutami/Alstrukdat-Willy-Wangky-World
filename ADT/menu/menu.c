@@ -64,7 +64,7 @@ void ListCommand(){
 void Preparation(player *p1){
     do{
         if (!IsKataSama("command")){
-            printf("===================================\n");
+            printf("=====================jisdjisjdj==============\n");
             printf("        Preparation Phase\n");
             printf("             Day %d\n", Day(*p1));
             printf("===================================\n");
@@ -92,6 +92,7 @@ void Preparation(player *p1){
         }
         
         printf("Masukkan perintah: ");
+        printf("ok\n");
 
         STARTKATA();
 
@@ -100,8 +101,10 @@ void Preparation(player *p1){
         } else if (IsKataSama("command")){
             ListCommand();
         } else if (IsKataSama("build")){
-            buildWahana(Position(Player), &WahanaBuilt);
-            AddWToPeta();
+            printf("ok\n");
+            // buildWahana(Position(Player), &WahanaBuilt);
+            // AddWToPeta();
+            // PrintKata(NamaWahana(ElmtStatis(FirstWahana(WahanaBuilt))));
         } else if (IsKataSama("buy")){
             CommmandBuyArray();
         }
@@ -127,7 +130,7 @@ void MainPhase(player * p1){
     CreateEmptyQueue(&Q, 5);
     CreateEmptyLP(&LP);
     if (!IsEmptyListW(WahanaBuilt)) {
-        RandomizeQueue(&Q);
+        RandomizeQueue(&Q, WahanaBuilt);
     }
 
     do{

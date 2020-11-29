@@ -194,7 +194,7 @@ void wahanaRusak(addressWahanaS *P, addressWahanaD *D);
 //cari address statis P dan address dinamis D yang bersesuaian dgn ID
 //mengubah StatusWahana pada address dinamis D menjadi 'false'
 
-boolean isWahanaRusak (POINT Pos, addressWahanaD *D);
+boolean isWahanaRusak (player Pemain, addressWahanaD *D);
 //Mengembalikan status wahana yang memiliki posisi Pos
 
 POINT WahanaSebelah (POINT Pemain);
@@ -202,5 +202,7 @@ POINT WahanaSebelah (POINT Pemain);
 
 void Repair(addressWahanaD *D);
 //Mengubah StatusWahana pada address dinamis D menjadi 'true'
+
+void PrintListW(ListWahanaD LW);
 
 #endif

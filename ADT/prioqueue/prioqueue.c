@@ -230,7 +230,10 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
                 wahanaBuilt++;
             }   
         }
+        P = NextWahana(P);
     }
+
+    PrintInfo(newListWahana);
 
     Kata arrayKata[wahanaBuilt];
     int a = 0;

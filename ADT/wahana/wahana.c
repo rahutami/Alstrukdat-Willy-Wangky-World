@@ -290,7 +290,7 @@ stack*/
     }
     else
 	{
-		printf("%s\n","Masukkan Anda enter" );
+		printf("%s\n","Masukan Anda enter" );
 	}
 }
 
@@ -467,10 +467,10 @@ void wahanaRusak(addressWahanaS *P, addressWahanaD *D){
     //cari address dinamisnya, ganti status jadi false
 }
 
-boolean isWahanaRusak (POINT Pos, addressWahanaD *D){
+boolean isWahanaRusak (player Pemain, addressWahanaD *D){
     
-    POINT Pemain; //belum tau cara ambil posisi pemain
-    POINT Pos = WahanaSebelah(Pemain);
+    // POINT Pemain; //belum tau cara ambil posisi pemain
+    POINT Pos = WahanaSebelah(Position(Pemain));
     
     *D = SearchWahanaDP(Pos,WahanaBuilt);
     if (*D != NilList){
@@ -512,4 +512,23 @@ void Repair(addressWahanaD *D){
         StatusWahana(*D) = true;
     }
     
+}
+
+void PrintListW(ListWahanaD LW) {
+    addressWahanaD P;
+	/* ALGORITMA */
+	if(IsEmptyListW(LW)) {
+        printf("()");
+    } else { 
+        printf("(");
+        P = FirstWahana(LW);
+        while(P != NilList) {
+            PrintKata(NamaWahana(ElmtStatis(P)));
+            if(NextWahana(P) != NilList){
+                printf(", ");
+            }
+            P = NextWahana(P);
+        }
+        printf(")");
+    }
 }
