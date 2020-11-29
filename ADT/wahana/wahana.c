@@ -14,7 +14,8 @@ void Details()
 /* I.S namaWahana dimasukkan user */
 /* F.S Menampilkan detail dari wahana*/ /*harus pas dia disebelah wahana*/
 {   
-    int X = X(Player),Y = Y(Player);
+    int X = X(Player);
+    int Y = Y(Player);
     POINT P;
     addressGraph CPeta = FirstGraph(GraphPeta);
     
@@ -31,8 +32,7 @@ void Details()
         }
         if(ElmtMatriks(Peta(CPeta), Y, X-1) == 'W'){
             P = MakePOINT(X-1,Y);
-            PrintElmtS(ElmtStatis(SearchWahanaDP(P, MapNum(Player), WahanaBuilt)), UpgradeTree); 
-            printf("3");
+            PrintElmtS(ElmtStatis(SearchWahanaDP(P, MapNum(Player), WahanaBuilt)), UpgradeTree);
         }
         if(ElmtMatriks(Peta(CPeta), Y, X+1) == 'W'){
             P = MakePOINT(X+1, Y);
@@ -665,9 +665,7 @@ void PrintHistory(Kata Wahana, addressWahanaS T){
 }
 
 void PrintElmtS (addressWahanaS P, TreeWahanaS T){
-    printf("4");
     addressWahanaD D = SearchWahanaD (NamaWahana(P),WahanaBuilt);
-    printf("5");
     printf("\n----------Details Wahana----------\n");
     printf("Nama : "); PrintKata(NamaWahana(P)); printf("\n");
 
