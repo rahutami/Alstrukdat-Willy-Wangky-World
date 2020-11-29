@@ -11,6 +11,7 @@
 #include "../peta/peta.h"
 #include "../player/player.h"
 #include "../matriks/matriks.h"
+#include "office.h"
 
 typedef struct tElmtWahanaS *addressWahanaS;
 /*ElmtWahanaStatis merupakan Node dalam TreeWahanaS, 

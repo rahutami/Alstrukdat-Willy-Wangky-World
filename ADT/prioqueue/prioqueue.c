@@ -223,7 +223,6 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
                 wahanaBuilt++;
             }   
         }
-        printf("%d\n", wahanaBuilt);
         P = NextWahana(P);
     }
 
