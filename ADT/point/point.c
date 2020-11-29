@@ -11,7 +11,7 @@
 
 /* *** DEFINISI PROTOTIPE PRIMITIF *** */
 /* *** Konstruktor membentuk POINT *** */
-POINT MakePOINT (float X, float Y){
+POINT MakePOINT (int X, int Y){
     POINT P;
     Absis(P) = X;
     Ordinat(P) = Y;
@@ -26,9 +26,9 @@ boolean IsEqPOINT (POINT X, POINT P){
 
 /* *** KELOMPOK Interaksi dengan I/O device, BACA/TULIS  *** */
 void BacaPOINT (POINT * P){
-    float x,y;
+    int x,y;
 
-    scanf("%f %f", &x, &y);
+    scanf("%d %d", &x, &y);
     
     Absis(*P) = x;
     Ordinat(*P) = y;
@@ -100,7 +100,7 @@ POINT NextY (POINT P){
 }
 /* Mengirim salinan P dengan ordinat ditambah satu */
 
-POINT PlusDelta (POINT P, float deltaX, float deltaY){
+POINT PlusDelta (POINT P, int deltaX, int deltaY){
     POINT newPoint; 
     Absis(newPoint) = Absis(P) + deltaX;
     Ordinat(newPoint) = Ordinat(P) + deltaY;
@@ -131,8 +131,8 @@ float Jarak0 (POINT P){
 /* Menghitung jarak P ke (0,0) */
 
 float Panjang (POINT P1, POINT P2){
-    float deltaX = Absis(P1) - Absis(P2);
-    float deltaY = Ordinat(P1) - Ordinat(P2);
+    int deltaX = Absis(P1) - Absis(P2);
+    int deltaY = Ordinat(P1) - Ordinat(P2);
     float deltaX2 = pow(deltaX,2)*1.0;
     float deltaY2 = pow(deltaY,2)*1.0;
     
@@ -142,7 +142,7 @@ float Panjang (POINT P1, POINT P2){
 /* Perhatikanlah bahwa di sini spec fungsi kurang baik sebab menyangkut ADT Garis. */
 /* Tuliskan spec fungsi yang lebih tepat. */
 
-void Geser (POINT *P, float deltaX, float deltaY){
+void Geser (POINT *P, int deltaX, int deltaY){
     Absis(*P) += deltaX;
     Ordinat(*P) += deltaY;
 }
@@ -177,12 +177,12 @@ void Mirror (POINT *P, boolean SbX){
 /* Jika SbX true maka dicerminkan terhadap sumbu X */
 /* Jika SbX false maka dicerminkan terhadap sumbu Y */
 
-void Putar (POINT *P, float Sudut){
+void Putar (POINT *P, int Sudut){
     Sudut *= (-1);
     Sudut = (Sudut/180)* 3.1415926535;
 
-    float tempX = cos(Sudut) * Absis(*P) + (-1) * sin(Sudut) * Ordinat(*P);
-    float tempY = sin(Sudut) * Absis(*P) + cos(Sudut) * Ordinat(*P);
+    int tempX = cos(Sudut) * Absis(*P) + (-1) * sin(Sudut) * Ordinat(*P);
+    int tempY = sin(Sudut) * Absis(*P) + cos(Sudut) * Ordinat(*P);
 
     Absis(*P) = tempX;
     Ordinat(*P) = tempY;

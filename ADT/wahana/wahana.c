@@ -321,6 +321,28 @@ addressWahanaD AlokWahana (POINT P, Kata NamaWahana){
     
 }
 
+addressWahanaD AlokWahanaFile (POINT P, Kata NamaWahana, int TotalFreq, int Income, int DailyFreq, boolean Stat){
+   /* Mengirimkan addressList hasil alokasi sebuah elemen */
+   /* Jika alokasi berhasil, maka addressList tidak NilList, dan misalnya */
+   /* menghasilkan P, maka InfoList(P)=X, Next(P)=NilList */
+   /* Jika alokasi gagal, mengirimkan NilList */
+   /* KAMUS */
+   addressWahanaD D;
+   /* ALGORITMA */
+   D = (ElmtWahanaDinamis *) malloc(sizeof(ElmtWahanaDinamis)); 
+   if (D!= NilList) {
+       PositionWahana(D) = P;
+       StatusWahana(D) = Stat;
+       TotalFreqWahana(D) = TotalFreq;
+       IncomeWahana(D) = Income;
+       DailyFreqWahana(D) = DailyFreq;
+       NextWahana(D) = NilList;
+       ElmtStatis(D) = SearchAddress(UpgradeTree, NamaWahana);
+    }
+    return D;
+    
+}
+
 void InsFirstW (ListWahanaD *L, addressWahanaD D){
    /* I.S. L mungkin kosong */
    /* F.S. Melakukan alokasi sebuah elemen dan */

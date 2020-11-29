@@ -122,7 +122,7 @@ boolean IsLinked(Graph G, infoTypeLink n, infoTypeLink p);
 
 addressGraph SearchGraph(Graph G, infoTypeLink X);
 
-void CreateGraphPeta(MATRIKS Peta1, MATRIKS Peta2, MATRIKS Peta3, MATRIKS Peta4, Graph * G);
+void CreateGraphPeta();
 
 void PrintPetaGraph(Graph G);
 

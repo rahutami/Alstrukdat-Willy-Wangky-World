@@ -170,6 +170,8 @@ addressWahanaD AlokWahana (POINT P, Kata NamaWahana);
 /*membuat node dalam list linier elemen dinamis
 untuk build wahana baru*/
 
+addressWahanaD AlokWahanaFile (POINT P, Kata NamaWahana, int TotalFreq, int Income, int DailyFreq, boolean Stat);
+
 boolean SearchTree(Kata X, addressWahanaS P);
 
 boolean IsEmptyListW (ListWahanaD L);

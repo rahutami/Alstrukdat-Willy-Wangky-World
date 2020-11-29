@@ -18,6 +18,7 @@ void TulisPETA (player Pl, Graph G);
 4 5 6
 8 9 10
 */
+void MakePETA (char* filename, MATRIKS * P);
 
 void MovePeta(player *P, Graph G, int NewMapID);
 
