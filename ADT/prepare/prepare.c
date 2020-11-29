@@ -189,22 +189,22 @@ void upgradeWahana() {
 
         if(ElmtMatriks(Peta(CPeta), Y-1, X) == 'W'){
             P = MakePOINT(X,Y-1);
-            PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, WahanaBuilt)))); printf("\n");
+            PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, MapNum(Player), WahanaBuilt)))); printf("\n");
         }
 
         if(ElmtMatriks(Peta(CPeta), Y+1, X) == 'W'){
             P = MakePOINT(X, Y+1);
-            PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, WahanaBuilt)))); printf("\n");
+            PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, MapNum(Player), WahanaBuilt)))); printf("\n");
         }
 
         if(ElmtMatriks(Peta(CPeta), Y, X-1) == 'W'){
             P = MakePOINT(X-1,Y);
-            PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, WahanaBuilt)))); printf("\n");
+            PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, MapNum(Player), WahanaBuilt)))); printf("\n");
         }
 
         if(ElmtMatriks(Peta(CPeta), Y, X+1) == 'W'){
             P = MakePOINT(X+1, Y);
-            PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, WahanaBuilt)))); printf("\n");
+            PrintKata(NamaWahana(ElmtStatis(SearchWahanaDP(P, MapNum(Player), WahanaBuilt)))); printf("\n");
         }
 
         printf("\nPilih wahana yang ingin diupgrade: ");
