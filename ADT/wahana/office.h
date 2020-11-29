@@ -14,7 +14,7 @@ void Inoffice();
 
 void PrintHistory(Kata Wahana, addressWahanaS T);
 
-void PrintElmtS (addressWahanaS P, TreeWahanaS T);
+void PrintElmtS(addressWahanaS P, TreeWahanaS T);
 
 void details();
 

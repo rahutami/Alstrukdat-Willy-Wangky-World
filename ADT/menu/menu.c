@@ -345,14 +345,6 @@ void MainPhase(player * p1){
                 printf("Tidak ada wahana di sekitarmu!");
             }
         }
-        // nanti tambahin elif aja buat command yang lain 
-        // else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
-        //     printf("==========================================================\n");
-        //     printf("Command tidak tersedia\n");
-        //     printf("==========================================================\n");
-        //     printf("Masukkan \"command\" untuk melihat daftar command yang ada\n");
-        //     printf("==========================================================\n");
-        // } 
         else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
             printf("\033[0;31m");
             printf("==========================================================\n");
