@@ -32,6 +32,8 @@ stack*/
             if (BahanCukup(&Player,BahanWahana(addrWahana),JmlBahan(addrWahana))) {
                 //masukkin ke list  wahana
                 P = AlokWahana(Pos, CKata); 
+                PrintKata(CKata);
+                PrintKata(NamaWahana(ElmtStatis(P)));
                 if (IsEmptyListW(*L)){
                     InsFirstW(L,P);
                 }
@@ -63,6 +65,9 @@ stack*/
                 X.JumlahBahan = JmlBahan(addrWahana); 
                 X.uang = UpgradeCost(addrWahana);
                 Push (&stackExecute, X); //Variabel globla stackExecute
+
+                //Menambahkan W ke peta
+                AddWToPeta();
             } 
             else { // bahan tidak cukup
                 printf("Bahan yang Anda miliki tidak cukup untuk membangun wahana ini.\n");
