@@ -154,7 +154,8 @@ void Preparation(player *p1){
             ListCommand();
         } else if (IsKataSama("build")){
             //buildWahana(Position(Player), &WahanaBuilt);
-            CommmandBuild();
+            //CommmandBuild();
+            ProsedureBuild(Position(Player),&WahanaBuilt);
             AddWToPeta();
         } else if (IsKataSama("buy")){
             CommmandBuyArray();

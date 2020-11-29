@@ -184,7 +184,7 @@ void PrintUpgraded(addressWahanaS prevWahana, addressWahanaS nextWahana) {
     printf("Nama wahana sebelumnya  : ");PrintKata(NamaWahana(prevWahana));printf("\n");
 }
 
-void UpgradeStack() {
+void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana) {
 /* FUNGSI INI UNTUK NGE PUSH AKSI UPGRADE KE STACK */
 /* IF AND ONLY IF UPGRADENYA BERHASIL (RESOURCES DAN UANG CUKUP !!! ) */
         aksi aksiUpgrade;
@@ -198,12 +198,19 @@ void UpgradeStack() {
 		kataUpgrade.TabKata[6]='e';
 		kataUpgrade.TabKata[7]='\n';
 		kataUpgrade.Length = 6;
-        aksiUpgrade.commandStack = kataUpgrade;
-        aksiUpgrade.uang = 0; // uang yang sama kayak build
-        aksiUpgrade.durasi = 240;
-        aksiUpgrade.PointWahana = Position(Player);
-        Push(&stackExecute,aksiUpgrade);
 
+        aksiUpgrade.commandStack = kataUpgrade;
+        aksiUpgrade.durasi = 240; // ceritanya 240 menit
+        aksiUpgrade.PointWahana = PositionWahana(prevWahana);
+        aksiUpgrade.MapNum = MapNum(prevWahana); // bingung
+
+        aksiUpgrade.NamaBahan = BahanWahana(nextWahana);
+        aksiUpgrade.JumlahBahan = JmlBahan(nextWahana);
+        aksiUpgrade.uang = UpgradeCost(prevWahana);
+        aksiUpgrade.addrPrevWahana = prevWahana; 
+
+        Push(&stackExecute,aksiUpgrade);
+}
 /* STEPS:
 - Cek titik, krn cuma bisa upgrade di sekitar tempat yg ada wahana.
 - Cek uang dan resource, kalo gacukup tampilkan pesan error.
@@ -228,7 +235,7 @@ stack
     // if kanan kiri atas bawah bkn wahana print error
     
     /* PROSEDUR UNTUK NGEPUSH KE STACK */
-}
+
 
 void PrintInfoStack (Stack S) {
     if(IsEmptyStack(S)){
@@ -257,3 +264,14 @@ boolean SemuaCukup (player *P, Kata NamaBahan, int JumlahBahan, int BiayaUpgrade
     return (UangCukup(P,BiayaUpgrade) && BahanCukup(P,NamaBahan,JumlahBahan));
 }
 
+void UndoUpgrade(addressWahanaS prevWahana, addressWahanaS nextWahana) {
+    // Tambahin uang
+    // Tambahin bahan ke inventory
+    // Balikin ke elemen parent nya
+    // Pop
+    aksi aksiUpgrade;
+    Money(Player) += aksiUpgrade.uang;
+    AddElTab(&Tab(Player),aksiUpgrade.NamaBahan,aksiUpgrade.JumlahBahan);
+    prevWahana = aksiUpgrade.addrPrevWahana; // semoga bener
+    Pop(&stackExecute,&aksiUpgrade);
+}
