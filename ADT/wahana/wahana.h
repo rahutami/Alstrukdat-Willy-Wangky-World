@@ -98,10 +98,6 @@ void Details(Kata namaWahana, ListWahanaD L);
 /* I.S namaWahana dimasukkan user */
 /* F.S Menampilkan detail dari wahana*/
 
-void Report(Kata inputWahana, ListWahanaD L);
-/* I.S namaWahana dimasukkan user */
-/* F.S Menampilkan report dari wahana*/
-
 addressWahanaD SearchWahanaD (Kata namaWahana, ListWahanaD L);
 /* I.S namaWahana dimasukkan user */
 /* F.S Mengembalikan address dnegan wahana yang sesuai dengan yang dicari*/
@@ -206,8 +202,8 @@ void wahanaRusak(addressWahanaS *P, addressWahanaD *D);
 boolean isWahanaRusak (player Pemain, addressWahanaD *D);
 //Mengembalikan status wahana yang memiliki posisi Pos
 
-POINT WahanaSebelah (POINT Pemain);
-//Mengembalikan POINT dari wahana yang berada di sebelah Pemain
+POINT SekitarPemain (POINT Pemain, char C);
+//Mengembalikan POINT dari tempat yang berada di sebelah Pemain
 
 void Repair(addressWahanaD *D);
 //Mengubah StatusWahana pada address dinamis D menjadi 'true'

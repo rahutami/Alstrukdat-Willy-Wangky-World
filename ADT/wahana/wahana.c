@@ -35,16 +35,6 @@ void Details(Kata inputWahana, ListWahanaD L)
     
 }
 
-void Report(Kata inputWahana, ListWahanaD L)
-/* I.S namaWahana dimasukkan user */
-/* F.S Menampilkan report dari wahana*/
-{
-    addressWahanaD P = SearchWahanaD (inputWahana,L);
-    printf("Berapa kali total dinaiki : %d\n",TotalFreqWahana(P));
-    printf("Berapa kali dinaiki hari ini : %d\n",IncomeWahana(P));
-    printf("Total penghasilan : %d\n",DailyFreqWahana(P));
-}
-
 void SubTree(addressWahanaS parent, addressWahanaS l, addressWahanaS r){
     Left(parent) = l;
     Right(parent) = r;
@@ -59,7 +49,7 @@ void MakeTree()
     for (int i = 0; i < 10; i++)
         temptree[i] = AlokNode(i);
 
-    STARTFILE("./Files/Wahana/wahana.txt");
+    STARTFILE("../../Files/Wahana/wahana.txt");
     //printf("baca file\n");
     int i=0;
     int indexarr=0; //akan bertambah perbaris dan pernode
@@ -484,11 +474,11 @@ void wahanaRusak(addressWahanaS *P, addressWahanaD *D){
     //cari ID yang == num -> address ElmtStatis
     //cari address dinamisnya, ganti status jadi false
 }
-
+/*
 boolean isWahanaRusak (player Pemain, addressWahanaD *D){
     
     // POINT Pemain; //belum tau cara ambil posisi pemain
-    POINT Pos = WahanaSebelah(Position(Pemain));
+    POINT Pos = SekitarPemain(Position(Pemain),'W');
     
     *D = SearchWahanaDP(Pos,WahanaBuilt);
     if (*D != NilList){
@@ -497,7 +487,7 @@ boolean isWahanaRusak (player Pemain, addressWahanaD *D){
 }
 
 //masi belom bener
-POINT WahanaSebelah (POINT Pemain){
+POINT SekitarPemain (POINT Pemain, char C){
     addressGraph CPeta = FirstGraph(GraphPeta); //kenapa gabisa ajg
 
     while(ID(CPeta) != MapNum(Player)) 
@@ -506,16 +496,16 @@ POINT WahanaSebelah (POINT Pemain){
     int x = Absis(Pemain);
     int y = Ordinat(Pemain);
 
-    if(ElmtMatriks(Peta(CPeta), x+1, y) == 'W'){
+    if(ElmtMatriks(Peta(CPeta), x+1, y) == C){
         return MakePOINT(x+1, y);
     } 
-    else if (ElmtMatriks(Peta(CPeta), x, y+1) == 'W'){
+    else if (ElmtMatriks(Peta(CPeta), x, y+1) == C){
         return MakePOINT(x, y+1);
     }
-    else if (ElmtMatriks(Peta(CPeta), x - 1, y) == 'W'){
+    else if (ElmtMatriks(Peta(CPeta), x - 1, y) == C){
         return MakePOINT(x-1, y);
     }
-    else if (ElmtMatriks(Peta(CPeta), x, y - 1) == 'W'){
+    else if (ElmtMatriks(Peta(CPeta), x, y - 1) == C){
         return MakePOINT(x, y-1);
     }
 }
@@ -523,14 +513,14 @@ POINT WahanaSebelah (POINT Pemain){
 //repair
 void Repair(addressWahanaD *D){
     POINT Pemain;
-    POINT Pos = WahanaSebelah(Pemain);
+    POINT Pos = SekitarPemain(Pemain,'W');
 
     *D = SearchWahanaDP(Pos,WahanaBuilt);
     if (*D!=NilList){
         StatusWahana(*D) = true;
     }
     
-}
+}*/
 
 void PrintListW(ListWahanaD LW) {
     addressWahanaD P;

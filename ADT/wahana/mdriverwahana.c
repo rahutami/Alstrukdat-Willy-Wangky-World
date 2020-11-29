@@ -17,14 +17,14 @@ int main(){
     PrintTree(UpgradeTree);
     //STARTKATA();
     //addressWahanaD P = SearchWahanaD(CKata,L);
-    POINT P = MakePOINT(1,1);
+    /*POINT P = MakePOINT(1,1);
     buildWahana(P,&WahanaBuilt);
     PrintInfoWD(WahanaBuilt);
 
-    /*wahanaRusak();*/
-    PrintInfoWD(WahanaBuilt);
-    STARTKATA();
-    PrintHistory(CKata, UpgradeTree);
+    wahanaRusak();*/
+    //PrintInfoWD(WahanaBuilt);
+    //STARTKATA();
+    //PrintHistory(CKata, UpgradeTree);
     return 0;
     
 }

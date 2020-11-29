@@ -2,21 +2,17 @@
 #define OFFICE_H
 
 #include "../point/point.h"
-#include "../mesinkata/mesinkata.h"
 #include "../wahana/wahana.h"
+//extern 
 
-extern boolean EndKata;
-extern Kata CKata;
-extern char CC;
-extern boolean EOP;
-extern 
-
-void office(POINT P);
+void Inoffice(POINT P);
 
 void PrintHistory(Kata Wahana, addressWahanaS T);
 
 void PrintElmtS (addressWahanaS P, TreeWahanaS T);
 
 void details();
+
+void report();
 
 #endif
