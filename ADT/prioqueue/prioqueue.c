@@ -205,22 +205,6 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
     /* ALGORITMA */
     /* Randomize queue length */
     queueLength =  rand() % 4 + 1;
-
-    /* Read wahana.txt */
-    // STARTFILE("./Files/Wahana/wahana.txt"); // Hanya bisa dijalanin dari main ok
-    // while(!EOP){
-    //     while(CC != '-'){
-    //         ADV();
-    //     }
-    //     ADV();
-    //     SalinKataFile();
-    //     arrayKata[count] = CKata;
-    //     count++;
-    //     while(CC != EOL && CC != MARK) {
-    //         ADV();
-    //     }
-    //     ADV();
-    // }
     List newListWahana;
     CreateEmptyList(&newListWahana);
     addressWahanaD P = FirstWahana(LW);
@@ -306,10 +290,6 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
             } else {
                 printf("Maaf, wahana sedang dalam perbaikan.\n");
             }
-            // if (StatusWahana(target)) {
-            // } else {
-            //     printf("Maaf, wahana sedang dalam perbaikan.\n");
-            // }
         }
     } else {
         printf("Antrian kosong\n\n");
