@@ -218,7 +218,7 @@ void MainPhase(player * p1){
             }
             
         }
-        
+
         if(enter && !IsEmptyQueue(Q)){
             ReducePatience(&Q);
             Q = AngryCustomer(Q);
@@ -253,7 +253,7 @@ void MainPhase(player * p1){
             printf("           ");printf("W = Wahana\n");
             printf("           ");printf("O = Office\n");
             printf("           ");printf("^, >, v, < = Gerbang\n");
-            printf("\0m");
+            printf("\033[0m");
             printf("==========================================================\n");
             printf("\n");
             printf("\033[0;34m");
@@ -261,23 +261,32 @@ void MainPhase(player * p1){
             printf("           ");printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
             printf("           ");printf("Closing Time: "); TulisJAM(JamTutup); printf("\n");
             printf("           ");printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamTutup)); 
-            printf("\033[0m");
             printf("\n");
             printf("\n");
             if (IsEmptyListW(WahanaBuilt)) {
+<<<<<<< HEAD
                 printf("\033[0;31m");
                 printf("Tidak ada wahana yang tersedia.\n");
                 printf("\033[0m");
+=======
+                printf("     Tidak ada wahana yang tersedia.\n");
+>>>>>>> ce5130ee00a57c4a691427c1650bbe51bc2e726e
             } else{
                 if(!IsEmptyQueue(Q)){
-                    printf("Antrian [%d/5] :\n", NbElmtQueue(Q));
+                    printf("     Antrian [%d/5] :\n", NbElmtQueue(Q));
                     PrintPrioQueue(Q);
                 } else {
+<<<<<<< HEAD
                     printf("\033[0;31m");
                     printf("Antrian kosong\n");
                     printf("\033[0m");
+=======
+                    printf("     Antrian kosong\n");
+>>>>>>> ce5130ee00a57c4a691427c1650bbe51bc2e726e
                 }
             }
+            
+            printf("\033[0;31m");
             addressWahanaD P = First(WahanaBuilt);
             while (P != NilList){
                 if ((StatusWahana(P)) == false){
@@ -288,10 +297,13 @@ void MainPhase(player * p1){
                 }
                 P = NextWahana(P);
             }
+            printf("\033[0m");
             
             printf("\n");
             printf("==========================================================\n");
+            printf("\033[0;35m");
             printf("Masukkan \"command\" untuk melihat daftar command yang ada\n");
+            printf("\033[0m");
             printf("==========================================================\n");
             if(ElmtMatriks(Peta(CPeta), Y(Player), X(Player)) == 'O'){
                 printf("\033[0;35m");

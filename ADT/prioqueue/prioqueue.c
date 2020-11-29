@@ -172,12 +172,14 @@ void PrintPrioQueue (PrioQueue Q){
    if(!IsEmptyQueue(Q)){
     if(Head(Q) <= Tail(Q)){
         for(i = Head(Q); i <= Tail(Q); i++){
+            printf("     ");
             PrintInfo(InfoQueue(ElmtQueue(Q, i)));
             printf(", kesabaran: %d\n", Patience(ElmtQueue(Q, i)));
         }
     } else {
         i = Head(Q);
         while(i <= Tail(Q)){
+            printf("     ");
             PrintInfo(InfoQueue(ElmtQueue(Q, i)));
             printf("kesabaran: %d\n", Patience(ElmtQueue(Q, i)));
             if(i == MaxEl(Q) - 1 && i != Tail(Q)){
@@ -267,7 +269,9 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
         /* Mencari query di list wahana yang sudah dibagnun */
         S = Search(L, W);
         if(S == NilList){
-            printf("Wahana tidak ada di dalam antrian pelanggan. Silahkan coba lagi. \n\n");
+            printf("\033[0;31m");
+            printf("\nWahana tidak ada di dalam antrian pelanggan. Silahkan coba lagi. \n\n");
+            printf("\033[0m");
         } else {
             CJam(*P) = NextMenit(CJam(*P));
             target = SearchWahanaD(W, LW);
@@ -289,11 +293,14 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
                 TotalFreqWahana(target) += 1;
                 DailyFreqWahana(target) += 1;
                 IncomeWahana(target) +=PriceWahana(ElmtStatis(target));
-                printf("Selamat menikmati wahana ");
+                printf("\033[0;32m");
+                printf("\nSelamat menikmati wahana "); PrintKata(CKata);
                 printf("!\n\n");
+                printf("\033[0m");
 
             } else {
                 printf("\033[0;31m");
+<<<<<<< HEAD
                 printf("Maaf, wahana sedang dalam perbaikan.\n");
                 printf("\033[0;31m");
             }
@@ -302,6 +309,14 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
         printf("\033[0;31m");
         printf("Antrian kosong\n\n");
         printf("\033[0;31m");
+=======
+                printf("\nMaaf, wahana sedang dalam perbaikan.\n");
+                printf("\033[0m");
+            }
+        }
+    } else {
+        printf("\nAntrian kosong\n\n");
+>>>>>>> ce5130ee00a57c4a691427c1650bbe51bc2e726e
     }
 }
 
