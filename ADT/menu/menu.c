@@ -314,6 +314,13 @@ void MainPhase(player * p1){
                 printf("Anda sedang tidak ada berada di dalam office\n");
                 printf("\033[0m");
             }
+        } else if (IsKataSama("repair")) {
+            if (isSekitarPemain()) {
+                addressWahanaD wahana = WahanaSekitar();
+                Repair(&wahana);
+            } else {
+                printf("Tidak ada wahana di sekitarmu!");
+            }
         }
         // nanti tambahin elif aja buat command yang lain 
         // else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
