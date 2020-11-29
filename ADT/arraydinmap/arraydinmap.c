@@ -11,6 +11,7 @@
 // #define MaxEl(T) (T).MaxEl
 
 /* ********** KONSTRUKTOR ********** */
+Tab File_material;
 /* Konstruktor : create tabel kosong  */
 void MakeEmptyDin(Tab *T, int maxel)
 /* I.S. T sembarang, maxel > 0 */
@@ -165,7 +166,7 @@ void BacaIsiMaterial(Tab *T)
 /* NOTE: PROSEDUR INI BUAT BACA FILE EXTERNAL TERUS BIKIN TABELNYA */
 {
     MakeEmptyDin(T,30);
-    STARTKATAFILE("Files/material.txt"); // Gabisa dijalanin dari driver_arraydinmap
+    STARTKATAFILE("Files/material.txt"); // Gabisa dijalanin dari driver_arraydinmap ganti "../../Files/material.txt"
 	int count = 0;
     int i=0;
 	SalinKataFile();
