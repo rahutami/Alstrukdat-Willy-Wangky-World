@@ -1,4 +1,4 @@
-#include "build.h"
+#include "prepare.h"
 #include <stdio.h>
 int main(){
 	CommmandBuild();

@@ -248,3 +248,7 @@ boolean BahanCukup (player *P, Kata NamaBahan, int JumlahBahan) {
     return (SearchB(Tab(*P),NamaBahan,JumlahBahan));
 }
 
+boolean SemuaCukup (player *P, Kata NamaBahan, int JumlahBahan, int BiayaUpgrade) {
+    return (UangCukup(P,BiayaUpgrade) && BahanCukup(P,NamaBahan,JumlahBahan));
+}
+

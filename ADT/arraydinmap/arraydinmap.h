@@ -123,7 +123,7 @@ boolean IsEQ(Tab T1, Tab T2);
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : Tabel boleh kosong!! *** */
-IdxType Search1(Tab T, MapEntry X);
+IdxType Search1(Tab T, keyType k, valType v);
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan indeks i terkecil, dengan elemen ke-i = X */
 /* Jika tidak ada, mengirimkan IdxUndef */
@@ -166,6 +166,8 @@ void AddAsLastEl(Tab *T, keyType k, valType v);
 /* Proses: Menambahkan X sebagai elemen terakhir tabel */
 /* I.S. Tabel T boleh kosong, tetapi tidak penuh */
 /* F.S. X adalah elemen terakhir T yang baru */
+void AddElTab(Tab *T, keyType k, valType v);
+
 /* ********** MENGHAPUS ELEMEN ********** */
 void DelLastEl(Tab *T, keyType *k, valType *v);
 /* Proses : Menghapus elemen terakhir tabel */
@@ -174,6 +176,7 @@ void DelLastEl(Tab *T, keyType *k, valType *v);
 /*      Banyaknya elemen tabel berkurang satu */
 /*      Tabel T mungkin menjadi kosong */
 
+void DelElTab (Tab *T, keyType k, valType v);
 
 
 #endif
