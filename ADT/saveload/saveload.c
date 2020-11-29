@@ -44,10 +44,13 @@ void load(){
     strcat(directory, entries->d_name);
     printf("%s\n", directory);
 
-    tempdir = directory;
+    //Ini ngeload player
+    strcpy(tempdir, directory);
     strcat(tempdir, "/");
     strcat(tempdir, "player.txt");
     printf("%s\n", tempdir);
+    printf("%s\n", directory);
+
     STARTFILE(tempdir);
     SalinKataFile();
     CopyKata(CKata, &(Player.Name));
@@ -73,7 +76,35 @@ void load(){
     TulisPOINT(Position(Player));
     printf("\nMapnum:%d\nDay:%d\n", MapNum(Player), Day(Player));
     TulisJAM(CJam(Player));
-    printf("\nMoney: %d\n", Money(Player));
+    printf("\nMoney: %d\n\n", Money(Player));
+
+    strcpy(tempdir, directory);
+    strcat(tempdir, "/");
+    strcat(tempdir, "Peta_1.txt");
+
+    MakePETA(tempdir, &Peta1);
+
+    strcpy(tempdir, directory);
+    strcat(tempdir, "/");
+    strcat(tempdir, "Peta_2.txt");
+
+    MakePETA(tempdir, &Peta2);
+
+    strcpy(tempdir, directory);
+    strcat(tempdir, "/");
+    strcat(tempdir, "Peta_3.txt");
+
+    MakePETA(tempdir, &Peta3);
+
+    strcpy(tempdir, directory);
+    strcat(tempdir, "/");
+    strcat(tempdir, "Peta_4.txt");
+
+    MakePETA(tempdir, &Peta4);
+
+    CreateGraphPeta();
+
+    PrintPetaGraph(GraphPeta);
 }
 
-// gcc driver.c ../point/point.c saveload.c ../jam/jam.c ../player/player.c ../mesinkar/mesinkar.c ../mesinkata/mesinkata.c -o test
+// gcc driver.c ../graph/graph.c ../arraydinmap/arraydinmap.c ../peta/peta.c ../matriks/matriks.c ../point/point.c saveload.c ../jam/jam.c ../player/player.c ../mesinkar/mesinkar.c ../mesinkata/mesinkata.c -o test
