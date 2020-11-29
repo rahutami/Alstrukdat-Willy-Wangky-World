@@ -15,6 +15,7 @@
 
 typedef struct {
     int remaining; // Integer --> dianggap semua satuan durasinya menit
+	int remPatience;
     List player;
 } infoLP;
 
@@ -30,6 +31,7 @@ typedef struct {
 } listPlayer;
 
 #define Remaining(p) (p).remaining
+#define RemainingPat(p) (p).remPatience
 #define PlayerInfo(p) (p).player
 #define InfoLP(LP) (LP)->info
 #define NextLP(LP) (LP)->next
@@ -104,7 +106,7 @@ void DelAfterLP (listPlayer *LP, addressLP *Pdel, addressLP Prec);
 /* F.S. Menghapus Next(Prec): */
 /*      Pdel adalah alamat elemen list yang dihapus  */
 
-void DelCompleted (listPlayer *LP, List *del);
+void DelCompleted (listPlayer *LP, infoLP *del);
 /* Menghapus pemain yang sudah selesai bermain */
 /* I.S. List terdefinisi dan tidak kosong */
 /* F.S. Elemen list akan berkurang dengan syarat Remamining(p) = 0 */

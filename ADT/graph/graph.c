@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "graph.h"
 
+Graph GraphPeta;
 player Player;
 
 /* PROTOTYPE */

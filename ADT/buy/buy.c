@@ -10,12 +10,14 @@ void CommmandBuyArray()
 {
 	//CreateEmpty (&stackExecute); // coba // buat test
 	Tab File_material;
-	BacaIsi(&File_material);
-	TulisIsiTab(File_material);
+	BacaIsiMaterial(&File_material);
+	TulisIsiTabMaterial(File_material);
 	printf("\n%s\n%s\n%s\n%s","Masukkan Perintah:","<jumlah> <material>","<enter untuk keluar>","-> ");
 	STARTKATA();
 	while (!IsKataSama (""))
 	{
+		player PTes; // TEST
+		CreatePlayer(&PTes); // TEST
 		int val;
 		int Nbahan;
 		Nbahan = convToInt(CKata);
@@ -25,6 +27,7 @@ void CommmandBuyArray()
 		{
 			val = Nbahan * SearchVal(File_material, CKata);
 			//printf("%i\n",val);
+			AddAsLastEl(&Tab(PTes),CKata,Nbahan);  // TEST
 			Kata command;
 			command.TabKata[0]='B';
 			command.TabKata[1]='u';
@@ -56,5 +59,12 @@ void CommmandBuyArray()
 	// {
 		printf("Anda keluar dari menu buy\n");
 	// }
+
+}
+
+void UndoBuy () {
+// Uang ditambah
+// Inventory berkurang (delete dari arraydinmap) -> belom bikin fungsinya. Cek inventory pake print Isi
+// Pop
 
 }

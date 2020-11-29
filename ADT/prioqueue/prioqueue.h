@@ -81,7 +81,7 @@ void ReducePatience(PrioQueue *Q);
 /* F.S. Kesabaran tiap elemen di queue berkurang, tetapi prioritas bertambah */
 
 /* *** Primitif Add/Delete *** */
-void FirstEnqueue(PrioQueue *Q, List L);
+void FirstEnqueue(PrioQueue *Q, infoLP LP);
 /* Menambahkan X ke dalam queue dengan prioritas terbesar */
 
 void Enqueue (PrioQueue * Q, infotypeQueue X);
@@ -106,15 +106,16 @@ void PrintPrioQueue (PrioQueue Q);
 #
 */
 
-void RandomizeQueue (PrioQueue *Q);
+void RandomizeQueue (PrioQueue *Q, ListWahanaD LW);
 /* Mengisi queue Q secara random */
 /* I.S. Q terdefinisi dan kosong */
 /* F.S. Q terisi secara random */
 
-void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP);
+void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW);
 /* I.S. W adalah wahana, bisa tidak valid. Q adalah priority queue */
 /* F.S. Jika wahana terdapat pada salah satu list wahana di priority queue, maka */
 /*      wahana akan dikeluarkan dari list tersebut. Jika list menjadi kosong, antrian berkurang */
+
 
 PrioQueue AngryCustomer(PrioQueue Q);
 /* Mengeluarkan elemen Q yang kesabarannya 0 */

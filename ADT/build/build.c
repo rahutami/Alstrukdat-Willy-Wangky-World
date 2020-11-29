@@ -89,3 +89,10 @@ void CommmandBuild()
      
      
 }
+
+void UndoBuild() {
+    // Tambahin uang
+    // Tambahin bahan -> cek inventory pake PrintIsiTab
+    // Delete di list wahana built -> Cek list WahanaBuilt
+    // Pop
+}

@@ -124,11 +124,16 @@ void ReducePatience(PrioQueue *Q) {
     }
 }
 
-void FirstEnqueue(PrioQueue *Q, List L){
+void FirstEnqueue(PrioQueue *Q, infoLP LP){
     /* Menambahkan X ke dalam queue dengan prioritas terbesar */
     infotypeQueue P;
-    InfoQueue(P) = L;
-    Prio(P) = Prio(InfoHead(*Q)) - 1;
+    InfoQueue(P) = PlayerInfo(LP);
+    Patience(P) = RemainingPat(LP);
+    if(IsEmptyQueue(*Q)) {
+        Prio(P) = 5;
+    } else {
+        Prio(P) = Prio(InfoHead(*Q)) - 1;
+    }
     Enqueue(Q, P);
 }
 
@@ -187,12 +192,12 @@ void PrintPrioQueue (PrioQueue Q){
 
 }
 
-void RandomizeQueue (PrioQueue *Q) {
+
+void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
     /* Mengisi queue Q secara random */
     /* I.S. Q terdefinisi dan kosong */
     /* F.S. Q terisi secara random */
     /* KAMUS */
-    Kata arrayKata[10];
     int count = 0;
     int i, j, k, queueLength, wahana;
     List L;
@@ -202,25 +207,52 @@ void RandomizeQueue (PrioQueue *Q) {
     queueLength =  rand() % 4 + 1;
 
     /* Read wahana.txt */
-    STARTFILE("./Files/Wahana/wahana.txt"); // Hanya bisa dijalanin dari main ok
-    while(!EOP){
-        while(CC != '-'){
-            ADV();
+    // STARTFILE("./Files/Wahana/wahana.txt"); // Hanya bisa dijalanin dari main ok
+    // while(!EOP){
+    //     while(CC != '-'){
+    //         ADV();
+    //     }
+    //     ADV();
+    //     SalinKataFile();
+    //     arrayKata[count] = CKata;
+    //     count++;
+    //     while(CC != EOL && CC != MARK) {
+    //         ADV();
+    //     }
+    //     ADV();
+    // }
+    List newListWahana;
+    CreateEmptyList(&newListWahana);
+    addressWahanaD P = FirstWahana(LW);
+    int wahanaBuilt = 0;
+    while (P != NULL) {
+        if(IsEmptyList(newListWahana)) {
+            InsVFirst(&newListWahana, NamaWahana(ElmtStatis(P)));
+            wahanaBuilt++;
+        } else {
+            if (!SearchBool(newListWahana, NamaWahana(ElmtStatis(P)))) {
+                InsVLast(&newListWahana, NamaWahana(ElmtStatis(P)));
+                wahanaBuilt++;
+            }   
         }
-        ADV();
-        SalinKataFile();
-        arrayKata[count] = CKata;
-        count++;
-        while(CC != EOL && CC != MARK) {
-            ADV();
-        }
-        ADV();
+        printf("%d\n", wahanaBuilt);
+        P = NextWahana(P);
     }
+
+    Kata arrayKata[wahanaBuilt];
+    int a = 0;
+    addressList LP = First(newListWahana);
+    while(LP != NilList) {
+        arrayKata[a] = InfoList(LP);
+        a++;
+        LP = Next(LP);
+    }
+
     for(i = 0; i <= queueLength; i++) {
         CreateEmptyList(&L);
         wahana = rand() % 5;
         for(j = 0; j <= wahana; j++){
-            k = rand() % 10;
+            k = rand() % wahanaBuilt;
             InsVLast(&L, arrayKata[k]);
         }
         Patience(new) = rand() % 5 + 1;
@@ -231,7 +263,7 @@ void RandomizeQueue (PrioQueue *Q) {
 
 }
 
-void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP){
+void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
     /* I.S. W adalah wahana, bisa tidak valid. Q adalah priority queue */
     /* F.S. Jika wahana terdapat pada salah satu list wahana di priority queue, maka */
     /*      wahana akan dikeluarkan dari list tersebut. Jika list menjadi kosong, antrian berkurang */
@@ -240,6 +272,7 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP){
     addressList S;
     infotypeQueue del;
     infoLP customer;
+    addressWahanaD target;
     // addressWahanaD target = SearchWahanaD(W, LW);
     /* ALGORITMA */
     if(!IsEmptyQueue(*Q)){
@@ -249,29 +282,34 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP){
             printf("Wahana tidak ada di dalam antrian pelanggan. Silahkan coba lagi. \n\n");
         } else {
             CJam(*P) = NextMenit(CJam(*P));
-            Dequeue(Q, &del);
-            if(NbElmt(InfoQueue(del)) > 1) {
-                DelP(&InfoQueue(del), W);
-                PlayerInfo(customer) = InfoQueue(del);
-                PrintInfo(InfoQueue(del));
-                printf("\n");
-                // Remaining(customer) = TimeWahana(ElmtStatis(target));
-                Remaining(customer) = 10;
-                InsVLastLP(LP, customer);
+            target = SearchWahanaD(W, LW);
+            if(StatusWahana(target)){
+                Dequeue(Q, &del);
+                if(NbElmt(InfoQueue(del)) > 1) {
+                    DelP(&InfoQueue(del), W);
+                    PlayerInfo(customer) = InfoQueue(del);
+                    PrintInfo(InfoQueue(del));
+                    printf("\n");
+                    Remaining(customer) = TimeWahana(ElmtStatis(target));
+                    RemainingPat(customer) = Patience(del);
+                    InsVLastLP(LP, customer);
 
+                }
+                Money(*P) += PriceWahana(ElmtStatis(target));
+                TotalFreqWahana(target) += 1;
+                DailyFreqWahana(target) += 1;
+                IncomeWahana(target) +=PriceWahana(ElmtStatis(target));
+                printf("Selamat menikmati wahana ");
+                PrintKata(W);
+                printf("!\n\n");
+
+            } else {
+                printf("Maaf, wahana sedang dalam perbaikan.\n");
             }
-            // Money(*P) += PriceWahana(ElmtStatis(target));
-            // TotalFreqWahana(target) += 1;
-            // DailyFreqWahana(target) += 1;
-            // IncomeWahana(target) +=PriceWahana(ElmtStatis(target));
-            printf("Selamat menikmati wahana ");
-            PrintKata(W);
-            printf("!\n\n");
             // if (StatusWahana(target)) {
             // } else {
             //     printf("Maaf, wahana sedang dalam perbaikan.\n");
             // }
-            PrintPrioQueue(*Q);
         }
     } else {
         printf("Antrian kosong\n\n");

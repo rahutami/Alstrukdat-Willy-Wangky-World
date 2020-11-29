@@ -60,6 +60,24 @@ addressList Search (List L, Kata X){
     return P;
 }
  
+boolean SearchBool (List L, Kata X){
+   /* Mencari apakah ada elemen list dengan InfoList(P)= X */
+   /* Jika ada, mengirimkan addressList elemen tersebut. */
+   /* Jika tidak ada, mengirimkan NilList */
+   /* KAMUS */
+   CKata = X;
+   addressList P = First(L);
+   boolean found = false;
+   /* ALGORITMA */
+   while(!found && (P != NilList)) {
+       if (IsKataSamaKata(InfoList(P), X)) {
+           found = true;
+        } else {
+           P = Next(P);
+        }
+    }
+    return found;
+}
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
 void InsVFirst (List *L, infotypeList X){
@@ -323,6 +341,26 @@ boolean IsListSama (List L1, List L2) {
     } else {
         return false;
     }
+}
+
+List RemoveDouble(List  L) {
+    List new;
+    CreateEmptyList(&new);
+
+    addressList P = First(L);
+    while(P != NilList){
+        if (IsEmptyList(new)) {
+            InsVLast(&new, InfoList(P));
+        } else {
+            if(!SearchBool(new, InfoList(P))) {
+                InsVLast(&new, InfoList(P));
+            }
+        }
+        P = Next(P);
+    }
+
+    return new;
+
 }
 
 /*boolean IsAllRusak (List L, ListWahanaD LW) {

@@ -6,7 +6,7 @@ Graph GraphPeta;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
 TreeWahanaS UpgradeTree;
 player Player;
-ListWahanaD WahanaBuilt;
+// ListWahanaD WahanaBuilt;
 
 void MainMenu(){
     printf("====================================================================\n\n");
@@ -64,7 +64,7 @@ void ListCommand(){
 void Preparation(player *p1){
     do{
         if (!IsKataSama("command")){
-            printf("===================================\n");
+            printf("=============================================\n");
             printf("        Preparation Phase\n");
             printf("             Day %d\n", Day(*p1));
             printf("===================================\n");
@@ -92,7 +92,6 @@ void Preparation(player *p1){
         }
         
         printf("Masukkan perintah: ");
-
         STARTKATA();
 
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
@@ -115,20 +114,26 @@ void Preparation(player *p1){
             printf("Masukkan perintah: ");
             STARTKATA();
         }
-        
     } while (!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute")));
 }
 
 void MainPhase(player * p1){
     PrioQueue Q;
     listPlayer LP;
-    List del;
+    infoLP del;
     boolean enter = false;
     CreateEmptyQueue(&Q, 5);
     CreateEmptyLP(&LP);
-    RandomizeQueue(&Q);
+    if (!IsEmptyListW(WahanaBuilt)) {
+        RandomizeQueue(&Q, WahanaBuilt);
+    }
 
     do{
+        if(enter && !IsEmptyQueue(Q)){
+            ReducePatience(&Q);
+            Q = AngryCustomer(Q);
+        }
+        
         if(!IsEmptyLP(LP)){
             ReduceTime(&LP);
             for(int i = 0; i < CountCompleted(LP); i++) {
@@ -136,11 +141,7 @@ void MainPhase(player * p1){
                 FirstEnqueue(&Q, del);
             }
         }
-        if(enter){
-            ReducePatience(&Q);
-            PrintPrioQueue(Q);
-            Q = AngryCustomer(Q);
-        }
+
         enter = true;
 
         
@@ -165,11 +166,15 @@ void MainPhase(player * p1){
             printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamTutup)); 
             printf("\n");
             printf("\n");
-            if(!IsEmptyQueue(Q)){
-                printf("Antrian [%d/5] :\n", NbElmtQueue(Q));
-                PrintPrioQueue(Q);
-            } else {
-                printf("Antrian kosong\n");
+            if (IsEmptyListW(WahanaBuilt)) {
+                printf("Tidak ada wahana yang tersedia.\n");
+            } else{
+                if(!IsEmptyQueue(Q)){
+                    printf("Antrian [%d/5] :\n", NbElmtQueue(Q));
+                    PrintPrioQueue(Q);
+                } else {
+                    printf("Antrian kosong\n");
+                }
             }
             printf("\n");
             printf("==========================================================\n");
@@ -186,7 +191,7 @@ void MainPhase(player * p1){
             ListCommand();
         } else if (IsKataSama("serve")) {
             ADVKATA();
-            Serve(p1, CKata, &Q, &LP);
+            Serve(p1, CKata, &Q, &LP, WahanaBuilt);
             // addressGraph CPeta = FirstGraph(GraphPeta);
             // int x = X(*p1), y = Y(*p1);
             // while(ID(CPeta) != MapNum(*p1)){

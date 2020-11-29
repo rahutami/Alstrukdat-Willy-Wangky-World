@@ -22,6 +22,7 @@ char CC;
 Kata CKata;
 boolean EOP;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
+ListWahanaD WahanaBuilt;
 
 void NewGame(){
     
@@ -48,8 +49,7 @@ int main(){
         player p1;
 
         NewGame();
-        First(WahanaBuilt) = NULL;
-
+        First(WahanaBuilt) = NilList;
         Preparation(&Player);
         while(!IsKataSama("exit")){
             if(IsKataSama("prepare")){
