@@ -153,14 +153,8 @@ void Preparation(player *p1){
             ListCommand();
         } else if (IsKataSama("build")){
             //buildWahana(Position(Player), &WahanaBuilt);
-<<<<<<< HEAD
             ProsedureBuild(Position(Player), &WahanaBuilt);
-            printf("%d\n", IsEmptyListW(WahanaBuilt));
-=======
-            //CommmandBuild();
-            ProsedureBuild(Position(Player),&WahanaBuilt);
-            AddWToPeta();
->>>>>>> c30275d0335a769403a3ee40c5d526471c839d9d
+            //printf("%d\n", IsEmptyListW(WahanaBuilt));
         } else if (IsKataSama("buy")){
             CommmandBuyArray();
         } else if (IsKataSama("upgrade")){

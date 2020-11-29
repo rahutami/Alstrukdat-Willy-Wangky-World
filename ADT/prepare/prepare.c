@@ -123,6 +123,8 @@ void UndoBuild() {
     Pop(&stackExecute,&X);
     PrintInfoStack(stackExecute);
     Money(Player) += X.uang; //Tambahin uang
+    AddElTab(&Tab(Player),X.NamaBahan,X.JumlahBahan); // Nambahin inventory
+    /* 
     int i = 0;
     while (i < Neff(Tab(Player)) && !IsKataSamaKata(Elmt(Tab(Player), i).key,X.NamaBahan))
     {
@@ -131,7 +133,7 @@ void UndoBuild() {
     }
     // ketemu nama wahana yang sama dan Tambahin bahan 
     Elmt(Tab(Player), i).value += X.JumlahBahan;
-
+    */
     // Menghapus W dari peta
     addressGraph CPeta = FirstGraph(GraphPeta);
 
