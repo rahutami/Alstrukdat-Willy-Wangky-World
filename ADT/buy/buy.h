@@ -9,8 +9,9 @@ yang menampilkan commad BUY
 #include "../mesinkata/mesinkata.h"
 #include <stdio.h>
 
-// melakukan semua perintah yang ada didalam Command Buy
-
-
 void CommmandBuyArray();
+/* melakukan semua perintah yang ada didalam Command Buy
+menampilkan daftar bahan kemudian menerima inputan dan mengatusr senua case 
+input salah atau benar kemudian masukin ke stack */
+
 void UndoBuy();
