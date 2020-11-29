@@ -10,14 +10,34 @@ boolean EOP;
 TreeWahanaS UpgradeTree;
 ListWahanaD WahanaBuilt;
 
-void Details(Kata inputWahana, ListWahanaD L)
+void Details()
 /* I.S namaWahana dimasukkan user */
 /* F.S Menampilkan detail dari wahana*/ /*harus pas dia disebelah wahana*/
-{
-    boolean around = isSekitarPemain();
-    if (around){
-        addressWahanaS P = SearchAddress (UpgradeTree, inputWahana);
-        PrintElmtS(P,UpgradeTree);
+{   
+    int X = X(Player),Y = Y(Player);
+    POINT P;
+    addressGraph CPeta = FirstGraph(GraphPeta);
+    
+    while(ID(CPeta) != MapNum(Player)) CPeta = NextGraph(CPeta);
+    
+    if (ElmtMatriks(Peta(CPeta), Y-1, X) == 'W' || ElmtMatriks(Peta(CPeta), Y+1, X) == 'W' || ElmtMatriks(Peta(CPeta), Y, X-1) == 'W' || ElmtMatriks(Peta(CPeta), Y, X+1) == 'W'){
+        if(ElmtMatriks(Peta(CPeta), Y-1, X) == 'W'){
+            P = MakePOINT(X,Y-1);
+            PrintElmtS(ElmtStatis(SearchWahanaDP(P, MapNum(Player), WahanaBuilt)), UpgradeTree); 
+        }
+        if(ElmtMatriks(Peta(CPeta), Y+1, X) == 'W'){
+            P = MakePOINT(X, Y+1);
+            PrintElmtS(ElmtStatis(SearchWahanaDP(P, MapNum(Player), WahanaBuilt)), UpgradeTree); 
+        }
+        if(ElmtMatriks(Peta(CPeta), Y, X-1) == 'W'){
+            P = MakePOINT(X-1,Y);
+            PrintElmtS(ElmtStatis(SearchWahanaDP(P, MapNum(Player), WahanaBuilt)), UpgradeTree); 
+            printf("3");
+        }
+        if(ElmtMatriks(Peta(CPeta), Y, X+1) == 'W'){
+            P = MakePOINT(X+1, Y);
+            PrintElmtS(ElmtStatis(SearchWahanaDP(P, MapNum(Player), WahanaBuilt)), UpgradeTree); 
+        }
     }
 }
 
@@ -645,8 +665,9 @@ void PrintHistory(Kata Wahana, addressWahanaS T){
 }
 
 void PrintElmtS (addressWahanaS P, TreeWahanaS T){
-    
+    printf("4");
     addressWahanaD D = SearchWahanaD (NamaWahana(P),WahanaBuilt);
+    printf("5");
     printf("\n----------Details Wahana----------\n");
     printf("Nama : "); PrintKata(NamaWahana(P)); printf("\n");
 

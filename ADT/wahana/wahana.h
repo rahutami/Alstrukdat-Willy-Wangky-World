@@ -104,7 +104,7 @@ typedef addressWahanaS TreeWahanaS; //ganti jd ini keknya
 extern TreeWahanaS UpgradeTree;
 extern ListWahanaD WahanaBuilt;
 
-void Details(Kata namaWahana, ListWahanaD L);
+void Details();
 /* I.S namaWahana dimasukkan user */
 /* F.S Menampilkan detail dari wahana*/
 

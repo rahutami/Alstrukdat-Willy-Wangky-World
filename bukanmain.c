@@ -193,6 +193,8 @@ void Preparation(player *p1){
             PrepExecute();
         } else if (IsKataSama("main")) {
             PrepMain();
+        } else if (IsKataSama("detail")) {
+            Details();
         }
         // nanti tambahin elif aja buat command yang lain
         else if(!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute"))){
@@ -374,7 +376,9 @@ void MainPhase(player * p1){
             } else {
                 printf("Tidak ada wahana di sekitarmu!");
             }
-        }
+        } else if (IsKataSama("detail")) {
+            Details();
+        } 
         else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
             printf("\033[0;31m");
             printf("==========================================================\n");
@@ -388,6 +392,17 @@ void MainPhase(player * p1){
             printf("\033[0m");
             STARTKATA();
             invalid = true;
+        }
+        //Kalo waktu sekarang = waktu tutup ckata jadi prepare
+        if(JEQ(CJam(Player), JamTutup)){
+            CKata.TabKata[0]='p';
+            CKata.TabKata[1]='r';
+            CKata.TabKata[2]='e';
+            CKata.TabKata[3]='p';
+            CKata.TabKata[4]='a';
+            CKata.TabKata[5]='r';
+            CKata.TabKata[6]='e';
+            CKata.Length = 7;
         } 
         
     } while(!(IsKataSama("prepare") || (IsKataSama("exit"))));
