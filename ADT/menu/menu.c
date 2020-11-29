@@ -6,7 +6,7 @@ Graph GraphPeta;
 MATRIKS Peta1, Peta2, Peta3, Peta4;
 TreeWahanaS UpgradeTree;
 player Player;
-ListWahanaD WahanaBuilt;
+// ListWahanaD WahanaBuilt;
 
 void MainMenu(){
     printf("====================================================================\n\n");
@@ -64,7 +64,7 @@ void ListCommand(){
 void Preparation(player *p1){
     do{
         if (!IsKataSama("command")){
-            printf("=====================jisdjisjdj==============\n");
+            printf("=============================================\n");
             printf("        Preparation Phase\n");
             printf("             Day %d\n", Day(*p1));
             printf("===================================\n");
@@ -92,8 +92,6 @@ void Preparation(player *p1){
         }
         
         printf("Masukkan perintah: ");
-        printf("ok\n");
-
         STARTKATA();
 
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
@@ -101,10 +99,14 @@ void Preparation(player *p1){
         } else if (IsKataSama("command")){
             ListCommand();
         } else if (IsKataSama("build")){
-            printf("ok\n");
-            // buildWahana(Position(Player), &WahanaBuilt);
-            // AddWToPeta();
-            // PrintKata(NamaWahana(ElmtStatis(FirstWahana(WahanaBuilt))));
+            buildWahana(Position(Player), &WahanaBuilt);
+            AddWToPeta();
+            printf("\n");
+            PrintListW(WahanaBuilt);
+            printf("\n");
+            PrintKata(NamaWahana(ElmtStatis(FirstWahana(WahanaBuilt))));
+            printf("\n");
+            printf("\n");
         } else if (IsKataSama("buy")){
             CommmandBuyArray();
         }
@@ -118,11 +120,14 @@ void Preparation(player *p1){
             printf("Masukkan perintah: ");
             STARTKATA();
         }
-        
     } while (!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute")));
 }
 
 void MainPhase(player * p1){
+    if (!IsEmptyListW(WahanaBuilt)) {
+        printf("\n");
+        printf("lalala\n");
+    }
     PrioQueue Q;
     listPlayer LP;
     List del;
