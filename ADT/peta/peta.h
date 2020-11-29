@@ -30,7 +30,7 @@ void s(player *P, Graph G);
 
 void d(player *P, Graph G);
 
-int loadPeta();
+void loadPeta();
 
 void AddWToPeta();
 #endif

@@ -1,13 +1,14 @@
 #include "graph.h"
+#include "../peta/peta.h"
+#include <stdio.h>
 
-
+// Buat ngetest graph berhasil dibikin apa engga
 int main(){
     Graph G;
-    MATRIKS Peta1, Peta2, Peta3, Peta4;
-    loadPeta(&Peta1, &Peta2, &Peta3, &Peta4);
-    CreateGraphPeta(Peta1, Peta2, Peta3, Peta4, &G);
+    loadPeta();
+    CreateGraphPeta();
     PrintGraph(G);
     PrintPetaGraph(G);
 }
 
-// gcc drivergraph.c graph.c ../matriks/matriks.c ../peta/peta.c ../linkgraph/linkgraph.c -o test
+// gcc drivergraph.c graph.c ../mesinkata/mesinkata.c ../mesinkar/mesinkar.c ../matriks/matriks.c ../peta/peta.c -o test

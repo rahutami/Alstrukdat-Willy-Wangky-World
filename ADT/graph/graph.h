@@ -102,19 +102,6 @@ void PrintGraph(Graph G);
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Graph kosong : menulis [] */
 
-
-void AddLink(Graph *G, infoTypeLink n, infoTypeLink p);
-/* I. S. Graph G terdefinisi, n dan p pasti tidak lebih dari jumlah building
-   F. S. Link dari elemen n bertambah dengan p, dan sebaliknya (soalnya bolak balik)
-   contoh :
-   1 2->3
-   2 1
-   3 1
-   Add(&G, 2, 3) 
-   1 2->3
-   2 1->3
-   3 1->3 */
-
 void PrintLink(Graph G, infoTypeLink X);
 
 boolean IsLinked(Graph G, infoTypeLink n, infoTypeLink p);
