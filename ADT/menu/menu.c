@@ -264,25 +264,17 @@ void MainPhase(player * p1){
             printf("\n");
             printf("\n");
             if (IsEmptyListW(WahanaBuilt)) {
-<<<<<<< HEAD
                 printf("\033[0;31m");
                 printf("Tidak ada wahana yang tersedia.\n");
                 printf("\033[0m");
-=======
-                printf("     Tidak ada wahana yang tersedia.\n");
->>>>>>> ce5130ee00a57c4a691427c1650bbe51bc2e726e
             } else{
                 if(!IsEmptyQueue(Q)){
                     printf("     Antrian [%d/5] :\n", NbElmtQueue(Q));
                     PrintPrioQueue(Q);
                 } else {
-<<<<<<< HEAD
                     printf("\033[0;31m");
                     printf("Antrian kosong\n");
                     printf("\033[0m");
-=======
-                    printf("     Antrian kosong\n");
->>>>>>> ce5130ee00a57c4a691427c1650bbe51bc2e726e
                 }
             }
             

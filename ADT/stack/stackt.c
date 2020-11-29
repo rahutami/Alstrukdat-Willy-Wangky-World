@@ -204,7 +204,7 @@ void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana) {
         aksiUpgrade.JumlahBahan = JmlBahan(nextWahana);
         aksiUpgrade.uang = UpgradeCost(prevWahana);
         aksiUpgrade.addrPrevWahana = prevWahana; 
-        Push(&stackExecute,aksiUpgrade);
+        PushE(&stackExecute,aksiUpgrade);
 }
 /* STEPS:
 - Cek titik, krn cuma bisa upgrade di sekitar tempat yg ada wahana.
@@ -259,3 +259,18 @@ boolean SemuaCukup (player *P, Kata NamaBahan, int JumlahBahan, int BiayaUpgrade
     return (UangCukup(P,BiayaUpgrade) && BahanCukup(P,NamaBahan,JumlahBahan));
 }
 
+void PushE(Stack * S, aksi X)
+{
+  int Time, Total;
+  Stack ST = *S;
+  Time = SumDurasiStack(ST);
+  Total = Time + X.durasi;
+  if( Total <= 720){
+    Push (S,X);
+  }
+  else
+  {
+    printf("Total durasi aksi melebihi Time Remaining");
+  }
+  
+}
