@@ -48,3 +48,7 @@ void Undo();
 void upgradeWahana() ;
 
 void UndoUpgrade();
+
+void PrepMain();
+
+void PrepExecute();

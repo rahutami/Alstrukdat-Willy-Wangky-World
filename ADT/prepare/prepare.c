@@ -453,16 +453,16 @@ void upgradeWahana() {
 }
 
 void UndoUpgrade(){
+    // Pop
     // Tambahin uang
     // Tambahin bahan ke inventory
     // Balikin ke elemen parent nya
-    // Pop
     aksi aksiUpgrade;
+    Pop(&stackExecute,&aksiUpgrade);
     Money(Player) += aksiUpgrade.uang;
     AddElTab(&Tab(Player),aksiUpgrade.NamaBahan,aksiUpgrade.JumlahBahan);
     addressWahanaS parent = ElmtStatis(SearchWahanaDP(aksiUpgrade.PointWahana,aksiUpgrade.MapNumAksi,WahanaBuilt));
     parent = aksiUpgrade.addrPrevWahana; // semoga bener
-    Pop(&stackExecute,&aksiUpgrade);
 }
 
 void Undo(){
@@ -501,4 +501,18 @@ void Undo(){
         UndoUpgrade(); 
     }
     PrintInfoStack(stackExecute);
+}
+
+void PrepMain() {
+    while (!IsEmptyStack(stackExecute)) {
+        Undo();
+    }
+}
+
+void PrepExecute() {
+    aksi X;
+    InverseStack(stackExecute);
+    while (!IsEmptyStack(stackExecute)) {
+        Pop(&stackExecute,&X);
+    }
 }
