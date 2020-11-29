@@ -465,9 +465,10 @@ void DelLastEl(Tab *T, keyType *k, valType *v)
 }
 
 void DelElTab (Tab *T, keyType k, valType v) {
-    if (SearchB(*T,k,v)) { // kalo ketemu
+    if (SearchB(*T,k,v)) { // kalo ketemu >=
         IdxType indeks = Search1(*T,k,v);
         if (v == (Elmt(*T,indeks).value)) { // kalau jumlahnya sama, otomatis jadi 0.
+
             Neff(*T)--;
         }
         else { // jumlahnya lebih

@@ -154,6 +154,7 @@ void Preparation(player *p1){
         } else if (IsKataSama("build")){
             //buildWahana(Position(Player), &WahanaBuilt);
             ProsedureBuild(Position(Player), &WahanaBuilt);
+            //printf("%d\n", IsEmptyListW(WahanaBuilt));
         } else if (IsKataSama("buy")){
             CommmandBuyArray();
         } else if (IsKataSama("upgrade")){
