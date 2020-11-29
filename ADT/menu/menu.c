@@ -265,6 +265,15 @@ void MainPhase(player * p1){
                     printf("Antrian kosong\n");
                 }
             }
+            addressWahanaD P = First(WahanaBuilt);
+            while (P != Nil){
+                if ((StatusWahana(P)) == false){
+                    printf("Broken : ");
+                    PrintKata(NamaWahana(ElmtStatis(P)));
+                }
+                P = Next(P);
+            }
+            
             printf("\n");
             printf("==========================================================\n");
             printf("Masukkan \"command\" untuk melihat daftar command yang ada\n");
