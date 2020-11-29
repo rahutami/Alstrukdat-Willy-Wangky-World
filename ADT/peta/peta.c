@@ -11,9 +11,9 @@ boolean EOP;
 Graph GraphPeta;
 
 void MakePETA (char* filename, MATRIKS * P)
-/* Membentuk sebuah PETA "kosong" yang siap diisi berukuran NB x NK di "ujung kiri" memori */
-/* I.S. NB dan NK adalah valid untuk memori PETA yang dibuat */
-/* F.S. PETA M sesuai dengan definisi di atas terbentuk */
+/* Mengisi matriks P dengan peta yang ada di filename
+   I.S Matriks P bebas
+   F.S Matriks P terisi dengan Peta yang ada di filename */
 {
     FILE* cFile;
     int i, j;
@@ -43,15 +43,9 @@ void MakePETA (char* filename, MATRIKS * P)
 
 
 void TulisPETA (player Pl, Graph G)
-/* I.S. M terdefinisi */
-/* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris 
-   dipisahkan sebuah spasi */
-/* Proses: Menulis nilai setiap elemen M ke layar dengan traversal per baris dan per kolom */
-/* Contoh: menulis PETA 3x3 (ingat di akhir tiap baris, tidak ada spasi)
-1 2 3
-4 5 6
-8 9 10
-*/
+/* I.S. Pl dan G terdefinisi */
+/* F.S. Peta yang saat ini ditempati player diprint ke layar*/
+/* Proses: Menulis nilai setiap elemen M ke layar dengan traversal per baris dan per kolom. Gerbang dituliskan dengan <, v, >, ^*/
 
 {
     // KAMUS
@@ -92,6 +86,10 @@ char IntToChar (int X){
 }
 
 void MovePeta(player *P, Graph G, int NewMapID){
+/* Memindahkan player dari satu arena ke arena yang lain
+   I.S. Player berada di arena yang sesuai dengan MapNum(P)
+   F.S. Player berada di arena dengan ID NewMapID
+*/
     addressGraph NewPeta = FirstGraph(G);
 
     while(ID(NewPeta) != NewMapID) NewPeta = NextGraph(NewPeta);
@@ -105,6 +103,10 @@ void MovePeta(player *P, Graph G, int NewMapID){
 }
 
 void w(player *P, Graph G){
+/* Player bergerak ke "atas"
+   I.S Player berada di point X,Y
+   F.S Jika X,Y-1 kosong, player berada di point X,Y-1. Jika tidak kosong, player tetep berada di X,Y
+*/
     int X = X(*P);
     int Y = Y(*P);
     addressGraph CPeta = FirstGraph(G);
@@ -120,6 +122,11 @@ void w(player *P, Graph G){
 }
 
 void a(player *P, Graph G){
+/* Player bergerak ke "kiri"
+   I.S Player berada di point X,Y
+   F.S Jika X-1,Y kosong, player berada di point X-1,Y. Jika tidak kosong, player tetep berada di X,Y
+*/
+
     int X = X(*P);
     int Y = Y(*P);
 
@@ -136,6 +143,11 @@ void a(player *P, Graph G){
 }
 
 void s(player *P, Graph G){
+/* Player bergerak ke "bawah"
+   I.S Player berada di point X,Y
+   F.S Jika X,Y+1 kosong, player berada di point X,Y+1. Jika tidak kosong, player tetep berada di X,Y
+*/
+
     int X = X(*P);
     int Y = Y(*P);
 
@@ -152,6 +164,10 @@ void s(player *P, Graph G){
 }
 
 void d(player *P, Graph G){
+/* Player bergerak ke "kanan"
+   I.S Player berada di point X,Y
+   F.S Jika X+1,Y kosong, player berada di point X+1,Y. Jika tidak kosong, player tetep berada di X,Y
+*/
     int X = X(*P);
     int Y = Y(*P);
 
@@ -168,6 +184,10 @@ void d(player *P, Graph G){
 }
 
 void loadPeta(){
+/* Me-load seluruh peta arena yang ada
+   I.S Matriks Peta1, Peta2, Peta3, Peta4 bebas
+   F.S Matriks Peta1, Peta2, Peta3, Peta4 berisi peta yang ada di file-file peta
+*/
     FILE *cFile;
     char* filename;
     char str[MAXCHAR];
@@ -199,11 +219,17 @@ void loadPeta(){
 }
 
 void AddWToPeta(){
+/* Menambahkan Wahana ke peta
+   I.S Player berada di point X,Y
+   F.S point X,Y pada peta menjadi W. Player pindah ke kanan/kiri/atas/bawah point sebelumnya yang kosong.
+*/
     addressGraph CPeta = FirstGraph(GraphPeta);
     while(ID(CPeta) != MapNum(Player)) CPeta = NextGraph(CPeta);
 
     ElmtMatriks(Peta(CPeta), Y(Player), X(Player)) = 'W';
 
-    if(X(Player) == 1) X(Player)++;
-    else X(Player)--;
+    if(ElmtMatriks(Peta(CPeta), Y(Player)+1, X(Player)) == '-') Y(Player)++;
+    else if(ElmtMatriks(Peta(CPeta), Y(Player)-1, X(Player)) == '-') Y(Player)--;
+    else if(ElmtMatriks(Peta(CPeta), Y(Player), X(Player) + 1) == '-') X(Player)++;
+    else if(ElmtMatriks(Peta(CPeta), Y(Player), X(Player) - 1) == '-') X(Player)--;
 }
