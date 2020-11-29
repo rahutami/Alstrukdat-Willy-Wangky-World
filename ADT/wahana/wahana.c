@@ -14,25 +14,11 @@ void Details(Kata inputWahana, ListWahanaD L)
 /* I.S namaWahana dimasukkan user */
 /* F.S Menampilkan detail dari wahana*/ /*harus pas dia disebelah wahana*/
 {
-    addressWahanaD P = SearchWahanaD (inputWahana,L);
-    if (P!=NilList){
-        printf("Nama : "); PrintKata(inputWahana); printf("\n");
-        printf("Tipe : "); printf("\n");
-        printf("Harga : %d\n",PriceWahana(ElmtStatis(P)));
-        printf("Lokasi : "); TulisPOINT(PositionWahana(P)); printf("\n");
-        printf("Deskripsi : "); PrintKata(DescWahana(ElmtStatis(P))); printf("\n"); 
-        printf("Kapasitas : %d\n",CapacityWahana(ElmtStatis(P)));
-        printf("Upgrade(s) : "); printf("\n");
-        printf("History : "); printf("\n"); //history per wahana
-        printf("Durasi : %d\n",TimeWahana(ElmtStatis(P)));
-        printf("Ukuran : "); printf("\n");
-        printf("Status kerusakan : "); printf("\n");
-        printf("Status build : "); printf("\n");//sudah dibuild ato belom, jadi tau next actionnya upgrade ato build
-        //printf("Jenis material : ")
-    } else {
-        printf("Wahana tidak ditemukan!");
+    boolean around = isSekitarPemain();
+    if (around){
+        addressWahanaS P = SearchAddress (UpgradeTree, inputWahana);
+        PrintElmtS(P,UpgradeTree);
     }
-    
 }
 
 void SubTree(addressWahanaS parent, addressWahanaS l, addressWahanaS r){
@@ -506,7 +492,7 @@ void wahanaRusak(addressWahanaS *P, addressWahanaD *D){
     *D = SearchWahanaD (NamaWahana(*P),WahanaBuilt);
     if (D!=NilList){
         StatusWahana(*D) = false;
-        printf("oke\n");
+        //printf("oke\n");
         //return P; printf("oke2");
     }
     //cari ID yang == num -> address ElmtStatis
