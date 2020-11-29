@@ -20,8 +20,8 @@ akan ditampilkan pesan error.
 stack*/
 {
     //Menampilkan wahana dasar (ada 10, diambil dari tree wahana)
-    //printf("Daftar wahana yang dapat dibangun: \n");
-    //PrintTree(UpgradeTree);
+    printf("Daftar wahana yang dapat dibangun: \n");
+    PrintTree(UpgradeTree);
     addressWahanaD P, Prec;
     printf("\nIngin membangun wahana apa?\n-> ");
     STARTKATA(); 
@@ -200,7 +200,7 @@ input salah atau benar kemudian masukin ke stack */
 
                 aksi X;
                 X.commandStack = command;
-                X.durasi = 5;
+                X.durasi = 10;
                 X.PointWahana = P;
                 X.NamaBahan = CKata;
                 X.JumlahBahan = Nbahan;
@@ -500,12 +500,12 @@ void Undo(){
     }else if (IsKataSamaKata(KataUpgrade,InfoTop(stackExecute).commandStack)) {
         UndoUpgrade(); 
     }
-    PrintInfoStack(stackExecute);
 }
 
 void PrepMain() {
     while (!IsEmptyStack(stackExecute)) {
         Undo();
+        //PrintInfoStack();
     }
 }
 
