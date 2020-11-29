@@ -81,7 +81,7 @@ void ReducePatience(PrioQueue *Q);
 /* F.S. Kesabaran tiap elemen di queue berkurang, tetapi prioritas bertambah */
 
 /* *** Primitif Add/Delete *** */
-void FirstEnqueue(PrioQueue *Q, List L);
+void FirstEnqueue(PrioQueue *Q, infoLP LP);
 /* Menambahkan X ke dalam queue dengan prioritas terbesar */
 
 void Enqueue (PrioQueue * Q, infotypeQueue X);

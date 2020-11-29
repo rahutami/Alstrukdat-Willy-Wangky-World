@@ -101,12 +101,6 @@ void Preparation(player *p1){
         } else if (IsKataSama("build")){
             buildWahana(Position(Player), &WahanaBuilt);
             AddWToPeta();
-            printf("\n");
-            PrintListW(WahanaBuilt);
-            printf("\n");
-            PrintKata(NamaWahana(ElmtStatis(FirstWahana(WahanaBuilt))));
-            printf("\n");
-            printf("\n");
         } else if (IsKataSama("buy")){
             CommmandBuyArray();
         }
@@ -124,13 +118,9 @@ void Preparation(player *p1){
 }
 
 void MainPhase(player * p1){
-    if (!IsEmptyListW(WahanaBuilt)) {
-        printf("\n");
-        printf("lalala\n");
-    }
     PrioQueue Q;
     listPlayer LP;
-    List del;
+    infoLP del;
     boolean enter = false;
     CreateEmptyQueue(&Q, 5);
     CreateEmptyLP(&LP);
@@ -139,17 +129,17 @@ void MainPhase(player * p1){
     }
 
     do{
+        if(enter && !IsEmptyQueue(Q)){
+            ReducePatience(&Q);
+            Q = AngryCustomer(Q);
+        }
+        
         if(!IsEmptyLP(LP)){
             ReduceTime(&LP);
             for(int i = 0; i < CountCompleted(LP); i++) {
                 DelCompleted(&LP, &del);
                 FirstEnqueue(&Q, del);
             }
-        }
-        if(enter && !IsEmptyQueue(Q)){
-            ReducePatience(&Q);
-            PrintPrioQueue(Q);
-            Q = AngryCustomer(Q);
         }
 
         enter = true;

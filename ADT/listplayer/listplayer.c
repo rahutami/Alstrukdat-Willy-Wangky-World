@@ -86,7 +86,7 @@ void DelAfterLP (listPlayer *LP, addressLP *Pdel, addressLP Prec) {
     NextLP(*Pdel) = NilList;
 }
 
-void DelCompleted (listPlayer *LP, List *del) {
+void DelCompleted (listPlayer *LP, infoLP *del) {
     /* I.S. Sembarang */
     /* F.S. Jika ada elemen list beraddress P, dengan InfoList(P)=X  */
     /* Maka P dihapus dari list dan di-dealokasi */
@@ -115,7 +115,7 @@ void DelCompleted (listPlayer *LP, List *del) {
         }
     }
 
-    *del = PlayerInfo(InfoLP(Pdel));
+    *del = InfoLP(Pdel);
 }
 
 void InsertFirstLP (listPlayer *LP, addressLP P){

@@ -50,8 +50,6 @@ int main(){
 
         NewGame();
         First(WahanaBuilt) = NilList;
-        PrintListW(WahanaBuilt);
-        printf("1\n");
         Preparation(&Player);
         while(!IsKataSama("exit")){
             if(IsKataSama("prepare")){
@@ -59,7 +57,6 @@ int main(){
                 CJam(Player) = MakeJAM(21,0);
                 Preparation(&Player);
             } else if (IsKataSama("main") || IsKataSama("execute")){
-                PrintListW(WahanaBuilt);
                 srand(time(NULL));
                 CJam(Player) = MakeJAM(9,0);
                 MainPhase(&Player);

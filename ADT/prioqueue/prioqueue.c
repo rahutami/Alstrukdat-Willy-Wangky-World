@@ -124,11 +124,16 @@ void ReducePatience(PrioQueue *Q) {
     }
 }
 
-void FirstEnqueue(PrioQueue *Q, List L){
+void FirstEnqueue(PrioQueue *Q, infoLP LP){
     /* Menambahkan X ke dalam queue dengan prioritas terbesar */
     infotypeQueue P;
-    InfoQueue(P) = L;
-    Prio(P) = Prio(InfoHead(*Q)) - 1;
+    InfoQueue(P) = PlayerInfo(LP);
+    Patience(P) = RemainingPat(LP);
+    if(IsEmptyQueue(*Q)) {
+        Prio(P) = 5;
+    } else {
+        Prio(P) = Prio(InfoHead(*Q)) - 1;
+    }
     Enqueue(Q, P);
 }
 
@@ -219,10 +224,10 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
     List newListWahana;
     CreateEmptyList(&newListWahana);
     addressWahanaD P = FirstWahana(LW);
-    int wahanaBuilt;
-    while (P != NilList) {
+    int wahanaBuilt = 0;
+    while (P != NULL) {
         if(IsEmptyList(newListWahana)) {
-            InsVLast(&newListWahana, NamaWahana(ElmtStatis(P)));
+            InsVFirst(&newListWahana, NamaWahana(ElmtStatis(P)));
             wahanaBuilt++;
         } else {
             if (!SearchBool(newListWahana, NamaWahana(ElmtStatis(P)))) {
@@ -230,20 +235,18 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
                 wahanaBuilt++;
             }   
         }
+        printf("%d\n", wahanaBuilt);
         P = NextWahana(P);
     }
 
-    PrintInfo(newListWahana);
-
     Kata arrayKata[wahanaBuilt];
     int a = 0;
-    P = First(newListWahana);
-    while(P != NilList) {
-        arrayKata[a] = NamaWahana(ElmtStatis(P));
+    addressList LP = First(newListWahana);
+    while(LP != NilList) {
+        arrayKata[a] = InfoList(LP);
         a++;
-        P = Next(P);
+        LP = Next(LP);
     }
-
 
     for(i = 0; i <= queueLength; i++) {
         CreateEmptyList(&L);
@@ -288,7 +291,7 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
                     PrintInfo(InfoQueue(del));
                     printf("\n");
                     Remaining(customer) = TimeWahana(ElmtStatis(target));
-                    Remaining(customer) = 10;
+                    RemainingPat(customer) = Patience(del);
                     InsVLastLP(LP, customer);
 
                 }

@@ -421,7 +421,6 @@ addressWahanaD SearchWahanaD (Kata inputWahana, ListWahanaD L)
     while (!found && (P != NilList)){
         if (IsKataSamaKata(inputWahana, NamaWahana(ElmtStatis(P)))){
             found = true;
-            printf("berhasil");
         } else {
             P = Next(P);
         }
@@ -443,7 +442,6 @@ addressWahanaD SearchWahanaDP (POINT Pos, ListWahanaD L)
     while (!found && (P != NilList)){
         if (IsEqPOINT(Pos,Point)){
             found = true;
-            printf("berhasil");
         } else {
             P = Next(P);
         }
