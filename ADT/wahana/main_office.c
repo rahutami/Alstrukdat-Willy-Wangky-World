@@ -4,13 +4,22 @@ if (IsEqPOINT(P,Office)){
     printf("Masukkan Perintah (Masukkan 'office' untuk mengakses office): \n");
     STARTKATA();
     
-    if (IsKataSamaKata(Coffice, CKata)){
-        Inoffice(POINT Pos);
+    boolean masuk = false;
+    
+    while(!masuk){
+        if (IsKataSamaKata(Coffice, CKata))
+            Inoffice(POINT Pos);
+        else{
+            printf("Input yang dimasukkan salah!\n"); printf("Masukkan kembali input : ");
+            STARTKATA();
+        }
     }
 
 //REPAIR
 kalo ada disebelah wahana, repair
 
+//DETAILS
+kalo ada disebelah wahana, tampilin details
 
 //RANDOM WAHANA RUSAK
 

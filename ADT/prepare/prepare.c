@@ -57,6 +57,7 @@ stack*/
                 aksi X;
                 X.commandStack = command;
                 X.durasi = 60;
+                X.MapNum = MapNum(Player);
                 X.PointWahana = Position(Player);
                 X.NamaBahan = BahanWahana(addrWahana);
                 X.JumlahBahan = JmlBahan(addrWahana); 
@@ -125,6 +126,15 @@ void UndoBuild() {
     }
     // ketemu nama wahana yang sama dan Tambahin bahan 
     Elmt(Tab(Player), i).value += X.JumlahBahan;
+
+    // Menghapus W dari peta
+    addressGraph CPeta = FirstGraph(GraphPeta);
+
+    while(ID(CPeta) != X.MapNum){
+        CPeta = NextGraph(CPeta);
+    }
+
+    ElmtMatriks(Peta(CPeta), Ordinat(X.PointWahana), Absis(X.PointWahana)) = '-';
     //PrintInfoWD(WahanaBuilt);
 
 // pencarian elemen list bulid sebelum terakir yang akan di dealokasi
@@ -229,6 +239,7 @@ void UndoBuy () {
 aksi X;
 Pop(&stackExecute,&X);
 Money(Player) += X.uang;
+DelElTab(&Tab(Player), X.NamaBahan, X.JumlahBahan);
 }
 
 
@@ -236,6 +247,7 @@ void upgradeWahana() {
     int X = X(Player);
     int Y = Y(Player);
     POINT P;
+
     addressGraph CPeta = FirstGraph(GraphPeta);
     while(ID(CPeta) != MapNum(Player)) CPeta = NextGraph(CPeta);
     if (ElmtMatriks(Peta(CPeta), Y-1, X) == 'W' || ElmtMatriks(Peta(CPeta), Y+1, X) == 'W' || ElmtMatriks(Peta(CPeta), Y, X-1) == 'W' || ElmtMatriks(Peta(CPeta), Y, X+1) == 'W'){
@@ -428,5 +440,40 @@ void upgradeWahana() {
 
     } else { // Tidak bisa upgrade, karena tidak di sekitar wahana
         printf("Tidak bisa melakukan upgrade, karena tidak berada di sekitar wahana\n");
+    }
+}
+
+void Undo(){
+    Kata KataBuild;
+    KataBuild.TabKata[0]='B';
+    KataBuild.TabKata[1]='u';
+    KataBuild.TabKata[2]='i';
+    KataBuild.TabKata[3]='l';
+    KataBuild.TabKata[4]='d';
+    KataBuild.TabKata[5]='\n';
+    KataBuild.Length = 5;
+
+    Kata KataBuy;
+    KataBuy.TabKata[0]='B';
+    KataBuy.TabKata[1]='u';
+    KataBuy.TabKata[2]='y';
+    KataBuy.TabKata[3]='\n';
+    KataBuy.Length = 3;
+
+    Kata KataUpgrade;
+    KataUpgrade.TabKata[0]='U';
+    KataUpgrade.TabKata[1]='p';
+    KataUpgrade.TabKata[2]='g';
+    KataUpgrade.TabKata[3]='r';
+    KataUpgrade.TabKata[4]='a';
+    KataUpgrade.TabKata[5]='d';
+    KataUpgrade.TabKata[6]='e';
+    KataUpgrade.TabKata[7]='\n';
+    KataUpgrade.Length = 6;
+
+    if(IsKataSamaKata(KataBuild, InfoTop(stackExecute).commandStack)){
+        UndoBuild();
+    }else if(IsKataSamaKata(KataBuy, InfoTop(stackExecute).commandStack)){
+        UndoBuy();
     }
 }

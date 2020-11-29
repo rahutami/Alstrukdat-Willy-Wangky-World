@@ -172,10 +172,6 @@ void mainmain (Stack *S, aksi *X) {
     }
 }
 
-void Undo (Stack *S, aksi *X) {
-    Pop(S,X);
-}
-
 void PrintUpgraded(addressWahanaS prevWahana, addressWahanaS nextWahana) {
     // INI BUAT NGETEST
     printf("Upgraded!\n");

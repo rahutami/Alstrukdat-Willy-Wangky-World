@@ -170,6 +170,8 @@ void Preparation(player *p1){
                 printf("\033[0m");
             }
             fromoffice = true;
+        } else if (IsKataSama("undo")) {
+            Undo();
         }
         // nanti tambahin elif aja buat command yang lain
         else if(!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute"))){

@@ -43,4 +43,6 @@ input salah atau benar kemudian masukin ke stack */
 
 void UndoBuy();
 
+void Undo();
+
 void upgradeWahana() ;
