@@ -14,3 +14,5 @@ void ProsedureBuild(POINT Pos, ListWahanaD *L);
 
 void CommmandBuild();
 // funsi yang dipanggil pada command
+
+void UndoBuild();
