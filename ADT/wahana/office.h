@@ -11,7 +11,7 @@ extern char CC;
 extern boolean EOP;
 extern 
 
-void office(POINT P);
+void Inoffice();
 
 void PrintHistory(Kata Wahana, addressWahanaS T);
 

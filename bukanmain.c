@@ -65,12 +65,12 @@ int main(){
             STARTKATA();
         }
     } while(!IsKataSama("exit")); //Input exit bakal keluar
-    
-
-    printf("===================================\n\n");
-    printf("          See you soon!\n\n");
-    printf("===================================\n");
+    printf("==========================================================\n\n");
+    printf("\033[0;35m");
+    printf("                    See you soon!\n\n");
+    printf("\033[0m");
+    printf("==========================================================\n");
     return 0;
 }
 
-// gcc bukanmain.c ADT/arraydinmap/arraydinmap.c ADT/prepare/prepare.c ADT/wahana/wahana.c ADT/listlinier/listlinier.c ADT/listplayer/listplayer.c ADT/graph/graph.c ADT/jam/jam.c ADT/matriks/matriks.c ADT/menu/menu.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c ADT/peta/peta.c ADT/player/player.c ADT/point/point.c ADT/prioqueue/prioqueue.c ADT/stack/stackt.c -o test
+// gcc bukanmain.c ADT/wahana/office.c ADT/arraydinmap/arraydinmap.c ADT/prepare/prepare.c ADT/wahana/wahana.c ADT/listlinier/listlinier.c ADT/listplayer/listplayer.c ADT/graph/graph.c ADT/jam/jam.c ADT/matriks/matriks.c ADT/menu/menu.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c ADT/peta/peta.c ADT/player/player.c ADT/point/point.c ADT/prioqueue/prioqueue.c ADT/stack/stackt.c -o test

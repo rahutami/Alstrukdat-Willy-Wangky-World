@@ -251,7 +251,7 @@ void upgradeWahana() {
 
                     }
                     else {
-                        printf("\nBahan atau uang yang kamu miliki tidak cukup untuk melakukan upgrade.\n");
+                        printf("\nBahan atau uang yang kamu miliki \ntidak cukup untuk melakukan upgrade.\n");
                     }
                 } 
                 else if (Left(elmtStatisUpgrade)==NULL && Right(elmtStatisUpgrade)!=NULL){ // Cuma bisa upgrade ke right
@@ -263,7 +263,7 @@ void upgradeWahana() {
                         STARTKATA();
                         CopyKata(CKata,&elmtUpgrade);
                         while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
-                            printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                            printf("Nama wahana yang Anda tulis salah. \nMau upgrade kemana: ");
                             STARTKATA();
                             CopyKata(CKata,&elmtUpgrade);
                         }
@@ -274,7 +274,7 @@ void upgradeWahana() {
                             UpgradeStack(); // Buat nge push ke stack
                     }
                     else {
-                        printf("Bahan atau uang yang kamu miliki tidak cukup untuk melakukan upgrade.\n");
+                        printf("Bahan atau uang yang kamu miliki \ntidak cukup untuk melakukan upgrade.\n");
                     }
                 }
                 else { // Bisa diupgrade ke left ataupun right
@@ -284,7 +284,7 @@ void upgradeWahana() {
                     STARTKATA();
                     CopyKata(CKata,&elmtUpgrade);
                     while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade)))) && (!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
-                        printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                        printf("Nama wahana yang Anda tulis salah. \nMau upgrade kemana: ");
                         STARTKATA();
                         CopyKata(CKata,&elmtUpgrade);
                     }
@@ -297,7 +297,7 @@ void upgradeWahana() {
                             STARTKATA();
                             CopyKata(CKata,&elmtUpgrade);
                             while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade))))) {
-                                printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                                printf("Nama wahana yang Anda tulis salah. \nMau upgrade kemana: ");
                                 STARTKATA();
                                 CopyKata(CKata,&elmtUpgrade);
                             }
@@ -308,7 +308,7 @@ void upgradeWahana() {
                             UpgradeStack(); // Buat nge push ke stack
                             }
                         else {
-                            printf("Bahan atau uang yang kamu miliki tidak cukup untuk melakukan upgrade.\n");
+                            printf("Bahan atau uang yang kamu miliki \ntidak cukup untuk melakukan upgrade.\n");
                         }
                     }
                     if (IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade)))) {
@@ -319,7 +319,7 @@ void upgradeWahana() {
                             STARTKATA();
                             CopyKata(CKata,&elmtUpgrade);
                             while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade))))) {
-                                printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                                printf("Nama wahana yang Anda tulis salah. \nMau upgrade kemana: ");
                                 STARTKATA();
                                 CopyKata(CKata,&elmtUpgrade);
                             }
@@ -330,7 +330,7 @@ void upgradeWahana() {
                             UpgradeStack(); // Buat nge push ke stack
                             }
                         else { // gabisa upgrade
-                            printf("Bahan atau uang yang kamu miliki tidak cukup untuk melakukan upgrade.\n");
+                            printf("Bahan atau uang yang kamu miliki \ntidak cukup untuk melakukan upgrade.\n");
                         }
                     }
                 }

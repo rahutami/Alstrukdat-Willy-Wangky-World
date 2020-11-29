@@ -9,6 +9,7 @@ player Player;
 // ListWahanaD WahanaBuilt;
 
 void MainMenu(){
+    printf("\033[1;33m");
     printf("          _ _ _                                   _          _\n");     
     printf("         (_| | |                                 | |        ( )\n");    
     printf("__      ___| | |_   _  __      ____ _ _ __   __ _| | ___   _|/ ___\n"); 
@@ -22,11 +23,14 @@ void MainMenu(){
     printf("         \\ \\ \\/ \".\\ \\ \\ \\/\\ \\ \\  __<\\ \\ \\___\\ \\ \\/\\ \\\n"); 
     printf("          \\ \\__/\".~\\_\\ \\_____\\ \\_\\ \\_\\ \\_____\\ \\____-\n"); 
     printf("           \\/_/   \\/_/\\/_____/\\/_/ /_/\\/_____/\\/____/\n\n"); 
-                                             
+    printf("\033[0m");                                         
     printf("====================================================================\n\n");
+    printf("\033[0;35m");
     printf("                Welcome to Willy Wangky's World!\n");
     printf("Here, you can make your own amusement park and do so many fun stuff!\n\n");
+    printf("\033[0m");
     printf("====================================================================\n\n");
+    printf("\033[0;35m");
     printf(" __| |_______________| |__                __| |________________| |__\n");
     printf("(__   _______________   __)              (__   ________________   __)\n");
     printf("   | |               | |                    | |                | |\n");
@@ -34,6 +38,7 @@ void MainMenu(){
     printf(" __| |_______________| |__                __| |________________| |__\n");
     printf("(__   _______________   __               (__   ________________   __ \n");
     printf("   | |               | |                    | |                | |\n\n");
+    printf("\033[0m");
     printf("====================================================================\n");
     STARTKATA();
 
@@ -55,63 +60,92 @@ void MenuJalan(player *p1, Graph G){
 
 void ListCommand(){
     printf("================================================================\n");
-    printf("New Game: \"new\"\n");
-    printf("Load Game: \"load\"\n");
     printf("Berjalan ke atas: \"w\"\n");
     printf("Berjalan ke kiri: \"a\"\n");
     printf("Berjalan ke bawah: \"s\"\n");
     printf("Berjalan ke kanan: \"d\"\n");
-    printf("Bangun wahana: \"build\"\n");
-    printf("Upgrade wahana: \"upgrade\"\n");
-    printf("Beli item: \"buy\"\n");
-    printf("Undo: \"undo\"\n");
-    printf("Pergi ke Main Phase tanpa execute (stack): \"main\"\n");
-    printf("Pergi ke Main Phase dengan execute (stack): \"execute\"\n");
-    printf("Melayani pelanggan saat main phase: \"main\"\n");
-    printf("Melayani pengunjung: \"serve <nama wahana>\"\n");
-    printf("   Hanya bisa digunakan ketika pemain berada di sebelah antrian\n");
     printf("Memperbaiki wahana: \"repair\"\n");
     printf("   Hanya bisa digunakan ketika pemain berada di sebelah wahana\n");
     printf("Melihat detail wahana: \"detail\"\n");
     printf("   Hanya bisa digunakan ketika pemain berada di sebelah wahana\n");
     printf("Masuk office: \"office\"\n");
     printf("   Hanya bisa digunakan ketika pemain berada di atas office\n");
+    printf("Keluar Game: \"exit\"\n\n");
+
+    printf("Command yang hanya bisa dilakukan saat preparation phase:\n");
+    printf("Bangun wahana: \"build\"\n");
+    printf("Upgrade wahana: \"upgrade\"\n");
+    printf("Beli item: \"buy\"\n");
+    printf("Undo: \"undo\"\n");
+    printf("Pergi ke Main Phase tanpa execute (stack): \"main\"\n");
+    printf("Pergi ke Main Phase dengan execute (stack): \"execute\"\n\n");
+
+    printf("Command yang hanya bisa dilakukan saat main phase:\n");
+    printf("Melayani pelanggan saat main phase: \"main\"\n");
+    printf("Melayani pengunjung: \"serve <nama wahana>\"\n");
+    printf("   Hanya bisa digunakan ketika pemain berada di sebelah antrian\n");
     printf("Pergi ke Preparation Phase: \"prepare\"\n");
-    printf("Keluar Game: \"exit\"\n");
     printf("================================================================\n");
 }
 
 void Preparation(player *p1){
+    boolean fromoffice = false, invalid = false;
     do{
-        if (!IsKataSama("command")){
-            printf("====================================\n");
-            printf("        Preparation Phase\n");
-            printf("             Day %d\n", Day(*p1));
-            printf("===================================\n");
-            TulisPETA(*p1, GraphPeta);
-            printf("===================================\n");
-            printf("Legend:\n");
-            printf("A = Antrian\n");
-            printf("P = Player\n");
-            printf("W = Wahana\n");
-            printf("O = Office\n");
-            printf("^, >, v, < = Gerbang\n");
-            printf("===================================\n");
+        addressGraph CPeta = FirstGraph(GraphPeta);
+        while(ID(CPeta) != MapNum(Player)) CPeta = NextGraph(CPeta);
+
+        if (!IsKataSama("command") && !invalid){
+            printf("==========================================================\n");
+            printf("\033[0;34m");
+            printf("\n                    Preparation Phase\n");
+            printf("                         Day %d\n\n", Day(*p1));
+            printf("\033[0m");
+            printf("==========================================================\n\n");
+            printf("\033[0;34m");
+            TulisMATRIKS(Peta(CPeta));
+            printf("\033[0m");
+            printf("\n==========================================================\n");
+            printf("\033[0;34m");
+            printf("           ");printf("Legend:\n");
+            printf("           ");printf("A = Antrian\n");
+            printf("           ");printf("P = Player\n");
+            printf("           ");printf("W = Wahana\n");
+            printf("           ");printf("O = Office\n");
+            printf("           ");printf("^, >, v, < = Gerbang\n");
+            printf("\033[0m");
+            printf("==========================================================\n");
+            printf("\033[0;34m");
             TulisPlayer();
-            printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
-            printf("Opening Time: "); TulisJAM(JamBuka); printf("\n");
-            printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamBuka)); 
+            printf("           ");printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
+            printf("           ");printf("Opening Time: "); TulisJAM(JamBuka); printf("\n");
+            printf("           ");printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamBuka)); 
+            printf("\033[0m");
             printf("\n");
             // Total aksi yang akan dilakukan:
             // Total waktu yang dibutuhkan:
             // Total uang yang dibutuhkan:
             printf("==========================================================\n");
-            printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
+            printf("\033[0;35m");
+            printf("Masukkan \"command\" untuk melihat daftar command yang ada\n");
+            printf("\033[0m");
             printf("==========================================================\n");
+            if(ElmtMatriks(Peta(CPeta), Y(Player), X(Player)) == 'O'){
+                printf("\033[0;35m");
+                printf("Masukkan 'office' untuk mengakses office \n");
+                printf("\033[0m");
+                printf("==========================================================\n");
+            }
         }
         
-        printf("Masukkan perintah: ");
-        STARTKATA();
+        if(!invalid){
+            printf("\033[0;33m");
+            printf("Masukkan perintah: ");
+            printf("\033[0m");
+            STARTKATA();
+        }
+
+        invalid = false;
+        fromoffice = false;
 
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
            MenuJalan(p1, GraphPeta);
@@ -124,18 +158,34 @@ void Preparation(player *p1){
             CommmandBuyArray();
         } else if (IsKataSama("upgrade")){
             upgradeWahana();
+        } else if (IsKataSama("office")){
+            if(ElmtMatriks(Peta(CPeta), Y(Player), X(Player)) == 'O'){
+                Inoffice();
+            } else {
+                printf("\033[0;31m");
+                printf("Anda sedang tidak ada berada di dalam office\n");
+                printf("\033[0m");
+            }
+            fromoffice = true;
         }
         // nanti tambahin elif aja buat command yang lain
         else if(!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute"))){
+            printf("\033[0;31m");
             printf("==========================================================\n");
             printf("Command tidak tersedia\n");
             printf("==========================================================\n");
-            printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
+            printf("\033[0;35m");
+            printf("Masukkan \"command\" untuk melihat daftar command yang ada\n");
+            printf("\033[0m");
             printf("==========================================================\n");
+            printf("\033[0m");
+            printf("\033[0;33m");
             printf("Masukkan perintah: ");
+            printf("\033[0m");
+            invalid = true;
             STARTKATA();
         }
-    } while (!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute")));
+    } while (!(IsKataSama("main") || (IsKataSama("exit") && !fromoffice) || IsKataSama("execute")));
 }
 
 void MainPhase(player * p1){
@@ -143,6 +193,7 @@ void MainPhase(player * p1){
     listPlayer LP;
     infoLP del;
     boolean enter = false;
+    boolean fromoffice = false, invalid = false;
     CreateEmptyQueue(&Q, 5);
     CreateEmptyLP(&LP);
     if (!IsEmptyListW(WahanaBuilt)) {
@@ -150,6 +201,9 @@ void MainPhase(player * p1){
     }
 
     do{
+        addressGraph CPeta = FirstGraph(GraphPeta);
+        while(ID(CPeta) != MapNum(Player)) CPeta = NextGraph(CPeta);
+
         if(enter && !IsEmptyQueue(Q)){
             ReducePatience(&Q);
             Q = AngryCustomer(Q);
@@ -166,25 +220,33 @@ void MainPhase(player * p1){
         enter = true;
 
         
-        if (!IsKataSama("command")){
-            printf("===================================\n");
-            printf("            Main Phase\n");
-            printf("             Day %d\n", Day(*p1));
-            printf("===================================\n");
-            TulisPETA(*p1, GraphPeta);
-            printf("===================================\n");
-            printf("Legend:\n");
-            printf("A = Antrian\n");
-            printf("P = Player\n");
-            printf("W = Wahana\n");
-            printf("O = Office\n");
-            printf("^, >, v, < = Gerbang\n");
-            printf("===================================\n");
+        if (!IsKataSama("command") && !invalid){
+            printf("==========================================================\n");
+            printf("\033[0;34m");
+            printf("\n                      Main Phase\n");
+            printf("                        Day %d\n\n", Day(*p1));
+            printf("\033[0m");
+            printf("==========================================================\n\n");
+            printf("\033[0;34m");
+            TulisMATRIKS(Peta(CPeta));
+            printf("\033[0m");
+            printf("\n==========================================================\n");
+            printf("\033[0;34m");
+            printf("           ");printf("Legend:\n");
+            printf("           ");printf("A = Antrian\n");
+            printf("           ");printf("P = Player\n");
+            printf("           ");printf("W = Wahana\n");
+            printf("           ");printf("O = Office\n");
+            printf("           ");printf("^, >, v, < = Gerbang\n");
+            printf("\0m");
+            printf("==========================================================\n");
             printf("\n");
+            printf("\033[0;34m");
             TulisPlayer(); //print nama dan uang
-            printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
-            printf("Closing Time: "); TulisJAM(JamTutup); printf("\n");
-            printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamTutup)); 
+            printf("           ");printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
+            printf("           ");printf("Closing Time: "); TulisJAM(JamTutup); printf("\n");
+            printf("           ");printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamTutup)); 
+            printf("\033[0m");
             printf("\n");
             printf("\n");
             if (IsEmptyListW(WahanaBuilt)) {
@@ -199,47 +261,78 @@ void MainPhase(player * p1){
             }
             printf("\n");
             printf("==========================================================\n");
-            printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
+            printf("Masukkan \"command\" untuk melihat daftar command yang ada\n");
             printf("==========================================================\n");
+            if(ElmtMatriks(Peta(CPeta), Y(Player), X(Player)) == 'O'){
+                printf("\033[0;35m");
+                printf("Masukkan 'office' untuk mengakses office \n");
+                printf("\033[0m");
+                printf("==========================================================\n");
+            }
         }
-        printf("Masukkan perintah: ");
-        
-        STARTKATA();
+
+        if(!invalid){
+            printf("\033[0;33m");
+            printf("Masukkan perintah: ");
+            printf("\033[0m");
+            
+            STARTKATA();
+        }
+
+        invalid = false;
+        fromoffice = false;
+
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
            MenuJalan(p1, GraphPeta);
         } else if (IsKataSama("command")){
             ListCommand();
         } else if (IsKataSama("serve")) {
             ADVKATA();
-            Serve(p1, CKata, &Q, &LP, WahanaBuilt);
-            // addressGraph CPeta = FirstGraph(GraphPeta);
-            // int x = X(*p1), y = Y(*p1);
-            // while(ID(CPeta) != MapNum(*p1)){
-            //     CPeta = NextGraph(CPeta);
-            // }
-            // ADVKATA();
-            // if(Elmt(Peta(CPeta), x + 1, y) == 'A' || Elmt(Peta(CPeta), x, y+1) == 'A' || Elmt(Peta(CPeta), x - 1, y) == 'A' || Elmt(Peta(CPeta), x, y - 1) == 'A'){
-            // } else {
-            //     printf("Silahkan pergi ke sebelah antrian untuk menggunakan command ini \n\n");
-            // }
+            addressGraph CPeta = FirstGraph(GraphPeta);
+            int x = X(*p1), y = Y(*p1);
+            while(ID(CPeta) != MapNum(*p1)){
+                CPeta = NextGraph(CPeta);
+            }
+            ADVKATA();
+            if(ElmtMatriks(Peta(CPeta), y + 1, x) == 'A' || ElmtMatriks(Peta(CPeta), y, x+1) == 'A' || ElmtMatriks(Peta(CPeta), y - 1, x) == 'A' || ElmtMatriks(Peta(CPeta), y, x - 1) == 'A'){
+                Serve(p1, CKata, &Q, &LP, WahanaBuilt);
+            } else {
+                printf("\033[0;31m");
+                printf("Silahkan pergi ke sebelah antrian untuk menggunakan command ini \n\n");
+                printf("\033[0m");
+            }
+        } else if (IsKataSama("office")){
+            if(ElmtMatriks(Peta(CPeta), Y(Player), X(Player)) == 'O'){
+                Inoffice();
+                fromoffice = true;
+            } else {
+                printf("\033[0;31m");
+                printf("Anda sedang tidak ada berada di dalam office\n");
+                printf("\033[0m");
+            }
         }
         // nanti tambahin elif aja buat command yang lain 
         // else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
         //     printf("==========================================================\n");
         //     printf("Command tidak tersedia\n");
         //     printf("==========================================================\n");
-        //     printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
+        //     printf("Masukkan \"command\" untuk melihat daftar command yang ada\n");
         //     printf("==========================================================\n");
         // } 
         else if (!(IsKataSama("prepare") || IsKataSama("exit"))) {
+            printf("\033[0;31m");
             printf("==========================================================\n");
             printf("Command tidak tersedia\n");
             printf("==========================================================\n");
-            printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
+            printf("Masukkan \"command\" untuk melihat daftar command yang ada\n");
             printf("==========================================================\n");
+            printf("\033[0m");
+            printf("\033[0;33m");
             printf("Masukkan perintah: ");
+            printf("\033[0m");
             STARTKATA();
+            invalid = true;
         } 
         
-    } while(!(IsKataSama("prepare") || IsKataSama("exit")));
+    } while(!(IsKataSama("prepare") || (IsKataSama("exit") && !fromoffice)));
 }
