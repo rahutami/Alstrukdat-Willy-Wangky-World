@@ -2,11 +2,6 @@
 /* File: mesinkata.h */
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
 
-//  NIM         : 13519192
-//  NAMA        : Gayuh Tri Rahutami
-//  Tanggal     : 1 Oktober 2020
-//  Topik       : Mesin Karakter dan Mesin Kata
-//  Deskripsi   : Implementasi Mesin Kata Model Akuisisi Versi I
 
 #include "mesinkata.h"
 #include <stdio.h>
@@ -43,7 +38,10 @@ void STARTKATA()
 }
 
 void STARTKATAFILE(char* filename)
-//membaca kata dari file
+/* I.S. : CC sembarang  dan dibaca dari file yang bernama filename.
+   F.S. : EndKata = true, dan CC = MARK; 
+          atau EndKata = false, CKata adalah kata yang sudah diakuisisi,
+          CC karakter pertama sesudah karakter terakhir kata */
 {
     STARTFILE(filename);
 
@@ -133,7 +131,9 @@ void SalinKataFile()
     CKata.Length = i;
 }
 
-boolean IsKataSama (const char *command){
+boolean IsKataSama (const char *command)
+/* mengirimkan true jika command sama dengan tata yang ada dalam CKata */
+{
     /* Membandingkan CKata dengan string
 
     */
@@ -150,7 +150,12 @@ boolean IsKataSama (const char *command){
     return ans;
 }
 
-boolean IsKataSamaKata (Kata K1, Kata K2){
+boolean IsKataSamaKata (Kata K1, Kata K2)
+/* mengembalikan true juka K1 sama dengan K2 
+   I.S : K1 terdefiniki Kata dan K2 Alamat yang bertipe Kata
+   F.S :  true jika K2 = K1 dimana setiap carakter di K1 dan K2 saman dan memiliki panjang kata sama */
+
+{
     /* Membandingkan kata dengan kata
 
     */
@@ -169,14 +174,25 @@ boolean IsKataSamaKata (Kata K1, Kata K2){
     return ans;
 }
 
-void CopyKata(Kata K1, Kata * K2){
+void CopyKata(Kata K1, Kata * K2)
+/* Menyalin kata K1 Ke alamat kata K2*
+   I.S : K1 terdefiniki Kata dan K2 Alamat yang bertipe Kata
+   F.S : tersalin K2 = K1 dimana setiap carakter di K1 dan K2 saman dan memiliki panjang kata sama */
+
+
+{
     K2->Length = K1.Length;
     for (int i = 0; i<K1.Length; i++){
         (K2->TabKata)[i] = K1.TabKata[i];
     }
 }
 
-void PrintKata(Kata K){
+void PrintKata(Kata K)
+/* Pesedure yang menampilkan kata dalam layar
+   I.S : K dalam kata
+   I.F : nelakukan penampilan karakter kata menjadi kata yang utuh di layar*/
+
+{
     /* Note: Tidak memberikan newline di akhir */
     int i;
     for (i = 0; i < K.Length; i++) {

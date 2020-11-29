@@ -6,13 +6,19 @@
 #include <stdio.h>
 
 int main() {
+    /* KAMUS */
+    /* Inisialisasi variabel yang digunakan */
     player P;
     PrioQueue Q;
     listPlayer LP;
+    ListWahanaD LW;
     TreeWahanaS T;
+
+    /* ALGORITMA */
+    MakeTree();
     CreateEmptyQueue(&Q, 5);
     CreateEmptyLP(&LP);
-    RandomizeQueue(&Q);
+    RandomizeQueue(&Q, LW);
 
     printf("Enter your name: ");
     STARTKATA();
@@ -21,9 +27,15 @@ int main() {
 
     STARTKATA();
     do {
+        buildWahana(Position(P), &LW);
+        STARTKATA();
+    } while (IsKataSama('exit'));
+
+    STARTKATA();
+    do {
         if (IsKataSama('serve')){
             ADV();
-            Serve(&P,CKata,&Q,&LP,T);
+            Serve(&P,CKata,&Q,&LP,LW);
         }
     } while (IsKataSama('exit'));
 

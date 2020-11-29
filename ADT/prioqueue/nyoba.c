@@ -1,3 +1,0 @@
-void Nyoba(PrioQueue *Q){
-
-}
