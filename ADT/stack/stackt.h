@@ -27,12 +27,11 @@ typedef struct {
   Kata commandStack;
   int durasi; // Waktu yang dibutuhkan untuk melakukan satu aksi (+)
   POINT PointWahana; // Point tempat aksi tsb dilakukan
-  int MapNumAksi; // BELUM NIH
+  int MapNumAksi; // No Peta tempat aksi tsb dilakukan
   Kata NamaBahan; // Nama bahan yang digunakan
   int JumlahBahan; // Jumlah bahan yang dibutuhkan (+)
   int uang; // Uang yang dibutuhkan untuk melakukan satu aksi
   addressWahanaS addrPrevWahana; // address wahana sebelum upgrade
-
 } aksi;
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
@@ -85,8 +84,9 @@ void CopyStack (Stack Sin, Stack *Sout);
 /* F.S. Sout berisi salinan Sin yang identik */
 
 void InverseStack (Stack S);
+/* Prosedur untuk membalik urutan elemen stack S */
 
-void PrintStack (Stack S); /* Buat membantu aja ini */
+void PrintStack (Stack S); /* Prosedur buat membantu aja ini */
 
 int SumDurasiStack (Stack S);
 /* Me-return total waktu yang akan dibutuhkan untuk semua aksi */
@@ -97,23 +97,24 @@ int SumUangStack (Stack S);
 int NbElmtStack (Stack S);
 /* Me-return total aksi yang akan dilakukan (atau NbElmt dari stack) */
 
-void Execute (Stack S);
-/* Eksekusi mulai command terakhir, berarti POP */
-/* Kalo sambil pop, sambil jalanin fungsinya */
-
-void mainmain (Stack * S, aksi * X);
-/* Mengosongkan stack tanpa melakukan perintah */
-
 void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana);
+/* Prosedur  elemen stack jika wahana berhasil di upgrade */
 
 void PrintInfoStack (Stack S);
+/* Prosedur untuk print total aksi yang dilakukan beserta durasi total aksi */
 
 boolean UangCukup (player *P, int harga);
+/* Fungsi yang mengecek apakah uang pemain cukup */
 
 boolean BahanCukup (player *P, Kata NamaBahan, int JumlahBahan);
+/* Fungsi yang mengecek apakah bahan yang dimiliki pemain cukup */
 
 boolean SemuaCukup (player *P, Kata NamaBahan, int JumlahBahan, int BiayaUpgrade);
+/* Fungsi yang mengecek apakah uang dan bahan yang dimiliki pemain cukup */
 
 void PrintUpgraded(addressWahanaS prevWahana, addressWahanaS nextWahana);
+/* Prosedur untuk print hasil aksi upgrade pada wahana */
+
+void PushE(Stack * S, aksi X);
 
 #endif
