@@ -113,6 +113,14 @@ void MakeTree();
 /* I.S P adalah tree kosong */
 /* F.S P adalah tree berisi ElmtWahanaStatis yang diambil dari file txt */
 
+boolean isSekitarPemain();
+
+addressWahanaD WahanaSekitar();
+
+void Repair(addressWahanaD *W);
+
+void wahanaRusak(addressWahanaS *P, addressWahanaD *D);
+
 /* Manajemen Memory */
 addressWahanaS AlokNode(int i);
 /* Mengirimkan addressWahanaS hasil alokasi sebuah Node */

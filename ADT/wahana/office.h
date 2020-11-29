@@ -9,7 +9,6 @@ extern boolean EndKata;
 extern Kata CKata;
 extern char CC;
 extern boolean EOP;
-extern 
 
 void Inoffice();
 

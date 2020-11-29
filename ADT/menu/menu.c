@@ -265,6 +265,15 @@ void MainPhase(player * p1){
                     printf("Antrian kosong\n");
                 }
             }
+            addressWahanaD P = First(WahanaBuilt);
+            while (P != NilList){
+                if ((StatusWahana(P)) == false){
+                    printf("Broken : ");
+                    PrintKata(NamaWahana(ElmtStatis(P)));
+                }
+                P = NextWahana(P);
+            }
+            
             printf("\n");
             printf("==========================================================\n");
             printf("Masukkan \"command\" untuk melihat daftar command yang ada\n");
@@ -298,7 +307,6 @@ void MainPhase(player * p1){
             while(ID(CPeta) != MapNum(*p1)){
                 CPeta = NextGraph(CPeta);
             }
-            ADVKATA();
             if(ElmtMatriks(Peta(CPeta), y + 1, x) == 'A' || ElmtMatriks(Peta(CPeta), y, x+1) == 'A' || ElmtMatriks(Peta(CPeta), y - 1, x) == 'A' || ElmtMatriks(Peta(CPeta), y, x - 1) == 'A'){
                 Serve(p1, CKata, &Q, &LP, WahanaBuilt);
             } else {
@@ -313,6 +321,13 @@ void MainPhase(player * p1){
                 printf("\033[0;31m");
                 printf("Anda sedang tidak ada berada di dalam office\n");
                 printf("\033[0m");
+            }
+        } else if (IsKataSama("repair")) {
+            if (isSekitarPemain()) {
+                addressWahanaD wahana = WahanaSekitar();
+                Repair(&wahana);
+            } else {
+                printf("Tidak ada wahana di sekitarmu!");
             }
         }
         // nanti tambahin elif aja buat command yang lain 

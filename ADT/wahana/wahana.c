@@ -290,6 +290,39 @@ boolean IsEmptyListW (ListWahanaD L){
    return(First(L) == NilList);
 }
 
+addressWahanaD WahanaSekitar() {     
+    /* NOTE: PASTI KETEMU */
+      
+    boolean found = false;
+    addressWahanaD P = First(WahanaBuilt);
+    while (!found) {
+        if(Ordinat(PositionWahana(P)) == Y(Player)){
+            if((Absis(PositionWahana(P)) = X(Player) + 1) || (Absis(PositionWahana(P)) = X(Player) + 1)) {
+                found = true;
+            }
+        } else if(Absis(PositionWahana(P)) == X(Player)) {
+            if((Ordinat(PositionWahana(P)) = Y(Player) + 1) || (Ordinat(PositionWahana(P)) = Y(Player) + 1)) {
+                found = true;
+            }
+        } else {
+            P = NextWahana(P);
+        }
+    }
+
+    return P;
+}
+
+void Repair(addressWahanaD *W) {
+    if (StatusWahana(*W)) {
+        printf("Wahana tidak rusak!\n");
+    } else {
+        for(int i = 0; i < 5; i++) {
+            CJam(Player) = NextMenit(CJam(Player));
+        }
+        StatusWahana(*W) = true;
+    }
+}
+
 addressWahanaD AlokWahana (POINT P, Kata NamaWahana){
    /* Mengirimkan addressList hasil alokasi sebuah elemen */
    /* Jika alokasi berhasil, maka addressList tidak NilList, dan misalnya */
@@ -468,13 +501,13 @@ void wahanaRusak(addressWahanaS *P, addressWahanaD *D){
     //ListWahanaD L;
     //int upper = 10; int lower = 0;
     int num = (rand() % (10 - 0 + 1)) + 0; 
-    printf("%d ", num);
      
     *P = SearchAddressID(UpgradeTree,num);
     *D = SearchWahanaD (NamaWahana(*P),WahanaBuilt);
     if (D!=NilList){
         StatusWahana(*D) = false;
-        //return P;
+        printf("oke\n");
+        //return P; printf("oke2");
     }
     //cari ID yang == num -> address ElmtStatis
     //cari address dinamisnya, ganti status jadi false
@@ -489,6 +522,20 @@ boolean isWahanaRusak (player Pemain, addressWahanaD *D){
     if (*D != NilList){
         return (!StatusWahana(*D));
     }
+} */
+
+boolean isSekitarPemain(){
+    addressGraph CPeta = FirstGraph(GraphPeta); 
+
+    while(ID(CPeta) != MapNum(Player)) //MapNum is ID yang ditempatin
+        CPeta = NextGraph(CPeta);
+    // Pos : Posisi wahana
+    int x = X(Player);
+    int y = Y(Player);
+
+    if ((ElmtMatriks(Peta(CPeta), y, x+1) == 'W') || (ElmtMatriks(Peta(CPeta), y+1, x) == 'W') || (ElmtMatriks(Peta(CPeta), y, x - 1) == 'W') ||(ElmtMatriks(Peta(CPeta), y - 1, x) == 'W')){
+        return true;
+    } else return false;
 }
 
 //masi belom bener
@@ -516,16 +563,16 @@ POINT SekitarPemain (POINT Pemain, char C){
 }
 
 //repair
-void Repair(addressWahanaD *D){
-    POINT Pemain;
-    POINT Pos = SekitarPemain(Pemain,'W');
+// void Repair(addressWahanaD *D){
+//     POINT Pemain;
+//     POINT Pos = SekitarPemain(Pemain,'W');
 
-    *D = SearchWahanaDP(Pos, MapNum(Player), WahanaBuilt);
-    if (*D!=NilList){
-        StatusWahana(*D) = true;
-    }
+//     *D = SearchWahanaDP(Pos, MapNum(Player), WahanaBuilt);
+//     if (*D!=NilList){
+//         StatusWahana(*D) = true;
+//     }
     
-}*/
+// }
 
 void PrintListW(ListWahanaD LW) {
     addressWahanaD P;
