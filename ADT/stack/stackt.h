@@ -12,6 +12,7 @@
 #include "../mesinkata/mesinkata.h"
 #include "../player/player.h"
 #include "../maplist/maplist.h"
+#include "../peta/peta.h"
 
 #define Nil -1
 #define MaxElS 10
@@ -113,5 +114,7 @@ void Upgrade (Stack *S, player *P, TreeWahanaS T);
 void PrintInfoStack (Stack S);
 
 boolean UangCukup (player *P, int harga);
+
+boolean BahanCukup (player *P, Kata NamaBahan, int JumlahBahan);
 
 #endif

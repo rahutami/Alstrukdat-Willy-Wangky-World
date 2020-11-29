@@ -16,12 +16,13 @@ typedef struct {
     JAM CJam;
     int Money;
     int Day;
-    // Tab TabBahan; hem di struct atau bikin empty aja pas di awal ?
+    Tab TabBahan; //hem di struct atau bikin empty aja pas di awal ?
 } player;
 
 
 extern player Player;
 
+#define NamaPlayer(P) (P).Name
 #define Position(P) (P).Position
 #define X(P) Absis((P).Position)
 #define Y(P) Ordinat((P).Position)
@@ -37,6 +38,6 @@ JAM JamTutup;
 
 void CreatePlayer(player *P);
 
-void TulisPlayer(player P);
+void TulisPlayer();
 
 #endif

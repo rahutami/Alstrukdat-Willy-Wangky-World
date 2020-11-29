@@ -2,22 +2,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-boolean EndKata;
+/*boolean EndKata;
 Kata CKata;
 char CC;
-boolean EOP;
+boolean EOP;*/
 
 int main(){
     
+    //ListWahanaD L;
     First(WahanaBuilt) = NilList;
     //TreeWahanaS T;
-    MakeTree(&UpgradeTree);
+    MakeTree();
     printf("Daftar Wahana: \n");
     PrintTree(UpgradeTree);
     //STARTKATA();
     //addressWahanaD P = SearchWahanaD(CKata,L);
     POINT P = MakePOINT(1,1);
     buildWahana(P,&WahanaBuilt);
+    PrintInfoWD(WahanaBuilt);
+
+    /*wahanaRusak();*/
     PrintInfoWD(WahanaBuilt);
     STARTKATA();
     PrintHistory(CKata, UpgradeTree);

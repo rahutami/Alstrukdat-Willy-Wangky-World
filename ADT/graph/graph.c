@@ -2,7 +2,11 @@
 #include <stdlib.h>
 #include "graph.h"
 
+<<<<<<< HEAD
+Graph GraphPeta;
+=======
 player Player;
+>>>>>>> 8d7e4657448da25d8c12f39456859781b02f5a64
 
 /* PROTOTYPE */
 /****************** TEST LIST KOSONG ******************/

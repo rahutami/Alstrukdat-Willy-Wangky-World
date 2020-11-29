@@ -85,15 +85,15 @@ int main() {
     PrintTree(UpgradeTree);
 
     Kata namaWahana;
-    /* 
+    
     POINT Post = MakePOINT(1,1);
     buildWahana(Post, &WahanaBuilt);
-    */
-    printf("Inputan kamu adalah: ");
+    printf("Mau nge-upgrade wahana apa?");
     STARTKATA(); // Ini masih salah :>
-    printf("ok");
     CopyKata(CKata,&namaWahana);
     PrintKata(namaWahana);
+
+
     /* Nanti dulu deh 
     // CEK TIME REMAINING (?)
     // CEK UANG DAN RESOURCES
@@ -111,126 +111,38 @@ int main() {
 
     }
     */
+    // Masih bingung soal lokasi
+    /* 
+    player *p1;
+    addressGraph CPeta = FirstGraph(GraphPeta);
+    int x = X(*p1), y = Y(*p1);
+    while(ID(CPeta) != MapNum(*p1)){
+        CPeta = NextGraph(CPeta);
+    }
+    ADVKATA();
+    if(Elmt(Peta(CPeta), x + 1, y) == 'W' || Elmt(Peta(CPeta), x, y+1) == 'W' || Elmt(Peta(CPeta), x - 1, y) == 'W' || Elmt(Peta(CPeta), x, y - 1) == 'W'){
+    {
+            
+    }
+    */ 
     /* CARI */
-    /*  ini versi pake wahana built */
-    /*
-    addressWahanaS elmtStatisUpgrade = ElmtStatis(SearchWahanaD(namaWahana,WahanaBuilt));
-    if (elmtStatisUpgrade != NULL) {
-        printf("Ketemu, nama wahana: "); printf("\n");
-        PrintKata(NamaWahana(elmtStatisUpgrade));
-        printf("Ingin melakukan upgrade apa?\n List: \n");
-        if (Left(elmtStatisUpgrade)== NULL && Right(elmtStatisUpgrade)==NULL) { // Kondisi udah mentok gabisa diupgrade
-            printf("Tidak dapat diupgrade.");
-        }
-        else { // bisa diupgrade
-            if (Left(elmtStatisUpgrade)!=NULL){
-                PrintKata(NamaWahana(Left(elmtStatisUpgrade))); printf("\n");
-            } 
-            if (Right(elmtStatisUpgrade)!=NULL) {
-                PrintKata(NamaWahana(Right(elmtStatisUpgrade))); printf("\n");
-            }
-            Kata elmtUpgrade;
-            printf("Mau upgrade kemana: ");
-            STARTKATA();
-            CopyKata(CKata,&elmtUpgrade);
-            // !!! Kalo salah satunya NULL bisa segmentation fault, biar gak segmentationfault gimana yh kondisinya
-            while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade)))) && (!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
-                printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
-                STARTKATA();
-                CopyKata(CKata,&elmtUpgrade);
-            }
-            // elmtUpgrade = Left atau elmtUpgrade = Right
-            // Melakukan upgrade
-            addressWahanaS parent = elmtStatisUpgrade; // Kayaknya mau bikin fungsi parent
-            addressWahanaS addrElmtUpgraded;
-            if (IsKataSamaKata(NamaWahana(Right(elmtStatisUpgrade)),elmtUpgrade)) {
-                addrElmtUpgraded = Right(elmtStatisUpgrade);
-            }
-            if (IsKataSamaKata(NamaWahana(Left(elmtStatisUpgrade)),elmtUpgrade)) {
-                addrElmtUpgraded = Left(elmtStatisUpgrade);
-            }        
-            //elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
-            // Harusnya udah berubah nih
-            // INI BUAT NGETES
-            printf("Upgraded!\n");
-            printf("Nama wahana yang baru   : ");PrintKata(NamaWahana(elmtStatisUpgrade));printf("\n");
-            printf("Deskripsi               : ");PrintKata(DescWahana(elmtStatisUpgrade));printf("\n");
-            printf("Nama wahana sebelumnya  : ");PrintKata(NamaWahana(parent));printf("\n");
-            //printf("Posisinya tetep         : ");TulisPOINT(PositionWahana());
-        }
 
-
-        //  MELAKUKAN UPGRADE
-    }
-    else {
-        PrintKata(namaWahana);
-        printf(" tidak ditemukan pada tree. ");
-    }
-
-    /* BISA PLIS YG INI 
-    addressWahanaS elmtStatisUpgrade = SearchAddress(T,namaWahana);
-    if (elmtStatisUpgrade != NULL) {
-        printf("Ketemu, nama wahana: "); printf("\n");
-        PrintKata(NamaWahana(elmtStatisUpgrade));
-        printf("Ingin melakukan upgrade apa?\n List: \n");
-        if (Left(elmtStatisUpgrade)== NULL && Right(elmtStatisUpgrade)==NULL) { // Kondisi udah mentok gabisa diupgrade
-            printf("Tidak dapat diupgrade.");
-        }
-        else { // bisa diupgrade
-            if (Left(elmtStatisUpgrade)!=NULL){
-                PrintKata(NamaWahana(Left(elmtStatisUpgrade))); printf("\n");
-            } 
-            if (Right(elmtStatisUpgrade)!=NULL) {
-                PrintKata(NamaWahana(Right(elmtStatisUpgrade))); printf("\n");
-            }
-            Kata elmtUpgrade;
-            printf("Mau upgrade kemana: ");
-            STARTKATA();
-            CopyKata(CKata,&elmtUpgrade);
-            // !!! Kalo salah satunya NULL bisa segmentation fault, biar gak segmentationfault gimana yh kondisinya
-            while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade)))) && (!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
-                printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
-                STARTKATA();
-                CopyKata(CKata,&elmtUpgrade);
-            }
-            // elmtUpgrade = Left atau elmtUpgrade = Right
-            // Melakukan upgrade
-            addressWahanaS parent = elmtStatisUpgrade; // Kayaknya mau bikin fungsi parent
-            addressWahanaS addrElmtUpgraded = SearchAddress(T,elmtUpgrade);
-            elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
-            // Harusnya udah berubah nih
-            // INI BUAT NGETES
-            printf("Upgraded!\n");
-            printf("Nama wahana yang baru   : ");PrintKata(NamaWahana(elmtStatisUpgrade));printf("\n");
-            printf("Deskripsi               : ");PrintKata(DescWahana(elmtStatisUpgrade));printf("\n");
-            printf("Nama wahana sebelumnya  : ");PrintKata(NamaWahana(parent));printf("\n");
-            //printf("Posisinya tetep         : ");TulisPOINT(PositionWahana());
-        }
-
-
-        //  MELAKUKAN UPGRADE
-    }
-    else {
-        PrintKata(namaWahana);
-        printf(" tidak ditemukan pada tree. ");
-    }
-
-    */
-    
-
-    /* Ini versi awal, yang udah bener BISMILLAH */
     printf("\n");
-    addressWahanaS elmtStatisUpgrade = SearchAddress(UpgradeTree,namaWahana);
-    if (elmtStatisUpgrade != NULL) { // Wahana yang dicari ada
+    //addressWahanaS elmtStatisUpgrade = SearchAddress(UpgradeTree,namaWahana);
+    addressWahanaD elmtStatisUpgradeD = SearchWahanaD(namaWahana,WahanaBuilt);
+    addressWahanaS elmtStatisUpgrade;
+    if (elmtStatisUpgradeD != NULL) {
+        elmtStatisUpgrade = ElmtStatis(elmtStatisUpgradeD);
         printf("Ketemu, nama wahana: "); printf("\n");
-        PrintKata(NamaWahana(elmtStatisUpgrade));
-        printf("Ingin melakukan upgrade apa?\n List: \n");
+        PrintKata(NamaWahana(elmtStatisUpgrade)); printf("\n");
+        printf("Ingin melakukan upgrade apa?\n");
+        addressWahanaS addrElmtUpgraded;
         if (Left(elmtStatisUpgrade)== NULL && Right(elmtStatisUpgrade)==NULL) { // Kondisi udah mentok gabisa diupgrade
             printf("Tidak dapat diupgrade.");
         }
         else { // bisa diupgrade
-         
             Kata elmtUpgrade;
+            printf("List:\n");
             if (Left(elmtStatisUpgrade)!=NULL && Right(elmtStatisUpgrade)==NULL){ // Cuma bisa upgrade ke left
                 PrintKata(NamaWahana(Left(elmtStatisUpgrade))); printf("\n");
                 printf("Mau upgrade kemana: ");
@@ -241,6 +153,7 @@ int main() {
                     STARTKATA();
                     CopyKata(CKata,&elmtUpgrade);
                 }
+                addrElmtUpgraded = Left(elmtStatisUpgrade);
             } 
             else if (Left(elmtStatisUpgrade)==NULL && Right(elmtStatisUpgrade)!=NULL){ // Cuma bisa upgrade ke right
                 PrintKata(NamaWahana(Right(elmtStatisUpgrade))); printf("\n");
@@ -252,9 +165,9 @@ int main() {
                     STARTKATA();
                     CopyKata(CKata,&elmtUpgrade);
                 }
+                addrElmtUpgraded = Right(elmtStatisUpgrade);
             }
             else { // Bisa diupgrade ke left ataupun right
-
                 PrintKata(NamaWahana(Left(elmtStatisUpgrade))); printf("\n");
                 PrintKata(NamaWahana(Right(elmtStatisUpgrade))); printf("\n");
                 printf("Mau upgrade kemana: ");
@@ -265,31 +178,32 @@ int main() {
                     STARTKATA();
                     CopyKata(CKata,&elmtUpgrade);
                 }
+                if (IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade)))) {
+                    addrElmtUpgraded = Left(elmtStatisUpgrade);
+                }
+                if (IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade)))) {
+                    addrElmtUpgraded = Right(elmtStatisUpgrade);
+                }
             }
-
-          
-            // !!! Kalo salah satunya NULL bisa segmentation fault, biar gak segmentationfault gimana yh kondisinya GUE MENTOK
-
-            // elmtUpgrade = Left atau elmtUpgrade = Right
-            // Melakukan upgrade
-            addressWahanaS parent = elmtStatisUpgrade; // Kayaknya mau bikin fungsi parent
-            addressWahanaS addrElmtUpgraded = SearchAddress(UpgradeTree,elmtUpgrade);
+            addressWahanaS parent = elmtStatisUpgrade; // Wahana sebelumnya
+            addressWahanaS addrElmtUpgraded = ElmtStatis(SearchWahanaD(elmtUpgrade,WahanaBuilt));
+            printf("nanan");
             elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
-            // Harusnya udah berubah nih
-            // INI BUAT NGETES
+            // INI BUAT NGETEST
             printf("Upgraded!\n");
-            printf("Nama wahana yang baru   : ");PrintKata(NamaWahana(elmtStatisUpgrade));printf("\n");
-            printf("Deskripsi               : ");PrintKata(DescWahana(elmtStatisUpgrade));printf("\n");
+            printf("Nama wahana yang baru   : ");PrintKata(NamaWahana(addrElmtUpgraded));printf("\n");
+            printf("Deskripsi               : ");PrintKata(DescWahana(addrElmtUpgraded));printf("\n");
             printf("Nama wahana sebelumnya  : ");PrintKata(NamaWahana(parent));printf("\n");
-            //printf("Posisinya tetep         : ");TulisPOINT(PositionWahana());
-        }
     }
-    else { // ga ketemu
+    }
+    else { // Gaketemu
         PrintKata(namaWahana);
-        printf(" tidak ditemukan pada tree. ");
+        printf(" tidak ditemukan pada daftar wahana yang sudah dibangun.\n");
     }
-     
+    
 
+     
+    
 /* 
 
 
@@ -300,4 +214,4 @@ int main() {
 // COMMAND
 // gcc -o tes driver_stackt.c stackt.c -lm
 
-// gcc ../maplist/maplist.c stackt.c driver_stackt.c ../mesinkata/mesinkata.c ../mesinkar/mesinkar.c ../wahana/wahana.c ../player/player.c ../jam/jam.c ../point/point.c -o yubisayu
+// gcc ../maplist/maplist.c stackt.c driver_stackt.c ../mesinkata/mesinkata.c ../mesinkar/mesinkar.c ../wahana/wahana.c ../player/player.c ../jam/jam.c ../point/point.c ../arraydinmap/arraydinmap.c -o yubisayu

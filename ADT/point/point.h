@@ -20,6 +20,7 @@ typedef struct {
 /* *** Konstruktor membentuk POINT *** */
 POINT MakePOINT (float X, float Y);
 /* Membentuk sebuah POINT dari komponen-komponennya */
+boolean IsEqPOINT (POINT X, POINT P);
 
 /* *** KELOMPOK Interaksi dengan I/O device, BACA/TULIS  *** */
 void BacaPOINT (POINT * P);

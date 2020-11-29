@@ -12,7 +12,7 @@ ListWahanaD WahanaBuilt;
 
 void Details(Kata inputWahana, ListWahanaD L)
 /* I.S namaWahana dimasukkan user */
-/* F.S Menampilkan detail dari wahana*/
+/* F.S Menampilkan detail dari wahana*/ /*harus pas dia disebelah wahana*/
 {
     addressWahanaD P = SearchWahanaD (inputWahana,L);
     if (P!=NilList){
@@ -45,26 +45,6 @@ void Report(Kata inputWahana, ListWahanaD L)
     printf("Total penghasilan : %d\n",DailyFreqWahana(P));
 }
 
-addressWahanaD SearchWahanaD (Kata inputWahana, ListWahanaD L)
-/* I.S namaWahana dimasukkan user */
-/* F.S Mengembalikan address dnegan wahana yang sesuai dengan yang dicari,
-       apakah dia sudah pernah di build atau belum*/
-{
-    //KAMUS LOKAL
-    boolean found = false;
-    addressWahanaD P = First(L);
-    //ALGORITMA
-    while (!found && (P != NilList)){
-        if (IsKataSamaKata(inputWahana, NamaWahana(ElmtStatis(P)))){
-            found = true;
-            printf("berhasil");
-        } else {
-            P = Next(P);
-        }
-    }
-    return P;    
-}
-
 void SubTree(addressWahanaS parent, addressWahanaS l, addressWahanaS r){
     Left(parent) = l;
     Right(parent) = r;
@@ -79,8 +59,7 @@ void MakeTree()
     for (int i = 0; i < 10; i++)
         temptree[i] = AlokNode(i);
 
-    // STARTFILE("../../Files/Wahana/wahana.txt"); // :')
-    STARTFILE("Files/Wahana/wahana.txt");
+    STARTFILE("../../Files/Wahana/wahana.txt");
     //printf("baca file\n");
     int i=0;
     int indexarr=0; //akan bertambah perbaris dan pernode
@@ -270,53 +249,6 @@ void initWahana(TreeWahanaS T)
     //player pindah ke bawah
 }
 
-// void nextUpWahana(){}
-
-addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana){
-   if(IsTreeEmpty(P)) return NULL;
-   else if(IsKataSamaKata(NamaWahana(P), NamWahana)){
-      return P;
-   }
-   else{
-      addressWahanaS L = SearchAddress(Left(P), NamWahana);
-      addressWahanaS R = SearchAddress(Right(P), NamWahana);
-      if(L != NULL) return L;
-      else if (R != NULL) return R;
-      else return NULL;
-   }
-}
-
-boolean SearchTree(Kata X, addressWahanaS P)
-/* Mengirimkan true jika ada node dari P yang bernilai X */
-{
-    if (P==NilList) {
-        return false;
-    }
-    else {
-        if (IsKataSamaKata(NamaWahana(P),X)) {
-            return true;
-        }
-        else {
-            return (SearchTree(X,Left(P)) || SearchTree(X,Right(P)));
-    }
-}
-}
-
-boolean SearchTree2 (Kata X, TreeWahanaS T)
-/* Mengirimkan true jika ada node dari P yang bernilai X */
-{
-    if (T==NilList) {
-        return false;
-    }
-    else {
-        if (IsKataSamaKata(NamaWahana(T),X)) {
-            return true;
-        }
-        else {
-            return (IsKataSamaKata(NamaWahana(Left(T)),X) ||IsKataSamaKata(NamaWahana(Right(T)),X));// || SearchTree2(X,Root(Left(T))) || SearchTree2(X,Root(Right(T))));
-        }
-    }
-}
 void buildWahana(POINT Pos, ListWahanaD *L)
 /*Command ini digunakan untuk membuat wahana baru di petak di mana
 pemain sedang berdiri.
@@ -417,15 +349,11 @@ void PrintInfoWD (ListWahanaD L) {
 	/* ALGORITMA */
 	if(IsEmptyListW(L)) {
         printf("()");
-    /*}else{
-        printf("\nokelagi");
-    }*/
+
     } else { 
         printf("(");
-        P = First(L); //printf("oke5");
-        //printf("%d", PriceWahana(ElmtStatis(First(L))));
-        //PrintKata(NamaWahana(ElmtStatis(P)));
-        
+        P = First(L); 
+
         while(P != NilList) {
             PrintKata(NamaWahana(ElmtStatis(P)));
             if(Next(P) != NilList){
@@ -436,32 +364,152 @@ void PrintInfoWD (ListWahanaD L) {
         printf(")");
     }
 }
-// boolean SearchTree(Kata X, addressWahanaS P)
-// /* Mengirimkan true jika ada node dari P yang bernilai X */
-// {
-//     if (P==NilList) {
-//         return false;
-//     }
-//     else {
-//         if (IsKataSamaKata(NamaWahana(P),X)) {
-//             return true;
-//         }
-//         else {
-//             return (SearchTree(X,Left(P)) || SearchTree(X,Right(P)));
-//         }
-//     }
-// }
+boolean SearchTree(Kata X, addressWahanaS P)
+/* Mengirimkan true jika ada node dari P yang bernilai X */
+{
+     if (P==NilList) {
+         return false;
+     }
+     else {
+         if (IsKataSamaKata(NamaWahana(P),X)) {
+            return true;
+       }
+         else {
+             return (SearchTree(X,Left(P)) || SearchTree(X,Right(P)));
+         }
+     }
+ }
 
-// addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana){
-//    if(IsTreeEmpty(P)) return NULL;
-//    else if(IsKataSamaKata(NamaWahana(P), NamWahana)){
-//       return P;
-//    }
-//    else{
-//       addressWahanaS L = SearchAddress(Left(P), NamWahana);
-//       addressWahanaS R = SearchAddress(Right(P), NamWahana);
-//       if(L != NULL) return L;
-//       else if (R != NULL) return R;
-//       else return NULL;
-//    }
-// }
+ addressWahanaS SearchAddress (TreeWahanaS P, Kata NamWahana){
+    if(IsTreeEmpty(P)) return NULL;
+    else if(IsKataSamaKata(NamaWahana(P), NamWahana)){
+       return P;
+    }
+    else{
+       addressWahanaS L = SearchAddress(Left(P), NamWahana);
+       addressWahanaS R = SearchAddress(Right(P), NamWahana);
+       if(L != NULL) return L;
+       else if (R != NULL) return R;
+       else return NULL;
+    }
+ }
+
+ addressWahanaS SearchAddressID (TreeWahanaS P, int num){
+    if(IsTreeEmpty(P)) return NULL;
+    else if(num == IDWahana(P)){
+       return P;
+    }
+    else{
+       addressWahanaS L = SearchAddressID(Left(P), num);
+       addressWahanaS R = SearchAddressID(Right(P), num);
+       if(L != NULL) return L;
+       else if (R != NULL) return R;
+       else return NULL;
+    }
+}
+
+addressWahanaD SearchWahanaD (Kata inputWahana, ListWahanaD L)
+/* I.S namaWahana dimasukkan user */
+/* F.S Mengembalikan address dnegan wahana yang sesuai dengan yang dicari,
+       apakah dia sudah pernah di build atau belum*/
+{
+    //KAMUS LOKAL
+    boolean found = false;
+    addressWahanaD P = First(L);
+    //ALGORITMA
+
+    while (!found && (P != NilList)){
+        if (IsKataSamaKata(inputWahana, NamaWahana(ElmtStatis(P)))){
+            found = true;
+            printf("berhasil");
+        } else {
+            P = Next(P);
+        }
+    }
+    return P;    
+}
+
+addressWahanaD SearchWahanaDP (POINT Pos, ListWahanaD L)
+/* I.S namaWahana dimasukkan user */
+/* F.S Mengembalikan address dnegan wahana yang sesuai dengan yang dicari,
+       apakah dia sudah pernah di build atau belum*/
+{
+    //KAMUS LOKAL
+    boolean found = false;
+    addressWahanaD P = First(L);
+    POINT Point = PositionWahana(P);
+    //ALGORITMA
+
+    while (!found && (P != NilList)){
+        if (IsEqPOINT(Pos,Point)){
+            found = true;
+            printf("berhasil");
+        } else {
+            P = Next(P);
+        }
+    }
+    return P;    
+}
+
+void wahanaRusak(addressWahanaS *P, addressWahanaD *D){
+    //ListWahanaD L;
+    //int upper = 10; int lower = 0;
+    int num = (rand() % (10 - 0 + 1)) + 0; 
+    printf("%d ", num);
+     
+    *P = SearchAddressID(UpgradeTree,num);
+    *D = SearchWahanaD (NamaWahana(*P),WahanaBuilt);
+    if (D!=NilList){
+        StatusWahana(*D) = false;
+        //return P;
+    }
+    //cari ID yang == num -> address ElmtStatis
+    //cari address dinamisnya, ganti status jadi false
+}
+
+boolean isWahanaRusak (POINT Pos, addressWahanaD *D){
+    
+    POINT Pemain; //belum tau cara ambil posisi pemain
+    POINT Pos = WahanaSebelah(Pemain);
+    
+    *D = SearchWahanaDP(Pos,WahanaBuilt);
+    if (*D != NilList){
+        return (!StatusWahana(*D));
+    }
+}
+
+//masi belom bener
+POINT WahanaSebelah (POINT Pemain){
+    addressGraph CPeta = FirstGraph(GraphPeta); //kenapa gabisa ajg
+
+    while(ID(CPeta) != MapNum(Player)) 
+        CPeta = NextGraph(CPeta);
+    // Pos : Posisi wahana
+    int x = Absis(Pemain);
+    int y = Ordinat(Pemain);
+
+    if(ElmtMatriks(Peta(CPeta), x+1, y) == 'W'){
+        return MakePOINT(x+1, y);
+    } 
+    else if (ElmtMatriks(Peta(CPeta), x, y+1) == 'W'){
+        return MakePOINT(x, y+1);
+    }
+    else if (ElmtMatriks(Peta(CPeta), x - 1, y) == 'W'){
+        return MakePOINT(x-1, y);
+    }
+    else if (ElmtMatriks(Peta(CPeta), x, y - 1) == 'W'){
+        return MakePOINT(x, y-1);
+    }
+}
+
+//repair
+void Repair(addressWahanaD *D){
+    POINT Pemain;
+    POINT Pos = WahanaSebelah(Pemain);
+
+    *D = SearchWahanaDP(Pos,WahanaBuilt);
+    if (*D!=NilList){
+        StatusWahana(*D) = true;
+    }
+    
+}

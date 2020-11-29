@@ -216,3 +216,7 @@ void PrintInfoStack (Stack S) {
 boolean UangCukup (player *P, int harga) {
     return(Money(*P)>=harga);
 }
+
+boolean BahanCukup (player *P, Kata NamaBahan, int JumlahBahan) {
+    return (SearchB(Tab(*P),NamaBahan,JumlahBahan));
+}

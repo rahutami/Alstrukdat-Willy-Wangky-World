@@ -18,6 +18,10 @@ POINT MakePOINT (float X, float Y){
     
     return P;
 }
+
+boolean IsEqPOINT (POINT X, POINT P){
+    return (Absis(X)==Absis(P) && Ordinat(X)==Ordinat(P));
+}
 /* Membentuk sebuah POINT dari komponen-komponennya */
 
 /* *** KELOMPOK Interaksi dengan I/O device, BACA/TULIS  *** */
@@ -38,7 +42,7 @@ void BacaPOINT (POINT * P){
 /* F.S. P terdefinisi */
 
 void TulisPOINT (POINT P){
-    printf("(%.2f,%.2f)", Absis(P), Ordinat(P));
+    printf("(%d,%d)", Absis(P), Ordinat(P));
 }
 /* Nilai P ditulis ke layar dengan format "(X,Y)"
    tanpa spasi, enter, atau karakter lain di depan, belakang,

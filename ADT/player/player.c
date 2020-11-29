@@ -9,7 +9,7 @@ JAM JamTutup;
 player Player;
 
 void CreatePlayer(player *P){
-    CopyKata(CKata, &(P->Name));
+    CopyKata(CKata, &(NamaPlayer(*P)));
     
     X(*P) = 1;
     Y(*P) = 1;
@@ -17,17 +17,16 @@ void CreatePlayer(player *P){
     Money(*P) = 1000;
     CJam(*P) = MakeJAM(21,0);
     Day(*P) = 1;
+    MakeEmptyDin(&Tab(*P),20);
     // Inisialisasi Resources
     //Tab TabResources;
     //MakeEmptyDin(&TabResources,20);
 }
 
-void TulisPlayer(player P){
+void TulisPlayer(){
     printf("Player Name: ");
-    for (int i = 0; i < (P.Name).Length; i++){
-        printf("%c", P.Name.TabKata[i]);
-    }
+    PrintKata(NamaPlayer(Player));
     printf("\n");
-    printf("Money: %d\n", Money(P));
+    printf("Money: %d\n", Money(Player));
 }
 
