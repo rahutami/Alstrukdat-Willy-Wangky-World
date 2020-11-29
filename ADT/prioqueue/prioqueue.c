@@ -204,7 +204,7 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
     infotypeQueue new;
     /* ALGORITMA */
     /* Randomize queue length */
-    queueLength =  rand() % 4 + 1;
+    queueLength =  rand() % 2 + 1;
 
     /* Copy list wahana dan menghilangkan double element */
     List newListWahana;
@@ -238,12 +238,12 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
     /* Memilih wahana secara random */
     for(i = 0; i <= queueLength; i++) {
         CreateEmptyList(&L);
-        wahana = rand() % 5;
+        wahana = rand() % wahanaBuilt;
         for(j = 0; j <= wahana; j++){
             k = rand() % wahanaBuilt;
             InsVLast(&L, arrayKata[k]);
         }
-        Patience(new) = rand() % 5 + 1;
+        Patience(new) = 5;
         InfoQueue(new) = L;
         Prio(new) = 5;
         Enqueue(Q, new);

@@ -210,6 +210,15 @@ void MainPhase(player * p1){
         addressGraph CPeta = FirstGraph(GraphPeta);
         while(ID(CPeta) != MapNum(Player)) CPeta = NextGraph(CPeta);
 
+        if (!IsEmptyListW(WahanaBuilt) && IsEmptyQueue(Q)) {
+            int X = rand() % 2;
+            if(X == 1){
+                RandomizeQueue(&Q, WahanaBuilt);
+                enter = false;
+            }
+            
+        }
+        
         if(enter && !IsEmptyQueue(Q)){
             ReducePatience(&Q);
             Q = AngryCustomer(Q);
