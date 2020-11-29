@@ -32,6 +32,8 @@ typedef struct
   int Neff;   /* >=0, banyaknya elemen efektif */
   int MaxElMap;  /* ukuran elemen */
 } Tab;
+
+extern Tab File_material;
 /* Indeks yang digunakan [IdxMin..MaxEl-1] */
 /* Jika T adalah Tab, cara deklarasi dan akses: */
 /* Deklarasi : T : Tab */

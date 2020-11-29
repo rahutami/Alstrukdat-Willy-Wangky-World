@@ -5,6 +5,7 @@ yang menampilkan commad BUY
 
 #include "prepare.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void ProsedureBuild(POINT Pos, ListWahanaD *L)
 /* Menambahkan  status build kedalam stack dan list wahana */
@@ -19,8 +20,8 @@ akan ditampilkan pesan error.
 stack*/
 {
     //Menampilkan wahana dasar (ada 10, diambil dari tree wahana)
-    printf("Daftar wahana yang dapat dibangun: \n");
-    PrintTree(UpgradeTree);
+    //printf("Daftar wahana yang dapat dibangun: \n");
+    //PrintTree(UpgradeTree);
     addressWahanaD P, Prec;
     printf("\nIngin membangun wahana apa?\n-> ");
     STARTKATA(); 
@@ -92,7 +93,7 @@ akan ditampilkan pesan error.
 4. Setelah itu, perintah eksekusi ini akan dimasukkan ke dalam
 stack*/
 {
-     //CreateEmpty (&stackExecute); // coba // buat test di deklarai di main awal
+     CreateEmpty (&stackExecute); // coba // buat test di deklarai di main awal
      First(WahanaBuilt) = NilList;
      MakeTree();
      printf("Daftar Wahana: \n");
@@ -101,6 +102,7 @@ stack*/
      ProsedureBuild(P,&WahanaBuilt);
      //printf("\n");
      PrintInfoWD(WahanaBuilt);
+     printf("\n");
      
      
      
@@ -111,6 +113,38 @@ void UndoBuild() {
     // Tambahin bahan -> cek inventory pake PrintIsiTab
     // Delete di list wahana built -> Cek list WahanaBuilt
     // Pop
+    aksi X;
+    Pop(&stackExecute,&X);
+    PrintInfoStack(stackExecute);
+    Money(Player) += X.uang; //Tambahin uang
+    int i = 0;
+    while (i < Neff(Tab(Player)) && !IsKataSamaKata(Elmt(Tab(Player), i).key,X.NamaBahan))
+    {
+        i++;
+        
+    }
+    // ketemu nama wahana yang sama dan Tambahin bahan 
+    Elmt(Tab(Player), i).value += X.JumlahBahan;
+    //PrintInfoWD(WahanaBuilt);
+
+// pencarian elemen list bulid sebelum terakir yang akan di dealokasi
+    addressWahanaD P, Prec;
+    Prec = First(WahanaBuilt); 
+    if(Next(Prec) == NilList)
+    {
+        First(WahanaBuilt) = NilList;
+        free(Next(Prec));
+    }
+    else
+    {  
+        while (Next(Next(Prec)) != NilList)
+        {
+            Prec = Next(Prec);
+        }
+        P = Next(Prec);
+        Next(Prec) == NilList;
+        free(P);
+    }
 }
 
 void CommmandBuyArray()
@@ -119,7 +153,7 @@ menampilkan daftar bahan kemudian menerima inputan dan mengatusr senua case
 input salah atau benar kemudian masukin ke stack */
 {
 	//CreateEmpty (&stackExecute); // coba // buat test
-	Tab File_material;
+	//Tab File_material; //variabel global
 	BacaIsiMaterial(&File_material);
 	TulisIsiTabMaterial(File_material);
 	printf("\n%s\n%s\n%s\n%s","Masukkan Perintah:","<jumlah> <material>","<enter untuk keluar>","-> ");
@@ -181,15 +215,20 @@ input salah atau benar kemudian masukin ke stack */
 	// else
 	// {
 		printf("Anda keluar dari menu buy\n");
+        //UndoBuy ();
+        //PrintInfoStack(stackExecute); 
 	// }
 
 }
 
 void UndoBuy () {
+    
 // Uang ditambah
 // Inventory berkurang (delete dari arraydinmap) -> belom bikin fungsinya. Cek inventory pake print Isi
 // Pop
-
+aksi X;
+Pop(&stackExecute,&X);
+Money(Player) += X.uang;
 }
 
 
