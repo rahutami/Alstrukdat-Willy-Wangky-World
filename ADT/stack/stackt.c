@@ -197,7 +197,7 @@ void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana) {
 
         aksiUpgrade.commandStack = kataUpgrade;
         aksiUpgrade.durasi = 240; // ceritanya 240 menit
-        addressWahanaD elmtDin = SearchWahanaD(NamaWahana(prevWahana),WahanaBuilt);
+        addressWahanaD elmtDin = SearchWahanaD(NamaWahana(nextWahana),WahanaBuilt);
         aksiUpgrade.PointWahana = PositionWahana(elmtDin);
         aksiUpgrade.MapNumAksi = PetaWahana(elmtDin);
         aksiUpgrade.NamaBahan = BahanWahana(nextWahana);
