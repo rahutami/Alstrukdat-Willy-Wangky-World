@@ -266,12 +266,12 @@ void MainPhase(player * p1){
                 }
             }
             addressWahanaD P = First(WahanaBuilt);
-            while (P != Nil){
+            while (P != NilList){
                 if ((StatusWahana(P)) == false){
                     printf("Broken : ");
                     PrintKata(NamaWahana(ElmtStatis(P)));
                 }
-                P = Next(P);
+                P = NextWahana(P);
             }
             
             printf("\n");
@@ -307,7 +307,6 @@ void MainPhase(player * p1){
             while(ID(CPeta) != MapNum(*p1)){
                 CPeta = NextGraph(CPeta);
             }
-            ADVKATA();
             if(ElmtMatriks(Peta(CPeta), y + 1, x) == 'A' || ElmtMatriks(Peta(CPeta), y, x+1) == 'A' || ElmtMatriks(Peta(CPeta), y - 1, x) == 'A' || ElmtMatriks(Peta(CPeta), y, x - 1) == 'A'){
                 Serve(p1, CKata, &Q, &LP, WahanaBuilt);
             } else {
