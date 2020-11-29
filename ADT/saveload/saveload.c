@@ -6,6 +6,8 @@ void load(){
     char directory[50] = "../../Save";
     boolean found = false;
     char* tempdir;
+    addressWahanaD P, Prec;
+    MakeTree();
 
     DIR *dr = opendir(directory); 
   
@@ -42,42 +44,107 @@ void load(){
     }
     strcat(directory, "/");
     strcat(directory, entries->d_name);
-    printf("%s\n", directory);
 
     //Ini ngeload player
     strcpy(tempdir, directory);
-    strcat(tempdir, "/");
-    strcat(tempdir, "player.txt");
-    printf("%s\n", tempdir);
     printf("%s\n", directory);
-
+    strcat(tempdir, "/");
+    
+    strcat(tempdir, "player.txt");
+    
     STARTFILE(tempdir);
+    
+    //Nyalin nama
     SalinKataFile();
     CopyKata(CKata, &(Player.Name));
+
+    //Nyalin posisi
     SalinKataFile();
     X(Player) = convToInt(CKata);
+
     SalinKataFile();
     Y(Player) = convToInt(CKata);
+
+    //Nyalin mapnum
     SalinKataFile();
     MapNum(Player) = convToInt(CKata);
+
+    //Nyalin CJam
     SalinKataFile();
     int Jam = convToInt(CKata);
     SalinKataFile();
     int Menit = convToInt(CKata);
     CJam(Player) = MakeJAM(Jam, Menit);
+
+    //Nyalin Uang
     SalinKataFile();
     Money(Player) = convToInt(CKata);
+
+    //Nyalin hari
     SalinKataFile();
     Day(Player) = convToInt(CKata);
+    ADV();
+    
+    //Masih kurang inventory
 
-    printf("Player Name: ");
-    PrintKata(NamaPlayer(Player));
     printf("\n");
     TulisPOINT(Position(Player));
     printf("\nMapnum:%d\nDay:%d\n", MapNum(Player), Day(Player));
     TulisJAM(CJam(Player));
     printf("\nMoney: %d\n\n", Money(Player));
 
+    //Nyalin wahana yang udah dibangun
+    First(WahanaBuilt) = NULL;
+
+    while(!EOP){
+        //Nyalin point wahana
+        SalinKataFile();
+        int X = convToInt(CKata);
+        SalinKataFile();
+        int Y = convToInt(CKata);
+        POINT PWahana = MakePOINT(X,Y);
+        
+        //Total freq
+        SalinKataFile();
+        int TotalFreq = convToInt(CKata);
+
+        // income
+        SalinKataFile();
+        int Income = convToInt(CKata);
+
+        // DailyFreq
+        SalinKataFile();
+        int DailyFreq = convToInt(CKata);
+
+        //Status
+        SalinKataFile();
+        boolean Stat = convToInt(CKata);
+
+        SalinKataFile();
+
+        P = AlokWahanaFile(PWahana, CKata, TotalFreq, Income, DailyFreq, Stat);
+
+        PrintKata(CKata); printf("\n");
+
+        TulisPOINT(PositionWahana(P)); printf("\n");
+
+        printf("TotalFreq: %d\nIncome: %d\nDailyFreq; %d\nStat: %d\n\n", TotalFreqWahana(P), IncomeWahana(P), DailyFreqWahana(P), StatusWahana(P));
+        //masukkin ke list  wahana
+        if (IsEmptyListW(WahanaBuilt)){
+            InsFirstW(&WahanaBuilt,P);
+        }else{
+            Prec = First(WahanaBuilt); 
+
+            while (Next(Prec)!=NilList){
+                Prec = Next(Prec);
+            }
+            InsAfterW(&WahanaBuilt, P, Prec);
+        }
+        ADV();
+    }
+
+    PrintInfoWD(WahanaBuilt);
+    //Nyalin peta
     strcpy(tempdir, directory);
     strcat(tempdir, "/");
     strcat(tempdir, "Peta_1.txt");
@@ -103,8 +170,6 @@ void load(){
     MakePETA(tempdir, &Peta4);
 
     CreateGraphPeta();
-
-    PrintPetaGraph(GraphPeta);
 }
 
-// gcc driver.c ../graph/graph.c ../arraydinmap/arraydinmap.c ../peta/peta.c ../matriks/matriks.c ../point/point.c saveload.c ../jam/jam.c ../player/player.c ../mesinkar/mesinkar.c ../mesinkata/mesinkata.c -o test
+// gcc driver.c ../wahana/wahana.c ../graph/graph.c ../arraydinmap/arraydinmap.c ../peta/peta.c ../matriks/matriks.c ../point/point.c saveload.c ../jam/jam.c ../player/player.c ../mesinkar/mesinkar.c ../mesinkata/mesinkata.c -o test
