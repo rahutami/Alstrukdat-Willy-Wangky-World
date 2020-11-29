@@ -32,3 +32,12 @@ void UndoBuild();
     // Tambahin bahan -> cek inventory pake PrintIsiTab
     // Delete di list wahana built -> Cek list WahanaBuilt
     // Pop
+
+void CommmandBuyArray();
+/* melakukan semua perintah yang ada didalam Command Buy
+menampilkan daftar bahan kemudian menerima inputan dan mengatusr senua case 
+input salah atau benar kemudian masukin ke stack */
+
+void UndoBuy();
+
+void upgradeWahana() ;

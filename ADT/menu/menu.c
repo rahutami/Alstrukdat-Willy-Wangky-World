@@ -108,7 +108,6 @@ void Preparation(player *p1){
             printf("==========================================================\n");
             printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
             printf("==========================================================\n");
-            printf("\n");
         }
         
         printf("Masukkan perintah: ");
@@ -123,6 +122,8 @@ void Preparation(player *p1){
             AddWToPeta();
         } else if (IsKataSama("buy")){
             CommmandBuyArray();
+        } else if (IsKataSama("upgrade")){
+            upgradeWahana();
         }
         // nanti tambahin elif aja buat command yang lain
         else if(!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute"))){
@@ -200,7 +201,6 @@ void MainPhase(player * p1){
             printf("==========================================================\n");
             printf("Ketikkan \"command\" untuk melihat daftar command yang ada\n");
             printf("==========================================================\n");
-            printf("\n");
         }
         printf("Masukkan perintah: ");
         
