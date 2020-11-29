@@ -89,7 +89,7 @@ void ListCommand(){
 }
 
 void Preparation(player *p1){
-    boolean fromoffice = false, invalid = false;
+    boolean invalid = false;
     do{
         addressGraph CPeta = FirstGraph(GraphPeta);
         while(ID(CPeta) != MapNum(Player)) CPeta = NextGraph(CPeta);
@@ -146,7 +146,6 @@ void Preparation(player *p1){
         }
 
         invalid = false;
-        fromoffice = false;
 
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
            MenuJalan(p1, GraphPeta);
@@ -154,9 +153,14 @@ void Preparation(player *p1){
             ListCommand();
         } else if (IsKataSama("build")){
             //buildWahana(Position(Player), &WahanaBuilt);
+<<<<<<< HEAD
+            ProsedureBuild(Position(Player), &WahanaBuilt);
+            printf("%d\n", IsEmptyListW(WahanaBuilt));
+=======
             //CommmandBuild();
             ProsedureBuild(Position(Player),&WahanaBuilt);
             AddWToPeta();
+>>>>>>> c30275d0335a769403a3ee40c5d526471c839d9d
         } else if (IsKataSama("buy")){
             CommmandBuyArray();
         } else if (IsKataSama("upgrade")){
@@ -169,7 +173,6 @@ void Preparation(player *p1){
                 printf("Anda sedang tidak ada berada di dalam office\n");
                 printf("\033[0m");
             }
-            fromoffice = true;
         } else if (IsKataSama("undo")) {
             Undo();
         }
@@ -190,7 +193,7 @@ void Preparation(player *p1){
             invalid = true;
             STARTKATA();
         }
-    } while (!(IsKataSama("main") || (IsKataSama("exit") && !fromoffice) || IsKataSama("execute")));
+    } while (!(IsKataSama("main") || (IsKataSama("exit")) || IsKataSama("execute")));
 }
 
 void MainPhase(player * p1){
@@ -198,7 +201,7 @@ void MainPhase(player * p1){
     listPlayer LP;
     infoLP del;
     boolean enter = false;
-    boolean fromoffice = false, invalid = false;
+    boolean invalid = false;
     CreateEmptyQueue(&Q, 5);
     CreateEmptyLP(&LP);
     if (!IsEmptyListW(WahanaBuilt)) {
@@ -285,7 +288,6 @@ void MainPhase(player * p1){
         }
 
         invalid = false;
-        fromoffice = false;
 
         if (IsKataSama("w") || IsKataSama("a") || IsKataSama("s") || IsKataSama("d")){
            MenuJalan(p1, GraphPeta);
@@ -309,7 +311,6 @@ void MainPhase(player * p1){
         } else if (IsKataSama("office")){
             if(ElmtMatriks(Peta(CPeta), Y(Player), X(Player)) == 'O'){
                 Inoffice();
-                fromoffice = true;
             } else {
                 printf("\033[0;31m");
                 printf("Anda sedang tidak ada berada di dalam office\n");
@@ -339,5 +340,5 @@ void MainPhase(player * p1){
             invalid = true;
         } 
         
-    } while(!(IsKataSama("prepare") || (IsKataSama("exit") && !fromoffice)));
+    } while(!(IsKataSama("prepare") || (IsKataSama("exit"))));
 }

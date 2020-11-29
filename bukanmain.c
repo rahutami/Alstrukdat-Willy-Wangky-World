@@ -44,7 +44,7 @@ int main(){
         if (IsKataSama("new")){ //Input new bakal masuk ke game
 
             NewGame();
-
+            
             Preparation(&Player);
             while(!IsKataSama("exit")){
                 if(IsKataSama("prepare")){

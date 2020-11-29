@@ -5,12 +5,7 @@
 #include <stdlib.h>
 
 
-<<<<<<< HEAD
-void Inoffice(POINT P){
-     //contoh 
-=======
 void Inoffice(){//contoh 
->>>>>>> 5e4fd0c888911ca8e7d36b2dd1876595fc2d51f0
     
     Kata Cdetails, Crep, Cexit;
 
@@ -85,7 +80,7 @@ void PrintElmtS (addressWahanaS P, TreeWahanaS T){
     
     addressWahanaD D = SearchWahanaD (NamaWahana(P),WahanaBuilt);
     printf("\n----------Details Wahana----------\n");
-    printf("Nama :"); PrintKata(NamaWahana(P)); printf("\n");
+    printf("Nama : "); PrintKata(NamaWahana(P)); printf("\n");
 
     printf("Lokasi : "); 
     if (D!=NilList){
