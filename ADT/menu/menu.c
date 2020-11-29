@@ -126,7 +126,9 @@ void MainPhase(player * p1){
     boolean enter = false;
     CreateEmptyQueue(&Q, 5);
     CreateEmptyLP(&LP);
-    RandomizeQueue(&Q);
+    if (!IsEmptyListW(WahanaBuilt)) {
+        RandomizeQueue(&Q);
+    }
 
     do{
         if(!IsEmptyLP(LP)){
@@ -136,11 +138,12 @@ void MainPhase(player * p1){
                 FirstEnqueue(&Q, del);
             }
         }
-        if(enter){
+        if(enter && !IsEmptyQueue(Q)){
             ReducePatience(&Q);
             PrintPrioQueue(Q);
             Q = AngryCustomer(Q);
         }
+
         enter = true;
 
         
@@ -165,11 +168,15 @@ void MainPhase(player * p1){
             printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamTutup)); 
             printf("\n");
             printf("\n");
-            if(!IsEmptyQueue(Q)){
-                printf("Antrian [%d/5] :\n", NbElmtQueue(Q));
-                PrintPrioQueue(Q);
-            } else {
-                printf("Antrian kosong\n");
+            if (IsEmptyListW(WahanaBuilt)) {
+                printf("Tidak ada wahana yang tersedia.\n");
+            } else{
+                if(!IsEmptyQueue(Q)){
+                    printf("Antrian [%d/5] :\n", NbElmtQueue(Q));
+                    PrintPrioQueue(Q);
+                } else {
+                    printf("Antrian kosong\n");
+                }
             }
             printf("\n");
             printf("==========================================================\n");
@@ -186,7 +193,7 @@ void MainPhase(player * p1){
             ListCommand();
         } else if (IsKataSama("serve")) {
             ADVKATA();
-            Serve(p1, CKata, &Q, &LP);
+            Serve(p1, CKata, &Q, &LP, WahanaBuilt);
             // addressGraph CPeta = FirstGraph(GraphPeta);
             // int x = X(*p1), y = Y(*p1);
             // while(ID(CPeta) != MapNum(*p1)){

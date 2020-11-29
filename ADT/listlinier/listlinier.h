@@ -60,6 +60,8 @@ addressList Search (List L, Kata X);
 /* Jika ada, mengirimkan addressList elemen tersebut. */
 /* Jika tidak ada, mengirimkan NilList */
 
+boolean SearchBool (List L, Kata X);
+
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
 void InsVFirst (List *L, infotypeList X);
@@ -139,6 +141,8 @@ infotypeList Max (List L);
 /* Mengirimkan nilai InfoList(P) yang maksimum */
 
 boolean IsListSama (List L1, List L2);
+
+List RemoveDouble (List L);
 
 /****************** PROSES TERHADAP LIST ******************/
 void Konkat1 (List *L1, List *L2, List *L3);
