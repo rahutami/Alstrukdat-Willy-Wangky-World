@@ -169,6 +169,10 @@ void Preparation(player *p1){
             }
         } else if (IsKataSama("undo")) {
             Undo();
+        } else if (IsKataSama("execute")) {
+            PrepExecute();
+        } else if (IsKataSama("main")) {
+            PrepMain();
         }
         // nanti tambahin elif aja buat command yang lain
         else if(!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute"))){

@@ -185,7 +185,7 @@ void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana) {
 /* IF AND ONLY IF UPGRADENYA BERHASIL (RESOURCES DAN UANG CUKUP !!! ) */
         aksi aksiUpgrade;
         Kata kataUpgrade;
-		kataUpgrade.TabKata[0]='u';
+		kataUpgrade.TabKata[0]='U';
 		kataUpgrade.TabKata[1]='p';
 		kataUpgrade.TabKata[2]='g';
 		kataUpgrade.TabKata[3]='r';
