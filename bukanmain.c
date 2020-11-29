@@ -57,7 +57,7 @@ int main(){
                     MainPhase(&Player);
                 }
             }
-        } else if(!IsKataSama("exit")) {// Input selain nwe atau exit bakal loop dan minta input lagi
+        } else if(!IsKataSama("exit")) {// Input selain new atau exit bakal loop dan minta input lagi
             printf("===================================\n");
             printf("Command tidak tersedia\n");
             printf("Choose menu: \nNew Game (new)\nExit (exit)\n");\
