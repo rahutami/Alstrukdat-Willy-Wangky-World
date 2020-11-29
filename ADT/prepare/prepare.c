@@ -57,7 +57,7 @@ stack*/
                 aksi X;
                 X.commandStack = command;
                 X.durasi = 60;
-                X.MapNum = MapNum(Player);
+                X.MapNumAksi = MapNum(Player);
                 X.PointWahana = Position(Player);
                 X.NamaBahan = BahanWahana(addrWahana);
                 X.JumlahBahan = JmlBahan(addrWahana); 
@@ -130,7 +130,7 @@ void UndoBuild() {
     // Menghapus W dari peta
     addressGraph CPeta = FirstGraph(GraphPeta);
 
-    while(ID(CPeta) != X.MapNum){
+    while(ID(CPeta) != X.MapNumAksi){
         CPeta = NextGraph(CPeta);
     }
 
@@ -443,6 +443,19 @@ void upgradeWahana() {
     }
 }
 
+void UndoUpgrade(){
+    // Tambahin uang
+    // Tambahin bahan ke inventory
+    // Balikin ke elemen parent nya
+    // Pop
+    aksi aksiUpgrade;
+    Money(Player) += aksiUpgrade.uang;
+    AddElTab(&Tab(Player),aksiUpgrade.NamaBahan,aksiUpgrade.JumlahBahan);
+    addressWahanaS parent = ElmtStatis(SearchWahanaDP(aksiUpgrade.PointWahana,aksiUpgrade.MapNumAksi,WahanaBuilt));
+    parent = aksiUpgrade.addrPrevWahana; // semoga bener
+    Pop(&stackExecute,&aksiUpgrade);
+}
+
 void Undo(){
     Kata KataBuild;
     KataBuild.TabKata[0]='B';
@@ -475,5 +488,8 @@ void Undo(){
         UndoBuild();
     }else if(IsKataSamaKata(KataBuy, InfoTop(stackExecute).commandStack)){
         UndoBuy();
+    }else if (IsKataSamaKata(KataUpgrade,InfoTop(stackExecute).commandStack)) {
+        UndoUpgrade(); 
     }
+    PrintInfoStack(stackExecute);
 }
