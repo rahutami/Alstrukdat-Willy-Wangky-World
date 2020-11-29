@@ -3,6 +3,7 @@
 
 int main() 
 { 
+    int i;
     load();
     return 0;
 } 
