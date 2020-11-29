@@ -90,6 +90,10 @@ int NBElmt (MATRIKS M);
 /* Mengirimkan banyaknya elemen M */
 
 void SearchMatriks(MATRIKS M, int * i, int * j, ElType X);
+/*
+Mencari Elemen matriks yang memiliki nilai X
+Jika tidak ada i dan j akan bernilai -1
+*/
 /* ********** Assignment  PETA ********** */
 
 #endif

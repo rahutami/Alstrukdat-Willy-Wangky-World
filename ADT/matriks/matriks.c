@@ -147,6 +147,10 @@ int NBElmt (MATRIKS M)
 }
 /* Operasi berbasis baris dan per kolom */
 void SearchMatriks(MATRIKS M, int * i, int * j, ElType X){
+/*
+Mencari Elemen matriks yang memiliki nilai X
+Jika tidak ada i dan j akan bernilai -1
+*/
     *i = 0;
 
     while(*i <= GetLastIdxBrs(M) && ElmtMatriks(M, *i, *j) != X){
