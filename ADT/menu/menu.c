@@ -265,20 +265,26 @@ void MainPhase(player * p1){
             printf("\n");
             printf("\n");
             if (IsEmptyListW(WahanaBuilt)) {
+                printf("\033[0;31m");
                 printf("Tidak ada wahana yang tersedia.\n");
+                printf("\033[0m");
             } else{
                 if(!IsEmptyQueue(Q)){
                     printf("Antrian [%d/5] :\n", NbElmtQueue(Q));
                     PrintPrioQueue(Q);
                 } else {
+                    printf("\033[0;31m");
                     printf("Antrian kosong\n");
+                    printf("\033[0m");
                 }
             }
             addressWahanaD P = First(WahanaBuilt);
             while (P != NilList){
                 if ((StatusWahana(P)) == false){
+                    printf("\033[0;31m");
                     printf("Broken : ");
                     PrintKata(NamaWahana(ElmtStatis(P)));
+                    printf("\033[0;31m");
                 }
                 P = NextWahana(P);
             }

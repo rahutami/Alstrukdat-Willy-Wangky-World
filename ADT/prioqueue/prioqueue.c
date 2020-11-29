@@ -293,11 +293,15 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
                 printf("!\n\n");
 
             } else {
+                printf("\033[0;31m");
                 printf("Maaf, wahana sedang dalam perbaikan.\n");
+                printf("\033[0;31m");
             }
         }
     } else {
+        printf("\033[0;31m");
         printf("Antrian kosong\n\n");
+        printf("\033[0;31m");
     }
 }
 
