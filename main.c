@@ -35,7 +35,7 @@ void NewGame(){
     CreateEmpty(&stackExecute);
 
     loadPeta(&Peta1, &Peta2, &Peta3, &Peta4);
-    CreateGraphPeta();
+    CreateGraphPeta(Peta1, Peta2, Peta3, Peta4, &GraphPeta);
 }
 
 int main(){
