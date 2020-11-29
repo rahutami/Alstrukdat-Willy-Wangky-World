@@ -169,6 +169,10 @@ void Preparation(player *p1){
             }
         } else if (IsKataSama("undo")) {
             Undo();
+        } else if (IsKataSama("execute")) {
+            PrepExecute();
+        } else if (IsKataSama("main")) {
+            PrepMain();
         }
         // nanti tambahin elif aja buat command yang lain
         else if(!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute"))){
@@ -309,6 +313,13 @@ void MainPhase(player * p1){
                 printf("\033[0;31m");
                 printf("Anda sedang tidak ada berada di dalam office\n");
                 printf("\033[0m");
+            }
+        } else if (IsKataSama("repair")) {
+            if (isSekitarPemain()) {
+                addressWahanaD wahana = WahanaSekitar();
+                Repair(&wahana);
+            } else {
+                printf("Tidak ada wahana di sekitarmu!");
             }
         }
         // nanti tambahin elif aja buat command yang lain 
