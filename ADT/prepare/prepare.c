@@ -41,10 +41,9 @@ stack*/
                     }
                     InsAfterW(L, P, Prec);
                 }
-                // GATAU KENAPA BELOM BERHASIL DAN GA KE PRINT
+                
+                Money(Player) = Money(Player) - UpgradeCost(addrWahana);
                 DelElTab(&Tab(Player),BahanWahana(addrWahana),JmlBahan(addrWahana));
-                printf("Daftar bahan Anda sekarang: \n");
-                TulisIsiTab(Tab(Player));
                 // Masukkin ke stack
                 Kata command;
                 command.TabKata[0]='B';
@@ -60,9 +59,8 @@ stack*/
                 X.PointWahana = Position(Player);
                 X.NamaBahan = BahanWahana(addrWahana);
                 X.JumlahBahan = JmlBahan(addrWahana); 
-                X.uang = PriceWahana(addrWahana);
+                X.uang = UpgradeCost(addrWahana);
                 Push (&stackExecute, X); //Variabel globla stackExecute
-                PrintInfoStack(stackExecute); // buat test -> GATAU KENAPA GABISA KE PRINT ???
             } 
             else { // bahan tidak cukup
                 printf("Bahan yang Anda miliki tidak cukup untuk membangun wahana ini.\n");
@@ -134,7 +132,6 @@ input salah atau benar kemudian masukin ke stack */
 		int Nbahan;
 		Nbahan = convToInt(CKata);
 		ADVKATA();
-		PrintKata(CKata);
 		if (SearchK(File_material, CKata) && !IsKataSama (""))
 		{
 			val = Nbahan * SearchVal(File_material, CKata);
@@ -160,11 +157,15 @@ input salah atau benar kemudian masukin ke stack */
                 X.JumlahBahan = Nbahan;
                 X.uang = val;
                 
-                printf("Anda membeli "); PrintKata(CKata); printf(" sebanyak %d buah.\n",Nbahan);
-                printf("Daftar bahan yang Anda miliki: \n");
-                TulisIsiTab(Tab(Player)); printf("\n");
+                printf("\nAnda membeli "); PrintKata(CKata); printf(" sebanyak %d buah.\n\n",Nbahan);
+                printf("Daftar bahan yang dimiliki:\n");
+                for (int i=GetFirstIdxDin(Tab(Player)); i<=GetLastIdxDin(Tab(Player)); i++){
+                    PrintKata(Elmt(Tab(Player),i).key);
+                    printf(" - ");
+                    printf("%d",Elmt(Tab(Player),i).value);
+                    printf("\n");
+                }
                 Push(&stackExecute, X); //Variabel globla stackExecute
-                PrintInfoStack(stackExecute); 
             }
             else {
                 printf("Uang Anda tidak cukup untuk melakukan pembelian.\n");
@@ -264,7 +265,6 @@ void upgradeWahana() {
                         // Kurangin uang dan bahan
                         Money(Player) = Money(Player) - UpgradeCost(elmtStatisUpgrade);
                         DelElTab(&Tab(Player),BahanWahana(Left(elmtStatisUpgrade)),JmlBahan(Left(elmtStatisUpgrade)));
-                        printf("Bahan yang Anda miliki sekarang: ");TulisIsiTab(Tab(Player));
 
 
                         addrElmtUpgraded = Left(elmtStatisUpgrade);
@@ -273,7 +273,6 @@ void upgradeWahana() {
                         PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
                         UpgradeStack(); // Buat nge push ke stack
-                        PrintInfoStack(stackExecute); 
                     }
                     else {
                         printf("\nBahan atau uang yang kamu miliki \ntidak cukup untuk melakukan upgrade.\n");
@@ -296,7 +295,6 @@ void upgradeWahana() {
                             // Kurangin uang dan bahan
                             Money(Player) = Money(Player) - UpgradeCost(elmtStatisUpgrade);
                             DelElTab(&Tab(Player),BahanWahana(Right(elmtStatisUpgrade)),JmlBahan(Right(elmtStatisUpgrade)));
-                            printf("Bahan yang Anda miliki sekarang: ");TulisIsiTab(Tab(Player));
 
                         addrElmtUpgraded = Right(elmtStatisUpgrade);
                         elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
@@ -305,7 +303,6 @@ void upgradeWahana() {
 
 
                             UpgradeStack(); // Buat nge push ke stack
-                            PrintInfoStack(stackExecute); 
 
                     }
                     else {
@@ -340,7 +337,6 @@ void upgradeWahana() {
                             // Kurangin uang dan bahan
                             Money(Player) = Money(Player) - UpgradeCost(elmtStatisUpgrade);
                             DelElTab(&Tab(Player),BahanWahana(Left(elmtStatisUpgrade)),JmlBahan(Left(elmtStatisUpgrade)));
-                            printf("Bahan yang Anda miliki sekarang: ");TulisIsiTab(Tab(Player));
 
                             addrElmtUpgraded = Left(elmtStatisUpgrade);
                             elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
@@ -371,7 +367,6 @@ void upgradeWahana() {
                             // Kurangin uang dan bahan
                             Money(Player) = Money(Player) - UpgradeCost(elmtStatisUpgrade);
                             DelElTab(&Tab(Player),BahanWahana(Right(elmtStatisUpgrade)),JmlBahan(Right(elmtStatisUpgrade)));
-                            printf("Bahan yang Anda miliki sekarang: ");TulisIsiTab(Tab(Player));
                             
                             addrElmtUpgraded = Right(elmtStatisUpgrade);
                             elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya

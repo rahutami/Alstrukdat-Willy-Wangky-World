@@ -145,17 +145,18 @@ void TulisIsiTab(Tab T)
     // Kamus Lokal
     int i;
     // Algoritma
-    printf("[");
     if(!IsEmptyDin(T)){
+        printf("           Daftar bahan yang dimiliki:\n");
         for (i=GetFirstIdxDin(T); i<=GetLastIdxDin(T); i++){
+            printf("           ");
             PrintKata(Elmt(T,i).key);
             printf(" - ");
             printf("%d",Elmt(T,i).value);
-            if(i!=GetLastIdxDin(T)) printf(",");
+            printf("\n");
         }
+    } else {
+        printf("           Anda tidak memiliki bahan apapun\n");
     }
-
-    printf("]");
 }
 
 

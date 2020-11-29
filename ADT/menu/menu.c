@@ -119,8 +119,9 @@ void Preparation(player *p1){
             printf("           ");printf("Current Time: "); TulisJAM(CJam(*p1)); printf("\n");
             printf("           ");printf("Opening Time: "); TulisJAM(JamBuka); printf("\n");
             printf("           ");printf("Time Remaining:"); TulisTimeRemaining(Durasi(CJam(*p1), JamBuka)); 
+            printf("\n\n"); TulisIsiTab(Tab(Player)); printf("\n");
+            PrintInfoStack(stackExecute);
             printf("\033[0m");
-            printf("\n");
             // Total aksi yang akan dilakukan:
             // Total waktu yang dibutuhkan:
             // Total uang yang dibutuhkan:
@@ -152,7 +153,7 @@ void Preparation(player *p1){
         } else if (IsKataSama("command")){
             ListCommand();
         } else if (IsKataSama("build")){
-            buildWahana(Position(Player), &WahanaBuilt);
+            ProsedureBuild(Position(Player), &WahanaBuilt);
             AddWToPeta();
         } else if (IsKataSama("buy")){
             CommmandBuyArray();
