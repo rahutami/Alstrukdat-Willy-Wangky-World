@@ -1,5 +1,5 @@
-# Alstrukdat-Willy-Wangky-World
-> Tubes alstrukdat brow
+# Willy Wangky's World
+> Here, you can make your own amusement park and do so many fun stuff!
 
 ## Table of contents
   - [General info](#general-info)
@@ -8,22 +8,27 @@
   - [Contact](#contact)
 
 ## General info
-Blablabla
+Willy Wangky's World adalah sebuah program simulasi theme park yang dibuat demi memenuhi Tugas Besar I Mata Kuliah IF2110 Algoritma dan Struktur data. Pemain dapat membangun wahana bermain dan melayani pelanggan yang masuk, serta mendapatkan uang dan membeli barang-barang. Pelanggan bisa habis kesabarannya apabila tidak dilayani dan mereka akan keluar dari antrian. 
 
 ## Setup
-1. Open the terminal
-2. Go to `ADT` folder by typing this commandL <br />
+1. Buka terminal di directory penyimpanan
+2. Lakukan clone terhadap repository dengan mengetikkan di terminal:
    ```
-   cd ...
+   git clone ..
     ```
-3. Compile the program using this command: <br />
+3. Masuk ke folder hasil clone dengan mengetikkan di terminal :
+   ```
+   cd Alstrukdat-Willy-Wangky-World
+   ```
+3. Lakukan compile dengan mengetikkan di terminal :
     ```
     gcc blablabla
     ```
-4. Run the program using this command: <br />
+4. Jalankan program dengan mengetikkan di terminal :
     ```
     ./blablabla
     ```
+5. Selamat bermain!
 
 ## Status
 Project is: belum selesai
