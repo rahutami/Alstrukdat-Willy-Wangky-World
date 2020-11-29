@@ -6,6 +6,7 @@ YANG HARUSNYA UDAH BISA:
 - Ngecek/compare antara inventory player dengan resource (ini dari TXT)
 - Kasus2 dan kondisi2 harusnya udah bener plis (tp belom dites, syptau gw ada yg salah)
 BUAT UPGRADE YANG BELOM:
+- Cek waktu
 - Cek uang -> kayaknya mau tambahin upgrade cost di wahana.txt
 - Belom dites sih :< 
 - Untuk buy, build, upgrade belom memfungsikan inventorynya player. -> kurang fungsi delete Item gitu sih

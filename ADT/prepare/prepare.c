@@ -62,7 +62,7 @@ stack*/
             X.JumlahBahan = JmlBahan(P); 
             X.uang = PriceWahana(P);
             Push (&stackExecute, X); //Variabel globla stackExecute
-            //PrintInfoStack(stackExecute); // buat test
+            PrintInfoStack(stackExecute); // buat test
             
         }
         else
@@ -154,7 +154,7 @@ input salah atau benar kemudian masukin ke stack */
 			X.uang = val;
 
 			Push (&stackExecute, X); //Variabel globla stackExecute
-			//PrintInfoStack(stackExecute); // buat test
+			PrintInfoStack(stackExecute); 
 		}
 		else
 		{
