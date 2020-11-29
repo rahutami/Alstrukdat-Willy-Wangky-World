@@ -14,7 +14,7 @@ Willy Wangky's World adalah sebuah program simulasi theme park yang dibuat demi 
 1. Buka terminal di directory penyimpanan
 2. Lakukan clone terhadap repository dengan mengetikkan di terminal:
    ```
-   git clone ..
+   git clone https://github.com/wundersmith/Alstrukdat-Willy-Wangky-World.git
     ```
 3. Masuk ke folder hasil clone dengan mengetikkan di terminal :
    ```
