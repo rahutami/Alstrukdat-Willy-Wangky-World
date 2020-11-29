@@ -270,7 +270,7 @@ boolean IsEQ(Tab T1, Tab T2)
 
 /* ********** SEARCHING ********** */
 /* ***  Perhatian : Tabel boleh kosong!! *** */
-IdxType Search1(Tab T, MapEntry X)
+IdxType Search1(Tab T, keyType k, valType v)
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan indeks i terkecil, dengan elemen ke-i = X */
 /* Jika tidak ada, mengirimkan IdxUndef */
@@ -291,10 +291,10 @@ IdxType Search1(Tab T, MapEntry X)
 
     do{
         i++;
-        if (IsKataSamaKata(Elmt(T,i).key,X.key)){
+        if (IsKataSamaKata(Elmt(T,i).key,k)){
             ans = i;
         }
-    } while (i<=GetLastIdxDin(T)&& (!IsKataSamaKata(Elmt(T,i).key,X.key)));
+    } while (i<=GetLastIdxDin(T)&& (!IsKataSamaKata(Elmt(T,i).key,k)));
     
     return ans;
 }
@@ -422,6 +422,31 @@ void AddAsLastEl(Tab *T, keyType k, valType v)
     Neff(*T)++;
 }
 
+void AddElTab(Tab *T, keyType k, valType v)
+/* Proses: Menambahkan X sebagai elemen terakhir tabel */
+/* I.S. Tabel T boleh kosong, tetapi tidak penuh */
+/* F.S. X adalah elemen terakhir T yang baru */
+
+{
+    // Algoritma
+    if(IsEmptyDin(*T)) {
+        Elmt(*T, IdxMin).key = k;
+        Elmt(*T, IdxMin).value = v;
+        Neff(*T) ++;
+    }
+    else{
+        if (SearchK(*T,k)) { // kalo udah ada
+            IdxType indeks = Search1(*T,k,v);
+            Elmt(*T,indeks).value = Elmt(*T,indeks).value + v;
+        }
+        else { // add as last el
+            Elmt(*T, Neff(*T)).key = k;
+            Elmt(*T, Neff(*T)).value = v;
+            Neff(*T)++;
+        }
+    }
+
+}
 /* ********** MENGHAPUS ELEMEN ********** */
 void DelLastEl(Tab *T, keyType *k, valType *v)
 /* Proses : Menghapus elemen terakhir tabel */
@@ -435,4 +460,19 @@ void DelLastEl(Tab *T, keyType *k, valType *v)
     v = &Elmt(*T, GetLastIdxDin(*T)).value;
     Neff(*T)--;
 
+}
+
+void DelElTab (Tab *T, keyType k, valType v) {
+    if (SearchB(*T,k,v)) { // kalo ketemu
+        IdxType indeks = Search1(*T,k,v);
+        if (v == (Elmt(*T,indeks).value)) { // kalau jumlahnya sama, otomatis jadi 0.
+            Neff(*T)--;
+        }
+        else { // jumlahnya lebih
+            Elmt(*T,indeks).value = Elmt(*T,indeks).value - v;
+        }
+    }
+    else { // kalo gak ketemu
+        printf("Tidak ada elemen dengan key tersebut dalam tabel.\n"); // harusnya sih ketemu
+    }
 }

@@ -13,7 +13,7 @@ void CreatePlayer(player *P){
     X(*P) = 1;
     Y(*P) = 1;
     MapNum(*P) = 1;
-    Money(*P) = 1000;
+    Money(*P) = 5000; // Biar leluasa ngetes2
     CJam(*P) = MakeJAM(21,0);
     Day(*P) = 1;
     MakeEmptyDin(&Tab(*P),20);
