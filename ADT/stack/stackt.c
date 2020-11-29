@@ -173,7 +173,7 @@ void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana) {
         aksiUpgrade.JumlahBahan = JmlBahan(nextWahana);
         aksiUpgrade.uang = UpgradeCost(prevWahana);
         aksiUpgrade.addrPrevWahana = prevWahana; 
-        Push(&stackExecute,aksiUpgrade);
+        PushE(&stackExecute,aksiUpgrade);
 }
 
 
@@ -185,7 +185,7 @@ void PrintInfoStack (Stack S) {
         printf("           Total aksi yang akan dilakukan: %d",NbElmtStack(S));
         printf("\n");
         printf("           Total waktu yang akan dibutuhkan:\n");
-        printf("           ");TulisTimeRemaining(SumDurasiStack(S));
+        printf("          ");TulisTimeRemaining(SumDurasiStack(S));
         printf("\n");   
         printf("           Total uang yang dibutuhkan: %d",SumUangStack(S));
         printf("\n");   
@@ -205,3 +205,18 @@ boolean SemuaCukup (player *P, Kata NamaBahan, int JumlahBahan, int BiayaUpgrade
     return (UangCukup(P,BiayaUpgrade) && BahanCukup(P,NamaBahan,JumlahBahan));
 }
 
+void PushE(Stack * S, aksi X)
+{
+  int Time, Total;
+  Stack ST = *S;
+  Time = SumDurasiStack(ST);
+  Total = Time + X.durasi;
+  if( Total <= 720){
+    Push (S,X);
+  }
+  else
+  {
+    printf("Total durasi aksi melebihi Time Remaining");
+  }
+  
+}

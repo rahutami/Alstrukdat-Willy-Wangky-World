@@ -62,7 +62,7 @@ stack*/
                 X.NamaBahan = BahanWahana(addrWahana);
                 X.JumlahBahan = JmlBahan(addrWahana); 
                 X.uang = UpgradeCost(addrWahana);
-                Push (&stackExecute, X); //Variabel globla stackExecute
+                PushE (&stackExecute, X); //Variabel globla stackExecute
 
                 //Menambahkan W ke peta
                 AddWToPeta();
@@ -214,7 +214,7 @@ input salah atau benar kemudian masukin ke stack */
                     printf("%d",Elmt(Tab(Player),i).value);
                     printf("\n");
                 }
-                Push(&stackExecute, X); //Variabel globla stackExecute
+                PushE(&stackExecute, X); //Variabel globla stackExecute
             }
             else {
                 printf("Uang Anda tidak cukup untuk melakukan pembelian.\n");

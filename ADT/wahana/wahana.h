@@ -12,6 +12,12 @@
 #include "../player/player.h"
 #include "../matriks/matriks.h"
 
+extern boolean EndKata;
+extern Kata CKata;
+extern char CC;
+extern boolean EOP;
+
+
 typedef struct tElmtWahanaS *addressWahanaS;
 /*ElmtWahanaStatis merupakan Node dalam TreeWahanaS, 
 datanya berupa data statis dari txt*/
@@ -222,5 +228,15 @@ void Repair(addressWahanaD *D);
 //Mengubah StatusWahana pada address dinamis D menjadi 'true'
 
 void PrintListW(ListWahanaD LW);
+
+void Inoffice();
+
+void PrintHistory(Kata Wahana, addressWahanaS T);
+
+void PrintElmtS (addressWahanaS P, TreeWahanaS T);
+
+void details();
+
+void report();
 
 #endif

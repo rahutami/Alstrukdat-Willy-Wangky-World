@@ -115,4 +115,6 @@ boolean SemuaCukup (player *P, Kata NamaBahan, int JumlahBahan, int BiayaUpgrade
 void PrintUpgraded(addressWahanaS prevWahana, addressWahanaS nextWahana);
 /* Prosedur untuk print hasil aksi upgrade pada wahana */
 
+void PushE(Stack * S, aksi X);
+
 #endif

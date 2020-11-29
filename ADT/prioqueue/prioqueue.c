@@ -172,12 +172,14 @@ void PrintPrioQueue (PrioQueue Q){
    if(!IsEmptyQueue(Q)){
     if(Head(Q) <= Tail(Q)){
         for(i = Head(Q); i <= Tail(Q); i++){
+            printf("     ");
             PrintInfo(InfoQueue(ElmtQueue(Q, i)));
             printf(", kesabaran: %d\n", Patience(ElmtQueue(Q, i)));
         }
     } else {
         i = Head(Q);
         while(i <= Tail(Q)){
+            printf("     ");
             PrintInfo(InfoQueue(ElmtQueue(Q, i)));
             printf("kesabaran: %d\n", Patience(ElmtQueue(Q, i)));
             if(i == MaxEl(Q) - 1 && i != Tail(Q)){
@@ -204,7 +206,7 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
     infotypeQueue new;
     /* ALGORITMA */
     /* Randomize queue length */
-    queueLength =  rand() % 4 + 1;
+    queueLength =  rand() % 2 + 1;
 
     /* Copy list wahana dan menghilangkan double element */
     List newListWahana;
@@ -221,7 +223,6 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
                 wahanaBuilt++;
             }   
         }
-        printf("%d\n", wahanaBuilt);
         P = NextWahana(P);
     }
 
@@ -238,12 +239,12 @@ void RandomizeQueue (PrioQueue *Q, ListWahanaD LW) {
     /* Memilih wahana secara random */
     for(i = 0; i <= queueLength; i++) {
         CreateEmptyList(&L);
-        wahana = rand() % 5;
+        wahana = rand() % wahanaBuilt;
         for(j = 0; j <= wahana; j++){
             k = rand() % wahanaBuilt;
             InsVLast(&L, arrayKata[k]);
         }
-        Patience(new) = rand() % 5 + 1;
+        Patience(new) = 5;
         InfoQueue(new) = L;
         Prio(new) = 5;
         Enqueue(Q, new);
@@ -268,7 +269,9 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
         /* Mencari query di list wahana yang sudah dibagnun */
         S = Search(L, W);
         if(S == NilList){
-            printf("Wahana tidak ada di dalam antrian pelanggan. Silahkan coba lagi. \n\n");
+            printf("\033[0;31m");
+            printf("\nWahana tidak ada di dalam antrian pelanggan. Silahkan coba lagi. \n\n");
+            printf("\033[0m");
         } else {
             CJam(*P) = NextMenit(CJam(*P));
             target = SearchWahanaD(W, LW);
@@ -290,16 +293,21 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
                 TotalFreqWahana(target) += 1;
                 DailyFreqWahana(target) += 1;
                 IncomeWahana(target) +=PriceWahana(ElmtStatis(target));
-                printf("Selamat menikmati wahana ");
-                PrintKata(W);
+                printf("\033[0;32m");
+                printf("\nSelamat menikmati wahana "); PrintKata(CKata);
                 printf("!\n\n");
+                printf("\033[0m");
 
             } else {
+                printf("\033[0;31m");
                 printf("Maaf, wahana sedang dalam perbaikan.\n");
+                printf("\033[0;31m");
             }
         }
     } else {
+        printf("\033[0;31m");
         printf("Antrian kosong\n\n");
+        printf("\033[0;31m");
     }
 }
 
