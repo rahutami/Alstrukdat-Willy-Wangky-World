@@ -188,6 +188,17 @@ void UpgradeStack() {
 /* FUNGSI INI UNTUK NGE PUSH AKSI UPGRADE KE STACK */
 /* IF AND ONLY IF UPGRADENYA BERHASIL (RESOURCES DAN UANG CUKUP !!! ) */
         aksi aksiUpgrade;
+        Kata kataUpgrade;
+		kataUpgrade.TabKata[0]='u';
+		kataUpgrade.TabKata[1]='p';
+		kataUpgrade.TabKata[2]='g';
+		kataUpgrade.TabKata[3]='r';
+		kataUpgrade.TabKata[4]='a';
+		kataUpgrade.TabKata[5]='d';
+		kataUpgrade.TabKata[6]='e';
+		kataUpgrade.TabKata[7]='\n';
+		kataUpgrade.Length = 6;
+        aksiUpgrade.commandStack = kataUpgrade;
         aksiUpgrade.uang = 0;
         aksiUpgrade.durasi = 240;
         aksiUpgrade.PointWahana = Position(Player);
