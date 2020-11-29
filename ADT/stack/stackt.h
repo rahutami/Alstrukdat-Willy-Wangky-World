@@ -16,7 +16,7 @@
 #include "../graph/graph.h"
 
 #define Nil -1
-#define MaxElS 10
+#define MaxElS 100
 /* Nil adalah stack dengan elemen kosong . */
 
 typedef int addressStack;   /* indeks tabel */

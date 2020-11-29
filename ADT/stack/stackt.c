@@ -174,7 +174,7 @@ void mainmain (Stack *S, aksi *X) {
 
 void PrintUpgraded(addressWahanaS prevWahana, addressWahanaS nextWahana) {
     // INI BUAT NGETEST
-    printf("Upgraded!\n");
+    printf("\nUpgraded!\n");
     printf("Nama wahana yang baru   : ");PrintKata(NamaWahana(nextWahana));printf("\n");
     printf("Deskripsi               : ");PrintKata(DescWahana(nextWahana));printf("\n");
     printf("Nama wahana sebelumnya  : ");PrintKata(NamaWahana(prevWahana));printf("\n");
