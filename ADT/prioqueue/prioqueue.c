@@ -291,7 +291,6 @@ void Serve(player *P, Kata W, PrioQueue *Q, listPlayer *LP, ListWahanaD LW){
                 DailyFreqWahana(target) += 1;
                 IncomeWahana(target) +=PriceWahana(ElmtStatis(target));
                 printf("Selamat menikmati wahana ");
-                PrintKata(W);
                 printf("!\n\n");
 
             } else {

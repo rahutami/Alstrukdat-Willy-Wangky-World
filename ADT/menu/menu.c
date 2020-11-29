@@ -298,7 +298,6 @@ void MainPhase(player * p1){
             while(ID(CPeta) != MapNum(*p1)){
                 CPeta = NextGraph(CPeta);
             }
-            ADVKATA();
             if(ElmtMatriks(Peta(CPeta), y + 1, x) == 'A' || ElmtMatriks(Peta(CPeta), y, x+1) == 'A' || ElmtMatriks(Peta(CPeta), y - 1, x) == 'A' || ElmtMatriks(Peta(CPeta), y, x - 1) == 'A'){
                 Serve(p1, CKata, &Q, &LP, WahanaBuilt);
             } else {
