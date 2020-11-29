@@ -32,8 +32,6 @@ stack*/
             if (BahanCukup(&Player,BahanWahana(addrWahana),JmlBahan(addrWahana))) {
                 //masukkin ke list  wahana
                 P = AlokWahana(Pos, CKata); 
-                PrintKata(CKata);
-                PrintKata(NamaWahana(ElmtStatis(P)));
                 if (IsEmptyListW(*L)){
                     InsFirstW(L,P);
                 }

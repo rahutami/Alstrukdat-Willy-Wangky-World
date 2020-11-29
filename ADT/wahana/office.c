@@ -110,9 +110,6 @@ void PrintElmtS (addressWahanaS P, TreeWahanaS T){
 }
 
 void details(){
-
-    First(WahanaBuilt) = NilList;
-    
     printf("\nPilih wahana yang ingin ditampilkan Details-nya: \n");
     STARTKATA();
 
