@@ -4,7 +4,10 @@ yang menampilkan commad BUILD
 */
 
 #include "../wahana/wahana.h"
+#include "../arraydinmap/arraydinmap.h"
+#include "../graph/graph.h"
 #include "../point/point.h"
+#include "../peta/peta.h"
 #include "../player/player.h"
 #include "../stack/stackt.h"
 #include <stdio.h>

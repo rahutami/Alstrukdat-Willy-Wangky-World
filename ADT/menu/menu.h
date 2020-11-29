@@ -12,6 +12,7 @@
 #include "../graph/graph.h"
 #include "../wahana/wahana.h"
 #include "../prepare/prepare.h"
+#include "../wahana/office.h"
 
 void MainMenu();
 void MenuJalan(player *p1, Graph G);

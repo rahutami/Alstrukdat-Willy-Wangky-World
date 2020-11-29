@@ -23,9 +23,9 @@ void CreatePlayer(player *P){
 }
 
 void TulisPlayer(){
-    printf("Player Name: ");
+    printf("           ");printf("Player Name: ");
     PrintKata(NamaPlayer(Player));
     printf("\n");
-    printf("Money: %d\n", Money(Player));
+    printf("           ");printf("Money: %d\n", Money(Player));
 }
 

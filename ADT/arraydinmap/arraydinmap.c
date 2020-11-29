@@ -11,6 +11,7 @@
 // #define MaxEl(T) (T).MaxEl
 
 /* ********** KONSTRUKTOR ********** */
+Tab File_material;
 /* Konstruktor : create tabel kosong  */
 void MakeEmptyDin(Tab *T, int maxel)
 /* I.S. T sembarang, maxel > 0 */
@@ -145,17 +146,18 @@ void TulisIsiTab(Tab T)
     // Kamus Lokal
     int i;
     // Algoritma
-    printf("[");
     if(!IsEmptyDin(T)){
+        printf("           Daftar bahan yang dimiliki:\n");
         for (i=GetFirstIdxDin(T); i<=GetLastIdxDin(T); i++){
+            printf("           ");
             PrintKata(Elmt(T,i).key);
             printf(" - ");
             printf("%d",Elmt(T,i).value);
-            if(i!=GetLastIdxDin(T)) printf(",");
+            printf("\n");
         }
+    } else {
+        printf("           Anda tidak memiliki bahan apapun\n");
     }
-
-    printf("]");
 }
 
 
@@ -165,7 +167,7 @@ void BacaIsiMaterial(Tab *T)
 /* NOTE: PROSEDUR INI BUAT BACA FILE EXTERNAL TERUS BIKIN TABELNYA */
 {
     MakeEmptyDin(T,30);
-    STARTKATAFILE("Files/material.txt"); // Gabisa dijalanin dari driver_arraydinmap
+    STARTKATAFILE("Files/material.txt"); // Gabisa dijalanin dari driver_arraydinmap ganti "../../Files/material.txt"
 	int count = 0;
     int i=0;
 	SalinKataFile();

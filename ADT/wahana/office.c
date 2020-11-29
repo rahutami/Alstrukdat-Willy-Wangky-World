@@ -10,8 +10,7 @@ char CC;
 boolean EOP;
 
 
-void Inoffice(POINT P){
-    POINT Office = MakePOINT(1,1); //contoh 
+void Inoffice(){//contoh 
     
     Kata Coffice, Cdetails, Crep, Cexit;
 

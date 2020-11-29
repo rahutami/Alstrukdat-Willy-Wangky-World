@@ -5,6 +5,7 @@ yang menampilkan commad BUY
 
 #include "prepare.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void ProsedureBuild(POINT Pos, ListWahanaD *L)
 /* Menambahkan  status build kedalam stack dan list wahana */
@@ -19,8 +20,8 @@ akan ditampilkan pesan error.
 stack*/
 {
     //Menampilkan wahana dasar (ada 10, diambil dari tree wahana)
-    printf("Daftar wahana yang dapat dibangun: \n");
-    PrintTree(UpgradeTree);
+    //printf("Daftar wahana yang dapat dibangun: \n");
+    //PrintTree(UpgradeTree);
     addressWahanaD P, Prec;
     printf("\nIngin membangun wahana apa?\n-> ");
     STARTKATA(); 
@@ -41,10 +42,9 @@ stack*/
                     }
                     InsAfterW(L, P, Prec);
                 }
-                // GATAU KENAPA BELOM BERHASIL DAN GA KE PRINT
+                
+                Money(Player) = Money(Player) - UpgradeCost(addrWahana);
                 DelElTab(&Tab(Player),BahanWahana(addrWahana),JmlBahan(addrWahana));
-                printf("Daftar bahan Anda sekarang: \n");
-                TulisIsiTab(Tab(Player));
                 // Masukkin ke stack
                 Kata command;
                 command.TabKata[0]='B';
@@ -60,9 +60,8 @@ stack*/
                 X.PointWahana = Position(Player);
                 X.NamaBahan = BahanWahana(addrWahana);
                 X.JumlahBahan = JmlBahan(addrWahana); 
-                X.uang = PriceWahana(addrWahana);
+                X.uang = UpgradeCost(addrWahana);
                 Push (&stackExecute, X); //Variabel globla stackExecute
-                PrintInfoStack(stackExecute); // buat test -> GATAU KENAPA GABISA KE PRINT ???
             } 
             else { // bahan tidak cukup
                 printf("Bahan yang Anda miliki tidak cukup untuk membangun wahana ini.\n");
@@ -94,7 +93,7 @@ akan ditampilkan pesan error.
 4. Setelah itu, perintah eksekusi ini akan dimasukkan ke dalam
 stack*/
 {
-     //CreateEmpty (&stackExecute); // coba // buat test di deklarai di main awal
+     CreateEmpty (&stackExecute); // coba // buat test di deklarai di main awal
      First(WahanaBuilt) = NilList;
      MakeTree();
      printf("Daftar Wahana: \n");
@@ -103,6 +102,7 @@ stack*/
      ProsedureBuild(P,&WahanaBuilt);
      //printf("\n");
      PrintInfoWD(WahanaBuilt);
+     printf("\n");
      
      
      
@@ -113,6 +113,38 @@ void UndoBuild() {
     // Tambahin bahan -> cek inventory pake PrintIsiTab
     // Delete di list wahana built -> Cek list WahanaBuilt
     // Pop
+    aksi X;
+    Pop(&stackExecute,&X);
+    PrintInfoStack(stackExecute);
+    Money(Player) += X.uang; //Tambahin uang
+    int i = 0;
+    while (i < Neff(Tab(Player)) && !IsKataSamaKata(Elmt(Tab(Player), i).key,X.NamaBahan))
+    {
+        i++;
+        
+    }
+    // ketemu nama wahana yang sama dan Tambahin bahan 
+    Elmt(Tab(Player), i).value += X.JumlahBahan;
+    //PrintInfoWD(WahanaBuilt);
+
+// pencarian elemen list bulid sebelum terakir yang akan di dealokasi
+    addressWahanaD P, Prec;
+    Prec = First(WahanaBuilt); 
+    if(Next(Prec) == NilList)
+    {
+        First(WahanaBuilt) = NilList;
+        free(Next(Prec));
+    }
+    else
+    {  
+        while (Next(Next(Prec)) != NilList)
+        {
+            Prec = Next(Prec);
+        }
+        P = Next(Prec);
+        Next(Prec) == NilList;
+        free(P);
+    }
 }
 
 void CommmandBuyArray()
@@ -121,7 +153,7 @@ menampilkan daftar bahan kemudian menerima inputan dan mengatusr senua case
 input salah atau benar kemudian masukin ke stack */
 {
 	//CreateEmpty (&stackExecute); // coba // buat test
-	Tab File_material;
+	//Tab File_material; //variabel global
 	BacaIsiMaterial(&File_material);
 	TulisIsiTabMaterial(File_material);
 	printf("\n%s\n%s\n%s\n%s","Masukkan Perintah:","<jumlah> <material>","<enter untuk keluar>","-> ");
@@ -134,7 +166,6 @@ input salah atau benar kemudian masukin ke stack */
 		int Nbahan;
 		Nbahan = convToInt(CKata);
 		ADVKATA();
-		PrintKata(CKata);
 		if (SearchK(File_material, CKata) && !IsKataSama (""))
 		{
 			val = Nbahan * SearchVal(File_material, CKata);
@@ -160,11 +191,15 @@ input salah atau benar kemudian masukin ke stack */
                 X.JumlahBahan = Nbahan;
                 X.uang = val;
                 
-                printf("Anda membeli "); PrintKata(CKata); printf(" sebanyak %d buah.\n",Nbahan);
-                printf("Daftar bahan yang Anda miliki: \n");
-                TulisIsiTab(Tab(Player)); printf("\n");
+                printf("\nAnda membeli "); PrintKata(CKata); printf(" sebanyak %d buah.\n\n",Nbahan);
+                printf("Daftar bahan yang dimiliki:\n");
+                for (int i=GetFirstIdxDin(Tab(Player)); i<=GetLastIdxDin(Tab(Player)); i++){
+                    PrintKata(Elmt(Tab(Player),i).key);
+                    printf(" - ");
+                    printf("%d",Elmt(Tab(Player),i).value);
+                    printf("\n");
+                }
                 Push(&stackExecute, X); //Variabel globla stackExecute
-                PrintInfoStack(stackExecute); 
             }
             else {
                 printf("Uang Anda tidak cukup untuk melakukan pembelian.\n");
@@ -180,15 +215,20 @@ input salah atau benar kemudian masukin ke stack */
 	// else
 	// {
 		printf("Anda keluar dari menu buy\n");
+        //UndoBuy ();
+        //PrintInfoStack(stackExecute); 
 	// }
 
 }
 
 void UndoBuy () {
+    
 // Uang ditambah
 // Inventory berkurang (delete dari arraydinmap) -> belom bikin fungsinya. Cek inventory pake print Isi
 // Pop
-
+aksi X;
+Pop(&stackExecute,&X);
+Money(Player) += X.uang;
 }
 
 
@@ -264,7 +304,6 @@ void upgradeWahana() {
                         // Kurangin uang dan bahan
                         Money(Player) = Money(Player) - UpgradeCost(elmtStatisUpgrade);
                         DelElTab(&Tab(Player),BahanWahana(Left(elmtStatisUpgrade)),JmlBahan(Left(elmtStatisUpgrade)));
-                        printf("Bahan yang Anda miliki sekarang: ");TulisIsiTab(Tab(Player));
 
 
                         addrElmtUpgraded = Left(elmtStatisUpgrade);
@@ -273,10 +312,9 @@ void upgradeWahana() {
                         PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
                         UpgradeStack(); // Buat nge push ke stack
-                        PrintInfoStack(stackExecute); 
                     }
                     else {
-                        printf("\nBahan atau uang yang kamu miliki tidak cukup untuk melakukan upgrade.\n");
+                        printf("\nBahan atau uang yang kamu miliki \ntidak cukup untuk melakukan upgrade.\n");
                     }
                 } 
                 else if (Left(elmtStatisUpgrade)==NULL && Right(elmtStatisUpgrade)!=NULL){ // Cuma bisa upgrade ke right
@@ -289,14 +327,13 @@ void upgradeWahana() {
                         STARTKATA();
                         CopyKata(CKata,&elmtUpgrade);
                         while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
-                            printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                            printf("Nama wahana yang Anda tulis salah. \nMau upgrade kemana: ");
                             STARTKATA();
                             CopyKata(CKata,&elmtUpgrade);
                         }
                             // Kurangin uang dan bahan
                             Money(Player) = Money(Player) - UpgradeCost(elmtStatisUpgrade);
                             DelElTab(&Tab(Player),BahanWahana(Right(elmtStatisUpgrade)),JmlBahan(Right(elmtStatisUpgrade)));
-                            printf("Bahan yang Anda miliki sekarang: ");TulisIsiTab(Tab(Player));
 
                         addrElmtUpgraded = Right(elmtStatisUpgrade);
                         elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
@@ -305,11 +342,10 @@ void upgradeWahana() {
 
 
                             UpgradeStack(); // Buat nge push ke stack
-                            PrintInfoStack(stackExecute); 
 
                     }
                     else {
-                        printf("Bahan atau uang yang kamu miliki tidak cukup untuk melakukan upgrade.\n");
+                        printf("Bahan atau uang yang kamu miliki \ntidak cukup untuk melakukan upgrade.\n");
                     }
                 }
                 else { // Bisa diupgrade ke left ataupun right
@@ -319,7 +355,7 @@ void upgradeWahana() {
                     STARTKATA();
                     CopyKata(CKata,&elmtUpgrade);
                     while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade)))) && (!IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade))))) {
-                        printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                        printf("Nama wahana yang Anda tulis salah. \nMau upgrade kemana: ");
                         STARTKATA();
                         CopyKata(CKata,&elmtUpgrade);
                     }
@@ -332,7 +368,7 @@ void upgradeWahana() {
                             STARTKATA();
                             CopyKata(CKata,&elmtUpgrade);
                             while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade))))) {
-                                printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                                printf("Nama wahana yang Anda tulis salah. \nMau upgrade kemana: ");
                                 STARTKATA();
                                 CopyKata(CKata,&elmtUpgrade);
                             } */
@@ -340,7 +376,6 @@ void upgradeWahana() {
                             // Kurangin uang dan bahan
                             Money(Player) = Money(Player) - UpgradeCost(elmtStatisUpgrade);
                             DelElTab(&Tab(Player),BahanWahana(Left(elmtStatisUpgrade)),JmlBahan(Left(elmtStatisUpgrade)));
-                            printf("Bahan yang Anda miliki sekarang: ");TulisIsiTab(Tab(Player));
 
                             addrElmtUpgraded = Left(elmtStatisUpgrade);
                             elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
@@ -352,7 +387,7 @@ void upgradeWahana() {
                             PrintInfoStack(stackExecute); 
                             }
                         else {
-                            printf("Bahan atau uang yang kamu miliki tidak cukup untuk melakukan upgrade.\n");
+                            printf("Bahan atau uang yang kamu miliki \ntidak cukup untuk melakukan upgrade.\n");
                         }
                     }
                     if (IsKataSamaKata(elmtUpgrade,NamaWahana(Right(elmtStatisUpgrade)))) {
@@ -364,14 +399,13 @@ void upgradeWahana() {
                             STARTKATA();
                             CopyKata(CKata,&elmtUpgrade);
                             while ((!IsKataSamaKata(elmtUpgrade,NamaWahana(Left(elmtStatisUpgrade))))) {
-                                printf("Nama wahana yang Anda tulis salah. Mau upgrade kemana: ");
+                                printf("Nama wahana yang Anda tulis salah. \nMau upgrade kemana: ");
                                 STARTKATA();
                                 CopyKata(CKata,&elmtUpgrade);
                             } */
                             // Kurangin uang dan bahan
                             Money(Player) = Money(Player) - UpgradeCost(elmtStatisUpgrade);
                             DelElTab(&Tab(Player),BahanWahana(Right(elmtStatisUpgrade)),JmlBahan(Right(elmtStatisUpgrade)));
-                            printf("Bahan yang Anda miliki sekarang: ");TulisIsiTab(Tab(Player));
                             
                             addrElmtUpgraded = Right(elmtStatisUpgrade);
                             elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
@@ -382,7 +416,7 @@ void upgradeWahana() {
                             PrintInfoStack(stackExecute); 
                             }
                         else { // gabisa upgrade
-                            printf("Bahan atau uang yang kamu miliki tidak cukup untuk melakukan upgrade.\n");
+                            printf("Bahan atau uang yang kamu miliki \ntidak cukup untuk melakukan upgrade.\n");
                         }
                     }
                 }
