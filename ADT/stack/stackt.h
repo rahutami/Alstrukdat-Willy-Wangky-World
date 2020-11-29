@@ -25,12 +25,11 @@ typedef int addressStack;   /* indeks tabel */
 player Pemain;
 typedef struct {
   Kata commandStack;
-  int durasi; // Waktu yang dibutuhkan untuk melakukan satu aksi
+  int durasi; // Waktu yang dibutuhkan untuk melakukan satu aksi (+)
   POINT PointWahana; // Point tempat aksi tsb dilakukan
   //int MapNum(P);
-  // int MapNum(P); // MapNum
-  Kata NamaBahan;
-  int JumlahBahan;
+  Kata NamaBahan; // Nama bahan yang digunakan
+  int JumlahBahan; // Jumlah bahan yang dibutuhkan (+)
   int uang; // Uang yang dibutuhkan untuk melakukan satu aksi
   // ID wahana yang sebelumnya
 } aksi;

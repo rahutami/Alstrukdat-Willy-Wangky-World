@@ -199,7 +199,7 @@ void UpgradeStack() {
 		kataUpgrade.TabKata[7]='\n';
 		kataUpgrade.Length = 6;
         aksiUpgrade.commandStack = kataUpgrade;
-        aksiUpgrade.uang = 0;
+        aksiUpgrade.uang = 0; // uang yang sama kayak build
         aksiUpgrade.durasi = 240;
         aksiUpgrade.PointWahana = Position(Player);
         Push(&stackExecute,aksiUpgrade);
