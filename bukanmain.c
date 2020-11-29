@@ -50,7 +50,7 @@ int main(){
     MainMenu();
 
     do{
-        if (IsKataSama("new")){
+        if (IsKataSama("new")){ //Input new bakal masuk ke game
 
             NewGame();
 
@@ -66,14 +66,14 @@ int main(){
                     MainPhase(&Player);
                 }
             }
-        } else if(!IsKataSama("exit")) {
+        } else if(!IsKataSama("exit")) {// Input selain nwe atau exit bakal loop dan minta input lagi
             printf("===================================\n");
             printf("Command tidak tersedia\n");
             printf("Choose menu: \nNew Game (new)\nExit (exit)\n");\
             printf("===================================\n");
             STARTKATA();
         }
-    } while(!IsKataSama("exit"));
+    } while(!IsKataSama("exit")); //Input exit bakal keluar
     
 
     printf("===================================\n\n");
