@@ -4,24 +4,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-boolean EndKata;
-Kata CKata;
-char CC;
-boolean EOP;
 
-
+<<<<<<< HEAD
+void Inoffice(POINT P){
+     //contoh 
+=======
 void Inoffice(){//contoh 
+>>>>>>> 5e4fd0c888911ca8e7d36b2dd1876595fc2d51f0
     
-    Kata Coffice, Cdetails, Crep, Cexit;
-
-    //Pembentuk kata office
-    Coffice.Length = 6;
-    Coffice.TabKata[0] = 'o';
-    Coffice.TabKata[1] = 'f';
-    Coffice.TabKata[2] = 'f';
-    Coffice.TabKata[3] = 'i';
-    Coffice.TabKata[4] = 'c';
-    Coffice.TabKata[5] = 'e';
+    Kata Cdetails, Crep, Cexit;
 
     //Pembentuk kata Details
     Cdetails.Length = 7;
@@ -49,19 +40,32 @@ void Inoffice(){//contoh
     Cexit.TabKata[2] = 'i';
     Cexit.TabKata[3] = 't';
 
+    printf("\nMasukkan perintah (Details / Report / Exit): \n");
     STARTKATA();
-    do
-    {
-        if (IsKataSamaKata(Cdetails, CKata)){
-            details();
-        }else if (IsKataSamaKata(Crep, CKata)){
-            ListWahanaD L1;
-            Report(CKata,L1);
-        }else if (!IsKataSamaKata(Cexit,CKata)){
-            printf("Input yang dimasukkan salah!");
+    boolean finish = false;
+
+    while (!finish){
+        if (IsKataSamaKata(Cdetails,CKata)){
+            MakeTree(); //udah ada di main
+            printf("\nDaftar Wahana: \n");
+            PrintTree(UpgradeTree);
+            details(); finish = true;
+        }     
+        else if (IsKataSamaKata(Crep,CKata)){
+            MakeTree(); //udah ada di main
+            printf("\nDaftar Wahana: \n");
+            PrintTree(UpgradeTree);
+            report();
+            finish = true;
+        }
+        else if (IsKataSamaKata(Cexit, CKata))
+            finish = true;
+        else
+        {
+            printf("Input yang dimasukkan salah!\n"); printf("Masukkan kembali input : ");
             STARTKATA();
         }
-    } while (!IsKataSamaKata(Cexit,CKata));
+    }
 }
 
 void PrintHistory(Kata Wahana, addressWahanaS T){
@@ -79,43 +83,90 @@ void PrintHistory(Kata Wahana, addressWahanaS T){
 
 void PrintElmtS (addressWahanaS P, TreeWahanaS T){
     
-    ListWahanaD L;
-    addressWahanaD D = SearchWahanaD (NamaWahana(P),L);
-
+    addressWahanaD D = SearchWahanaD (NamaWahana(P),WahanaBuilt);
+    printf("\n----------Details Wahana----------\n");
     printf("Nama :"); PrintKata(NamaWahana(P)); printf("\n");
 
-    printf("Lokasi : "); TulisPOINT(PositionWahana(D)); printf("\n");//nampilin dari addressD
+    printf("Lokasi : "); 
+    if (D!=NilList){
+        TulisPOINT(PositionWahana(D));//nampilin dari addressD
+    } else printf("-");
+    printf("\n");
     
     printf("Upgrade(s) : ["); 
     if (Left(P)!= NilList){
         PrintKata(NamaWahana(Left(P))); printf(", ");
     } else printf("");
     if (Right(P)!=NilList){
-        PrintKata(NamaWahana(Left(P)));
+        PrintKata(NamaWahana(Right(P)));
     } else printf("");
-    printf("]");
+    printf("]\n");
 
     //PrintKata(NamaWahana(Left(P))); printf(", "); PrintKata(NamaWahana(Right(P))); printf("]\n"); 
     printf("History : "); PrintHistory(NamaWahana(P),P); printf("\n");
     
     printf("Status : ");
-    if (StatusWahana(D)){
-        printf("berfungsi");
-    } else printf("rusak");
-
+    if (D == NilList) printf("-");
+    else
+        if (StatusWahana(D)){
+            printf("berfungsi");
+        } else printf("rusak");
+    printf("\n\n");
 }
 
 void details(){
 
     First(WahanaBuilt) = NilList;
-
-    MakeTree(); //udah ada di main
-    printf("Daftar Wahana: \n");
-    PrintTree(UpgradeTree);
     
-    printf("Pilih wahana yang ingin ditampilkan Details-nya: \n");
+    printf("\nPilih wahana yang ingin ditampilkan Details-nya: \n");
     STARTKATA();
-    addressWahanaS P = SearchAddress (UpgradeTree, CKata); printf("okeee\n");
+
+    addressWahanaS P = SearchAddress (UpgradeTree, CKata);
+
+   // boolean foundD = false;
+    while (P == NilList){//P == NilList){
+        printf("Input yang dimasukkan salah!\n"); 
+        printf("Masukkan kembali input : ");
+        STARTKATA(); //PrintKata(CKata);
+        
+        P = SearchAddress (UpgradeTree, CKata);
+    } 
+    
     PrintElmtS(P,UpgradeTree);
+
 }
 
+void report()
+/* I.S namaWahana dimasukkan user */
+/* F.S Menampilkan report dari wahana*/
+{
+    First(WahanaBuilt) = NilList;
+    
+    printf("\nPilih wahana yang ingin ditampilkan Report-nya: \n");
+    STARTKATA();
+
+    boolean found = SearchTree(CKata, UpgradeTree);
+    //printf("oke\n");
+
+    while(!found){
+        printf("Input yang dimasukkan salah!\n"); 
+        printf("Masukkan kembali input : ");
+        STARTKATA(); 
+        found = SearchTree(CKata, UpgradeTree);
+    }
+    
+    addressWahanaD P = SearchWahanaD (CKata,WahanaBuilt);
+    printf("\n----------Report Wahana----------\n");
+    printf("Berapa kali total dinaiki : ");
+    if (P!=NilList) printf("%d",TotalFreqWahana(P));
+    else printf("-\n");
+
+    printf("Berapa kali dinaiki hari ini : ");
+    if (P!=NilList) printf("%d",IncomeWahana(P));
+    else printf("-\n");
+
+    printf("Total penghasilan : ");
+    if (P!=NilList) printf("%d",DailyFreqWahana(P));
+    else printf("-");
+    printf("\n\n");
+}
