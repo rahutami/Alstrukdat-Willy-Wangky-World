@@ -27,7 +27,7 @@ typedef struct {
   Kata commandStack;
   int durasi; // Waktu yang dibutuhkan untuk melakukan satu aksi
   POINT PointWahana; // Point tempat aksi tsb dilakukan
-  //int MapNum(P);
+  int MapNum;
   // int MapNum(P); // MapNum
   Kata NamaBahan;
   int JumlahBahan;
@@ -96,11 +96,6 @@ int SumUangStack (Stack S);
 
 int NbElmtStack (Stack S);
 /* Me-return total aksi yang akan dilakukan (atau NbElmt dari stack) */
-
-void Undo (Stack *S, aksi *X);
-/* Undo pada eksekusi terakhir */
-/* Sama aja kayak nge-POP stack yang kumpulan aksi */
-/* Sama melakukan aksi kebalikan dari yang udah dilakuin  */
 
 void Execute (Stack S);
 /* Eksekusi mulai command terakhir, berarti POP */

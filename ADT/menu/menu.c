@@ -154,7 +154,7 @@ void Preparation(player *p1){
             ListCommand();
         } else if (IsKataSama("build")){
             //buildWahana(Position(Player), &WahanaBuilt);
-            CommmandBuild();
+            ProsedureBuild(Position(Player), &WahanaBuilt);
             AddWToPeta();
         } else if (IsKataSama("buy")){
             CommmandBuyArray();
@@ -169,6 +169,8 @@ void Preparation(player *p1){
                 printf("\033[0m");
             }
             fromoffice = true;
+        } else if (IsKataSama("undo")) {
+            Undo();
         }
         // nanti tambahin elif aja buat command yang lain
         else if(!(IsKataSama("main") || IsKataSama("exit") || IsKataSama("execute"))){
