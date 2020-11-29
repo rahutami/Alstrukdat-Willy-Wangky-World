@@ -25,6 +25,7 @@ typedef struct tElmtWahanaS {
     int TimeWahana; //dalam menit
     Kata BahanWahana;
     int JumlahBahan;
+    int UpgradeCost; // (tambahan) biaya untuk upgrade
 	  addressWahanaS left; //untuk anak kiri
     addressWahanaS right; //untuk anak kanan
 
@@ -82,6 +83,7 @@ typedef addressWahanaS TreeWahanaS; //ganti jd ini keknya
 #define TimeWahana(N) (N)->TimeWahana 
 #define BahanWahana(N) (N)->BahanWahana
 #define JmlBahan(N) (N)->JumlahBahan
+#define UpgradeCost(N) (N)->UpgradeCost
 
 #define PositionWahana(D) (D)->PositionWahana
 #define StatusWahana(D) (D)->StatusWahana 

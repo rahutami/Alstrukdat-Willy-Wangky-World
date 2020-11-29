@@ -13,6 +13,7 @@
 #include "../player/player.h"
 #include "../maplist/maplist.h"
 #include "../peta/peta.h"
+#include "../graph/graph.h"
 
 #define Nil -1
 #define MaxElS 10
@@ -109,7 +110,7 @@ void Execute (Stack S);
 void mainmain (Stack * S, aksi * X);
 /* Mengosongkan stack tanpa melakukan perintah */
 
-void Upgrade (Stack *S, player *P, TreeWahanaS T);
+void UpgradeStack ();
 
 void PrintInfoStack (Stack S);
 
@@ -117,4 +118,5 @@ boolean UangCukup (player *P, int harga);
 
 boolean BahanCukup (player *P, Kata NamaBahan, int JumlahBahan);
 
+void PrintUpgraded(addressWahanaS prevWahana, addressWahanaS nextWahana);
 #endif
