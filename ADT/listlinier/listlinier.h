@@ -141,6 +141,7 @@ infotypeList Max (List L);
 /* Mengirimkan nilai InfoList(P) yang maksimum */
 
 boolean IsListSama (List L1, List L2);
+/* Memeriksa apakah L1 dan L2 adalah list yang sama */
 
 List RemoveDouble (List L);
 /* Mengeluarkan elemen double di dalam L */

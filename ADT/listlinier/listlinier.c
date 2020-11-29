@@ -326,6 +326,7 @@ void Konkat1 (List *L1, List *L2, List *L3) {
 }
 
 boolean IsListSama (List L1, List L2) {
+    /* Memeriksa apakah L1 dan L2 adalah list yang sama */
     boolean sama = true;
     if (NbElmt(L1) == NbElmt(L2)) {
         addressList P1 = First(L1), P2 = First(L2);
