@@ -197,14 +197,13 @@ void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana) {
 
         aksiUpgrade.commandStack = kataUpgrade;
         aksiUpgrade.durasi = 240; // ceritanya 240 menit
-        // aksiUpgrade.PointWahana = PositionWahana(prevWahana);
-        // aksiUpgrade.MapNum = PetaWahana(prevWahana); // bingung
-
+        addressWahanaD elmtDin = SearchWahanaD(NamaWahana(prevWahana),WahanaBuilt);
+        aksiUpgrade.PointWahana = PositionWahana(elmtDin);
+        aksiUpgrade.MapNumAksi = PetaWahana(elmtDin);
         aksiUpgrade.NamaBahan = BahanWahana(nextWahana);
         aksiUpgrade.JumlahBahan = JmlBahan(nextWahana);
         aksiUpgrade.uang = UpgradeCost(prevWahana);
         aksiUpgrade.addrPrevWahana = prevWahana; 
-
         Push(&stackExecute,aksiUpgrade);
 }
 /* STEPS:
@@ -260,14 +259,3 @@ boolean SemuaCukup (player *P, Kata NamaBahan, int JumlahBahan, int BiayaUpgrade
     return (UangCukup(P,BiayaUpgrade) && BahanCukup(P,NamaBahan,JumlahBahan));
 }
 
-void UndoUpgrade(addressWahanaS prevWahana, addressWahanaS nextWahana) {
-    // Tambahin uang
-    // Tambahin bahan ke inventory
-    // Balikin ke elemen parent nya
-    // Pop
-    aksi aksiUpgrade;
-    Money(Player) += aksiUpgrade.uang;
-    AddElTab(&Tab(Player),aksiUpgrade.NamaBahan,aksiUpgrade.JumlahBahan);
-    prevWahana = aksiUpgrade.addrPrevWahana; // semoga bener
-    Pop(&stackExecute,&aksiUpgrade);
-}

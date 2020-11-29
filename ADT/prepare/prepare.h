@@ -46,3 +46,5 @@ void UndoBuy();
 void Undo();
 
 void upgradeWahana() ;
+
+void UndoUpgrade();

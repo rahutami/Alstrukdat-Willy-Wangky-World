@@ -27,11 +27,12 @@ typedef struct {
   Kata commandStack;
   int durasi; // Waktu yang dibutuhkan untuk melakukan satu aksi (+)
   POINT PointWahana; // Point tempat aksi tsb dilakukan
-  int MapNum; // BELUM NIH
+  int MapNumAksi; // BELUM NIH
   Kata NamaBahan; // Nama bahan yang digunakan
   int JumlahBahan; // Jumlah bahan yang dibutuhkan (+)
   int uang; // Uang yang dibutuhkan untuk melakukan satu aksi
   addressWahanaS addrPrevWahana; // address wahana sebelum upgrade
+
 } aksi;
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
@@ -104,8 +105,6 @@ void mainmain (Stack * S, aksi * X);
 /* Mengosongkan stack tanpa melakukan perintah */
 
 void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana);
-
-void UndoUpgrade(addressWahanaS prevWahana, addressWahanaS nextWahana);
 
 void PrintInfoStack (Stack S);
 
