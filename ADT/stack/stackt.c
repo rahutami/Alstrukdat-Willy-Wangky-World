@@ -185,7 +185,7 @@ void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana) {
 /* IF AND ONLY IF UPGRADENYA BERHASIL (RESOURCES DAN UANG CUKUP !!! ) */
         aksi aksiUpgrade;
         Kata kataUpgrade;
-		kataUpgrade.TabKata[0]='u';
+		kataUpgrade.TabKata[0]='U';
 		kataUpgrade.TabKata[1]='p';
 		kataUpgrade.TabKata[2]='g';
 		kataUpgrade.TabKata[3]='r';
@@ -197,7 +197,7 @@ void UpgradeStack(addressWahanaS prevWahana, addressWahanaS nextWahana) {
 
         aksiUpgrade.commandStack = kataUpgrade;
         aksiUpgrade.durasi = 240; // ceritanya 240 menit
-        addressWahanaD elmtDin = SearchWahanaD(NamaWahana(prevWahana),WahanaBuilt);
+        addressWahanaD elmtDin = SearchWahanaD(NamaWahana(nextWahana),WahanaBuilt);
         aksiUpgrade.PointWahana = PositionWahana(elmtDin);
         aksiUpgrade.MapNumAksi = PetaWahana(elmtDin);
         aksiUpgrade.NamaBahan = BahanWahana(nextWahana);

@@ -278,7 +278,8 @@ void upgradeWahana() {
 
         printf("\nPilih wahana yang ingin diupgrade: ");
         STARTKATA(); printf("\n");
-        addressWahanaS elmtStatisUpgrade = ElmtStatis(SearchWahanaD(CKata, WahanaBuilt));
+        addressWahanaD wahanaToUpgrade = SearchWahanaD(CKata, WahanaBuilt);
+        addressWahanaS elmtStatisUpgrade = ElmtStatis(wahanaToUpgrade);
         addressWahanaS addrPrevWahana = elmtStatisUpgrade; // address wahana sebelumnya
         //addressWahanaD elmtStatisUpgradeD = SearchWahanaD(namaWahana,WahanaBuilt);
         //addressWahanaS elmtStatisUpgrade;
@@ -323,6 +324,7 @@ void upgradeWahana() {
 
                         addrElmtUpgraded = Left(elmtStatisUpgrade);
                         /* Kode mau upgrade kemana */
+                        ElmtStatis(wahanaToUpgrade) = addrElmtUpgraded; // mengganti elemen statisnya
                         elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
                         PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
@@ -352,7 +354,8 @@ void upgradeWahana() {
                             DelElTab(&Tab(Player),BahanWahana(Right(elmtStatisUpgrade)),JmlBahan(Right(elmtStatisUpgrade)));
 
                         addrElmtUpgraded = Right(elmtStatisUpgrade);
-                        elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
+                        ElmtStatis(wahanaToUpgrade) = addrElmtUpgraded; // mengganti elemen statisnya
+                        elmtStatisUpgrade = addrElmtUpgraded;
                         /* Kode mau upgrade kemana */
                             PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
@@ -394,12 +397,12 @@ void upgradeWahana() {
                             DelElTab(&Tab(Player),BahanWahana(Left(elmtStatisUpgrade)),JmlBahan(Left(elmtStatisUpgrade)));
 
                             addrElmtUpgraded = Left(elmtStatisUpgrade);
-                            elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
+                            ElmtStatis(wahanaToUpgrade) = addrElmtUpgraded; // mengganti elemen statisnya
+                            elmtStatisUpgrade = addrElmtUpgraded;
                             PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
-
-
                             UpgradeStack(addrPrevWahana,elmtStatisUpgrade); // Buat nge push ke stack
+                            printf("ok");
                             PrintInfoStack(stackExecute); 
                             }
                         else {
@@ -424,7 +427,8 @@ void upgradeWahana() {
                             DelElTab(&Tab(Player),BahanWahana(Right(elmtStatisUpgrade)),JmlBahan(Right(elmtStatisUpgrade)));
                             
                             addrElmtUpgraded = Right(elmtStatisUpgrade);
-                            elmtStatisUpgrade = addrElmtUpgraded; // mengganti elemen statisnya
+                            ElmtStatis(wahanaToUpgrade) = addrElmtUpgraded; // mengganti elemen statisnya
+                            elmtStatisUpgrade = addrElmtUpgraded;
                             /* Kode mau upgrade kemana */
                             PrintUpgraded(addrPrevWahana,elmtStatisUpgrade);
 
