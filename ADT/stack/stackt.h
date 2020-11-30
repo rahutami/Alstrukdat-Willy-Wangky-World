@@ -11,7 +11,7 @@
 #include "../point/point.h"
 #include "../mesinkata/mesinkata.h"
 #include "../player/player.h"
-#include "../maplist/maplist.h"
+//#include "../maplist/maplist.h"
 #include "../peta/peta.h"
 #include "../graph/graph.h"
 
