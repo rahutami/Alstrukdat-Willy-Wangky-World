@@ -22,7 +22,7 @@ Willy Wangky's World adalah sebuah program simulasi theme park yang dibuat demi 
    ```
 3. Lakukan compile dengan mengetikkan di terminal :
     ```
-    gcc bukanmain.c ADT/arraydinmap/arraydinmap.c ADT/prepare/prepare.c ADT/wahana/wahana.c ADT/listlinier/listlinier.c ADT/listplayer/listplayer.c ADT/graph/graph.c ADT/jam/jam.c ADT/matriks/matriks.c ADT/menu/menu.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c ADT/peta/peta.c ADT/player/player.c ADT/point/point.c ADT/prioqueue/prioqueue.c ADT/stack/stackt.c -o main
+    gcc programutama.c ADT/arraydinmap/arraydinmap.c ADT/prepare/prepare.c ADT/wahana/wahana.c ADT/listlinier/listlinier.c ADT/listplayer/listplayer.c ADT/graph/graph.c ADT/jam/jam.c ADT/matriks/matriks.c ADT/menu/menu.c ADT/mesinkar/mesinkar.c ADT/mesinkata/mesinkata.c ADT/peta/peta.c ADT/player/player.c ADT/point/point.c ADT/prioqueue/prioqueue.c ADT/stack/stackt.c -o main
     ```
 4. Jalankan program dengan mengetikkan di terminal :
     ```
